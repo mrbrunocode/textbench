@@ -17,11 +17,11 @@
  * ──────────────────────────────────────────────────────────────────────────
  */
 
-export const NAME = "Textkiln";                 // prose, titles, wordmark text
-export const NAME_LOWER = "textkiln";            // URLs, slugs, footer mentions
+export const NAME = "Textbench";                 // prose, titles, wordmark text
+export const NAME_LOWER = "textbench";            // URLs, slugs, footer mentions
 export const TAGLINE = "43 text tools, one page, nothing uploaded.";
-export const SITE_URL = "https://textkiln.app"; // set to the real domain once bought (keep .example until then — IndexNow/rename tooling keys off it)
-export const CONTACT_EMAIL = "hello@textkiln.app";
+export const SITE_URL = "https://textbench.app"; // set to the real domain once bought (keep .example until then — IndexNow/rename tooling keys off it)
+export const CONTACT_EMAIL = "hello@textbench.app";
 export const DESCRIPTION =
   "Case conversion, cleanup, encoding, hashing, generators and more — 43 free text tools that run entirely " +
   "in your browser. No signup, no upload, nothing ever leaves your device.";

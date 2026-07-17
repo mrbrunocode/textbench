@@ -1,57 +1,57 @@
-# Textkiln
+# Textbench
 
 > Case conversion, cleanup, encoding, hashing, generators and more — 43 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.
 
-Textkiln is a static web app: no signup, no backend, no per-visitor cost. Everything runs client-side.
+Textbench is a static web app: no signup, no backend, no per-visitor cost. Everything runs client-side.
 
 ## Primary pages
-- [Home / the tool](https://textkiln.app/)
-- [About](https://textkiln.app/about)
-- [Privacy policy](https://textkiln.app/privacy)
-- [Terms of Service](https://textkiln.app/terms)
-- [Contact](https://textkiln.app/contact)
+- [Home / the tool](https://textbench.app/)
+- [About](https://textbench.app/about)
+- [Privacy policy](https://textbench.app/privacy)
+- [Terms of Service](https://textbench.app/terms)
+- [Contact](https://textbench.app/contact)
 
 ## tools
-- [Word Counter](https://textkiln.app/tools/word-counter): A free word counter that updates as you type. See words, characters, sentences and reading time live — no signup, nothing uploaded, everything stays in your browser.
-- [Character Counter](https://textkiln.app/tools/character-counter): A free character counter showing characters with and without spaces, live as you type. Ideal for meta descriptions, bios and anywhere a character limit matters.
-- [Reading Time](https://textkiln.app/tools/reading-time-calculator): Estimate reading time from your text. Paste an article or script and see how many minutes it takes to read aloud or silently, at your chosen pace.
-- [UPPERCASE](https://textkiln.app/tools/uppercase-converter): Convert any text to UPPERCASE instantly. Paste your text, copy the result — no signup, runs entirely in your browser.
-- [lowercase](https://textkiln.app/tools/lowercase-converter): Convert any text to lowercase instantly. Paste your text, copy the result — no signup, runs entirely in your browser.
-- [Title Case](https://textkiln.app/tools/title-case-converter): Convert text to Title Case, capitalizing the first letter of each word. Free, instant, runs in your browser.
-- [Sentence case](https://textkiln.app/tools/sentence-case-converter): Convert text to sentence case: lowercase throughout, with the first letter of each sentence capitalized. Free, instant, browser-only.
-- [Remove Duplicates](https://textkiln.app/tools/remove-duplicate-lines): Remove duplicate lines from a list or block of text, keeping the first occurrence of each. Free, instant, nothing uploaded.
-- [Extra Spaces](https://textkiln.app/tools/remove-extra-spaces): Remove extra spaces and tabs from text, collapsing runs of whitespace into a single space per line. Free, instant, browser-only.
-- [Line Breaks](https://textkiln.app/tools/remove-line-breaks): Remove line breaks from text, joining everything into a single paragraph with spaces between what used to be separate lines. Free, instant.
-- [Empty Lines](https://textkiln.app/tools/remove-empty-lines): Remove all empty and blank lines from a block of text or a list. Free, instant, runs entirely in your browser.
-- [Sort Lines](https://textkiln.app/tools/sort-lines-alphabetically): Sort a list of lines alphabetically, A→Z or Z→A. Free, instant, works entirely in your browser — paste a list and get it sorted.
-- [Reverse Text](https://textkiln.app/tools/reverse-text): Reverse text character by character — turn 'hello' into 'olleh'. Free, instant, runs entirely in your browser.
-- [Line Numbers](https://textkiln.app/tools/add-line-numbers): Add sequential line numbers to a block of text, one per line. Free, instant, runs entirely in your browser.
-- [Slugify](https://textkiln.app/tools/slugify-text): Convert any text into a clean, URL-safe slug: lowercase, hyphens instead of spaces, no special characters. Free, instant.
-- [Text Repeater](https://textkiln.app/tools/text-repeater): Repeat a word, phrase or block of text any number of times, one copy per line. Free, instant, runs entirely in your browser.
-- [Find & Replace](https://textkiln.app/tools/find-and-replace): Find and replace text online, with an optional regular-expression mode for pattern matching. Free, instant, nothing uploaded.
-- [Lorem Ipsum](https://textkiln.app/tools/lorem-ipsum-generator): Generate lorem ipsum placeholder text, any number of paragraphs. Free, instant, runs entirely in your browser.
-- [aLtErNaTiNg cAsE](https://textkiln.app/tools/alternating-case-converter): Convert text to aLtErNaTiNg CaSe, flipping upper and lower case letter by letter. Free, instant, browser-only.
-- [InVeRsE cAsE](https://textkiln.app/tools/inverse-case-converter): Invert the case of every letter in your text — uppercase becomes lowercase and lowercase becomes uppercase. Free, instant, browser-only.
-- [Extract Emails](https://textkiln.app/tools/extract-emails-from-text): Pull every email address out of a block of text or a document, one per line, with duplicates removed. Free, instant, nothing uploaded.
-- [Extract URLs](https://textkiln.app/tools/extract-urls-from-text): Pull every http/https URL out of a block of text, one per line, with duplicates removed. Free, instant, browser-only.
-- [Extract Numbers](https://textkiln.app/tools/extract-numbers-from-text): Pull every number out of a block of text, one per line, in the order they appear. Free, instant, browser-only.
-- [Base64 Encode](https://textkiln.app/tools/base64-encode): Encode text to Base64 instantly. Free, browser-only — nothing you paste is uploaded anywhere.
-- [Base64 Decode](https://textkiln.app/tools/base64-decode): Decode a Base64 string back to readable text instantly. Free, browser-only, nothing uploaded.
-- [URL Encode](https://textkiln.app/tools/url-encode): Percent-encode text for safe use in a URL — spaces, symbols and special characters are escaped. Free, instant, browser-only.
-- [URL Decode](https://textkiln.app/tools/url-decode): Decode a percent-encoded URL string back to readable text. Free, instant, browser-only.
-- [HTML Encode](https://textkiln.app/tools/html-entity-encode): Escape text for safe use inside HTML — converts <, >, &, quotes and apostrophes to their HTML entity equivalents. Free, instant, browser-only.
-- [HTML Decode](https://textkiln.app/tools/html-entity-decode): Decode HTML entities (&amp;, &lt;, &#39;, and more) back to their original characters. Free, instant, browser-only.
-- [Text to Binary](https://textkiln.app/tools/text-to-binary): Convert text to binary code (8-bit bytes, space-separated). Free, instant, browser-only.
-- [Binary to Text](https://textkiln.app/tools/binary-to-text): Convert binary code (space-separated 8-bit bytes) back to readable text. Free, instant, browser-only.
-- [Text to Hex](https://textkiln.app/tools/text-to-hex): Convert text to hexadecimal byte values, space-separated. Free, instant, browser-only.
-- [Hex to Text](https://textkiln.app/tools/hex-to-text): Convert hexadecimal byte values back to readable text. Free, instant, browser-only.
-- [Text → Morse](https://textkiln.app/tools/morse-code-translator): Translate text into Morse code — letters, numbers and basic punctuation. Free, instant, browser-only.
-- [Morse → Text](https://textkiln.app/tools/morse-code-to-text): Translate Morse code (dots and dashes) back into readable text. Free, instant, browser-only.
-- [ROT13](https://textkiln.app/tools/rot13-cipher): Encode or decode text with the ROT13 cipher — a simple letter-rotation cipher that's its own inverse. Free, instant, browser-only.
-- [MD5 Hash](https://textkiln.app/tools/md5-hash-generator): Generate the MD5 hash of any text, entirely in your browser. Free, instant, nothing uploaded.
-- [SHA-256 Hash](https://textkiln.app/tools/sha256-hash-generator): Generate the SHA-256 hash of any text using your browser's built-in Web Crypto API. Free, instant, nothing uploaded.
-- [UUID Generator](https://textkiln.app/tools/uuid-generator): Generate random UUID v4 identifiers, one or many at once. Free, instant, cryptographically random, browser-only.
-- [Password Generator](https://textkiln.app/tools/random-password-generator): Generate a strong, random password with your choice of length and character types. Free, cryptographically random, browser-only — your password is never sent anywhere.
-- [Strikethrough](https://textkiln.app/tools/strikethrough-text-generator): Generate strikethrough text you can paste anywhere — social media, chat apps, anywhere plain Unicode text is accepted. Free, instant.
-- [Upside Down](https://textkiln.app/tools/upside-down-text-generator): Flip your text upside down using Unicode look-alike characters — paste it anywhere plain text works. Free, instant.
-- [Bold Unicode](https://textkiln.app/tools/bold-text-generator): Generate bold-looking text using Unicode mathematical bold characters — works anywhere plain text is accepted, including places without bold formatting. Free, instant.
+- [Word Counter](https://textbench.app/tools/word-counter): A free word counter that updates as you type. See words, characters, sentences and reading time live — no signup, nothing uploaded, everything stays in your browser.
+- [Character Counter](https://textbench.app/tools/character-counter): A free character counter showing characters with and without spaces, live as you type. Ideal for meta descriptions, bios and anywhere a character limit matters.
+- [Reading Time](https://textbench.app/tools/reading-time-calculator): Estimate reading time from your text. Paste an article or script and see how many minutes it takes to read aloud or silently, at your chosen pace.
+- [UPPERCASE](https://textbench.app/tools/uppercase-converter): Convert any text to UPPERCASE instantly. Paste your text, copy the result — no signup, runs entirely in your browser.
+- [lowercase](https://textbench.app/tools/lowercase-converter): Convert any text to lowercase instantly. Paste your text, copy the result — no signup, runs entirely in your browser.
+- [Title Case](https://textbench.app/tools/title-case-converter): Convert text to Title Case, capitalizing the first letter of each word. Free, instant, runs in your browser.
+- [Sentence case](https://textbench.app/tools/sentence-case-converter): Convert text to sentence case: lowercase throughout, with the first letter of each sentence capitalized. Free, instant, browser-only.
+- [Remove Duplicates](https://textbench.app/tools/remove-duplicate-lines): Remove duplicate lines from a list or block of text, keeping the first occurrence of each. Free, instant, nothing uploaded.
+- [Extra Spaces](https://textbench.app/tools/remove-extra-spaces): Remove extra spaces and tabs from text, collapsing runs of whitespace into a single space per line. Free, instant, browser-only.
+- [Line Breaks](https://textbench.app/tools/remove-line-breaks): Remove line breaks from text, joining everything into a single paragraph with spaces between what used to be separate lines. Free, instant.
+- [Empty Lines](https://textbench.app/tools/remove-empty-lines): Remove all empty and blank lines from a block of text or a list. Free, instant, runs entirely in your browser.
+- [Sort Lines](https://textbench.app/tools/sort-lines-alphabetically): Sort a list of lines alphabetically, A→Z or Z→A. Free, instant, works entirely in your browser — paste a list and get it sorted.
+- [Reverse Text](https://textbench.app/tools/reverse-text): Reverse text character by character — turn 'hello' into 'olleh'. Free, instant, runs entirely in your browser.
+- [Line Numbers](https://textbench.app/tools/add-line-numbers): Add sequential line numbers to a block of text, one per line. Free, instant, runs entirely in your browser.
+- [Slugify](https://textbench.app/tools/slugify-text): Convert any text into a clean, URL-safe slug: lowercase, hyphens instead of spaces, no special characters. Free, instant.
+- [Text Repeater](https://textbench.app/tools/text-repeater): Repeat a word, phrase or block of text any number of times, one copy per line. Free, instant, runs entirely in your browser.
+- [Find & Replace](https://textbench.app/tools/find-and-replace): Find and replace text online, with an optional regular-expression mode for pattern matching. Free, instant, nothing uploaded.
+- [Lorem Ipsum](https://textbench.app/tools/lorem-ipsum-generator): Generate lorem ipsum placeholder text, any number of paragraphs. Free, instant, runs entirely in your browser.
+- [aLtErNaTiNg cAsE](https://textbench.app/tools/alternating-case-converter): Convert text to aLtErNaTiNg CaSe, flipping upper and lower case letter by letter. Free, instant, browser-only.
+- [InVeRsE cAsE](https://textbench.app/tools/inverse-case-converter): Invert the case of every letter in your text — uppercase becomes lowercase and lowercase becomes uppercase. Free, instant, browser-only.
+- [Extract Emails](https://textbench.app/tools/extract-emails-from-text): Pull every email address out of a block of text or a document, one per line, with duplicates removed. Free, instant, nothing uploaded.
+- [Extract URLs](https://textbench.app/tools/extract-urls-from-text): Pull every http/https URL out of a block of text, one per line, with duplicates removed. Free, instant, browser-only.
+- [Extract Numbers](https://textbench.app/tools/extract-numbers-from-text): Pull every number out of a block of text, one per line, in the order they appear. Free, instant, browser-only.
+- [Base64 Encode](https://textbench.app/tools/base64-encode): Encode text to Base64 instantly. Free, browser-only — nothing you paste is uploaded anywhere.
+- [Base64 Decode](https://textbench.app/tools/base64-decode): Decode a Base64 string back to readable text instantly. Free, browser-only, nothing uploaded.
+- [URL Encode](https://textbench.app/tools/url-encode): Percent-encode text for safe use in a URL — spaces, symbols and special characters are escaped. Free, instant, browser-only.
+- [URL Decode](https://textbench.app/tools/url-decode): Decode a percent-encoded URL string back to readable text. Free, instant, browser-only.
+- [HTML Encode](https://textbench.app/tools/html-entity-encode): Escape text for safe use inside HTML — converts <, >, &, quotes and apostrophes to their HTML entity equivalents. Free, instant, browser-only.
+- [HTML Decode](https://textbench.app/tools/html-entity-decode): Decode HTML entities (&amp;, &lt;, &#39;, and more) back to their original characters. Free, instant, browser-only.
+- [Text to Binary](https://textbench.app/tools/text-to-binary): Convert text to binary code (8-bit bytes, space-separated). Free, instant, browser-only.
+- [Binary to Text](https://textbench.app/tools/binary-to-text): Convert binary code (space-separated 8-bit bytes) back to readable text. Free, instant, browser-only.
+- [Text to Hex](https://textbench.app/tools/text-to-hex): Convert text to hexadecimal byte values, space-separated. Free, instant, browser-only.
+- [Hex to Text](https://textbench.app/tools/hex-to-text): Convert hexadecimal byte values back to readable text. Free, instant, browser-only.
+- [Text → Morse](https://textbench.app/tools/morse-code-translator): Translate text into Morse code — letters, numbers and basic punctuation. Free, instant, browser-only.
+- [Morse → Text](https://textbench.app/tools/morse-code-to-text): Translate Morse code (dots and dashes) back into readable text. Free, instant, browser-only.
+- [ROT13](https://textbench.app/tools/rot13-cipher): Encode or decode text with the ROT13 cipher — a simple letter-rotation cipher that's its own inverse. Free, instant, browser-only.
+- [MD5 Hash](https://textbench.app/tools/md5-hash-generator): Generate the MD5 hash of any text, entirely in your browser. Free, instant, nothing uploaded.
+- [SHA-256 Hash](https://textbench.app/tools/sha256-hash-generator): Generate the SHA-256 hash of any text using your browser's built-in Web Crypto API. Free, instant, nothing uploaded.
+- [UUID Generator](https://textbench.app/tools/uuid-generator): Generate random UUID v4 identifiers, one or many at once. Free, instant, cryptographically random, browser-only.
+- [Password Generator](https://textbench.app/tools/random-password-generator): Generate a strong, random password with your choice of length and character types. Free, cryptographically random, browser-only — your password is never sent anywhere.
+- [Strikethrough](https://textbench.app/tools/strikethrough-text-generator): Generate strikethrough text you can paste anywhere — social media, chat apps, anywhere plain Unicode text is accepted. Free, instant.
+- [Upside Down](https://textbench.app/tools/upside-down-text-generator): Flip your text upside down using Unicode look-alike characters — paste it anywhere plain text works. Free, instant.
+- [Bold Unicode](https://textbench.app/tools/bold-text-generator): Generate bold-looking text using Unicode mathematical bold characters — works anywhere plain text is accepted, including places without bold formatting. Free, instant.
