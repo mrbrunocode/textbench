@@ -1,7 +1,4 @@
 node_modules/
 .DS_Store
 *.log
-
-# IndexNow ownership key — regenerated per real domain, must be deployed as-is
-# but shouldn't be committed to the factory template.
-[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]*.txt
+.wrangler/
