@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Social share card. Rasterize to og-image.png before deploy:
+       chromium --headless --screenshot=assets/og-image.png --window-size=1200,630 file://$PWD/assets/og-image.svg
+       Edit the two <text> lines per app (name + tagline). -->
+  <rect width="1200" height="630" fill="oklch(0.14 0.012 260)"/>
+  <rect x="60" y="60" width="1080" height="510" rx="24" fill="none" stroke="oklch(0.29 0.015 260)" stroke-width="2"/>
+  <text x="100" y="300" font-family="Inter, sans-serif" font-size="96" font-weight="800" fill="oklch(0.94 0.004 260)" letter-spacing="-3">Countly</text>
+  <text x="100" y="380" font-family="Inter, sans-serif" font-size="36" font-weight="500" fill="oklch(0.62 0.012 260)">Count every word as you type.</text>
+  <text x="100" y="510" font-family="JetBrains Mono, monospace" font-size="24" font-weight="500" fill="oklch(0.72 0.16 265)">free · no signup · runs in your browser</text>
+</svg>

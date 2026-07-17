@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character Counter — Count Characters With &amp; Without Spaces | Textbench</title>
+<meta name="description" content="A free character counter showing characters with and without spaces, live as you type. Ideal for meta descriptions, bios and anywhere a character limit matters.">
+<link rel="canonical" href="https://textbench.app/tools/character-counter">
+<meta property="og:title" content="Character Counter — Count Characters With &amp; Without Spaces">
+<meta property="og:description" content="A free character counter showing characters with and without spaces, live as you type. Ideal for meta descriptions, bios and anywhere a character limit matters.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://textbench.app/tools/character-counter">
+<meta property="og:image" content="https://textbench.app/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://textbench.app/assets/og-image.png">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<meta name="theme-color" content="#0a0d12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/character-counter","description":"A free character counter showing characters with and without spaces, live as you type. Ideal for meta descriptions, bios and anywhere a character limit matters.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-11","dateModified":"2026-07-11"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"Character Counter","item":"https://textbench.app/tools/character-counter"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it count spaces as characters?","acceptedAnswer":{"@type":"Answer","text":"It shows both totals: characters including spaces, and characters excluding spaces. Which one you want depends on the limit you're targeting."}},{"@type":"Question","name":"Can I use this for meta descriptions or SEO titles?","acceptedAnswer":{"@type":"Answer","text":"Yes — that's a common use. Google typically shows about 155–160 characters of a meta description, so keeping under ~155 is a safe target."}},{"@type":"Question","name":"Do emoji count as one character?","acceptedAnswer":{"@type":"Answer","text":"Some emoji are a single code point and count as one; others (skin-tone or flag combinations) are several joined code points and may count as more, which mirrors how many platform limits actually treat them."}}]}</script>
+
+
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header>
+  <a class="logo" href="/">Textbench</a>
+  <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+</header>
+<nav class="main-nav" aria-label="Site">
+  <a href="/about">About</a>
+  <a href="/privacy">Privacy</a>
+  <a href="/terms">Terms</a>
+  <a href="/contact">Contact</a>
+</nav>
+<main class="wrap" id="main">
+
+  <section class="hero">
+    <span class="eyebrow">Character Counter</span>
+    <h1>Character Counter — Count Characters With &amp; Without Spaces</h1>
+    <p class="lede">Type or paste your text to see the character count update instantly — both with and without spaces. Useful whenever something has a hard character limit and you need to land just under it.</p>
+  </section>
+  
+  <section class="tool" data-transform="none" data-shape="counter">
+    
+    <div class="stats" role="status" aria-live="polite">
+      <div class="stat" data-stat="words">
+        <span class="stat-num" data-count="words">0</span>
+        <span class="stat-label">words</span>
+      </div>
+      <div class="stat" data-stat="characters">
+        <span class="stat-num" data-count="characters">0</span>
+        <span class="stat-label">characters</span>
+      </div>
+      <div class="stat" data-stat="charactersNoSpaces">
+        <span class="stat-num" data-count="charactersNoSpaces">0</span>
+        <span class="stat-label">no spaces</span>
+      </div>
+      <div class="stat" data-stat="sentences">
+        <span class="stat-num" data-count="sentences">0</span>
+        <span class="stat-label">sentences</span>
+      </div>
+      <div class="stat" data-stat="reading">
+        <span class="stat-num" data-count="reading">0</span>
+        <span class="stat-label">min read</span>
+      </div>
+    </div>
+    <label class="sr-only" for="editor">Your text</label>
+    <textarea id="editor" class="editor" placeholder="Type or paste your text here…" spellcheck="true"></textarea>
+    <div class="tool-actions">
+      <button type="button" class="btn" id="copyBtn">Copy text</button>
+      <button type="button" class="btn" id="clearBtn">Clear</button>
+    </div>
+  </section>
+  <div class="ad-slot ad-slot--placeholder" aria-hidden="true"><!-- one ad unit renders here once AdSense is configured (scripts/enable-adsense.mjs); reserved so the layout never shifts on launch --></div>
+  
+  
+  <section class="faq">
+    <h2>Common questions</h2>
+    <dl class="faq-grid">
+      <div class="faq-item"><h3>Does it count spaces as characters?</h3><dd>It shows both totals: characters including spaces, and characters excluding spaces. Which one you want depends on the limit you're targeting.</dd></div>
+      <div class="faq-item"><h3>Can I use this for meta descriptions or SEO titles?</h3><dd>Yes — that's a common use. Google typically shows about 155–160 characters of a meta description, so keeping under ~155 is a safe target.</dd></div>
+      <div class="faq-item"><h3>Do emoji count as one character?</h3><dd>Some emoji are a single code point and count as one; others (skin-tone or flag combinations) are several joined code points and may count as more, which mirrors how many platform limits actually treat them.</dd></div>
+    </dl>
+  </section>
+  
+  <nav class="related" aria-label="More tools">
+    <h2>More tools</h2>
+    <div class="related-grid">
+      <a href="/tools/word-counter">Word Counter</a>
+      <a href="/tools/reading-time-calculator">Reading Time</a>
+      <a href="/tools/uppercase-converter">UPPERCASE</a>
+      <a href="/tools/lowercase-converter">lowercase</a>
+      <a href="/tools/title-case-converter">Title Case</a>
+      <a href="/tools/sentence-case-converter">Sentence case</a>
+      <a href="/tools/remove-duplicate-lines">Remove Duplicates</a>
+      <a href="/tools/remove-extra-spaces">Extra Spaces</a>
+      <a href="/tools/remove-line-breaks">Line Breaks</a>
+      <a href="/tools/remove-empty-lines">Empty Lines</a>
+      <a href="/tools/sort-lines-alphabetically">Sort Lines</a>
+      <a href="/tools/reverse-text">Reverse Text</a>
+      <a href="/tools/add-line-numbers">Line Numbers</a>
+      <a href="/tools/slugify-text">Slugify</a>
+      <a href="/tools/text-repeater">Text Repeater</a>
+      <a href="/tools/find-and-replace">Find &amp; Replace</a>
+      <a href="/tools/lorem-ipsum-generator">Lorem Ipsum</a>
+    </div>
+  </nav>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <div><span class="fb">Textbench</span> — Count every word as you type. · <a href="/about">About</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/contact">Contact</a> · <a href="mailto:hello@textbench.app">hello@textbench.app</a></div>
+      <div>Free. No signup, no upload — everything runs in your browser.</div>
+    </div>
+  </div>
+</footer>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+# Textbench
+
+> A free, instant word and character counter. Paste or type and see words, characters, sentences and reading time update live — no signup, no upload, nothing leaves your browser.
+
+Textbench is a static web app: no signup, no backend, no per-visitor cost. Everything runs client-side.
+
+## Primary pages
+- [Home / the tool](https://textbench.app/)
+- [About](https://textbench.app/about)
+- [Privacy policy](https://textbench.app/privacy)
+- [Terms of Service](https://textbench.app/terms)
+- [Contact](https://textbench.app/contact)
+
+## tools
+- [Word Counter](https://textbench.app/tools/word-counter): A free word counter that updates as you type. See words, characters, sentences and reading time live — no signup, nothing uploaded, everything stays in your browser.
+- [Character Counter](https://textbench.app/tools/character-counter): A free character counter showing characters with and without spaces, live as you type. Ideal for meta descriptions, bios and anywhere a character limit matters.
+- [Reading Time](https://textbench.app/tools/reading-time-calculator): Estimate reading time from your text. Paste an article or script and see how many minutes it takes to read aloud or silently, at your chosen pace.
+- [UPPERCASE](https://textbench.app/tools/uppercase-converter): Convert any text to UPPERCASE instantly. Paste your text, copy the result — no signup, runs entirely in your browser.
+- [lowercase](https://textbench.app/tools/lowercase-converter): Convert any text to lowercase instantly. Paste your text, copy the result — no signup, runs entirely in your browser.
+- [Title Case](https://textbench.app/tools/title-case-converter): Convert text to Title Case, capitalizing the first letter of each word. Free, instant, runs in your browser.
+- [Sentence case](https://textbench.app/tools/sentence-case-converter): Convert text to sentence case: lowercase throughout, with the first letter of each sentence capitalized. Free, instant, browser-only.
+- [Remove Duplicates](https://textbench.app/tools/remove-duplicate-lines): Remove duplicate lines from a list or block of text, keeping the first occurrence of each. Free, instant, nothing uploaded.
+- [Extra Spaces](https://textbench.app/tools/remove-extra-spaces): Remove extra spaces and tabs from text, collapsing runs of whitespace into a single space per line. Free, instant, browser-only.
+- [Line Breaks](https://textbench.app/tools/remove-line-breaks): Remove line breaks from text, joining everything into a single paragraph with spaces between what used to be separate lines. Free, instant.
+- [Empty Lines](https://textbench.app/tools/remove-empty-lines): Remove all empty and blank lines from a block of text or a list. Free, instant, runs entirely in your browser.
+- [Sort Lines](https://textbench.app/tools/sort-lines-alphabetically): Sort a list of lines alphabetically, A→Z or Z→A. Free, instant, works entirely in your browser — paste a list and get it sorted.
+- [Reverse Text](https://textbench.app/tools/reverse-text): Reverse text character by character — turn 'hello' into 'olleh'. Free, instant, runs entirely in your browser.
+- [Line Numbers](https://textbench.app/tools/add-line-numbers): Add sequential line numbers to a block of text, one per line. Free, instant, runs entirely in your browser.
+- [Slugify](https://textbench.app/tools/slugify-text): Convert any text into a clean, URL-safe slug: lowercase, hyphens instead of spaces, no special characters. Free, instant.
+- [Text Repeater](https://textbench.app/tools/text-repeater): Repeat a word, phrase or block of text any number of times, one copy per line. Free, instant, runs entirely in your browser.
+- [Find & Replace](https://textbench.app/tools/find-and-replace): Find and replace text online, with an optional regular-expression mode for pattern matching. Free, instant, nothing uploaded.
+- [Lorem Ipsum](https://textbench.app/tools/lorem-ipsum-generator): Generate lorem ipsum placeholder text, any number of paragraphs. Free, instant, runs entirely in your browser.
