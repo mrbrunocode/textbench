@@ -101,10 +101,17 @@
   }
   function extractUrls(s) {
     var m = s.match(/\bhttps?:\/\/[^\s<>"')\]]+/g) || [];
-    return Array.from(new Set(m)).join("\n");
+    // A URL immediately followed by whitespace/EOL usually has trailing
+    // sentence punctuation swept in ("visit https://x.com." → "…com."), which
+    // isn't part of the URL — trim it off (mid-URL punctuation is untouched).
+    var trimmed = m.map(function (u) { return u.replace(/[.,!?;:'"]+$/, ""); });
+    return Array.from(new Set(trimmed)).join("\n");
   }
   function extractNumbers(s) {
-    var m = s.match(/-?\d+(?:\.\d+)?/g) || [];
+    // A hyphen right after a digit/word char is a range or hyphenated ID
+    // ("pages 10-20", "phone 555-1234"), not a minus sign — only treat "-" as
+    // a sign when nothing word-like immediately precedes it.
+    var m = s.match(/(?<!\w)-?\d+(?:\.\d+)?/g) || [];
     return m.join("\n");
   }
 
@@ -388,40 +395,52 @@
   [findEl, replEl, regexEl, repeatEl, loremEl, uuidCountEl, pwLenEl, pwUpperEl, pwNumbersEl, pwSymbolsEl].forEach(function (el) {
     if (el) el.addEventListener("input", render);
   });
+  // Tool picker: category tabs + chip grid drive the (visually hidden)
+  // transformSel select, which stays the single source of truth. Any change
+  // to it — a chip click, but also a keyboard/screen-reader user operating
+  // the select directly — must resync which tab/panel/chip LOOKS active, or
+  // the visible picker silently disagrees with the tool that's actually
+  // running (exactly for the audience the accessible <select> path exists for).
+  var pickerTabs = document.querySelectorAll(".tab[data-group-tab]");
+  var pickerPanels = document.querySelectorAll(".chip-grid[data-group-panel]");
+  function syncPickerUI() {
+    if (!pickerTabs.length || !transformSel) return;
+    var chip = document.querySelector('.chip[data-value="' + transformSel.value + '"]');
+    var panel = chip && chip.closest(".chip-grid");
+    var group = panel && panel.getAttribute("data-group-panel");
+    pickerTabs.forEach(function (t) {
+      var active = t.getAttribute("data-group-tab") === group;
+      t.classList.toggle("is-active", active);
+      t.setAttribute("aria-selected", String(active));
+    });
+    pickerPanels.forEach(function (p) { p.hidden = p.getAttribute("data-group-panel") !== group; });
+    document.querySelectorAll(".chip[data-value]").forEach(function (c) { c.classList.toggle("is-active", c === chip); });
+  }
   if (transformSel) {
     transformSel.addEventListener("change", function () {
       if (toolEl) toolEl.setAttribute("data-transform", transformSel.value);
       syncShapeVisibility();
+      syncPickerUI();
       render();
     });
   }
-
-  // Tool picker: category tabs + chip grid drive the (visually hidden)
-  // transformSel select — everything above still reacts to its "change"
-  // event exactly as before, so this is purely a presentation layer.
-  var pickerTabs = document.querySelectorAll(".tab[data-group-tab]");
-  var pickerPanels = document.querySelectorAll(".chip-grid[data-group-panel]");
-  if (pickerTabs.length && transformSel) {
-    pickerTabs.forEach(function (tab) {
-      tab.addEventListener("click", function () {
-        pickerTabs.forEach(function (t) { t.classList.remove("is-active"); t.setAttribute("aria-selected", "false"); });
-        tab.classList.add("is-active");
-        tab.setAttribute("aria-selected", "true");
-        var group = tab.getAttribute("data-group-tab");
-        pickerPanels.forEach(function (panel) {
-          panel.hidden = panel.getAttribute("data-group-panel") !== group;
-        });
+  pickerTabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      pickerTabs.forEach(function (t) { t.classList.remove("is-active"); t.setAttribute("aria-selected", "false"); });
+      tab.classList.add("is-active");
+      tab.setAttribute("aria-selected", "true");
+      var group = tab.getAttribute("data-group-tab");
+      pickerPanels.forEach(function (panel) {
+        panel.hidden = panel.getAttribute("data-group-panel") !== group;
       });
     });
-    document.querySelectorAll(".chip[data-value]").forEach(function (chip) {
-      chip.addEventListener("click", function () {
-        document.querySelectorAll(".chip[data-value]").forEach(function (c) { c.classList.remove("is-active"); });
-        chip.classList.add("is-active");
-        transformSel.value = chip.getAttribute("data-value");
-        transformSel.dispatchEvent(new Event("change"));
-      });
+  });
+  document.querySelectorAll(".chip[data-value]").forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      transformSel.value = chip.getAttribute("data-value");
+      transformSel.dispatchEvent(new Event("change"));
     });
-  }
+  });
   // Home page only: extra-control rows are tagged data-for="<transform-list>";
   // show only the ones relevant to the currently selected transform.
   function syncShapeVisibility() {
@@ -437,6 +456,7 @@
     if (editorLabel && !editorLabel.classList.contains("sr-only")) editorLabel.hidden = noInput;
   }
   syncShapeVisibility();
+  syncPickerUI();
   render();
 
   var copyBtn = document.getElementById("copyBtn");
