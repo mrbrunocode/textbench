@@ -54,7 +54,7 @@ export const CONTENT_DATE = "2026-07-17";
 // Set these with `node scripts/enable-adsense.mjs …` rather than by hand so
 // ads.txt is written in the same step.
 export const GA_ID = "";
-export const ADSENSE_PUB = "";
+export const ADSENSE_PUB = "ca-pub-2653891546345771";
 export const ADSENSE_SLOT = "";
 
 // Google Fonts to preload/link in every <head>. Inter (UI) + JetBrains Mono
