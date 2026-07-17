@@ -53,7 +53,7 @@ export const CONTENT_DATE = "2026-07-17";
 //   ADSENSE_SLOT: "…numeric…"     — from AdSense after approval (one ad unit)
 // Set these with `node scripts/enable-adsense.mjs …` rather than by hand so
 // ads.txt is written in the same step.
-export const GA_ID = "";
+export const GA_ID = "G-LJCXH0BF41";
 export const ADSENSE_PUB = "ca-pub-2653891546345771";
 export const ADSENSE_SLOT = "";
 
