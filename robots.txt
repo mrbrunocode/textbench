@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://textbench.app/sitemap.xml
+Sitemap: https://textkiln.app/sitemap.xml

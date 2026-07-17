@@ -17,14 +17,14 @@
  * ──────────────────────────────────────────────────────────────────────────
  */
 
-export const NAME = "Textbench";                 // prose, titles, wordmark text
-export const NAME_LOWER = "textbench";            // URLs, slugs, footer mentions
-export const TAGLINE = "Count every word as you type.";
-export const SITE_URL = "https://textbench.app"; // set to the real domain once bought (keep .example until then — IndexNow/rename tooling keys off it)
-export const CONTACT_EMAIL = "hello@textbench.app";
+export const NAME = "Textkiln";                 // prose, titles, wordmark text
+export const NAME_LOWER = "textkiln";            // URLs, slugs, footer mentions
+export const TAGLINE = "43 text tools, one page, nothing uploaded.";
+export const SITE_URL = "https://textkiln.app"; // set to the real domain once bought (keep .example until then — IndexNow/rename tooling keys off it)
+export const CONTACT_EMAIL = "hello@textkiln.app";
 export const DESCRIPTION =
-  "A free, instant word and character counter. Paste or type and see words, characters, " +
-  "sentences and reading time update live — no signup, no upload, nothing leaves your browser.";
+  "Case conversion, cleanup, encoding, hashing, generators and more — 43 free text tools that run entirely " +
+  "in your browser. No signup, no upload, nothing ever leaves your device.";
 
 // The one subdirectory that holds the programmatic-SEO collection pages.
 // CountLink used "timers"; a text-tool app might use "tools", a calculator app
