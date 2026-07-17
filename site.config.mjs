@@ -42,8 +42,8 @@ export const NAV = [
 // Dates used in legal pages + JSON-LD. Bump CONTENT_DATE when page copy
 // actually changes (drives datePublished/dateModified); bump LAST_UPDATED by
 // hand only when the privacy/terms text itself changes.
-export const LAST_UPDATED = "July 11, 2026";
-export const CONTENT_DATE = "2026-07-11";
+export const LAST_UPDATED = "July 17, 2026";
+export const CONTENT_DATE = "2026-07-17";
 
 // ── Monetization / analytics IDs ──────────────────────────────────────────
 // All empty until you wire them up. The engine renders each snippet ONLY when
