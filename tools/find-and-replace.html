@@ -62,6 +62,17 @@
     <div class="extra-row" data-for="lorem-ipsum" hidden>
       <label class="field field--num"><span>Paragraphs</span><input type="number" id="loremCount" min="1" max="50" value="3"></label>
     </div>
+    
+    <div class="extra-row" data-for="uuid-generator" hidden>
+      <label class="field field--num"><span>How many</span><input type="number" id="uuidCount" min="1" max="200" value="5"></label>
+    </div>
+    
+    <div class="extra-row" data-for="password-generator" hidden>
+      <label class="field field--num"><span>Length</span><input type="number" id="pwLength" min="4" max="128" value="16"></label>
+      <label class="check"><input type="checkbox" id="pwUpper" checked> Uppercase</label>
+      <label class="check"><input type="checkbox" id="pwNumbers" checked> Numbers</label>
+      <label class="check"><input type="checkbox" id="pwSymbols"> Symbols</label>
+    </div>
     <label for="editor">Your text</label>
     <textarea id="editor" class="editor" placeholder="Type or paste your text here…" spellcheck="true"></textarea>
     <label for="output">Result</label>
@@ -127,6 +138,31 @@
       <a href="/tools/slugify-text">Slugify</a>
       <a href="/tools/text-repeater">Text Repeater</a>
       <a href="/tools/lorem-ipsum-generator">Lorem Ipsum</a>
+      <a href="/tools/alternating-case-converter">aLtErNaTiNg cAsE</a>
+      <a href="/tools/inverse-case-converter">InVeRsE cAsE</a>
+      <a href="/tools/extract-emails-from-text">Extract Emails</a>
+      <a href="/tools/extract-urls-from-text">Extract URLs</a>
+      <a href="/tools/extract-numbers-from-text">Extract Numbers</a>
+      <a href="/tools/base64-encode">Base64 Encode</a>
+      <a href="/tools/base64-decode">Base64 Decode</a>
+      <a href="/tools/url-encode">URL Encode</a>
+      <a href="/tools/url-decode">URL Decode</a>
+      <a href="/tools/html-entity-encode">HTML Encode</a>
+      <a href="/tools/html-entity-decode">HTML Decode</a>
+      <a href="/tools/text-to-binary">Text to Binary</a>
+      <a href="/tools/binary-to-text">Binary to Text</a>
+      <a href="/tools/text-to-hex">Text to Hex</a>
+      <a href="/tools/hex-to-text">Hex to Text</a>
+      <a href="/tools/morse-code-translator">Text → Morse</a>
+      <a href="/tools/morse-code-to-text">Morse → Text</a>
+      <a href="/tools/rot13-cipher">ROT13</a>
+      <a href="/tools/md5-hash-generator">MD5 Hash</a>
+      <a href="/tools/sha256-hash-generator">SHA-256 Hash</a>
+      <a href="/tools/uuid-generator">UUID Generator</a>
+      <a href="/tools/random-password-generator">Password Generator</a>
+      <a href="/tools/strikethrough-text-generator">Strikethrough</a>
+      <a href="/tools/upside-down-text-generator">Upside Down</a>
+      <a href="/tools/bold-text-generator">Bold Unicode</a>
     </div>
   </nav>
 </main>

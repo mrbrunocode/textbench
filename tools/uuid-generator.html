@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lorem Ipsum Generator — Placeholder Text, Any Length | Textbench</title>
-<meta name="description" content="Generate lorem ipsum placeholder text, any number of paragraphs. Free, instant, runs entirely in your browser.">
-<link rel="canonical" href="https://textbench.app/tools/lorem-ipsum-generator">
-<meta property="og:title" content="Lorem Ipsum Generator — Placeholder Text, Any Length">
-<meta property="og:description" content="Generate lorem ipsum placeholder text, any number of paragraphs. Free, instant, runs entirely in your browser.">
+<title>UUID Generator — Random UUID v4 | Textbench</title>
+<meta name="description" content="Generate random UUID v4 identifiers, one or many at once. Free, instant, cryptographically random, browser-only.">
+<link rel="canonical" href="https://textbench.app/tools/uuid-generator">
+<meta property="og:title" content="UUID Generator — Random UUID v4">
+<meta property="og:description" content="Generate random UUID v4 identifiers, one or many at once. Free, instant, cryptographically random, browser-only.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://textbench.app/tools/lorem-ipsum-generator">
+<meta property="og:url" content="https://textbench.app/tools/uuid-generator">
 <meta property="og:image" content="https://textbench.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://textbench.app/assets/og-image.png">
@@ -20,9 +20,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/lorem-ipsum-generator","description":"Generate lorem ipsum placeholder text, any number of paragraphs. Free, instant, runs entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-11","dateModified":"2026-07-11"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"Lorem Ipsum","item":"https://textbench.app/tools/lorem-ipsum-generator"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this the traditional Lorem Ipsum passage?","acceptedAnswer":{"@type":"Answer","text":"It's generated from the same classic Latin-look word set, but sentences and paragraph lengths are randomized on each run rather than reusing the fixed traditional passage — so you get fresh, varied-length placeholder copy every time instead of the same block."}},{"@type":"Question","name":"How many paragraphs can I generate?","acceptedAnswer":{"@type":"Answer","text":"Up to 50 in one go, which comfortably covers most mockups and layout tests."}},{"@type":"Question","name":"Why use placeholder text instead of real content?","acceptedAnswer":{"@type":"Answer","text":"Placeholder text lets you judge layout, type scale and spacing without being distracted by (or waiting on) real copy — standard practice in design mockups."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/uuid-generator","description":"Generate random UUID v4 identifiers, one or many at once. Free, instant, cryptographically random, browser-only.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-11","dateModified":"2026-07-11"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"UUID Generator","item":"https://textbench.app/tools/uuid-generator"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Are these UUIDs actually unique?","acceptedAnswer":{"@type":"Answer","text":"Version-4 UUIDs are randomly generated from 122 bits of randomness, making a collision astronomically unlikely — the same standard used by most databases and programming language UUID libraries."}},{"@type":"Question","name":"Is the randomness cryptographically secure?","acceptedAnswer":{"@type":"Answer","text":"Yes — it uses crypto.randomUUID() (or crypto.getRandomValues() as a fallback), the browser's cryptographically secure random source, not Math.random()."}},{"@type":"Question","name":"How many can I generate at once?","acceptedAnswer":{"@type":"Answer","text":"Up to 200 per run — enough for seeding test data or filling out a batch of records."}}]}</script>
 
 
 </head>
@@ -41,12 +41,12 @@
 <main class="wrap" id="main">
 
   <section class="hero">
-    <span class="eyebrow">Lorem Ipsum</span>
-    <h1>Lorem Ipsum Generator — Placeholder Text, Any Length</h1>
-    <p class="lede">Set how many paragraphs you need and get classic lorem-ipsum-style placeholder text instantly — for mockups, layout testing, or filling a design where the real copy isn't ready yet.</p>
+    <span class="eyebrow">UUID Generator</span>
+    <h1>UUID Generator — Random UUID v4</h1>
+    <p class="lede">Set how many UUIDs you need and get random, version-4 UUIDs instantly — generated using your browser's cryptographically secure random number generator.</p>
   </section>
   
-  <section class="tool" data-transform="lorem-ipsum" data-shape="lorem">
+  <section class="tool" data-transform="uuid-generator" data-shape="uuid">
     
     
     <div class="extra-row" data-for="find-replace" hidden>
@@ -59,11 +59,11 @@
       <label class="field field--num"><span>Repeat</span><input type="number" id="repeatCount" min="1" max="1000" value="5"></label>
     </div>
     
-    <div class="extra-row" data-for="lorem-ipsum">
+    <div class="extra-row" data-for="lorem-ipsum" hidden>
       <label class="field field--num"><span>Paragraphs</span><input type="number" id="loremCount" min="1" max="50" value="3"></label>
     </div>
     
-    <div class="extra-row" data-for="uuid-generator" hidden>
+    <div class="extra-row" data-for="uuid-generator">
       <label class="field field--num"><span>How many</span><input type="number" id="uuidCount" min="1" max="200" value="5"></label>
     </div>
     
@@ -112,9 +112,9 @@
   <section class="faq">
     <h2>Common questions</h2>
     <dl class="faq-grid">
-      <div class="faq-item"><h3>Is this the traditional Lorem Ipsum passage?</h3><dd>It's generated from the same classic Latin-look word set, but sentences and paragraph lengths are randomized on each run rather than reusing the fixed traditional passage — so you get fresh, varied-length placeholder copy every time instead of the same block.</dd></div>
-      <div class="faq-item"><h3>How many paragraphs can I generate?</h3><dd>Up to 50 in one go, which comfortably covers most mockups and layout tests.</dd></div>
-      <div class="faq-item"><h3>Why use placeholder text instead of real content?</h3><dd>Placeholder text lets you judge layout, type scale and spacing without being distracted by (or waiting on) real copy — standard practice in design mockups.</dd></div>
+      <div class="faq-item"><h3>Are these UUIDs actually unique?</h3><dd>Version-4 UUIDs are randomly generated from 122 bits of randomness, making a collision astronomically unlikely — the same standard used by most databases and programming language UUID libraries.</dd></div>
+      <div class="faq-item"><h3>Is the randomness cryptographically secure?</h3><dd>Yes — it uses crypto.randomUUID() (or crypto.getRandomValues() as a fallback), the browser's cryptographically secure random source, not Math.random().</dd></div>
+      <div class="faq-item"><h3>How many can I generate at once?</h3><dd>Up to 200 per run — enough for seeding test data or filling out a batch of records.</dd></div>
     </dl>
   </section>
   
@@ -138,6 +138,7 @@
       <a href="/tools/slugify-text">Slugify</a>
       <a href="/tools/text-repeater">Text Repeater</a>
       <a href="/tools/find-and-replace">Find &amp; Replace</a>
+      <a href="/tools/lorem-ipsum-generator">Lorem Ipsum</a>
       <a href="/tools/alternating-case-converter">aLtErNaTiNg cAsE</a>
       <a href="/tools/inverse-case-converter">InVeRsE cAsE</a>
       <a href="/tools/extract-emails-from-text">Extract Emails</a>
@@ -158,7 +159,6 @@
       <a href="/tools/rot13-cipher">ROT13</a>
       <a href="/tools/md5-hash-generator">MD5 Hash</a>
       <a href="/tools/sha256-hash-generator">SHA-256 Hash</a>
-      <a href="/tools/uuid-generator">UUID Generator</a>
       <a href="/tools/random-password-generator">Password Generator</a>
       <a href="/tools/strikethrough-text-generator">Strikethrough</a>
       <a href="/tools/upside-down-text-generator">Upside Down</a>

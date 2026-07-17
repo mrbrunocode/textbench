@@ -23,4 +23,29 @@
   <url><loc>https://textbench.app/tools/text-repeater</loc><lastmod>2026-07-11</lastmod></url>
   <url><loc>https://textbench.app/tools/find-and-replace</loc><lastmod>2026-07-11</lastmod></url>
   <url><loc>https://textbench.app/tools/lorem-ipsum-generator</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/alternating-case-converter</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/inverse-case-converter</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/extract-emails-from-text</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/extract-urls-from-text</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/extract-numbers-from-text</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/base64-encode</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/base64-decode</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/url-encode</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/url-decode</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/html-entity-encode</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/html-entity-decode</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/text-to-binary</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/binary-to-text</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/text-to-hex</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/hex-to-text</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/morse-code-translator</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/morse-code-to-text</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/rot13-cipher</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/md5-hash-generator</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/sha256-hash-generator</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/uuid-generator</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/random-password-generator</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/strikethrough-text-generator</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/upside-down-text-generator</loc><lastmod>2026-07-11</lastmod></url>
+  <url><loc>https://textbench.app/tools/bold-text-generator</loc><lastmod>2026-07-11</lastmod></url>
 </urlset>
