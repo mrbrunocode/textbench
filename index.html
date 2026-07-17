@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/style.css?v=60d24b0e">
+<link rel="stylesheet" href="./assets/style.css?v=39b4c45e">
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/","description":"Case conversion, cleanup, encoding, hashing, generators and more — 43 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-17","dateModified":"2026-07-17"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"}]}</script>
@@ -41,16 +41,97 @@
 <main class="wrap" id="main">
 
   <section class="hero hero--home">
-    <h1>Textbench</h1>
+    <h1>Paste in. Nothing leaves your browser.</h1>
     <p class="lede">Case conversion, cleanup, encoding, hashing, generators and more — 43 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.</p>
-    <p class="use-line">Pick any transform below, or jump straight to a dedicated page for one job — case conversion, deduplication, sorting, find &amp; replace and more, linked at the bottom of every page.</p>
+    <div class="hero-facts">
+      <span><strong>43</strong> tools</span>
+      <span><strong>9</strong> categories</span>
+      <span><strong>0</strong> uploads</span>
+    </div>
   </section>
   
   <section class="tool" data-transform="none" data-shape="home">
-    <label class="sr-only" for="transformSel">Choose a tool</label>
-       <select id="transformSel" class="transform-sel">
-         <optgroup label="Count & analyze"><option value="none" selected>Word / character counter</option></optgroup><optgroup label="Change case"><option value="uppercase">UPPERCASE</option><option value="lowercase">lowercase</option><option value="titlecase">Title Case</option><option value="sentencecase">Sentence case</option><option value="alternating-case">aLtErNaTiNg CaSe</option><option value="inverse-case">InVeRsE Case</option></optgroup><optgroup label="Clean & format"><option value="dedupe-lines">Remove duplicate lines</option><option value="remove-extra-spaces">Remove extra spaces</option><option value="remove-line-breaks">Remove line breaks</option><option value="remove-empty-lines">Remove empty lines</option><option value="trim-lines">Trim each line</option></optgroup><optgroup label="Reorganize"><option value="sort-az">Sort lines A → Z</option><option value="sort-za">Sort lines Z → A</option><option value="reverse-text">Reverse text</option><option value="reverse-lines">Reverse line order</option><option value="add-line-numbers">Add line numbers</option></optgroup><optgroup label="Extract"><option value="extract-emails">Extract email addresses</option><option value="extract-urls">Extract URLs</option><option value="extract-numbers">Extract numbers</option></optgroup><optgroup label="Encode & decode"><option value="base64-encode">Base64 encode</option><option value="base64-decode">Base64 decode</option><option value="url-encode">URL encode</option><option value="url-decode">URL decode</option><option value="html-entities-encode">HTML entity encode</option><option value="html-entities-decode">HTML entity decode</option><option value="binary-encode">Text to binary</option><option value="binary-decode">Binary to text</option><option value="hex-encode">Text to hex</option><option value="hex-decode">Hex to text</option><option value="morse-encode">Text to Morse code</option><option value="morse-decode">Morse code to text</option><option value="rot13">ROT13 cipher</option></optgroup><optgroup label="Hash"><option value="md5-hash">MD5 hash</option><option value="sha256-hash">SHA-256 hash</option></optgroup><optgroup label="Generate"><option value="slugify">Slugify / URL slug</option><option value="text-repeater">Repeat text</option><option value="find-replace">Find & replace</option><option value="lorem-ipsum">Lorem ipsum generator</option><option value="uuid-generator">UUID generator</option><option value="password-generator">Random password generator</option></optgroup><optgroup label="Fun text styles"><option value="strikethrough-text">Strikethrough text</option><option value="upside-down-text">Upside down text</option><option value="bold-text">Bold Unicode text</option></optgroup>
-       </select>
+    <div class="tool-picker">
+      <label class="sr-only" for="transformSel">Choose a tool</label>
+      <select id="transformSel" class="transform-sel sr-only">
+        <optgroup label="Count & analyze"><option value="none" selected>Word / character counter</option></optgroup><optgroup label="Change case"><option value="uppercase">UPPERCASE</option><option value="lowercase">lowercase</option><option value="titlecase">Title Case</option><option value="sentencecase">Sentence case</option><option value="alternating-case">aLtErNaTiNg CaSe</option><option value="inverse-case">InVeRsE Case</option></optgroup><optgroup label="Clean & format"><option value="dedupe-lines">Remove duplicate lines</option><option value="remove-extra-spaces">Remove extra spaces</option><option value="remove-line-breaks">Remove line breaks</option><option value="remove-empty-lines">Remove empty lines</option><option value="trim-lines">Trim each line</option></optgroup><optgroup label="Reorganize"><option value="sort-az">Sort lines A → Z</option><option value="sort-za">Sort lines Z → A</option><option value="reverse-text">Reverse text</option><option value="reverse-lines">Reverse line order</option><option value="add-line-numbers">Add line numbers</option></optgroup><optgroup label="Extract"><option value="extract-emails">Extract email addresses</option><option value="extract-urls">Extract URLs</option><option value="extract-numbers">Extract numbers</option></optgroup><optgroup label="Encode & decode"><option value="base64-encode">Base64 encode</option><option value="base64-decode">Base64 decode</option><option value="url-encode">URL encode</option><option value="url-decode">URL decode</option><option value="html-entities-encode">HTML entity encode</option><option value="html-entities-decode">HTML entity decode</option><option value="binary-encode">Text to binary</option><option value="binary-decode">Binary to text</option><option value="hex-encode">Text to hex</option><option value="hex-decode">Hex to text</option><option value="morse-encode">Text to Morse code</option><option value="morse-decode">Morse code to text</option><option value="rot13">ROT13 cipher</option></optgroup><optgroup label="Hash"><option value="md5-hash">MD5 hash</option><option value="sha256-hash">SHA-256 hash</option></optgroup><optgroup label="Generate"><option value="slugify">Slugify / URL slug</option><option value="text-repeater">Repeat text</option><option value="find-replace">Find & replace</option><option value="lorem-ipsum">Lorem ipsum generator</option><option value="uuid-generator">UUID generator</option><option value="password-generator">Random password generator</option></optgroup><optgroup label="Fun text styles"><option value="strikethrough-text">Strikethrough text</option><option value="upside-down-text">Upside down text</option><option value="bold-text">Bold Unicode text</option></optgroup>
+      </select>
+      <div class="picker-tabs" role="tablist" aria-label="Tool categories">
+        <button type="button" class="tab is-active" role="tab" aria-selected="true" data-group-tab="count-analyze">Count &amp; analyze</button>
+        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="change-case">Change case</button>
+        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="clean-format">Clean &amp; format</button>
+        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="reorganize">Reorganize</button>
+        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="extract">Extract</button>
+        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="encode-decode">Encode &amp; decode</button>
+        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="hash">Hash</button>
+        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="generate">Generate</button>
+        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="fun-text-styles">Fun text styles</button>
+      </div>
+      <div class="picker-panels">
+        <div class="chip-grid" data-group-panel="count-analyze">
+          <button type="button" class="chip is-active" data-value="none">Word / character counter</button>
+        </div>
+        <div class="chip-grid" data-group-panel="change-case" hidden>
+          <button type="button" class="chip" data-value="uppercase">UPPERCASE</button>
+          <button type="button" class="chip" data-value="lowercase">lowercase</button>
+          <button type="button" class="chip" data-value="titlecase">Title Case</button>
+          <button type="button" class="chip" data-value="sentencecase">Sentence case</button>
+          <button type="button" class="chip" data-value="alternating-case">aLtErNaTiNg CaSe</button>
+          <button type="button" class="chip" data-value="inverse-case">InVeRsE Case</button>
+        </div>
+        <div class="chip-grid" data-group-panel="clean-format" hidden>
+          <button type="button" class="chip" data-value="dedupe-lines">Remove duplicate lines</button>
+          <button type="button" class="chip" data-value="remove-extra-spaces">Remove extra spaces</button>
+          <button type="button" class="chip" data-value="remove-line-breaks">Remove line breaks</button>
+          <button type="button" class="chip" data-value="remove-empty-lines">Remove empty lines</button>
+          <button type="button" class="chip" data-value="trim-lines">Trim each line</button>
+        </div>
+        <div class="chip-grid" data-group-panel="reorganize" hidden>
+          <button type="button" class="chip" data-value="sort-az">Sort lines A → Z</button>
+          <button type="button" class="chip" data-value="sort-za">Sort lines Z → A</button>
+          <button type="button" class="chip" data-value="reverse-text">Reverse text</button>
+          <button type="button" class="chip" data-value="reverse-lines">Reverse line order</button>
+          <button type="button" class="chip" data-value="add-line-numbers">Add line numbers</button>
+        </div>
+        <div class="chip-grid" data-group-panel="extract" hidden>
+          <button type="button" class="chip" data-value="extract-emails">Extract email addresses</button>
+          <button type="button" class="chip" data-value="extract-urls">Extract URLs</button>
+          <button type="button" class="chip" data-value="extract-numbers">Extract numbers</button>
+        </div>
+        <div class="chip-grid" data-group-panel="encode-decode" hidden>
+          <button type="button" class="chip" data-value="base64-encode">Base64 encode</button>
+          <button type="button" class="chip" data-value="base64-decode">Base64 decode</button>
+          <button type="button" class="chip" data-value="url-encode">URL encode</button>
+          <button type="button" class="chip" data-value="url-decode">URL decode</button>
+          <button type="button" class="chip" data-value="html-entities-encode">HTML entity encode</button>
+          <button type="button" class="chip" data-value="html-entities-decode">HTML entity decode</button>
+          <button type="button" class="chip" data-value="binary-encode">Text to binary</button>
+          <button type="button" class="chip" data-value="binary-decode">Binary to text</button>
+          <button type="button" class="chip" data-value="hex-encode">Text to hex</button>
+          <button type="button" class="chip" data-value="hex-decode">Hex to text</button>
+          <button type="button" class="chip" data-value="morse-encode">Text to Morse code</button>
+          <button type="button" class="chip" data-value="morse-decode">Morse code to text</button>
+          <button type="button" class="chip" data-value="rot13">ROT13 cipher</button>
+        </div>
+        <div class="chip-grid" data-group-panel="hash" hidden>
+          <button type="button" class="chip" data-value="md5-hash">MD5 hash</button>
+          <button type="button" class="chip" data-value="sha256-hash">SHA-256 hash</button>
+        </div>
+        <div class="chip-grid" data-group-panel="generate" hidden>
+          <button type="button" class="chip" data-value="slugify">Slugify / URL slug</button>
+          <button type="button" class="chip" data-value="text-repeater">Repeat text</button>
+          <button type="button" class="chip" data-value="find-replace">Find &amp; replace</button>
+          <button type="button" class="chip" data-value="lorem-ipsum">Lorem ipsum generator</button>
+          <button type="button" class="chip" data-value="uuid-generator">UUID generator</button>
+          <button type="button" class="chip" data-value="password-generator">Random password generator</button>
+        </div>
+        <div class="chip-grid" data-group-panel="fun-text-styles" hidden>
+          <button type="button" class="chip" data-value="strikethrough-text">Strikethrough text</button>
+          <button type="button" class="chip" data-value="upside-down-text">Upside down text</button>
+          <button type="button" class="chip" data-value="bold-text">Bold Unicode text</button>
+        </div>
+      </div>
+    </div>
     
     <div class="extra-row" data-for="find-replace" hidden>
       <label class="field"><span>Find</span><input type="text" id="findInput" placeholder="text or pattern"></label>
@@ -168,6 +249,6 @@
     </div>
   </div>
 </footer>
-<script src="./assets/app.js?v=95be4788" defer></script>
+<script src="./assets/app.js?v=4f33d6f2" defer></script>
 </body>
 </html>

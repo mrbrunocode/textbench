@@ -395,6 +395,33 @@
       render();
     });
   }
+
+  // Tool picker: category tabs + chip grid drive the (visually hidden)
+  // transformSel select — everything above still reacts to its "change"
+  // event exactly as before, so this is purely a presentation layer.
+  var pickerTabs = document.querySelectorAll(".tab[data-group-tab]");
+  var pickerPanels = document.querySelectorAll(".chip-grid[data-group-panel]");
+  if (pickerTabs.length && transformSel) {
+    pickerTabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        pickerTabs.forEach(function (t) { t.classList.remove("is-active"); t.setAttribute("aria-selected", "false"); });
+        tab.classList.add("is-active");
+        tab.setAttribute("aria-selected", "true");
+        var group = tab.getAttribute("data-group-tab");
+        pickerPanels.forEach(function (panel) {
+          panel.hidden = panel.getAttribute("data-group-panel") !== group;
+        });
+      });
+    });
+    document.querySelectorAll(".chip[data-value]").forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        document.querySelectorAll(".chip[data-value]").forEach(function (c) { c.classList.remove("is-active"); });
+        chip.classList.add("is-active");
+        transformSel.value = chip.getAttribute("data-value");
+        transformSel.dispatchEvent(new Event("change"));
+      });
+    });
+  }
   // Home page only: extra-control rows are tagged data-for="<transform-list>";
   // show only the ones relevant to the currently selected transform.
   function syncShapeVisibility() {

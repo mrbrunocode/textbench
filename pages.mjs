@@ -19,6 +19,7 @@
  *   shape       "counter" | "simple" | "find-replace" | "repeater" | "lorem" | "uuid" | "password"
  *   faq         2–3 Q/A, unique per page (drives visible FAQ + FAQPage JSON-LD)
  */
+import { esc } from "./engine/template.mjs";
 
 export const PAGES = [
   {
@@ -806,11 +807,27 @@ export function renderTool(p = {}) {
     ]],
   ];
 
+  // The picker: a native <select> remains the source of truth (app.js reads
+  // transformSel.value directly, unchanged) but is visually hidden — sighted
+  // users get category tabs + a chip grid instead of a 43-item flat dropdown,
+  // one click to a category, one click to a tool. Keyboard/screen-reader users
+  // still get the plain, fully-operable native select.
+  const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
   const transformDropdown = isHome
-    ? `<label class="sr-only" for="transformSel">Choose a tool</label>
-       <select id="transformSel" class="transform-sel">
-         ${transformGroups.map(([group, opts]) => `<optgroup label="${group}">${opts.map(([v, label]) => `<option value="${v}"${v === "none" ? " selected" : ""}>${label}</option>`).join("")}</optgroup>`).join("")}
-       </select>`
+    ? `<div class="tool-picker">
+      <label class="sr-only" for="transformSel">Choose a tool</label>
+      <select id="transformSel" class="transform-sel sr-only">
+        ${transformGroups.map(([group, opts]) => `<optgroup label="${group}">${opts.map(([v, label]) => `<option value="${v}"${v === "none" ? " selected" : ""}>${label}</option>`).join("")}</optgroup>`).join("")}
+      </select>
+      <div class="picker-tabs" role="tablist" aria-label="Tool categories">
+        ${transformGroups.map(([group], i) => `<button type="button" class="tab${i === 0 ? " is-active" : ""}" role="tab" aria-selected="${i === 0}" data-group-tab="${slug(group)}">${esc(group)}</button>`).join("\n        ")}
+      </div>
+      <div class="picker-panels">
+        ${transformGroups.map(([group, opts], i) => `<div class="chip-grid" data-group-panel="${slug(group)}"${i === 0 ? "" : " hidden"}>
+          ${opts.map(([v, label]) => `<button type="button" class="chip${v === "none" ? " is-active" : ""}" data-value="${v}">${esc(label)}</button>`).join("\n          ")}
+        </div>`).join("\n        ")}
+      </div>
+    </div>`
     : "";
 
   const findReplaceRow = `

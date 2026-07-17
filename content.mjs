@@ -18,9 +18,13 @@ export const home = {
   description: C.DESCRIPTION,
   bodyHtml: `
   <section class="hero hero--home">
-    <h1>${C.NAME}</h1>
+    <h1>Paste in. Nothing leaves your browser.</h1>
     <p class="lede">${C.DESCRIPTION}</p>
-    <p class="use-line">Pick any transform below, or jump straight to a dedicated page for one job — case conversion, deduplication, sorting, find &amp; replace and more, linked at the bottom of every page.</p>
+    <div class="hero-facts">
+      <span><strong>43</strong> tools</span>
+      <span><strong>9</strong> categories</span>
+      <span><strong>0</strong> uploads</span>
+    </div>
   </section>
   ${renderTool({ home: true })}`,
 };
