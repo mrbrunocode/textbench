@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Regex Tester — Test Regular Expressions Online | Textbench</title>
-<meta name="description" content="Test a regular expression against real text with live match highlighting and capture groups shown per match. Free, instant, runs entirely in your browser.">
-<link rel="canonical" href="https://textbench.app/tools/regex-tester">
-<meta property="og:title" content="Regex Tester — Test Regular Expressions Online">
-<meta property="og:description" content="Test a regular expression against real text with live match highlighting and capture groups shown per match. Free, instant, runs entirely in your browser.">
+<title>Phone Number Regex Tester — Validate Phone Formats Online | Textbench</title>
+<meta name="description" content="Test a phone-number regex against real numbers in different formats, with a working pattern pre-loaded. See exactly which formats match, live. Free, client-side.">
+<link rel="canonical" href="https://textbench.app/tools/phone-number-regex-tester">
+<meta property="og:title" content="Phone Number Regex Tester — Validate Phone Formats Online">
+<meta property="og:description" content="Test a phone-number regex against real numbers in different formats, with a working pattern pre-loaded. See exactly which formats match, live. Free, client-side.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://textbench.app/tools/regex-tester">
+<meta property="og:url" content="https://textbench.app/tools/phone-number-regex-tester">
 <meta property="og:image" content="https://textbench.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://textbench.app/assets/og-image.png">
@@ -22,9 +22,9 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/regex-tester","description":"Test a regular expression against real text with live match highlighting and capture groups shown per match. Free, instant, runs entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-17","dateModified":"2026-07-17"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"Regex Tester","item":"https://textbench.app/tools/regex-tester"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What regex flavor does this use?","acceptedAnswer":{"@type":"Answer","text":"JavaScript's own regular expression engine — the same one running in every browser and in Node.js. Patterns that rely on features JavaScript doesn't support (like PCRE's recursive patterns) won't work here."}},{"@type":"Question","name":"What do the flag checkboxes do?","acceptedAnswer":{"@type":"Answer","text":"Global (g) finds every match instead of stopping at the first; Ignore case (i) makes matching case-insensitive; Multiline (m) makes ^ and $ match at line boundaries instead of only the start/end of the whole string; Dot-all (s) makes . also match newlines."}},{"@type":"Question","name":"How do capture groups show up?","acceptedAnswer":{"@type":"Answer","text":"Each match in the list shows its full matched text, plus any parenthesized capture groups numbered in order — group 1, group 2, and so on. Groups that didn't participate in a particular match show as empty."}},{"@type":"Question","name":"Is my pattern or test text sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Matching runs entirely in your browser using JavaScript's built-in RegExp — nothing is uploaded, so it's safe to test patterns against real, private data."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/phone-number-regex-tester","description":"Test a phone-number regex against real numbers in different formats, with a working pattern pre-loaded. See exactly which formats match, live. Free, client-side.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-17","dateModified":"2026-07-17"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"Phone Number Regex Tester","item":"https://textbench.app/tools/phone-number-regex-tester"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does this pattern work for international phone numbers?","acceptedAnswer":{"@type":"Answer","text":"The preset targets common US/Canada 10-digit formats. International numbers vary a lot in length and grouping by country, so testing a specific country's format means editing the pattern — start from the preset and adjust the digit groups to match."}},{"@type":"Question","name":"Why does it accept numbers with or without dashes and parentheses?","acceptedAnswer":{"@type":"Answer","text":"Real form input is inconsistent — people type (555) 123-4567, 555-123-4567, and 5551234567 for the same number. The optional separators in the pattern (`[-. ]?`) mean all of those match without needing three separate patterns."}},{"@type":"Question","name":"Can I require a specific format only, like dashes but not parentheses?","acceptedAnswer":{"@type":"Answer","text":"Yes — edit the pattern directly. Removing the parenthesis-matching part (`\\(?...\\)?`) and keeping only the dash separator will reject parenthesized input instead of accepting it."}},{"@type":"Question","name":"Is my phone number list uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No — matching runs entirely in your browser using JavaScript's built-in RegExp, so it's safe to test against real customer or contact data."}}]}</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2653891546345771" crossorigin="anonymous"></script>
 
 </head>
@@ -43,9 +43,9 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 <main class="wrap" id="main">
 
   <section class="hero">
-    <span class="eyebrow">Regex Tester</span>
-    <h1>Regex Tester — Test Regular Expressions Online</h1>
-    <p class="lede">Enter a pattern and paste text to test it against — every match highlights inline as you type, and the list below shows each match with its capture groups. No signup, and nothing you paste ever leaves your browser.</p>
+    <span class="eyebrow">Phone Number Regex Tester</span>
+    <h1>Phone Number Regex Tester — Validate Phone Formats Online</h1>
+    <p class="lede">Loaded with a pattern that accepts common US/Canada-style formats — with or without a country code, parentheses, dashes, dots, or spaces — plus a sample list showing which formats pass and which don't. Edit the pattern to match the formats your own form actually needs to accept.</p>
   </section>
   
   <section class="tool tool--regex" data-transform="none" data-shape="regex">
@@ -54,20 +54,25 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         <span>Pattern</span>
         <div class="pattern-row">
           <span class="pattern-slash" aria-hidden="true">/</span>
-          <input type="text" id="regexPattern" placeholder="e.g. \d{3}-\d{4}" autocomplete="off" spellcheck="false" value="">
+          <input type="text" id="regexPattern" placeholder="e.g. \d{3}-\d{4}" autocomplete="off" spellcheck="false" value="^(\+?1[-. ]?)?\(?\d{3}\)?[-. ]?\d{3}[-. ]?\d{4}$">
           <span class="pattern-slash" aria-hidden="true">/</span>
         </div>
       </label>
       <div class="regex-flags" role="group" aria-label="Regex flags">
         <label class="check"><input type="checkbox" id="regexFlagG" checked> Global (g)</label>
         <label class="check"><input type="checkbox" id="regexFlagI" checked> Ignore case (i)</label>
-        <label class="check"><input type="checkbox" id="regexFlagM"> Multiline (m)</label>
+        <label class="check"><input type="checkbox" id="regexFlagM" checked> Multiline (m)</label>
         <label class="check"><input type="checkbox" id="regexFlagS"> Dot-all (s)</label>
       </div>
     </div>
     <p class="regex-error" id="regexError" role="alert"></p>
     <label for="editor">Test string</label>
-    <textarea id="editor" class="editor" placeholder="Paste the text to test your pattern against…" spellcheck="false"></textarea>
+    <textarea id="editor" class="editor" placeholder="Paste the text to test your pattern against…" spellcheck="false">(555) 123-4567
+555-123-4567
++1 555.123.4567
+15551234567
+555-1234
+123-456-78901</textarea>
     <label for="regexHighlight">Matches</label>
     <div class="editor editor--output regex-highlight" id="regexHighlight" aria-live="polite">Matches appear highlighted here…</div>
     <div class="regex-summary" id="regexSummary" role="status" aria-live="polite"></div>
@@ -83,10 +88,10 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   <section class="faq">
     <h2>Common questions</h2>
     <div class="faq-grid">
-      <div class="faq-item"><h3>What regex flavor does this use?</h3><p>JavaScript's own regular expression engine — the same one running in every browser and in Node.js. Patterns that rely on features JavaScript doesn't support (like PCRE's recursive patterns) won't work here.</p></div>
-      <div class="faq-item"><h3>What do the flag checkboxes do?</h3><p>Global (g) finds every match instead of stopping at the first; Ignore case (i) makes matching case-insensitive; Multiline (m) makes ^ and $ match at line boundaries instead of only the start/end of the whole string; Dot-all (s) makes . also match newlines.</p></div>
-      <div class="faq-item"><h3>How do capture groups show up?</h3><p>Each match in the list shows its full matched text, plus any parenthesized capture groups numbered in order — group 1, group 2, and so on. Groups that didn't participate in a particular match show as empty.</p></div>
-      <div class="faq-item"><h3>Is my pattern or test text sent anywhere?</h3><p>No. Matching runs entirely in your browser using JavaScript's built-in RegExp — nothing is uploaded, so it's safe to test patterns against real, private data.</p></div>
+      <div class="faq-item"><h3>Does this pattern work for international phone numbers?</h3><p>The preset targets common US/Canada 10-digit formats. International numbers vary a lot in length and grouping by country, so testing a specific country's format means editing the pattern — start from the preset and adjust the digit groups to match.</p></div>
+      <div class="faq-item"><h3>Why does it accept numbers with or without dashes and parentheses?</h3><p>Real form input is inconsistent — people type (555) 123-4567, 555-123-4567, and 5551234567 for the same number. The optional separators in the pattern (`[-. ]?`) mean all of those match without needing three separate patterns.</p></div>
+      <div class="faq-item"><h3>Can I require a specific format only, like dashes but not parentheses?</h3><p>Yes — edit the pattern directly. Removing the parenthesis-matching part (`\(?...\)?`) and keeping only the dash separator will reject parenthesized input instead of accepting it.</p></div>
+      <div class="faq-item"><h3>Is my phone number list uploaded anywhere?</h3><p>No — matching runs entirely in your browser using JavaScript's built-in RegExp, so it's safe to test against real customer or contact data.</p></div>
     </div>
   </section>
   
@@ -116,8 +121,8 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/slugify-text">Slugify</a>
       <a href="/tools/text-repeater">Text Repeater</a>
       <a href="/tools/find-and-replace">Find &amp; Replace</a>
+      <a href="/tools/regex-tester">Regex Tester</a>
       <a href="/tools/email-regex-tester">Email Regex Tester</a>
-      <a href="/tools/phone-number-regex-tester">Phone Number Regex Tester</a>
       <a href="/tools/csv-to-json-converter">CSV to JSON</a>
       <a href="/tools/json-to-csv-converter">JSON to CSV</a>
       <a href="/tools/yaml-to-json-converter">YAML to JSON</a>

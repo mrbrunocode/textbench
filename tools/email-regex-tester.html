@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Regex Tester — Test Regular Expressions Online | Textbench</title>
-<meta name="description" content="Test a regular expression against real text with live match highlighting and capture groups shown per match. Free, instant, runs entirely in your browser.">
-<link rel="canonical" href="https://textbench.app/tools/regex-tester">
-<meta property="og:title" content="Regex Tester — Test Regular Expressions Online">
-<meta property="og:description" content="Test a regular expression against real text with live match highlighting and capture groups shown per match. Free, instant, runs entirely in your browser.">
+<title>Email Regex Tester — Validate Email Addresses Online | Textbench</title>
+<meta name="description" content="Test an email-validation regex against real addresses, with a working pattern pre-loaded. See exactly which addresses match and which don't, live. Free, client-side.">
+<link rel="canonical" href="https://textbench.app/tools/email-regex-tester">
+<meta property="og:title" content="Email Regex Tester — Validate Email Addresses Online">
+<meta property="og:description" content="Test an email-validation regex against real addresses, with a working pattern pre-loaded. See exactly which addresses match and which don't, live. Free, client-side.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://textbench.app/tools/regex-tester">
+<meta property="og:url" content="https://textbench.app/tools/email-regex-tester">
 <meta property="og:image" content="https://textbench.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://textbench.app/assets/og-image.png">
@@ -22,9 +22,9 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/regex-tester","description":"Test a regular expression against real text with live match highlighting and capture groups shown per match. Free, instant, runs entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-17","dateModified":"2026-07-17"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"Regex Tester","item":"https://textbench.app/tools/regex-tester"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What regex flavor does this use?","acceptedAnswer":{"@type":"Answer","text":"JavaScript's own regular expression engine — the same one running in every browser and in Node.js. Patterns that rely on features JavaScript doesn't support (like PCRE's recursive patterns) won't work here."}},{"@type":"Question","name":"What do the flag checkboxes do?","acceptedAnswer":{"@type":"Answer","text":"Global (g) finds every match instead of stopping at the first; Ignore case (i) makes matching case-insensitive; Multiline (m) makes ^ and $ match at line boundaries instead of only the start/end of the whole string; Dot-all (s) makes . also match newlines."}},{"@type":"Question","name":"How do capture groups show up?","acceptedAnswer":{"@type":"Answer","text":"Each match in the list shows its full matched text, plus any parenthesized capture groups numbered in order — group 1, group 2, and so on. Groups that didn't participate in a particular match show as empty."}},{"@type":"Question","name":"Is my pattern or test text sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Matching runs entirely in your browser using JavaScript's built-in RegExp — nothing is uploaded, so it's safe to test patterns against real, private data."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/email-regex-tester","description":"Test an email-validation regex against real addresses, with a working pattern pre-loaded. See exactly which addresses match and which don't, live. Free, client-side.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-17","dateModified":"2026-07-17"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"Email Regex Tester","item":"https://textbench.app/tools/email-regex-tester"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does this pattern catch every invalid email address?","acceptedAnswer":{"@type":"Answer","text":"No pattern does — RFC 5322 technically permits addresses (quoted local parts, some obscure formats) that practical patterns like this one intentionally reject, and it can't tell you whether an address actually exists or receives mail. It catches the common typo shapes (missing @, missing domain, missing TLD, stray characters) that trip up most sign-up forms."}},{"@type":"Question","name":"Can I test my own list of addresses instead?","acceptedAnswer":{"@type":"Answer","text":"Yes — the test string is pre-loaded with examples, but it's a normal textarea: clear it and paste your own addresses, one per line or however your data is formatted, and matches highlight the same way."}},{"@type":"Question","name":"Why does the preset pattern reject some addresses I've seen work elsewhere?","acceptedAnswer":{"@type":"Answer","text":"It's deliberately practical rather than fully RFC-5322-compliant — a real-world balance most production sign-up forms use, since the fully compliant pattern is long and still lets through addresses that don't actually receive mail."}},{"@type":"Question","name":"Is my address list uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No — matching runs entirely in your browser using JavaScript's built-in RegExp, so it's safe to paste real user data or private lists."}}]}</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2653891546345771" crossorigin="anonymous"></script>
 
 </head>
@@ -43,9 +43,9 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 <main class="wrap" id="main">
 
   <section class="hero">
-    <span class="eyebrow">Regex Tester</span>
-    <h1>Regex Tester — Test Regular Expressions Online</h1>
-    <p class="lede">Enter a pattern and paste text to test it against — every match highlights inline as you type, and the list below shows each match with its capture groups. No signup, and nothing you paste ever leaves your browser.</p>
+    <span class="eyebrow">Email Regex Tester</span>
+    <h1>Email Regex Tester — Validate Email Addresses Online</h1>
+    <p class="lede">Loaded with a practical email-validation pattern and a mixed list of valid and invalid addresses below, so you can see real matches immediately — then edit either side to test your own pattern or your own address list. Good enough for most sign-up forms; RFC 5322 technically allows addresses this pattern will reject (quoted strings, some rare TLD shapes), so treat it as a practical filter, not a full spec implementation.</p>
   </section>
   
   <section class="tool tool--regex" data-transform="none" data-shape="regex">
@@ -54,20 +54,25 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         <span>Pattern</span>
         <div class="pattern-row">
           <span class="pattern-slash" aria-hidden="true">/</span>
-          <input type="text" id="regexPattern" placeholder="e.g. \d{3}-\d{4}" autocomplete="off" spellcheck="false" value="">
+          <input type="text" id="regexPattern" placeholder="e.g. \d{3}-\d{4}" autocomplete="off" spellcheck="false" value="^[\w.%+-]+@[\w.-]+\.[A-Za-z]{2,}$">
           <span class="pattern-slash" aria-hidden="true">/</span>
         </div>
       </label>
       <div class="regex-flags" role="group" aria-label="Regex flags">
         <label class="check"><input type="checkbox" id="regexFlagG" checked> Global (g)</label>
         <label class="check"><input type="checkbox" id="regexFlagI" checked> Ignore case (i)</label>
-        <label class="check"><input type="checkbox" id="regexFlagM"> Multiline (m)</label>
+        <label class="check"><input type="checkbox" id="regexFlagM" checked> Multiline (m)</label>
         <label class="check"><input type="checkbox" id="regexFlagS"> Dot-all (s)</label>
       </div>
     </div>
     <p class="regex-error" id="regexError" role="alert"></p>
     <label for="editor">Test string</label>
-    <textarea id="editor" class="editor" placeholder="Paste the text to test your pattern against…" spellcheck="false"></textarea>
+    <textarea id="editor" class="editor" placeholder="Paste the text to test your pattern against…" spellcheck="false">jane.doe@example.com
+not-an-email
+first+tag@sub.example.co.uk
+@missing-local.com
+name@no-tld
+spaced out@example.com</textarea>
     <label for="regexHighlight">Matches</label>
     <div class="editor editor--output regex-highlight" id="regexHighlight" aria-live="polite">Matches appear highlighted here…</div>
     <div class="regex-summary" id="regexSummary" role="status" aria-live="polite"></div>
@@ -83,10 +88,10 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   <section class="faq">
     <h2>Common questions</h2>
     <div class="faq-grid">
-      <div class="faq-item"><h3>What regex flavor does this use?</h3><p>JavaScript's own regular expression engine — the same one running in every browser and in Node.js. Patterns that rely on features JavaScript doesn't support (like PCRE's recursive patterns) won't work here.</p></div>
-      <div class="faq-item"><h3>What do the flag checkboxes do?</h3><p>Global (g) finds every match instead of stopping at the first; Ignore case (i) makes matching case-insensitive; Multiline (m) makes ^ and $ match at line boundaries instead of only the start/end of the whole string; Dot-all (s) makes . also match newlines.</p></div>
-      <div class="faq-item"><h3>How do capture groups show up?</h3><p>Each match in the list shows its full matched text, plus any parenthesized capture groups numbered in order — group 1, group 2, and so on. Groups that didn't participate in a particular match show as empty.</p></div>
-      <div class="faq-item"><h3>Is my pattern or test text sent anywhere?</h3><p>No. Matching runs entirely in your browser using JavaScript's built-in RegExp — nothing is uploaded, so it's safe to test patterns against real, private data.</p></div>
+      <div class="faq-item"><h3>Does this pattern catch every invalid email address?</h3><p>No pattern does — RFC 5322 technically permits addresses (quoted local parts, some obscure formats) that practical patterns like this one intentionally reject, and it can't tell you whether an address actually exists or receives mail. It catches the common typo shapes (missing @, missing domain, missing TLD, stray characters) that trip up most sign-up forms.</p></div>
+      <div class="faq-item"><h3>Can I test my own list of addresses instead?</h3><p>Yes — the test string is pre-loaded with examples, but it's a normal textarea: clear it and paste your own addresses, one per line or however your data is formatted, and matches highlight the same way.</p></div>
+      <div class="faq-item"><h3>Why does the preset pattern reject some addresses I've seen work elsewhere?</h3><p>It's deliberately practical rather than fully RFC-5322-compliant — a real-world balance most production sign-up forms use, since the fully compliant pattern is long and still lets through addresses that don't actually receive mail.</p></div>
+      <div class="faq-item"><h3>Is my address list uploaded anywhere?</h3><p>No — matching runs entirely in your browser using JavaScript's built-in RegExp, so it's safe to paste real user data or private lists.</p></div>
     </div>
   </section>
   
@@ -116,7 +121,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/slugify-text">Slugify</a>
       <a href="/tools/text-repeater">Text Repeater</a>
       <a href="/tools/find-and-replace">Find &amp; Replace</a>
-      <a href="/tools/email-regex-tester">Email Regex Tester</a>
+      <a href="/tools/regex-tester">Regex Tester</a>
       <a href="/tools/phone-number-regex-tester">Phone Number Regex Tester</a>
       <a href="/tools/csv-to-json-converter">CSV to JSON</a>
       <a href="/tools/json-to-csv-converter">JSON to CSV</a>

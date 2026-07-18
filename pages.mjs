@@ -411,6 +411,46 @@ export const PAGES = [
     ],
   },
   {
+    slug: "email-regex-tester",
+    eyebrow: "Email Regex Tester",
+    title: "Email Regex Tester — Validate Email Addresses Online",
+    description:
+      "Test an email-validation regex against real addresses, with a working pattern pre-loaded. See exactly which addresses match and which don't, live. Free, client-side.",
+    intro:
+      "Loaded with a practical email-validation pattern and a mixed list of valid and invalid addresses below, so you can see real matches immediately — then edit either side to test your own pattern or your own address list. Good enough for most sign-up forms; RFC 5322 technically allows addresses this pattern will reject (quoted strings, some rare TLD shapes), so treat it as a practical filter, not a full spec implementation.",
+    transform: "none",
+    shape: "regex",
+    presetPattern: "^[\\w.%+-]+@[\\w.-]+\\.[A-Za-z]{2,}$",
+    presetSample: "jane.doe@example.com\nnot-an-email\nfirst+tag@sub.example.co.uk\n@missing-local.com\nname@no-tld\nspaced out@example.com",
+    presetMultiline: true,
+    faq: [
+      { q: "Does this pattern catch every invalid email address?", a: "No pattern does — RFC 5322 technically permits addresses (quoted local parts, some obscure formats) that practical patterns like this one intentionally reject, and it can't tell you whether an address actually exists or receives mail. It catches the common typo shapes (missing @, missing domain, missing TLD, stray characters) that trip up most sign-up forms." },
+      { q: "Can I test my own list of addresses instead?", a: "Yes — the test string is pre-loaded with examples, but it's a normal textarea: clear it and paste your own addresses, one per line or however your data is formatted, and matches highlight the same way." },
+      { q: "Why does the preset pattern reject some addresses I've seen work elsewhere?", a: "It's deliberately practical rather than fully RFC-5322-compliant — a real-world balance most production sign-up forms use, since the fully compliant pattern is long and still lets through addresses that don't actually receive mail." },
+      { q: "Is my address list uploaded anywhere?", a: "No — matching runs entirely in your browser using JavaScript's built-in RegExp, so it's safe to paste real user data or private lists." },
+    ],
+  },
+  {
+    slug: "phone-number-regex-tester",
+    eyebrow: "Phone Number Regex Tester",
+    title: "Phone Number Regex Tester — Validate Phone Formats Online",
+    description:
+      "Test a phone-number regex against real numbers in different formats, with a working pattern pre-loaded. See exactly which formats match, live. Free, client-side.",
+    intro:
+      "Loaded with a pattern that accepts common US/Canada-style formats — with or without a country code, parentheses, dashes, dots, or spaces — plus a sample list showing which formats pass and which don't. Edit the pattern to match the formats your own form actually needs to accept.",
+    transform: "none",
+    shape: "regex",
+    presetPattern: "^(\\+?1[-. ]?)?\\(?\\d{3}\\)?[-. ]?\\d{3}[-. ]?\\d{4}$",
+    presetSample: "(555) 123-4567\n555-123-4567\n+1 555.123.4567\n15551234567\n555-1234\n123-456-78901",
+    presetMultiline: true,
+    faq: [
+      { q: "Does this pattern work for international phone numbers?", a: "The preset targets common US/Canada 10-digit formats. International numbers vary a lot in length and grouping by country, so testing a specific country's format means editing the pattern — start from the preset and adjust the digit groups to match." },
+      { q: "Why does it accept numbers with or without dashes and parentheses?", a: "Real form input is inconsistent — people type (555) 123-4567, 555-123-4567, and 5551234567 for the same number. The optional separators in the pattern (`[-. ]?`) mean all of those match without needing three separate patterns." },
+      { q: "Can I require a specific format only, like dashes but not parentheses?", a: "Yes — edit the pattern directly. Removing the parenthesis-matching part (`\\(?...\\)?`) and keeping only the dash separator will reject parenthesized input instead of accepting it." },
+      { q: "Is my phone number list uploaded anywhere?", a: "No — matching runs entirely in your browser using JavaScript's built-in RegExp, so it's safe to test against real customer or contact data." },
+    ],
+  },
+  {
     slug: "csv-to-json-converter",
     eyebrow: "CSV to JSON",
     title: "CSV to JSON Converter — Online, Instant",
@@ -1171,20 +1211,20 @@ export function renderTool(p = {}) {
         <span>Pattern</span>
         <div class="pattern-row">
           <span class="pattern-slash" aria-hidden="true">/</span>
-          <input type="text" id="regexPattern" placeholder="e.g. \\d{3}-\\d{4}" autocomplete="off" spellcheck="false">
+          <input type="text" id="regexPattern" placeholder="e.g. \\d{3}-\\d{4}" autocomplete="off" spellcheck="false" value="${esc(p.presetPattern || "")}">
           <span class="pattern-slash" aria-hidden="true">/</span>
         </div>
       </label>
       <div class="regex-flags" role="group" aria-label="Regex flags">
         <label class="check"><input type="checkbox" id="regexFlagG" checked> Global (g)</label>
         <label class="check"><input type="checkbox" id="regexFlagI" checked> Ignore case (i)</label>
-        <label class="check"><input type="checkbox" id="regexFlagM"> Multiline (m)</label>
+        <label class="check"><input type="checkbox" id="regexFlagM"${p.presetMultiline ? " checked" : ""}> Multiline (m)</label>
         <label class="check"><input type="checkbox" id="regexFlagS"> Dot-all (s)</label>
       </div>
     </div>
     <p class="regex-error" id="regexError" role="alert"></p>
     <label for="editor">Test string</label>
-    <textarea id="editor" class="editor" placeholder="Paste the text to test your pattern against…" spellcheck="false"></textarea>
+    <textarea id="editor" class="editor" placeholder="Paste the text to test your pattern against…" spellcheck="false">${esc(p.presetSample || "")}</textarea>
     <label for="regexHighlight">Matches</label>
     <div class="editor editor--output regex-highlight" id="regexHighlight" aria-live="polite">Matches appear highlighted here…</div>
     <div class="regex-summary" id="regexSummary" role="status" aria-live="polite"></div>
