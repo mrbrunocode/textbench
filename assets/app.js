@@ -154,6 +154,16 @@
       return new TextDecoder().decode(bytes);
     } catch (e) { return "Invalid hex input."; }
   }
+  function jsonFormat(s) {
+    if (!s.trim()) return "";
+    try { return JSON.stringify(JSON.parse(s), null, 2); }
+    catch (e) { return "Invalid JSON: " + e.message; }
+  }
+  function jsonMinify(s) {
+    if (!s.trim()) return "";
+    try { return JSON.stringify(JSON.parse(s)); }
+    catch (e) { return "Invalid JSON: " + e.message; }
+  }
   var MORSE = { A: ".-", B: "-...", C: "-.-.", D: "-..", E: ".", F: "..-.", G: "--.", H: "....", I: "..", J: ".---",
     K: "-.-", L: ".-..", M: "--", N: "-.", O: "---", P: ".--.", Q: "--.-", R: ".-.", S: "...", T: "-",
     U: "..-", V: "...-", W: ".--", X: "-..-", Y: "-.--", Z: "--..",
@@ -334,6 +344,8 @@
     "strikethrough-text": strikethroughText,
     "upside-down-text": upsideDownText,
     "bold-text": boldUnicodeText,
+    "json-format": jsonFormat,
+    "json-minify": jsonMinify,
   };
 
   // Exposes the pure transform functions to Node's test runner (see
@@ -361,6 +373,7 @@
       md5: md5, sha256Async: sha256Async, uuidV4: uuidV4, uuidGenerator: uuidGenerator,
       randomPassword: randomPassword, strikethroughText: strikethroughText,
       upsideDownText: upsideDownText, boldUnicodeText: boldUnicodeText,
+      jsonFormat: jsonFormat, jsonMinify: jsonMinify,
       loremSentence: loremSentence, loremParagraph: loremParagraph, loremIpsum: loremIpsum,
     };
     return;

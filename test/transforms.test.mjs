@@ -145,3 +145,36 @@ test("count() reports characters, words and reading time consistently", () => {
   assert.equal(stats.charactersNoSpaces, 19);
   assert.equal(stats.sentences, 1);
 });
+
+test("jsonFormat pretty-prints valid JSON with 2-space indent", () => {
+  assert.equal(t.jsonFormat('{"a":1,"b":[2,3]}'), '{\n  "a": 1,\n  "b": [\n    2,\n    3\n  ]\n}');
+});
+
+test("jsonFormat preserves key order and does not touch values", () => {
+  const out = t.jsonFormat('{"z":1,"a":"hello world"}');
+  assert.ok(out.indexOf('"z"') < out.indexOf('"a"'));
+  assert.ok(out.includes('"hello world"'));
+});
+
+test("jsonFormat reports a parse error for invalid JSON instead of throwing", () => {
+  assert.match(t.jsonFormat("{not valid}"), /^Invalid JSON:/);
+});
+
+test("jsonFormat returns empty string for empty input", () => {
+  assert.equal(t.jsonFormat(""), "");
+  assert.equal(t.jsonFormat("   "), "");
+});
+
+test("jsonMinify strips whitespace but keeps string contents intact", () => {
+  assert.equal(t.jsonMinify('{\n  "a": 1,\n  "b": "has spaces"\n}'), '{"a":1,"b":"has spaces"}');
+});
+
+test("jsonMinify reports a parse error for invalid JSON instead of throwing", () => {
+  assert.match(t.jsonMinify("[1, 2,"), /^Invalid JSON:/);
+});
+
+test("jsonFormat and jsonMinify round-trip to the same parsed value", () => {
+  const input = '{"nested":{"list":[1,2,3],"flag":true},"n":null}';
+  assert.deepEqual(JSON.parse(t.jsonFormat(input)), JSON.parse(input));
+  assert.deepEqual(JSON.parse(t.jsonMinify(input)), JSON.parse(input));
+});

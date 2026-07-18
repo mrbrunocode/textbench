@@ -698,6 +698,54 @@ export const PAGES = [
     ],
   },
   {
+    slug: "json-formatter",
+    eyebrow: "JSON Formatter",
+    title: "JSON Formatter — Pretty-Print JSON Online",
+    description:
+      "Paste minified or messy JSON and get it pretty-printed with 2-space indentation, instantly. Free, browser-only, catches syntax errors as it formats.",
+    intro:
+      "Paste minified, single-line, or inconsistently-indented JSON below and it comes back cleanly indented and readable. If the JSON has a syntax error, the exact parser error shows instead of a formatted result, so you know precisely what to fix.",
+    transform: "json-format",
+    shape: "simple",
+    faq: [
+      { q: "What indentation does it use?", a: "A consistent 2-space indent, applied recursively through nested objects and arrays — the standard, compact style used by most JSON tooling and linters." },
+      { q: "What happens if my JSON has a syntax error?", a: "Instead of a formatted result, you'll see \"Invalid JSON:\" followed by the JavaScript parser's own error message (often naming the character position), which is usually enough to find a missing comma, quote, or bracket." },
+      { q: "Does it change the data, like sorting keys?", a: "No — keys keep their original order and values are untouched. Only whitespace changes: every nested level gets consistent indentation." },
+    ],
+  },
+  {
+    slug: "json-validator",
+    eyebrow: "JSON Validator",
+    title: "JSON Validator — Check JSON Syntax Online",
+    description:
+      "Paste JSON and instantly see whether it's valid — and exactly where the syntax error is if it isn't. Free, browser-only, nothing uploaded.",
+    intro:
+      "Paste JSON below to check it's syntactically valid. Valid input comes back cleanly formatted as confirmation; invalid input shows the parser's own error message instead, naming what's wrong so you don't have to eyeball hundreds of lines for a stray comma.",
+    transform: "json-format",
+    shape: "simple",
+    faq: [
+      { q: "How is this different from the JSON formatter?", a: "Nothing under the hood — validating and formatting are the same operation (parse, then re-print). This page is aimed at \"is this valid?\" checks; the formatter page is aimed at \"make this readable.\" Use whichever framing matches what you're doing." },
+      { q: "Does it check my data against a schema?", a: "No — it only checks that the JSON is syntactically well-formed (correct brackets, quotes, commas), not that it matches a particular shape or set of required fields. That needs a JSON Schema validator, which is a different tool." },
+      { q: "Is my JSON uploaded anywhere?", a: "No. Parsing happens entirely in your browser via the same JSON.parse every JavaScript environment uses — nothing is sent to a server." },
+    ],
+  },
+  {
+    slug: "json-minifier",
+    eyebrow: "JSON Minifier",
+    title: "JSON Minifier — Compact JSON to One Line",
+    description:
+      "Strip all whitespace from JSON down to the smallest valid form, in one line. Free, browser-only, useful before pasting JSON into a size-limited field.",
+    intro:
+      "Paste readable, indented JSON below and get back the smallest valid form — every non-essential space, tab and newline removed. Useful when a config field, URL parameter, or API payload has a size limit and the pretty-printed version won't fit.",
+    transform: "json-minify",
+    shape: "simple",
+    faq: [
+      { q: "Does minifying change the data?", a: "No — only whitespace between tokens is removed. Every key, value, bracket and comma stays exactly as parsed; the data is identical, just smaller in byte size." },
+      { q: "Will this break string values that contain spaces?", a: "No — whitespace is only stripped between JSON's structural tokens (commas, colons, brackets). Spaces that are part of an actual string value, like \"New York\", are preserved untouched." },
+      { q: "What if I paste invalid JSON?", a: "You'll see \"Invalid JSON:\" and the parser's error message instead of a minified result — minifying requires parsing first, so broken JSON can't be minified until the syntax error is fixed." },
+    ],
+  },
+  {
     slug: "md5-hash-generator",
     eyebrow: "MD5 Hash",
     title: "MD5 Hash Generator",
@@ -898,6 +946,10 @@ export function renderTool(p = {}) {
       ["morse-encode", "Text to Morse code"],
       ["morse-decode", "Morse code to text"],
       ["rot13", "ROT13 cipher"],
+    ]],
+    ["Format & validate", [
+      ["json-format", "Format / validate JSON"],
+      ["json-minify", "Minify JSON"],
     ]],
     ["Hash", [
       ["md5-hash", "MD5 hash"],
