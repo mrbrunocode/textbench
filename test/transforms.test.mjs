@@ -4,7 +4,7 @@
 // value exactly: these are advertised as always-correct, deterministic tools.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { loadTransforms } from "./helpers/load-app.mjs";
+import { loadTransforms, loadRegexWorker } from "./helpers/load-app.mjs";
 
 const t = loadTransforms();
 
@@ -286,4 +286,35 @@ test("nextChipValue toggles the same chip back to \"none\", switches chip otherw
   assert.equal(t.nextChipValue("none", "uppercase"), "uppercase");
   assert.equal(t.nextChipValue("uppercase", "lowercase"), "lowercase");
   assert.equal(t.nextChipValue("none", "none"), "none");
+});
+
+// regex-worker.js — runs off the main thread specifically so a catastrophic-
+// backtracking pattern can't freeze the tab (see assets/regex-worker.js);
+// this tests the actual matching logic the worker runs, not the postMessage
+// plumbing (which needs a real Worker environment to exercise).
+const rw = loadRegexWorker();
+
+test("runRegexMatch finds a single non-global match with its index and groups", () => {
+  const matches = rw.runRegexMatch("(\\d+)-(\\d+)", "", "id 12-34 end");
+  assert.equal(matches.length, 1);
+  assert.equal(matches[0].index, 3);
+  assert.deepEqual(matches[0].groups, ["12-34", "12", "34"]);
+});
+
+test("runRegexMatch finds every match with the global flag", () => {
+  const matches = rw.runRegexMatch("\\d+", "g", "a1 b22 c333");
+  assert.deepEqual(matches.map((m) => m.groups[0]), ["1", "22", "333"]);
+});
+
+test("runRegexMatch steps past zero-length global matches instead of looping forever", () => {
+  const matches = rw.runRegexMatch("a*", "g", "bbb");
+  assert.ok(matches.length > 0 && matches.length < 100, "should terminate with a small, sane match count");
+});
+
+test("runRegexMatch throws for an invalid pattern, for the caller to report", () => {
+  assert.throws(() => rw.runRegexMatch("(", "", "text"));
+});
+
+test("runRegexMatch returns no matches when the pattern doesn't match", () => {
+  assert.deepEqual(rw.runRegexMatch("xyz", "", "abc"), []);
 });

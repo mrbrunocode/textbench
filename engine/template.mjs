@@ -40,6 +40,7 @@ const assetV = (name) => {
 };
 const CSS_V = assetV("style.css");
 const JS_V = assetV("app.js");
+const WORKER_V = assetV("regex-worker.js");
 
 // Depth-aware relative prefix so /tools/foo can reach ../assets while / uses
 // ./assets. depth 0 = repo root page, depth 1 = a collection page.
@@ -207,6 +208,7 @@ ${bodyHtml}
     </div>
   </div>
 </footer>
+<script>window.REGEX_WORKER_URL = "${r}assets/regex-worker.js?v=${WORKER_V}";</script>
 <script src="${r}assets/app.js?v=${JS_V}" defer></script>
 </body>
 </html>

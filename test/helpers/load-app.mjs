@@ -21,6 +21,7 @@ import { dirname, join } from "node:path";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const appJsPath = join(__dirname, "..", "..", "assets", "app.js");
+const regexWorkerPath = join(__dirname, "..", "..", "assets", "regex-worker.js");
 
 export function loadTransforms() {
   if (typeof globalThis.window === "undefined") globalThis.window = globalThis;
@@ -41,5 +42,15 @@ export function loadTransforms() {
   const mod = { exports: {} };
   const fn = new Function("module", "exports", "require", "__filename", "__dirname", src);
   fn(mod, mod.exports, createRequire(import.meta.url), appJsPath, dirname(appJsPath));
+  return mod.exports;
+}
+
+// regex-worker.js needs no DOM at all — its module.exports shim is reached
+// immediately, before any `self`/`postMessage` reference (see the file).
+export function loadRegexWorker() {
+  const src = readFileSync(regexWorkerPath, "utf8");
+  const mod = { exports: {} };
+  const fn = new Function("module", "exports", "require", "__filename", "__dirname", src);
+  fn(mod, mod.exports, createRequire(import.meta.url), regexWorkerPath, dirname(regexWorkerPath));
   return mod.exports;
 }

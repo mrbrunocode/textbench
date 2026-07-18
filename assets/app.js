@@ -614,10 +614,63 @@
   // Regex tester: not a text-in/text-out transform, so it bypasses apply()/
   // TRANSFORMS entirely — the "result" is the test string with matches
   // wrapped in <mark>, plus a separate match list with capture groups.
+  //
+  // Matching runs in a Worker (assets/regex-worker.js), not inline, so a
+  // catastrophic-backtracking pattern (e.g. /^(a+)+$/ against a long
+  // non-matching string) can't freeze the tab: if the worker doesn't answer
+  // within REGEX_TIMEOUT_MS, it's terminated and replaced, and the tester
+  // shows a clear message instead of hanging. Still 100% client-side — a
+  // Worker is a separate thread in the same browser process, not a network
+  // request.
+  var REGEX_TIMEOUT_MS = 1500;
+  var regexWorker = null, regexReqId = 0, regexPendingTimeout = null;
+  function getRegexWorker() {
+    if (!regexWorker) {
+      regexWorker = new Worker(window.REGEX_WORKER_URL || "assets/regex-worker.js");
+      regexWorker.onmessage = handleRegexWorkerMessage;
+    }
+    return regexWorker;
+  }
+  function clearRegexTimeout() {
+    if (regexPendingTimeout) { clearTimeout(regexPendingTimeout); regexPendingTimeout = null; }
+  }
+  function handleRegexWorkerMessage(e) {
+    if (e.data.id !== regexReqId) return; // a stale response from a superseded request
+    clearRegexTimeout();
+    var text = editor.value;
+    if (!e.data.ok) {
+      regexErrorEl.textContent = "Invalid pattern: " + e.data.error;
+      regexHighlightEl.textContent = text;
+      regexSummaryEl.textContent = "";
+      regexMatchesEl.innerHTML = "";
+      return;
+    }
+    regexErrorEl.textContent = "";
+    renderRegexMatches(e.data.matches, text);
+  }
+  function renderRegexMatches(matches, text) {
+    var html = "", cursor = 0;
+    matches.forEach(function (m) {
+      html += htmlEntitiesEncode(text.slice(cursor, m.index));
+      html += "<mark>" + htmlEntitiesEncode(m.groups[0]) + "</mark>";
+      cursor = m.index + m.groups[0].length;
+    });
+    html += htmlEntitiesEncode(text.slice(cursor));
+    regexHighlightEl.innerHTML = text ? html : "Matches appear highlighted here…";
+    regexSummaryEl.textContent = matches.length + " match" + (matches.length === 1 ? "" : "es");
+    regexMatchesEl.innerHTML = matches.map(function (m, i) {
+      var groups = m.groups.length > 1
+        ? " — groups: " + m.groups.slice(1).map(function (g, gi) { return (gi + 1) + "=“" + (g === undefined ? "" : htmlEntitiesEncode(g)) + "”"; }).join(", ")
+        : "";
+      return "<li>" + (i + 1) + ". “" + htmlEntitiesEncode(m.groups[0]) + "”" + groups + "</li>";
+    }).join("");
+  }
   function renderRegexTester() {
     var text = editor.value;
     var pattern = regexPatternEl.value;
+    clearRegexTimeout();
     if (!pattern) {
+      regexReqId++; // supersede any in-flight request so its response is ignored
       regexErrorEl.textContent = "";
       regexHighlightEl.textContent = text || "Matches appear highlighted here…";
       regexSummaryEl.textContent = "";
@@ -625,42 +678,25 @@
       return;
     }
     var flags = (regexFlagG.checked ? "g" : "") + (regexFlagI.checked ? "i" : "") + (regexFlagM.checked ? "m" : "") + (regexFlagS.checked ? "s" : "");
-    var re;
-    try { re = new RegExp(pattern, flags); }
+    var myId = ++regexReqId;
+    var worker;
+    try { worker = getRegexWorker(); }
     catch (e) {
-      regexErrorEl.textContent = "Invalid pattern: " + e.message;
+      // Worker construction itself failed (e.g. blocked by an extension) —
+      // nothing safe to fall back to inline without reintroducing the freeze
+      // risk, so surface it rather than silently hang.
+      regexErrorEl.textContent = "Couldn't start the regex tester in this browser.";
+      return;
+    }
+    worker.postMessage({ id: myId, pattern: pattern, flags: flags, text: text });
+    regexPendingTimeout = setTimeout(function () {
+      if (myId !== regexReqId) return;
+      if (regexWorker) { regexWorker.terminate(); regexWorker = null; } // a hung worker can't be reused — replace it
+      regexErrorEl.textContent = "This pattern is taking too long to run (it may be causing catastrophic backtracking) — try a simpler pattern or shorter test string.";
       regexHighlightEl.textContent = text;
       regexSummaryEl.textContent = "";
       regexMatchesEl.innerHTML = "";
-      return;
-    }
-    regexErrorEl.textContent = "";
-    var matches = [];
-    if (flags.indexOf("g") !== -1) {
-      var m, guard = 0;
-      while ((m = re.exec(text)) && guard++ < 10000) {
-        matches.push(m);
-        if (m[0] === "") re.lastIndex++; // step past a zero-length match so exec() can't loop forever
-      }
-    } else {
-      var single = re.exec(text);
-      if (single) matches.push(single);
-    }
-    var html = "", cursor = 0;
-    matches.forEach(function (m) {
-      html += htmlEntitiesEncode(text.slice(cursor, m.index));
-      html += "<mark>" + htmlEntitiesEncode(m[0]) + "</mark>";
-      cursor = m.index + m[0].length;
-    });
-    html += htmlEntitiesEncode(text.slice(cursor));
-    regexHighlightEl.innerHTML = text ? html : "Matches appear highlighted here…";
-    regexSummaryEl.textContent = matches.length + " match" + (matches.length === 1 ? "" : "es");
-    regexMatchesEl.innerHTML = matches.map(function (m, i) {
-      var groups = m.length > 1
-        ? " — groups: " + m.slice(1).map(function (g, gi) { return (gi + 1) + "=“" + (g === undefined ? "" : htmlEntitiesEncode(g)) + "”"; }).join(", ")
-        : "";
-      return "<li>" + (i + 1) + ". “" + htmlEntitiesEncode(m[0]) + "”" + groups + "</li>";
-    }).join("");
+    }, REGEX_TIMEOUT_MS);
   }
 
   // QR code generator: renders entirely client-side via a small library
