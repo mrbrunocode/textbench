@@ -394,6 +394,23 @@ export const PAGES = [
     ],
   },
   {
+    slug: "regex-tester",
+    eyebrow: "Regex Tester",
+    title: "Regex Tester — Test Regular Expressions Online",
+    description:
+      "Test a regular expression against real text with live match highlighting and capture groups shown per match. Free, instant, runs entirely in your browser.",
+    intro:
+      "Enter a pattern and paste text to test it against — every match highlights inline as you type, and the list below shows each match with its capture groups. No signup, and nothing you paste ever leaves your browser.",
+    transform: "none",
+    shape: "regex",
+    faq: [
+      { q: "What regex flavor does this use?", a: "JavaScript's own regular expression engine — the same one running in every browser and in Node.js. Patterns that rely on features JavaScript doesn't support (like PCRE's recursive patterns) won't work here." },
+      { q: "What do the flag checkboxes do?", a: "Global (g) finds every match instead of stopping at the first; Ignore case (i) makes matching case-insensitive; Multiline (m) makes ^ and $ match at line boundaries instead of only the start/end of the whole string; Dot-all (s) makes . also match newlines." },
+      { q: "How do capture groups show up?", a: "Each match in the list shows its full matched text, plus any parenthesized capture groups numbered in order — group 1, group 2, and so on. Groups that didn't participate in a particular match show as empty." },
+      { q: "Is my pattern or test text sent anywhere?", a: "No. Matching runs entirely in your browser using JavaScript's built-in RegExp — nothing is uploaded, so it's safe to test patterns against real, private data." },
+    ],
+  },
+  {
     slug: "lorem-ipsum-generator",
     eyebrow: "Lorem Ipsum",
     title: "Lorem Ipsum Generator — Placeholder Text, Any Length",
@@ -1033,6 +1050,44 @@ export function renderTool(p = {}) {
     <textarea id="editor" class="editor" placeholder="Type or paste your text here…" spellcheck="true"></textarea>
     <div class="tool-actions">
       <button type="button" class="btn" id="copyBtn">Copy text</button>
+      <button type="button" class="btn" id="clearBtn">Clear</button>
+    </div>
+  </section>`;
+  }
+
+  // The regex tester is its own tool shape, not a text-in/text-out transform
+  // like the rest of the family — the "result" is highlighted matches inside
+  // the original test string plus a match list, not a transformed string.
+  // Standalone-page only (same reasoning as the counter shape above): it
+  // doesn't fit the home page's swap-a-transform workbench model.
+  if (shape === "regex" && !isHome) {
+    return `
+  <section class="tool tool--regex" data-transform="none" data-shape="regex">
+    <div class="regex-controls">
+      <label class="field field--pattern">
+        <span>Pattern</span>
+        <div class="pattern-row">
+          <span class="pattern-slash" aria-hidden="true">/</span>
+          <input type="text" id="regexPattern" placeholder="e.g. \\d{3}-\\d{4}" autocomplete="off" spellcheck="false">
+          <span class="pattern-slash" aria-hidden="true">/</span>
+        </div>
+      </label>
+      <div class="regex-flags" role="group" aria-label="Regex flags">
+        <label class="check"><input type="checkbox" id="regexFlagG" checked> Global (g)</label>
+        <label class="check"><input type="checkbox" id="regexFlagI" checked> Ignore case (i)</label>
+        <label class="check"><input type="checkbox" id="regexFlagM"> Multiline (m)</label>
+        <label class="check"><input type="checkbox" id="regexFlagS"> Dot-all (s)</label>
+      </div>
+    </div>
+    <p class="regex-error" id="regexError" role="alert"></p>
+    <label for="editor">Test string</label>
+    <textarea id="editor" class="editor" placeholder="Paste the text to test your pattern against…" spellcheck="false"></textarea>
+    <label for="regexHighlight">Matches</label>
+    <div class="editor editor--output regex-highlight" id="regexHighlight" aria-live="polite">Matches appear highlighted here…</div>
+    <div class="regex-summary" id="regexSummary" role="status" aria-live="polite"></div>
+    <ol class="regex-matches" id="regexMatches"></ol>
+    <div class="tool-actions">
+      <button type="button" class="btn" id="copyBtn">Copy match list</button>
       <button type="button" class="btn" id="clearBtn">Clear</button>
     </div>
   </section>`;

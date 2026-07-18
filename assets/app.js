@@ -394,6 +394,15 @@
   var pwLenEl = document.getElementById("pwLength");
   var pwUpperEl = document.getElementById("pwUpper");
   var pwNumbersEl = document.getElementById("pwNumbers");
+  var regexPatternEl = document.getElementById("regexPattern");
+  var regexErrorEl = document.getElementById("regexError");
+  var regexHighlightEl = document.getElementById("regexHighlight");
+  var regexSummaryEl = document.getElementById("regexSummary");
+  var regexMatchesEl = document.getElementById("regexMatches");
+  var regexFlagG = document.getElementById("regexFlagG");
+  var regexFlagI = document.getElementById("regexFlagI");
+  var regexFlagM = document.getElementById("regexFlagM");
+  var regexFlagS = document.getElementById("regexFlagS");
   var pwSymbolsEl = document.getElementById("pwSymbols");
 
   var NO_INPUT = { "lorem-ipsum": 1, "uuid-generator": 1, "password-generator": 1 };
@@ -426,8 +435,61 @@
   var limitNumEl = document.querySelector('[data-count="remaining"]');
   var limitCardEl = document.querySelector(".stat--limit");
 
+  // Regex tester: not a text-in/text-out transform, so it bypasses apply()/
+  // TRANSFORMS entirely — the "result" is the test string with matches
+  // wrapped in <mark>, plus a separate match list with capture groups.
+  function renderRegexTester() {
+    var text = editor.value;
+    var pattern = regexPatternEl.value;
+    if (!pattern) {
+      regexErrorEl.textContent = "";
+      regexHighlightEl.textContent = text || "Matches appear highlighted here…";
+      regexSummaryEl.textContent = "";
+      regexMatchesEl.innerHTML = "";
+      return;
+    }
+    var flags = (regexFlagG.checked ? "g" : "") + (regexFlagI.checked ? "i" : "") + (regexFlagM.checked ? "m" : "") + (regexFlagS.checked ? "s" : "");
+    var re;
+    try { re = new RegExp(pattern, flags); }
+    catch (e) {
+      regexErrorEl.textContent = "Invalid pattern: " + e.message;
+      regexHighlightEl.textContent = text;
+      regexSummaryEl.textContent = "";
+      regexMatchesEl.innerHTML = "";
+      return;
+    }
+    regexErrorEl.textContent = "";
+    var matches = [];
+    if (flags.indexOf("g") !== -1) {
+      var m, guard = 0;
+      while ((m = re.exec(text)) && guard++ < 10000) {
+        matches.push(m);
+        if (m[0] === "") re.lastIndex++; // step past a zero-length match so exec() can't loop forever
+      }
+    } else {
+      var single = re.exec(text);
+      if (single) matches.push(single);
+    }
+    var html = "", cursor = 0;
+    matches.forEach(function (m) {
+      html += htmlEntitiesEncode(text.slice(cursor, m.index));
+      html += "<mark>" + htmlEntitiesEncode(m[0]) + "</mark>";
+      cursor = m.index + m[0].length;
+    });
+    html += htmlEntitiesEncode(text.slice(cursor));
+    regexHighlightEl.innerHTML = text ? html : "Matches appear highlighted here…";
+    regexSummaryEl.textContent = matches.length + " match" + (matches.length === 1 ? "" : "es");
+    regexMatchesEl.innerHTML = matches.map(function (m, i) {
+      var groups = m.length > 1
+        ? " — groups: " + m.slice(1).map(function (g, gi) { return (gi + 1) + "=“" + (g === undefined ? "" : htmlEntitiesEncode(g)) + "”"; }).join(", ")
+        : "";
+      return "<li>" + (i + 1) + ". “" + htmlEntitiesEncode(m[0]) + "”" + groups + "</li>";
+    }).join("");
+  }
+
   var renderToken = 0;
   function render() {
+    if (regexPatternEl) { renderRegexTester(); return; }
     var myToken = ++renderToken;
     var t = currentTransform();
     var result = apply(NO_INPUT[t] ? "" : editor.value);
@@ -449,9 +511,11 @@
   }
 
   editor.addEventListener("input", render);
-  [findEl, replEl, regexEl, repeatEl, loremEl, uuidCountEl, pwLenEl, pwUpperEl, pwNumbersEl, pwSymbolsEl].forEach(function (el) {
+  [findEl, replEl, regexEl, repeatEl, loremEl, uuidCountEl, pwLenEl, pwUpperEl, pwNumbersEl, pwSymbolsEl,
+    regexPatternEl, regexFlagG, regexFlagI, regexFlagM, regexFlagS].forEach(function (el) {
     if (el) el.addEventListener("input", render);
   });
+  if (regexPatternEl) render(); // show the empty-pattern placeholder immediately, not a blank box
   // Tool picker: category tabs + chip grid drive the (visually hidden)
   // transformSel select, which stays the single source of truth. Any change
   // to it — a chip click, but also a keyboard/screen-reader user operating
@@ -519,7 +583,7 @@
   var copyBtn = document.getElementById("copyBtn");
   if (copyBtn) {
     copyBtn.addEventListener("click", function () {
-      var val = output ? output.value : editor.value;
+      var val = regexMatchesEl ? regexMatchesEl.textContent : (output ? output.value : editor.value);
       if (!val) return;
       var done = function () { var t = copyBtn.textContent; copyBtn.textContent = "Copied ✓"; setTimeout(function () { copyBtn.textContent = t; }, 1400); };
       if (navigator.clipboard && navigator.clipboard.writeText) {
