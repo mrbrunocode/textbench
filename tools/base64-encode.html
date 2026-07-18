@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=f0654f8d">
+<link rel="stylesheet" href="../assets/style.css?v=9c9e9041">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -113,11 +113,11 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   
   <section class="faq">
     <h2>Common questions</h2>
-    <dl class="faq-grid">
-      <div class="faq-item"><h3>Is Base64 encryption?</h3><dd>No — Base64 is an encoding, not encryption. It's trivially reversible by anyone (including this same tool's decode page) and provides no confidentiality. Don't use it to protect sensitive data.</dd></div>
-      <div class="faq-item"><h3>Does it handle Unicode text correctly?</h3><dd>Yes — the input is UTF-8 encoded before Base64 conversion, so accented letters, emoji and non-Latin scripts round-trip correctly through encode and decode.</dd></div>
-      <div class="faq-item"><h3>What's Base64 commonly used for?</h3><dd>Embedding small binary data in text-only formats like JSON or XML, encoding images inline in CSS/HTML (data URIs), and email attachment encoding (MIME).</dd></div>
-    </dl>
+    <div class="faq-grid">
+      <div class="faq-item"><h3>Is Base64 encryption?</h3><p>No — Base64 is an encoding, not encryption. It's trivially reversible by anyone (including this same tool's decode page) and provides no confidentiality. Don't use it to protect sensitive data.</p></div>
+      <div class="faq-item"><h3>Does it handle Unicode text correctly?</h3><p>Yes — the input is UTF-8 encoded before Base64 conversion, so accented letters, emoji and non-Latin scripts round-trip correctly through encode and decode.</p></div>
+      <div class="faq-item"><h3>What's Base64 commonly used for?</h3><p>Embedding small binary data in text-only formats like JSON or XML, encoding images inline in CSS/HTML (data URIs), and email attachment encoding (MIME).</p></div>
+    </div>
   </section>
   
   <nav class="related" aria-label="More tools">
@@ -136,6 +136,9 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/remove-empty-lines">Empty Lines</a>
       <a href="/tools/sort-lines-alphabetically">Sort Lines</a>
       <a href="/tools/reverse-text">Reverse Text</a>
+      <a href="/tools/reverse-line-order">Reverse Line Order</a>
+      <a href="/tools/trim-whitespace-from-lines">Trim Lines</a>
+      <a href="/tools/sort-lines-descending">Sort Z to A</a>
       <a href="/tools/add-line-numbers">Line Numbers</a>
       <a href="/tools/slugify-text">Slugify</a>
       <a href="/tools/text-repeater">Text Repeater</a>

@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URL Encode Text Online (Percent-Encoding) | Textbench</title>
-<meta name="description" content="Percent-encode text for safe use in a URL — spaces, symbols and special characters are escaped. Free, instant, browser-only.">
-<link rel="canonical" href="https://textbench.app/tools/url-encode">
-<meta property="og:title" content="URL Encode Text Online (Percent-Encoding)">
-<meta property="og:description" content="Percent-encode text for safe use in a URL — spaces, symbols and special characters are escaped. Free, instant, browser-only.">
+<title>Trim Whitespace From Lines — Clean Leading &amp; Trailing Spaces | Textbench</title>
+<meta name="description" content="Strip leading and trailing whitespace from every line in a block of text, without touching spacing in the middle of a line. Free, instant, browser-only.">
+<link rel="canonical" href="https://textbench.app/tools/trim-whitespace-from-lines">
+<meta property="og:title" content="Trim Whitespace From Lines — Clean Leading &amp; Trailing Spaces">
+<meta property="og:description" content="Strip leading and trailing whitespace from every line in a block of text, without touching spacing in the middle of a line. Free, instant, browser-only.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://textbench.app/tools/url-encode">
+<meta property="og:url" content="https://textbench.app/tools/trim-whitespace-from-lines">
 <meta property="og:image" content="https://textbench.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://textbench.app/assets/og-image.png">
@@ -22,9 +22,9 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/url-encode","description":"Percent-encode text for safe use in a URL — spaces, symbols and special characters are escaped. Free, instant, browser-only.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-17","dateModified":"2026-07-17"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"URL Encode","item":"https://textbench.app/tools/url-encode"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this the same as encoding a full URL?","acceptedAnswer":{"@type":"Answer","text":"This encodes a single value (like a query parameter), escaping characters such as spaces, &, = and ? that would otherwise break a URL's structure. Don't run a whole URL through this or you'll also encode its own \"://\" and \"/\" separators."}},{"@type":"Question","name":"Why does a space become %20 and not +?","acceptedAnswer":{"@type":"Answer","text":"%20 is the standard percent-encoding for a space (used in URL paths and most contexts); \"+\" is a legacy convention specific to form-encoded query strings. This tool uses the standard %20 form."}},{"@type":"Question","name":"Is my text sent anywhere to encode it?","acceptedAnswer":{"@type":"Answer","text":"No — it uses the browser's built-in encodeURIComponent, entirely client-side."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/trim-whitespace-from-lines","description":"Strip leading and trailing whitespace from every line in a block of text, without touching spacing in the middle of a line. Free, instant, browser-only.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-17","dateModified":"2026-07-17"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"Trim Lines","item":"https://textbench.app/tools/trim-whitespace-from-lines"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is this different from \"remove extra spaces\"?","acceptedAnswer":{"@type":"Answer","text":"This only trims the start and end of each line. \"Remove extra spaces\" instead collapses repeated spaces anywhere in a line, including the middle of a sentence — pick trim if you only want the edges cleaned."}},{"@type":"Question","name":"Does it remove blank lines?","acceptedAnswer":{"@type":"Answer","text":"No — a blank line stays blank (and stays in place). Use the \"remove empty lines\" tool afterward if you also want blank lines gone entirely."}},{"@type":"Question","name":"Does it affect tabs as well as spaces?","acceptedAnswer":{"@type":"Answer","text":"Yes — any whitespace character at the start or end of a line (spaces, tabs) is trimmed, matching how most editors define \"whitespace\"."}}]}</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2653891546345771" crossorigin="anonymous"></script>
 
 </head>
@@ -43,12 +43,12 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 <main class="wrap" id="main">
 
   <section class="hero">
-    <span class="eyebrow">URL Encode</span>
-    <h1>URL Encode Text Online (Percent-Encoding)</h1>
-    <p class="lede">Paste text below to URL-encode it — spaces become %20, and other characters that aren't safe in a URL are escaped to their percent-encoded form.</p>
+    <span class="eyebrow">Trim Lines</span>
+    <h1>Trim Whitespace From Lines — Clean Leading &amp; Trailing Spaces</h1>
+    <p class="lede">Paste text below and every line has its leading and trailing whitespace stripped — the stray spaces and tabs at the start or end of a line that sneak in from copy-pasting between apps. Spacing in the middle of a line is left untouched, so this won't collapse a deliberate double space inside a sentence.</p>
   </section>
   
-  <section class="tool" data-transform="url-encode" data-shape="simple">
+  <section class="tool" data-transform="trim-lines" data-shape="simple">
     
     
     <div class="extra-row" data-for="find-replace" hidden>
@@ -114,9 +114,9 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   <section class="faq">
     <h2>Common questions</h2>
     <div class="faq-grid">
-      <div class="faq-item"><h3>Is this the same as encoding a full URL?</h3><p>This encodes a single value (like a query parameter), escaping characters such as spaces, &amp;, = and ? that would otherwise break a URL's structure. Don't run a whole URL through this or you'll also encode its own &quot;://&quot; and &quot;/&quot; separators.</p></div>
-      <div class="faq-item"><h3>Why does a space become %20 and not +?</h3><p>%20 is the standard percent-encoding for a space (used in URL paths and most contexts); &quot;+&quot; is a legacy convention specific to form-encoded query strings. This tool uses the standard %20 form.</p></div>
-      <div class="faq-item"><h3>Is my text sent anywhere to encode it?</h3><p>No — it uses the browser's built-in encodeURIComponent, entirely client-side.</p></div>
+      <div class="faq-item"><h3>How is this different from &quot;remove extra spaces&quot;?</h3><p>This only trims the start and end of each line. &quot;Remove extra spaces&quot; instead collapses repeated spaces anywhere in a line, including the middle of a sentence — pick trim if you only want the edges cleaned.</p></div>
+      <div class="faq-item"><h3>Does it remove blank lines?</h3><p>No — a blank line stays blank (and stays in place). Use the &quot;remove empty lines&quot; tool afterward if you also want blank lines gone entirely.</p></div>
+      <div class="faq-item"><h3>Does it affect tabs as well as spaces?</h3><p>Yes — any whitespace character at the start or end of a line (spaces, tabs) is trimmed, matching how most editors define &quot;whitespace&quot;.</p></div>
     </div>
   </section>
   
@@ -137,7 +137,6 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/sort-lines-alphabetically">Sort Lines</a>
       <a href="/tools/reverse-text">Reverse Text</a>
       <a href="/tools/reverse-line-order">Reverse Line Order</a>
-      <a href="/tools/trim-whitespace-from-lines">Trim Lines</a>
       <a href="/tools/sort-lines-descending">Sort Z to A</a>
       <a href="/tools/add-line-numbers">Line Numbers</a>
       <a href="/tools/slugify-text">Slugify</a>
@@ -151,6 +150,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/extract-numbers-from-text">Extract Numbers</a>
       <a href="/tools/base64-encode">Base64 Encode</a>
       <a href="/tools/base64-decode">Base64 Decode</a>
+      <a href="/tools/url-encode">URL Encode</a>
       <a href="/tools/url-decode">URL Decode</a>
       <a href="/tools/html-entity-encode">HTML Encode</a>
       <a href="/tools/html-entity-decode">HTML Decode</a>

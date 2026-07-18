@@ -25,6 +25,9 @@ Textbench is a static web app: no signup, no backend, no per-visitor cost. Every
 - [Empty Lines](https://textbench.app/tools/remove-empty-lines): Remove all empty and blank lines from a block of text or a list. Free, instant, runs entirely in your browser.
 - [Sort Lines](https://textbench.app/tools/sort-lines-alphabetically): Sort a list of lines alphabetically, A→Z or Z→A. Free, instant, works entirely in your browser — paste a list and get it sorted.
 - [Reverse Text](https://textbench.app/tools/reverse-text): Reverse text character by character — turn 'hello' into 'olleh'. Free, instant, runs entirely in your browser.
+- [Reverse Line Order](https://textbench.app/tools/reverse-line-order): Reverse the order of lines in a list, keeping each line's text intact — the last line becomes the first. Free, instant, runs entirely in your browser.
+- [Trim Lines](https://textbench.app/tools/trim-whitespace-from-lines): Strip leading and trailing whitespace from every line in a block of text, without touching spacing in the middle of a line. Free, instant, browser-only.
+- [Sort Z to A](https://textbench.app/tools/sort-lines-descending): Sort a list of lines in reverse alphabetical order, Z to A. Free, instant, works entirely in your browser — paste a list and get it sorted.
 - [Line Numbers](https://textbench.app/tools/add-line-numbers): Add sequential line numbers to a block of text, one per line. Free, instant, runs entirely in your browser.
 - [Slugify](https://textbench.app/tools/slugify-text): Convert any text into a clean, URL-safe slug: lowercase, hyphens instead of spaces, no special characters. Free, instant.
 - [Text Repeater](https://textbench.app/tools/text-repeater): Repeat a word, phrase or block of text any number of times, one copy per line. Free, instant, runs entirely in your browser.

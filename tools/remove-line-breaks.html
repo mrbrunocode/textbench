@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=f0654f8d">
+<link rel="stylesheet" href="../assets/style.css?v=9c9e9041">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -113,11 +113,11 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   
   <section class="faq">
     <h2>Common questions</h2>
-    <dl class="faq-grid">
-      <div class="faq-item"><h3>Why would text have unwanted line breaks?</h3><dd>Common sources: text copied from a PDF (which often has a line break at every visual line wrap), an email formatted for a narrow width, or OCR output that follows the original page layout instead of paragraph structure.</dd></div>
-      <div class="faq-item"><h3>Will paragraph breaks be preserved as anything?</h3><dd>No — this joins everything into one continuous paragraph. If you need paragraph breaks preserved as double line breaks, edit those back in manually after joining, since automatically telling a &quot;paragraph break&quot; from a &quot;wrapped line&quot; isn't reliable.</dd></div>
-      <div class="faq-item"><h3>Does it add extra spaces where lines join?</h3><dd>No — each join is a single space, and any pre-existing extra spaces are trimmed, so you won't end up with doubled gaps.</dd></div>
-    </dl>
+    <div class="faq-grid">
+      <div class="faq-item"><h3>Why would text have unwanted line breaks?</h3><p>Common sources: text copied from a PDF (which often has a line break at every visual line wrap), an email formatted for a narrow width, or OCR output that follows the original page layout instead of paragraph structure.</p></div>
+      <div class="faq-item"><h3>Will paragraph breaks be preserved as anything?</h3><p>No — this joins everything into one continuous paragraph. If you need paragraph breaks preserved as double line breaks, edit those back in manually after joining, since automatically telling a &quot;paragraph break&quot; from a &quot;wrapped line&quot; isn't reliable.</p></div>
+      <div class="faq-item"><h3>Does it add extra spaces where lines join?</h3><p>No — each join is a single space, and any pre-existing extra spaces are trimmed, so you won't end up with doubled gaps.</p></div>
+    </div>
   </section>
   
   <nav class="related" aria-label="More tools">
@@ -135,6 +135,9 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/remove-empty-lines">Empty Lines</a>
       <a href="/tools/sort-lines-alphabetically">Sort Lines</a>
       <a href="/tools/reverse-text">Reverse Text</a>
+      <a href="/tools/reverse-line-order">Reverse Line Order</a>
+      <a href="/tools/trim-whitespace-from-lines">Trim Lines</a>
+      <a href="/tools/sort-lines-descending">Sort Z to A</a>
       <a href="/tools/add-line-numbers">Line Numbers</a>
       <a href="/tools/slugify-text">Slugify</a>
       <a href="/tools/text-repeater">Text Repeater</a>

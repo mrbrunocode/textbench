@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=f0654f8d">
+<link rel="stylesheet" href="../assets/style.css?v=9c9e9041">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -113,11 +113,11 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   
   <section class="faq">
     <h2>Common questions</h2>
-    <dl class="faq-grid">
-      <div class="faq-item"><h3>Is MD5 secure for passwords?</h3><dd>No — MD5 is cryptographically broken and unsuitable for password storage or security purposes; it's kept here for legacy compatibility checks (verifying old checksums, matching a known MD5 value) rather than as a security recommendation.</dd></div>
-      <div class="faq-item"><h3>What is MD5 still reasonably used for?</h3><dd>Non-security checksums — quickly checking whether two files or strings are identical, or matching against a legacy system that stores MD5 hashes.</dd></div>
-      <div class="faq-item"><h3>Does the hash change if I add a single space?</h3><dd>Yes — MD5 is extremely sensitive to input; even one extra character produces a completely different hash, which is expected and by design.</dd></div>
-    </dl>
+    <div class="faq-grid">
+      <div class="faq-item"><h3>Is MD5 secure for passwords?</h3><p>No — MD5 is cryptographically broken and unsuitable for password storage or security purposes; it's kept here for legacy compatibility checks (verifying old checksums, matching a known MD5 value) rather than as a security recommendation.</p></div>
+      <div class="faq-item"><h3>What is MD5 still reasonably used for?</h3><p>Non-security checksums — quickly checking whether two files or strings are identical, or matching against a legacy system that stores MD5 hashes.</p></div>
+      <div class="faq-item"><h3>Does the hash change if I add a single space?</h3><p>Yes — MD5 is extremely sensitive to input; even one extra character produces a completely different hash, which is expected and by design.</p></div>
+    </div>
   </section>
   
   <nav class="related" aria-label="More tools">
@@ -136,6 +136,9 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/remove-empty-lines">Empty Lines</a>
       <a href="/tools/sort-lines-alphabetically">Sort Lines</a>
       <a href="/tools/reverse-text">Reverse Text</a>
+      <a href="/tools/reverse-line-order">Reverse Line Order</a>
+      <a href="/tools/trim-whitespace-from-lines">Trim Lines</a>
+      <a href="/tools/sort-lines-descending">Sort Z to A</a>
       <a href="/tools/add-line-numbers">Line Numbers</a>
       <a href="/tools/slugify-text">Slugify</a>
       <a href="/tools/text-repeater">Text Repeater</a>

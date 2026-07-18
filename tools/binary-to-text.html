@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=f0654f8d">
+<link rel="stylesheet" href="../assets/style.css?v=9c9e9041">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -113,11 +113,11 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   
   <section class="faq">
     <h2>Common questions</h2>
-    <dl class="faq-grid">
-      <div class="faq-item"><h3>What format does the binary need to be in?</h3><dd>Space-separated groups of 0s and 1s, one group per byte — the same format this tool's text-to-binary converter produces. Other separators (commas, no spaces) won't parse correctly.</dd></div>
-      <div class="faq-item"><h3>What happens with invalid binary input?</h3><dd>You'll see &quot;Invalid binary input&quot; rather than garbled text, so a malformed byte is obvious.</dd></div>
-      <div class="faq-item"><h3>Does it handle multi-byte characters like emoji?</h3><dd>Yes — the bytes are decoded as UTF-8, so multi-byte characters reconstruct correctly as long as all their bytes are present and in order.</dd></div>
-    </dl>
+    <div class="faq-grid">
+      <div class="faq-item"><h3>What format does the binary need to be in?</h3><p>Space-separated groups of 0s and 1s, one group per byte — the same format this tool's text-to-binary converter produces. Other separators (commas, no spaces) won't parse correctly.</p></div>
+      <div class="faq-item"><h3>What happens with invalid binary input?</h3><p>You'll see &quot;Invalid binary input&quot; rather than garbled text, so a malformed byte is obvious.</p></div>
+      <div class="faq-item"><h3>Does it handle multi-byte characters like emoji?</h3><p>Yes — the bytes are decoded as UTF-8, so multi-byte characters reconstruct correctly as long as all their bytes are present and in order.</p></div>
+    </div>
   </section>
   
   <nav class="related" aria-label="More tools">
@@ -136,6 +136,9 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/remove-empty-lines">Empty Lines</a>
       <a href="/tools/sort-lines-alphabetically">Sort Lines</a>
       <a href="/tools/reverse-text">Reverse Text</a>
+      <a href="/tools/reverse-line-order">Reverse Line Order</a>
+      <a href="/tools/trim-whitespace-from-lines">Trim Lines</a>
+      <a href="/tools/sort-lines-descending">Sort Z to A</a>
       <a href="/tools/add-line-numbers">Line Numbers</a>
       <a href="/tools/slugify-text">Slugify</a>
       <a href="/tools/text-repeater">Text Repeater</a>

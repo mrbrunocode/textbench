@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=f0654f8d">
+<link rel="stylesheet" href="../assets/style.css?v=9c9e9041">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -113,11 +113,11 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   
   <section class="faq">
     <h2>Common questions</h2>
-    <dl class="faq-grid">
-      <div class="faq-item"><h3>How is each character converted?</h3><dd>Text is first encoded as UTF-8 bytes, then each byte is shown as an 8-digit binary number — this correctly handles accented letters, emoji and non-English text, not just basic ASCII.</dd></div>
-      <div class="faq-item"><h3>Can I convert the binary back to text?</h3><dd>Yes — use the binary-to-text converter, which reverses this exact process.</dd></div>
-      <div class="faq-item"><h3>Why 8 digits per byte?</h3><dd>A byte is 8 bits, so padding every binary number to 8 digits (e.g. 01000001 for &quot;A&quot;) keeps every byte the same width and makes the output easy to split back apart.</dd></div>
-    </dl>
+    <div class="faq-grid">
+      <div class="faq-item"><h3>How is each character converted?</h3><p>Text is first encoded as UTF-8 bytes, then each byte is shown as an 8-digit binary number — this correctly handles accented letters, emoji and non-English text, not just basic ASCII.</p></div>
+      <div class="faq-item"><h3>Can I convert the binary back to text?</h3><p>Yes — use the binary-to-text converter, which reverses this exact process.</p></div>
+      <div class="faq-item"><h3>Why 8 digits per byte?</h3><p>A byte is 8 bits, so padding every binary number to 8 digits (e.g. 01000001 for &quot;A&quot;) keeps every byte the same width and makes the output easy to split back apart.</p></div>
+    </div>
   </section>
   
   <nav class="related" aria-label="More tools">
@@ -136,6 +136,9 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/remove-empty-lines">Empty Lines</a>
       <a href="/tools/sort-lines-alphabetically">Sort Lines</a>
       <a href="/tools/reverse-text">Reverse Text</a>
+      <a href="/tools/reverse-line-order">Reverse Line Order</a>
+      <a href="/tools/trim-whitespace-from-lines">Trim Lines</a>
+      <a href="/tools/sort-lines-descending">Sort Z to A</a>
       <a href="/tools/add-line-numbers">Line Numbers</a>
       <a href="/tools/slugify-text">Slugify</a>
       <a href="/tools/text-repeater">Text Repeater</a>

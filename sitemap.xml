@@ -18,6 +18,9 @@
   <url><loc>https://textbench.app/tools/remove-empty-lines</loc><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://textbench.app/tools/sort-lines-alphabetically</loc><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://textbench.app/tools/reverse-text</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://textbench.app/tools/reverse-line-order</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://textbench.app/tools/trim-whitespace-from-lines</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://textbench.app/tools/sort-lines-descending</loc><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://textbench.app/tools/add-line-numbers</loc><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://textbench.app/tools/slugify-text</loc><lastmod>2026-07-17</lastmod></url>
   <url><loc>https://textbench.app/tools/text-repeater</loc><lastmod>2026-07-17</lastmod></url>

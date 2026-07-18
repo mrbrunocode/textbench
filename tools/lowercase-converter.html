@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=f0654f8d">
+<link rel="stylesheet" href="../assets/style.css?v=9c9e9041">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -113,11 +113,11 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   
   <section class="faq">
     <h2>Common questions</h2>
-    <dl class="faq-grid">
-      <div class="faq-item"><h3>Why would I need this?</h3><dd>Common cases: someone pastes text with Caps Lock stuck on, you're normalizing data for a spreadsheet, or you need lowercase input for a slug or username field.</dd></div>
-      <div class="faq-item"><h3>Does it change accented characters correctly?</h3><dd>Yes, it uses standard lowercase conversion which handles accented and most non-English letters correctly.</dd></div>
-      <div class="faq-item"><h3>Is this the same as a case-insensitive search?</h3><dd>No — this actually rewrites the text. A case-insensitive search compares text without changing it. Lowercasing both sides is one way to implement that comparison yourself.</dd></div>
-    </dl>
+    <div class="faq-grid">
+      <div class="faq-item"><h3>Why would I need this?</h3><p>Common cases: someone pastes text with Caps Lock stuck on, you're normalizing data for a spreadsheet, or you need lowercase input for a slug or username field.</p></div>
+      <div class="faq-item"><h3>Does it change accented characters correctly?</h3><p>Yes, it uses standard lowercase conversion which handles accented and most non-English letters correctly.</p></div>
+      <div class="faq-item"><h3>Is this the same as a case-insensitive search?</h3><p>No — this actually rewrites the text. A case-insensitive search compares text without changing it. Lowercasing both sides is one way to implement that comparison yourself.</p></div>
+    </div>
   </section>
   
   <nav class="related" aria-label="More tools">
@@ -135,6 +135,9 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/remove-empty-lines">Empty Lines</a>
       <a href="/tools/sort-lines-alphabetically">Sort Lines</a>
       <a href="/tools/reverse-text">Reverse Text</a>
+      <a href="/tools/reverse-line-order">Reverse Line Order</a>
+      <a href="/tools/trim-whitespace-from-lines">Trim Lines</a>
+      <a href="/tools/sort-lines-descending">Sort Z to A</a>
       <a href="/tools/add-line-numbers">Line Numbers</a>
       <a href="/tools/slugify-text">Slugify</a>
       <a href="/tools/text-repeater">Text Repeater</a>

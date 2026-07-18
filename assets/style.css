@@ -220,7 +220,7 @@ main.wrap { flex: 1; padding-top: var(--space-6); padding-bottom: var(--space-16
 .faq { margin-top: var(--space-12); }
 .faq-grid { display: grid; gap: var(--space-5); margin-top: var(--space-5); }
 .faq-item h3 { margin-bottom: var(--space-2); }
-.faq-item dd { color: var(--text-secondary); }
+.faq-item p { color: var(--text-secondary); }
 
 /* ---- Related / internal links (the crawl engine) ---- */
 .related { margin-top: var(--space-12); }

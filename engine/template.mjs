@@ -96,9 +96,9 @@ export const faqHtml = (faq) =>
     ? `
   <section class="faq">
     <h2>Common questions</h2>
-    <dl class="faq-grid">
-      ${faq.map((f) => `<div class="faq-item"><h3>${esc(f.q)}</h3><dd>${esc(f.a)}</dd></div>`).join("\n      ")}
-    </dl>
+    <div class="faq-grid">
+      ${faq.map((f) => `<div class="faq-item"><h3>${esc(f.q)}</h3><p>${esc(f.a)}</p></div>`).join("\n      ")}
+    </div>
   </section>`
     : "";
 

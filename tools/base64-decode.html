@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=f0654f8d">
+<link rel="stylesheet" href="../assets/style.css?v=9c9e9041">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -113,11 +113,11 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   
   <section class="faq">
     <h2>Common questions</h2>
-    <dl class="faq-grid">
-      <div class="faq-item"><h3>What happens if the input isn't valid Base64?</h3><dd>The result area shows &quot;Invalid Base64 input&quot; rather than garbled output, so you know immediately that the string wasn't decodable as-is.</dd></div>
-      <div class="faq-item"><h3>Does it handle padding characters (=)?</h3><dd>Yes — standard Base64 padding is handled automatically; you don't need to strip or add &quot;=&quot; characters yourself.</dd></div>
-      <div class="faq-item"><h3>Can I decode a data: URI directly?</h3><dd>Strip the &quot;data:...;base64,&quot; prefix first — only the Base64 portion after the comma should be pasted in.</dd></div>
-    </dl>
+    <div class="faq-grid">
+      <div class="faq-item"><h3>What happens if the input isn't valid Base64?</h3><p>The result area shows &quot;Invalid Base64 input&quot; rather than garbled output, so you know immediately that the string wasn't decodable as-is.</p></div>
+      <div class="faq-item"><h3>Does it handle padding characters (=)?</h3><p>Yes — standard Base64 padding is handled automatically; you don't need to strip or add &quot;=&quot; characters yourself.</p></div>
+      <div class="faq-item"><h3>Can I decode a data: URI directly?</h3><p>Strip the &quot;data:...;base64,&quot; prefix first — only the Base64 portion after the comma should be pasted in.</p></div>
+    </div>
   </section>
   
   <nav class="related" aria-label="More tools">
@@ -136,6 +136,9 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/remove-empty-lines">Empty Lines</a>
       <a href="/tools/sort-lines-alphabetically">Sort Lines</a>
       <a href="/tools/reverse-text">Reverse Text</a>
+      <a href="/tools/reverse-line-order">Reverse Line Order</a>
+      <a href="/tools/trim-whitespace-from-lines">Trim Lines</a>
+      <a href="/tools/sort-lines-descending">Sort Z to A</a>
       <a href="/tools/add-line-numbers">Line Numbers</a>
       <a href="/tools/slugify-text">Slugify</a>
       <a href="/tools/text-repeater">Text Repeater</a>

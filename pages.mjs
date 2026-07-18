@@ -231,6 +231,54 @@ export const PAGES = [
     ],
   },
   {
+    slug: "reverse-line-order",
+    eyebrow: "Reverse Line Order",
+    title: "Reverse Line Order — Flip a List Top to Bottom",
+    description:
+      "Reverse the order of lines in a list, keeping each line's text intact — the last line becomes the first. Free, instant, runs entirely in your browser.",
+    intro:
+      "Paste a list below and the order of the lines flips top to bottom — the last line becomes the first, and so on — while the text inside each line stays exactly as typed. That's different from reversing every character: use the character reverser instead if you want \"hello\" to become \"olleh\".",
+    transform: "reverse-lines",
+    shape: "simple",
+    faq: [
+      { q: "Does this reverse the letters in each line too?", a: "No — only the order of the lines changes. Each line's own text stays exactly as you typed it; only which line comes first, second, and so on gets flipped." },
+      { q: "What's this useful for?", a: "Flipping a chronological log so the newest entry reads first, reversing a numbered list before renumbering it, or undoing an accidental reverse-order paste." },
+      { q: "What happens to blank lines?", a: "They're kept in place and flip along with everything else — a blank line at the end of your list ends up at the start of the result." },
+    ],
+  },
+  {
+    slug: "trim-whitespace-from-lines",
+    eyebrow: "Trim Lines",
+    title: "Trim Whitespace From Lines — Clean Leading & Trailing Spaces",
+    description:
+      "Strip leading and trailing whitespace from every line in a block of text, without touching spacing in the middle of a line. Free, instant, browser-only.",
+    intro:
+      "Paste text below and every line has its leading and trailing whitespace stripped — the stray spaces and tabs at the start or end of a line that sneak in from copy-pasting between apps. Spacing in the middle of a line is left untouched, so this won't collapse a deliberate double space inside a sentence.",
+    transform: "trim-lines",
+    shape: "simple",
+    faq: [
+      { q: "How is this different from \"remove extra spaces\"?", a: "This only trims the start and end of each line. \"Remove extra spaces\" instead collapses repeated spaces anywhere in a line, including the middle of a sentence — pick trim if you only want the edges cleaned." },
+      { q: "Does it remove blank lines?", a: "No — a blank line stays blank (and stays in place). Use the \"remove empty lines\" tool afterward if you also want blank lines gone entirely." },
+      { q: "Does it affect tabs as well as spaces?", a: "Yes — any whitespace character at the start or end of a line (spaces, tabs) is trimmed, matching how most editors define \"whitespace\"." },
+    ],
+  },
+  {
+    slug: "sort-lines-descending",
+    eyebrow: "Sort Z to A",
+    title: "Sort Lines Z to A — Reverse Alphabetical Order",
+    description:
+      "Sort a list of lines in reverse alphabetical order, Z to A. Free, instant, works entirely in your browser — paste a list and get it sorted.",
+    intro:
+      "Paste a list, one item per line, and it comes back sorted in reverse alphabetical order — Z to A. Useful when you want the end of the alphabet first, or just want to flip a list you already sorted the other way.",
+    transform: "sort-za",
+    shape: "simple",
+    faq: [
+      { q: "Is this just the A-Z sort reversed?", a: "For most lists, yes — the result reads the same as taking an A-to-Z sort and flipping it top to bottom. Ties (identical lines) may order slightly differently, but the overall Z-to-A ordering is the same either way." },
+      { q: "Is the sort case-sensitive?", a: "No — it sorts case-insensitively, so \"apple\" and \"Apple\" are treated as equal for ordering purposes, matching how most people expect an alphabetical list to behave." },
+      { q: "How are numbers handled?", a: "Numbers sort as text, so \"9\" comes before \"10\" here (because \"9\" > \"1\" as a character) — the opposite of what numeric sorting would give. For numeric order, pad numbers with leading zeros first." },
+    ],
+  },
+  {
     slug: "add-line-numbers",
     eyebrow: "Line Numbers",
     title: "Add Line Numbers — Number Every Line of Text",

@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=f0654f8d">
+<link rel="stylesheet" href="../assets/style.css?v=9c9e9041">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -113,11 +113,11 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   
   <section class="faq">
     <h2>Common questions</h2>
-    <dl class="faq-grid">
-      <div class="faq-item"><h3>What if the string isn't validly encoded?</h3><dd>You'll see &quot;Invalid URL-encoded input&quot; rather than a broken partial result, so a malformed % sequence is obvious immediately.</dd></div>
-      <div class="faq-item"><h3>Does it decode + as a space?</h3><dd>No — this decodes standard percent-encoding only. If your string uses &quot;+&quot; for spaces (form-encoding), replace &quot;+&quot; with a space or %20 first.</dd></div>
-      <div class="faq-item"><h3>Can I decode an entire URL, not just one parameter?</h3><dd>Yes, though be aware structural characters like &quot;/&quot; and &quot;:&quot; that weren't actually percent-encoded will simply pass through unchanged.</dd></div>
-    </dl>
+    <div class="faq-grid">
+      <div class="faq-item"><h3>What if the string isn't validly encoded?</h3><p>You'll see &quot;Invalid URL-encoded input&quot; rather than a broken partial result, so a malformed % sequence is obvious immediately.</p></div>
+      <div class="faq-item"><h3>Does it decode + as a space?</h3><p>No — this decodes standard percent-encoding only. If your string uses &quot;+&quot; for spaces (form-encoding), replace &quot;+&quot; with a space or %20 first.</p></div>
+      <div class="faq-item"><h3>Can I decode an entire URL, not just one parameter?</h3><p>Yes, though be aware structural characters like &quot;/&quot; and &quot;:&quot; that weren't actually percent-encoded will simply pass through unchanged.</p></div>
+    </div>
   </section>
   
   <nav class="related" aria-label="More tools">
@@ -136,6 +136,9 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/remove-empty-lines">Empty Lines</a>
       <a href="/tools/sort-lines-alphabetically">Sort Lines</a>
       <a href="/tools/reverse-text">Reverse Text</a>
+      <a href="/tools/reverse-line-order">Reverse Line Order</a>
+      <a href="/tools/trim-whitespace-from-lines">Trim Lines</a>
+      <a href="/tools/sort-lines-descending">Sort Z to A</a>
       <a href="/tools/add-line-numbers">Line Numbers</a>
       <a href="/tools/slugify-text">Slugify</a>
       <a href="/tools/text-repeater">Text Repeater</a>
