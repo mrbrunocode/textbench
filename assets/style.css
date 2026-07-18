@@ -230,6 +230,12 @@ main.wrap { flex: 1; padding-top: var(--space-6); padding-bottom: var(--space-16
   background: var(--surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: var(--space-2) var(--space-3);
 }
 
+/* ---- QR code generator ---- */
+.qr-output-row { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); margin: var(--space-5) 0; }
+.qr-canvas { min-height: 200px; display: flex; align-items: center; justify-content: center; }
+.qr-canvas img, .qr-canvas canvas { background: #fff; padding: var(--space-3); border-radius: var(--radius-md); }
+.qr-hint { color: var(--text-secondary); font-size: var(--text-sm); }
+
 /* ---- Buttons ---- */
 .btn {
   font-family: var(--font-ui); font-size: var(--text-sm); font-weight: 600; height: var(--space-10);

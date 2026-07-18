@@ -545,9 +545,59 @@
     }).join("");
   }
 
+  // QR code generator: renders entirely client-side via a small library
+  // (qrcodejs, loaded lazily from a CDN on first use — same trust model as
+  // the fonts already loaded this way) rather than an external QR API, so
+  // it stays consistent with "nothing leaves your browser".
+  var qrCanvasEl = document.getElementById("qrCanvas");
+  var qrHintEl = document.getElementById("qrHint");
+  var qrDownloadBtn = document.getElementById("qrDownloadBtn");
+  var qrLib = null, qrInstance = null;
+  function loadQrLib() {
+    if (qrLib) return qrLib;
+    qrLib = new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js";
+      s.onload = resolve;
+      s.onerror = function () { reject(new Error("Could not load the QR code library.")); };
+      document.head.appendChild(s);
+    });
+    return qrLib;
+  }
+  function renderQr() {
+    var text = editor.value;
+    if (!text) {
+      qrCanvasEl.innerHTML = "";
+      qrHintEl.textContent = "Type something above to generate a QR code.";
+      qrHintEl.hidden = false;
+      return;
+    }
+    qrHintEl.textContent = "Generating…";
+    qrHintEl.hidden = false;
+    loadQrLib().then(function () {
+      if (editor.value !== text) return; // input changed again while the library was loading
+      qrCanvasEl.innerHTML = "";
+      qrInstance = new window.QRCode(qrCanvasEl, { text: text, width: 200, height: 200 });
+      qrHintEl.hidden = true;
+    }).catch(function (e) {
+      qrHintEl.textContent = e.message;
+      qrHintEl.hidden = false;
+    });
+  }
+  if (qrDownloadBtn) qrDownloadBtn.addEventListener("click", function () {
+    var img = qrCanvasEl.querySelector("img");
+    var canvas = qrCanvasEl.querySelector("canvas");
+    var url = img ? img.src : (canvas ? canvas.toDataURL("image/png") : null);
+    if (!url) return;
+    var a = document.createElement("a");
+    a.href = url; a.download = "qr-code.png";
+    document.body.appendChild(a); a.click(); a.remove();
+  });
+
   var renderToken = 0;
   function render() {
     if (regexPatternEl) { renderRegexTester(); return; }
+    if (qrCanvasEl) { renderQr(); return; }
     var myToken = ++renderToken;
     var t = currentTransform();
     var result = apply(NO_INPUT[t] ? "" : editor.value);

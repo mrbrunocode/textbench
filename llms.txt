@@ -36,6 +36,7 @@ Textbench is a static web app: no signup, no backend, no per-visitor cost. Every
 - [Text Repeater](https://textbench.app/tools/text-repeater): Repeat a word, phrase or block of text any number of times, one copy per line. Free, instant, runs entirely in your browser.
 - [Find & Replace](https://textbench.app/tools/find-and-replace): Find and replace text online, with an optional regular-expression mode for pattern matching. Free, instant, nothing uploaded.
 - [Regex Tester](https://textbench.app/tools/regex-tester): Test a regular expression against real text with live match highlighting and capture groups shown per match. Free, instant, runs entirely in your browser.
+- [QR Code Generator](https://textbench.app/tools/qr-code-generator): Turn any text or URL into a scannable QR code, generated entirely in your browser. Free, instant, downloadable as a PNG.
 - [Lorem Ipsum](https://textbench.app/tools/lorem-ipsum-generator): Generate lorem ipsum placeholder text, any number of paragraphs. Free, instant, runs entirely in your browser.
 - [aLtErNaTiNg cAsE](https://textbench.app/tools/alternating-case-converter): Convert text to aLtErNaTiNg CaSe, flipping upper and lower case letter by letter. Free, instant, browser-only.
 - [InVeRsE cAsE](https://textbench.app/tools/inverse-case-converter): Invert the case of every letter in your text — uppercase becomes lowercase and lowercase becomes uppercase. Free, instant, browser-only.

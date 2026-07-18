@@ -411,6 +411,22 @@ export const PAGES = [
     ],
   },
   {
+    slug: "qr-code-generator",
+    eyebrow: "QR Code Generator",
+    title: "QR Code Generator — Text or URL to QR, Free",
+    description:
+      "Turn any text or URL into a scannable QR code, generated entirely in your browser. Free, instant, downloadable as a PNG.",
+    intro:
+      "Type or paste text — a URL, Wi-Fi password, contact info, anything — and a QR code appears instantly. Generated entirely client-side, so nothing you type is sent anywhere; download the result as a PNG when you're happy with it.",
+    transform: "none",
+    shape: "qrcode",
+    faq: [
+      { q: "Is the text sent to a server to generate the QR code?", a: "No — the QR code library runs entirely in your browser (loaded once from a CDN, the same way this page's fonts are), and the encoding itself happens locally. Nothing you type is uploaded." },
+      { q: "Is there a length limit?", a: "QR codes have a real capacity limit that grows with the code's density — a short URL fits easily, but a very long block of text may fail to encode. If that happens, shorten the text or split it." },
+      { q: "Can I scan this with any phone?", a: "Yes — any modern phone's camera app reads standard QR codes directly, no separate scanner app needed." },
+    ],
+  },
+  {
     slug: "lorem-ipsum-generator",
     eyebrow: "Lorem Ipsum",
     title: "Lorem Ipsum Generator — Placeholder Text, Any Length",
@@ -1105,6 +1121,25 @@ export function renderTool(p = {}) {
     <ol class="regex-matches" id="regexMatches"></ol>
     <div class="tool-actions">
       <button type="button" class="btn" id="copyBtn">Copy match list</button>
+      <button type="button" class="btn" id="clearBtn">Clear</button>
+    </div>
+  </section>`;
+  }
+
+  // QR code generator: a distinct shape, standalone-page only, same reasoning
+  // as counter/regex above. Renders client-side via a small library (qrcodejs)
+  // loaded lazily on first use, so an empty page load costs nothing extra.
+  if (shape === "qrcode" && !isHome) {
+    return `
+  <section class="tool tool--qrcode" data-transform="none" data-shape="qrcode">
+    <label for="editor">Text or URL</label>
+    <textarea id="editor" class="editor" placeholder="Type or paste text or a URL here…" spellcheck="false"></textarea>
+    <div class="qr-output-row">
+      <div class="qr-canvas" id="qrCanvas"></div>
+      <p class="qr-hint" id="qrHint">Type something above to generate a QR code.</p>
+    </div>
+    <div class="tool-actions">
+      <button type="button" class="btn" id="qrDownloadBtn">Download PNG</button>
       <button type="button" class="btn" id="clearBtn">Clear</button>
     </div>
   </section>`;
