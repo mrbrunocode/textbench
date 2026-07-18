@@ -1,0 +1,147 @@
+// Regression tests for the actual shipped transform functions (assets/app.js),
+// not a reimplementation — see test/helpers/load-app.mjs for how it's loaded
+// without a browser. Every transform must round-trip or match a known-good
+// value exactly: these are advertised as always-correct, deterministic tools.
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { loadTransforms } from "./helpers/load-app.mjs";
+
+const t = loadTransforms();
+
+test("case conversions", () => {
+  assert.equal(t.toTitleCase("the quick brown fox"), "The Quick Brown Fox");
+  assert.equal(t.toSentenceCase("hello. world? yes! ok"), "Hello. World? Yes! Ok");
+  assert.equal(t.toAlternatingCase("abcd"), "aBcD");
+  assert.equal(t.toInverseCase("AbCd"), "aBcD");
+});
+
+test("line operations", () => {
+  assert.equal(t.dedupeLines("a\nb\na\nc"), "a\nb\nc");
+  assert.equal(t.removeExtraSpaces("a   b    c"), "a b c");
+  assert.equal(t.removeLineBreaks("a\nb\nc"), "a b c");
+  assert.equal(t.removeEmptyLines("a\n\nb\n\n\nc"), "a\nb\nc");
+  assert.equal(t.sortLines("banana\napple\ncherry", "az"), "apple\nbanana\ncherry");
+  assert.equal(t.sortLines("banana\napple\ncherry", "za"), "cherry\nbanana\napple");
+  assert.equal(t.reverseText("abc"), "cba");
+  assert.equal(t.reverseLines("a\nb\nc"), "c\nb\na");
+  assert.equal(t.trimLines("  a  \n  b  "), "a\nb");
+  assert.equal(t.addLineNumbers("a\nb"), "1. a\n2. b");
+});
+
+test("slugify", () => {
+  assert.equal(t.slugify("Hello, World! 123"), "hello-world-123");
+  assert.equal(t.slugify("  Multiple   Spaces  "), "multiple-spaces");
+});
+
+test("repeatText", () => {
+  assert.equal(t.repeatText("ab", 3), "ab\nab\nab");
+});
+
+test("findReplace: plain text and regex", () => {
+  assert.equal(t.findReplace("foo bar foo", "foo", "baz", false), "baz bar baz");
+  assert.equal(t.findReplace("a1 b2 c3", "\\d", "#", true), "a# b# c#");
+});
+
+test("findReplace treats '.' literally when regex mode is off", () => {
+  assert.equal(t.findReplace("a.b.c", ".", "X", false), "aXbXc");
+  assert.equal(t.findReplace("axbxc", ".", "X", false), "axbxc"); // no literal '.' present
+});
+
+test("extraction: emails, URLs, numbers", () => {
+  assert.equal(t.extractEmails("contact a@b.com or c@d.org, also a@b.com again"), "a@b.com\nc@d.org");
+  assert.equal(t.extractUrls("visit https://example.com. and http://x.org/path,"), "https://example.com\nhttp://x.org/path");
+  assert.equal(t.extractNumbers("pages 10-20, temp -5.5 degrees, id 555-1234"), "10\n20\n-5.5\n555\n1234");
+});
+
+test("base64 round-trips", () => {
+  const s = "Hello, 世界! 🎉";
+  assert.equal(t.base64Decode(t.base64Encode(s)), s);
+});
+
+test("base64Decode reports invalid input", () => {
+  assert.equal(t.base64Decode("not valid base64!!!"), "Invalid Base64 input.");
+});
+
+test("URL encode/decode round-trips", () => {
+  const s = "a b/c?d=e&f";
+  assert.equal(t.urlDecode(t.urlEncode(s)), s);
+});
+
+test("html entity encoding escapes the five reserved characters", () => {
+  assert.equal(t.htmlEntitiesEncode(`<a href="x">'&'</a>`), "&lt;a href=&quot;x&quot;&gt;&#39;&amp;&#39;&lt;/a&gt;");
+});
+
+test("binary round-trips and rejects garbage", () => {
+  const s = "Hi!";
+  assert.equal(t.binaryToText(t.textToBinary(s)), s);
+  assert.equal(t.binaryToText("hello 01100001"), "Invalid binary input.");
+  assert.equal(t.binaryToText("111111111"), "Invalid binary input."); // > 255
+});
+
+test("hex round-trips and rejects garbage", () => {
+  const s = "Hi!";
+  assert.equal(t.hexToText(t.textToHex(s)), s);
+  assert.equal(t.hexToText("not hex"), "Invalid hex input.");
+  assert.equal(t.hexToText("abc"), "Invalid hex input."); // odd length
+});
+
+test("morse round-trips", () => {
+  assert.equal(t.morseToText(t.textToMorse("SOS HELLO")), "SOS HELLO");
+});
+
+test("rot13 is its own inverse", () => {
+  const s = "The Quick Brown Fox 123";
+  assert.equal(t.rot13(t.rot13(s)), s);
+  assert.notEqual(t.rot13(s), s);
+});
+
+test("md5 matches known test vectors", () => {
+  assert.equal(t.md5(""), "d41d8cd98f00b204e9800998ecf8427e");
+  assert.equal(t.md5("abc"), "900150983cd24fb0d6963f7d28e17f72");
+});
+
+test("sha256Async matches a known test vector", async () => {
+  assert.equal(await t.sha256Async("abc"), "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
+});
+
+test("uuidV4 produces well-formed v4 UUIDs", () => {
+  const id = t.uuidV4();
+  assert.match(id, /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i);
+});
+
+test("uuidGenerator produces the requested count of unique UUIDs, clamped to [1,200]", () => {
+  const ten = t.uuidGenerator(10).split("\n");
+  assert.equal(ten.length, 10);
+  assert.equal(new Set(ten).size, 10);
+  assert.equal(t.uuidGenerator(0).split("\n").length, 1);
+  assert.equal(t.uuidGenerator(500).split("\n").length, 200);
+});
+
+test("randomPassword respects requested length and character-set flags", () => {
+  const pw = t.randomPassword(20, false, false, false);
+  assert.equal(pw.length, 20);
+  assert.ok(/^[a-z]+$/.test(pw), "lowercase-only password should contain only a-z");
+  const clamped = t.randomPassword(1000, true, true, true);
+  assert.equal(clamped.length, 128);
+});
+
+test("strikethrough and upside-down and bold produce non-empty, transformed output", () => {
+  assert.notEqual(t.strikethroughText("abc"), "abc");
+  assert.ok(t.strikethroughText("abc").length > 3);
+  assert.notEqual(t.upsideDownText("abc"), "abc");
+  assert.notEqual(t.boldUnicodeText("abc"), "abc");
+});
+
+test("lorem generators respect their length/count arguments", () => {
+  assert.equal(t.loremIpsum(2).split("\n\n").length, 2);
+  assert.equal(t.loremIpsum(0).split("\n\n").length, 3); // 0 is falsy -> falls back to the default of 3
+  assert.equal(t.loremIpsum(999).split("\n\n").length, 50); // clamped to maximum 50
+});
+
+test("count() reports characters, words and reading time consistently", () => {
+  const stats = t.count("one two three four five");
+  assert.equal(stats.words, 5);
+  assert.equal(stats.characters, 23);
+  assert.equal(stats.charactersNoSpaces, 19);
+  assert.equal(stats.sentences, 1);
+});

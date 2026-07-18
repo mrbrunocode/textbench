@@ -134,8 +134,12 @@
   function binaryToText(s) {
     var tokens = s.trim().split(/\s+/).filter(Boolean);
     try {
-      var bytes = new Uint8Array(tokens.map(function (t) { return parseInt(t, 2); }));
-      if (bytes.some(function (b) { return isNaN(b) || b > 255; })) return "Invalid binary input.";
+      // Validate before building the Uint8Array — the typed array coerces
+      // NaN/out-of-range values to 0 on construction, so checking bytes
+      // *after* that point can never see an invalid token.
+      var nums = tokens.map(function (t) { return parseInt(t, 2); });
+      if (nums.some(function (n) { return isNaN(n) || n < 0 || n > 255; })) return "Invalid binary input.";
+      var bytes = new Uint8Array(nums);
       return new TextDecoder().decode(bytes);
     } catch (e) { return "Invalid binary input."; }
   }
@@ -331,6 +335,36 @@
     "upside-down-text": upsideDownText,
     "bold-text": boldUnicodeText,
   };
+
+  // Exposes the pure transform functions to Node's test runner (see
+  // test/transforms.test.mjs and test/helpers/load-app.mjs — the latter
+  // stubs just enough of `document` to reach this point without a real
+  // page). Placed here, after every transform and its data table (MORSE,
+  // LOREM_WORDS, BOLD_MAP, TRANSFORMS, ...) is fully initialized, and before
+  // the DOM wiring below that a test environment has no elements for.
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = {
+      count: count, toTitleCase: toTitleCase, toSentenceCase: toSentenceCase,
+      toAlternatingCase: toAlternatingCase, toInverseCase: toInverseCase,
+      dedupeLines: dedupeLines, removeExtraSpaces: removeExtraSpaces,
+      removeLineBreaks: removeLineBreaks, removeEmptyLines: removeEmptyLines,
+      sortLines: sortLines, reverseText: reverseText, reverseLines: reverseLines,
+      trimLines: trimLines, addLineNumbers: addLineNumbers, slugify: slugify,
+      repeatText: repeatText, findReplace: findReplace, extractEmails: extractEmails,
+      extractUrls: extractUrls, extractNumbers: extractNumbers,
+      base64Encode: base64Encode, base64Decode: base64Decode,
+      urlEncode: urlEncode, urlDecode: urlDecode,
+      htmlEntitiesEncode: htmlEntitiesEncode,
+      textToBinary: textToBinary, binaryToText: binaryToText,
+      textToHex: textToHex, hexToText: hexToText,
+      textToMorse: textToMorse, morseToText: morseToText, rot13: rot13,
+      md5: md5, sha256Async: sha256Async, uuidV4: uuidV4, uuidGenerator: uuidGenerator,
+      randomPassword: randomPassword, strikethroughText: strikethroughText,
+      upsideDownText: upsideDownText, boldUnicodeText: boldUnicodeText,
+      loremSentence: loremSentence, loremParagraph: loremParagraph, loremIpsum: loremIpsum,
+    };
+    return;
+  }
 
   var toolEl = document.querySelector(".tool");
   var transform = (toolEl && toolEl.getAttribute("data-transform")) || "none";

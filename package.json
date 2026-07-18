@@ -6,7 +6,8 @@
   "description": "43 free text tools that run entirely in your browser — case conversion, cleanup, encoding, hashing, generators and more. No signup, nothing uploaded.",
   "scripts": {
     "build": "node engine/build.mjs",
-    "dev": "node engine/build.mjs && node scripts/dev-server.mjs"
+    "dev": "node engine/build.mjs && node scripts/dev-server.mjs",
+    "test": "node --test"
   },
   "engines": {
     "node": ">=18"
