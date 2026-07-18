@@ -98,8 +98,9 @@ header {
   max-width: var(--container-max); margin: 0 auto; width: 100%;
   padding: var(--space-4) var(--space-5);
 }
-.logo { font-weight: 800; font-size: var(--text-lg); color: var(--text-primary); letter-spacing: -0.03em; }
+.logo { font-weight: 800; font-size: var(--text-lg); color: var(--text-primary); letter-spacing: -0.03em; display: inline-flex; align-items: center; gap: var(--space-2); }
 .logo:hover { text-decoration: none; }
+.logo-mark { color: var(--accent); flex: 0 0 auto; }
 .theme-toggle {
   background: var(--surface-elevated); border: 1px solid var(--border-subtle); color: var(--text-secondary);
   width: 36px; height: 36px; border-radius: var(--radius-full); cursor: pointer; font-size: 16px;

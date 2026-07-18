@@ -187,7 +187,10 @@ ${headExtra}
 <body${bodyClass ? ` class="${bodyClass}"` : ""}>
 <a class="skip-link" href="#main">Skip to content</a>
 <header>
-  <a class="logo" href="/">${esc(C.NAME)}</a>
+  <a class="logo" href="/">
+    <svg class="logo-mark" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect width="22" height="22" rx="5" fill="currentColor" opacity="0.14"/><text x="11" y="15.5" font-family="Fira Code, monospace" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">#</text></svg>
+    ${esc(C.NAME)}
+  </a>
   <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
 </header>
 <nav class="main-nav" aria-label="Site">
