@@ -236,3 +236,13 @@ test("csvToJson and jsonToCsv round-trip a simple table", () => {
   const csv = "name,age\nAda,30\nGrace,45";
   assert.equal(t.jsonToCsv(t.csvToJson(csv)), csv);
 });
+
+test("nextChipValue toggles the same chip back to \"none\", switches chip otherwise", () => {
+  // Regression test: clicking an already-active picker chip used to be a
+  // no-op, leaving no way back to the default word/character counter view
+  // short of manually switching tabs and clicking that chip directly.
+  assert.equal(t.nextChipValue("upside-down-text", "upside-down-text"), "none");
+  assert.equal(t.nextChipValue("none", "uppercase"), "uppercase");
+  assert.equal(t.nextChipValue("uppercase", "lowercase"), "lowercase");
+  assert.equal(t.nextChipValue("none", "none"), "none");
+});

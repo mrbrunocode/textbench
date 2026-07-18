@@ -26,6 +26,15 @@
   var editor = document.getElementById("editor");
   if (!editor) return; // prose pages have no editor
 
+  // Picker chips act like radio buttons with one exception: clicking the
+  // already-active chip toggles back to "none" (the word/character counter)
+  // instead of doing nothing — without this, picking any chip other than
+  // "none" left no way back to the default view except switching tabs and
+  // clicking "Word / character counter" directly.
+  function nextChipValue(currentValue, clickedValue) {
+    return clickedValue === currentValue ? "none" : clickedValue;
+  }
+
   var WPM = 230;
   function count(text) {
     var trimmed = text.trim();
@@ -510,6 +519,7 @@
       jsonFormat: jsonFormat, jsonMinify: jsonMinify, markdownToHtml: markdownToHtml,
       csvToJson: csvToJson, jsonToCsv: jsonToCsv, yamlToJson: yamlToJson, jsonToYaml: jsonToYaml,
       loremSentence: loremSentence, loremParagraph: loremParagraph, loremIpsum: loremIpsum,
+      nextChipValue: nextChipValue,
     };
     return;
   }
@@ -743,7 +753,7 @@
   });
   document.querySelectorAll(".chip[data-value]").forEach(function (chip) {
     chip.addEventListener("click", function () {
-      transformSel.value = chip.getAttribute("data-value");
+      transformSel.value = nextChipValue(transformSel.value, chip.getAttribute("data-value"));
       transformSel.dispatchEvent(new Event("change"));
     });
   });
