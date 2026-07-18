@@ -17,13 +17,18 @@
  * ──────────────────────────────────────────────────────────────────────────
  */
 
+// Tool count is derived from pages.mjs (not hand-typed) so this never drifts
+// out of sync as pages are added/removed — see TOOL_COUNT below.
+import { PAGES } from "./pages.mjs";
+export const TOOL_COUNT = PAGES.length;
+
 export const NAME = "Textbench";                 // prose, titles, wordmark text
 export const NAME_LOWER = "textbench";            // URLs, slugs, footer mentions
-export const TAGLINE = "59 text tools, one page, nothing uploaded.";
+export const TAGLINE = `${TOOL_COUNT} text tools, one page, nothing uploaded.`;
 export const SITE_URL = "https://textbench.app"; // set to the real domain once bought (keep .example until then — IndexNow/rename tooling keys off it)
 export const CONTACT_EMAIL = "hello@textbench.app";
 export const DESCRIPTION =
-  "Case conversion, cleanup, encoding, hashing, generators, JSON/YAML/CSV conversion, regex testing and more — 59 free text tools that run entirely " +
+  `Case conversion, cleanup, encoding, hashing, generators, JSON/YAML/CSV conversion, regex testing and more — ${TOOL_COUNT} free text tools that run entirely ` +
   "in your browser. No signup, no upload, nothing ever leaves your device.";
 
 // The one subdirectory that holds the programmatic-SEO collection pages.

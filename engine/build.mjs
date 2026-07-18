@@ -23,7 +23,7 @@
  */
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { mkdir, writeFile, rm } from "node:fs/promises";
+import { mkdir, writeFile, readFile, rm } from "node:fs/promises";
 import * as C from "../site.config.mjs";
 import { renderDocument, adSlot, faqHtml, esc } from "./template.mjs";
 import { PAGES, renderTool } from "../pages.mjs";
@@ -160,6 +160,16 @@ async function main() {
   await writeFile(join(ROOT, "sitemap.xml"), sitemap());
   await writeFile(join(ROOT, "robots.txt"), robots());
   await writeFile(join(ROOT, "llms.txt"), llmsTxt());
+
+  // Keep package.json's description in sync with the live tool count —
+  // it's npm metadata only (nothing in the build reads it back), but it's
+  // easy to let it drift out of sync with the real PAGES count otherwise.
+  const pkgPath = join(ROOT, "package.json");
+  const pkg = JSON.parse(await readFile(pkgPath, "utf8"));
+  if (pkg.description !== C.DESCRIPTION) {
+    pkg.description = C.DESCRIPTION;
+    await writeFile(pkgPath, JSON.stringify(pkg, null, 2) + "\n");
+  }
 
   console.log(`Built: index + 4 prose pages + ${n} ${C.COLLECTION_DIR} page(s) + sitemap/robots/llms.`);
   console.log(`Site: ${C.NAME} <${C.SITE_URL}>`);

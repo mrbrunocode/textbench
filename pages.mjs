@@ -19,7 +19,7 @@
  *   shape       "counter" | "simple" | "find-replace" | "repeater" | "lorem" | "uuid" | "password"
  *   faq         2–3 Q/A, unique per page (drives visible FAQ + FAQPage JSON-LD)
  */
-import { esc } from "./engine/template.mjs";
+import { esc } from "./engine/esc.mjs";
 
 export const PAGES = [
   {

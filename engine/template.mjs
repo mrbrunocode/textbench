@@ -22,6 +22,7 @@
 import * as C from "../site.config.mjs";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
+import { esc } from "./esc.mjs";
 
 // Content-hash version stamp for asset URLs. _headers caches /assets/* for
 // 24h while HTML revalidates hourly — without a version query, a deploy can
@@ -39,9 +40,6 @@ const assetV = (name) => {
 };
 const CSS_V = assetV("style.css");
 const JS_V = assetV("app.js");
-
-const esc = (s = "") =>
-  String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 // Depth-aware relative prefix so /tools/foo can reach ../assets while / uses
 // ./assets. depth 0 = repo root page, depth 1 = a collection page.
