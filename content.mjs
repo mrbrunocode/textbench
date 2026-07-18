@@ -11,7 +11,7 @@
  * app actually does, then bump LAST_UPDATED in site.config.mjs.
  */
 import * as C from "./site.config.mjs";
-import { renderTool } from "./pages.mjs";
+import { renderTool, TRANSFORM_GROUPS } from "./pages.mjs";
 
 export const home = {
   title: `${C.NAME} — ${C.TAGLINE}`,
@@ -21,8 +21,8 @@ export const home = {
     <h1>Paste in. Nothing leaves your browser.</h1>
     <p class="lede">${C.DESCRIPTION}</p>
     <div class="hero-facts">
-      <span><strong>43</strong> tools</span>
-      <span><strong>9</strong> categories</span>
+      <span><strong>${C.TOOL_COUNT}</strong> tools</span>
+      <span><strong>${TRANSFORM_GROUPS.length}</strong> categories</span>
       <span><strong>0</strong> uploads</span>
     </div>
   </section>

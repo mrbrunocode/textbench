@@ -66,7 +66,7 @@ export const ADSENSE_SLOT = "";
 // (the big number/output display) is the design system's pairing — see
 // design-system/tokens/typography.css.
 export const FONT_HREF =
-  "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap";
+  "https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap";
 
 // Default browser-chrome color (matches the dark app background token).
 export const THEME_COLOR = "#0a0d12";

@@ -1019,6 +1019,85 @@ export const PAGES = [
  * page (p.home = true) instead renders every extra-control row and a
  * transform dropdown, letting assets/app.js switch shapes client-side.
  */
+// Grouped into optgroups — 40+ flat options in one dropdown is unusable;
+// grouping by what the tool DOES (not the underlying implementation) is
+// how a visitor actually thinks about picking one.
+export const TRANSFORM_GROUPS = [
+  ["Count & analyze", [
+    ["none", "Word / character counter"],
+  ]],
+  ["Change case", [
+    ["uppercase", "UPPERCASE"],
+    ["lowercase", "lowercase"],
+    ["titlecase", "Title Case"],
+    ["sentencecase", "Sentence case"],
+    ["alternating-case", "aLtErNaTiNg CaSe"],
+    ["inverse-case", "InVeRsE Case"],
+  ]],
+  ["Clean & format", [
+    ["dedupe-lines", "Remove duplicate lines"],
+    ["remove-extra-spaces", "Remove extra spaces"],
+    ["remove-line-breaks", "Remove line breaks"],
+    ["remove-empty-lines", "Remove empty lines"],
+    ["trim-lines", "Trim each line"],
+  ]],
+  ["Reorganize", [
+    ["sort-az", "Sort lines A → Z"],
+    ["sort-za", "Sort lines Z → A"],
+    ["reverse-text", "Reverse text"],
+    ["reverse-lines", "Reverse line order"],
+    ["add-line-numbers", "Add line numbers"],
+  ]],
+  ["Extract", [
+    ["extract-emails", "Extract email addresses"],
+    ["extract-urls", "Extract URLs"],
+    ["extract-numbers", "Extract numbers"],
+  ]],
+  ["Encode & decode", [
+    ["base64-encode", "Base64 encode"],
+    ["base64-decode", "Base64 decode"],
+    ["url-encode", "URL encode"],
+    ["url-decode", "URL decode"],
+    ["html-entities-encode", "HTML entity encode"],
+    ["html-entities-decode", "HTML entity decode"],
+    ["binary-encode", "Text to binary"],
+    ["binary-decode", "Binary to text"],
+    ["hex-encode", "Text to hex"],
+    ["hex-decode", "Hex to text"],
+    ["morse-encode", "Text to Morse code"],
+    ["morse-decode", "Morse code to text"],
+    ["rot13", "ROT13 cipher"],
+  ]],
+  ["Format & validate", [
+    ["json-format", "Format / validate JSON"],
+    ["json-minify", "Minify JSON"],
+    ["markdown-to-html", "Markdown to HTML"],
+  ]],
+  ["Convert data formats", [
+    ["csv-to-json", "CSV to JSON"],
+    ["json-to-csv", "JSON to CSV"],
+    ["yaml-to-json", "YAML to JSON"],
+    ["json-to-yaml", "JSON to YAML"],
+  ]],
+  ["Hash", [
+    ["md5-hash", "MD5 hash"],
+    ["sha256-hash", "SHA-256 hash"],
+  ]],
+  ["Generate", [
+    ["slugify", "Slugify / URL slug"],
+    ["text-repeater", "Repeat text"],
+    ["find-replace", "Find & replace"],
+    ["lorem-ipsum", "Lorem ipsum generator"],
+    ["uuid-generator", "UUID generator"],
+    ["password-generator", "Random password generator"],
+  ]],
+  ["Fun text styles", [
+    ["strikethrough-text", "Strikethrough text"],
+    ["upside-down-text", "Upside down text"],
+    ["bold-text", "Bold Unicode text"],
+  ]],
+];
+
 export function renderTool(p = {}) {
   const isHome = !!p.home;
   const transform = p.transform || "none";
@@ -1051,84 +1130,6 @@ export function renderTool(p = {}) {
       ${stat("reading", "min read")}
     </div>`;
 
-  // Grouped into optgroups — 40+ flat options in one dropdown is unusable;
-  // grouping by what the tool DOES (not the underlying implementation) is
-  // how a visitor actually thinks about picking one.
-  const transformGroups = [
-    ["Count & analyze", [
-      ["none", "Word / character counter"],
-    ]],
-    ["Change case", [
-      ["uppercase", "UPPERCASE"],
-      ["lowercase", "lowercase"],
-      ["titlecase", "Title Case"],
-      ["sentencecase", "Sentence case"],
-      ["alternating-case", "aLtErNaTiNg CaSe"],
-      ["inverse-case", "InVeRsE Case"],
-    ]],
-    ["Clean & format", [
-      ["dedupe-lines", "Remove duplicate lines"],
-      ["remove-extra-spaces", "Remove extra spaces"],
-      ["remove-line-breaks", "Remove line breaks"],
-      ["remove-empty-lines", "Remove empty lines"],
-      ["trim-lines", "Trim each line"],
-    ]],
-    ["Reorganize", [
-      ["sort-az", "Sort lines A → Z"],
-      ["sort-za", "Sort lines Z → A"],
-      ["reverse-text", "Reverse text"],
-      ["reverse-lines", "Reverse line order"],
-      ["add-line-numbers", "Add line numbers"],
-    ]],
-    ["Extract", [
-      ["extract-emails", "Extract email addresses"],
-      ["extract-urls", "Extract URLs"],
-      ["extract-numbers", "Extract numbers"],
-    ]],
-    ["Encode & decode", [
-      ["base64-encode", "Base64 encode"],
-      ["base64-decode", "Base64 decode"],
-      ["url-encode", "URL encode"],
-      ["url-decode", "URL decode"],
-      ["html-entities-encode", "HTML entity encode"],
-      ["html-entities-decode", "HTML entity decode"],
-      ["binary-encode", "Text to binary"],
-      ["binary-decode", "Binary to text"],
-      ["hex-encode", "Text to hex"],
-      ["hex-decode", "Hex to text"],
-      ["morse-encode", "Text to Morse code"],
-      ["morse-decode", "Morse code to text"],
-      ["rot13", "ROT13 cipher"],
-    ]],
-    ["Format & validate", [
-      ["json-format", "Format / validate JSON"],
-      ["json-minify", "Minify JSON"],
-      ["markdown-to-html", "Markdown to HTML"],
-    ]],
-    ["Convert data formats", [
-      ["csv-to-json", "CSV to JSON"],
-      ["json-to-csv", "JSON to CSV"],
-      ["yaml-to-json", "YAML to JSON"],
-      ["json-to-yaml", "JSON to YAML"],
-    ]],
-    ["Hash", [
-      ["md5-hash", "MD5 hash"],
-      ["sha256-hash", "SHA-256 hash"],
-    ]],
-    ["Generate", [
-      ["slugify", "Slugify / URL slug"],
-      ["text-repeater", "Repeat text"],
-      ["find-replace", "Find & replace"],
-      ["lorem-ipsum", "Lorem ipsum generator"],
-      ["uuid-generator", "UUID generator"],
-      ["password-generator", "Random password generator"],
-    ]],
-    ["Fun text styles", [
-      ["strikethrough-text", "Strikethrough text"],
-      ["upside-down-text", "Upside down text"],
-      ["bold-text", "Bold Unicode text"],
-    ]],
-  ];
 
   // The picker: a native <select> remains the source of truth (app.js reads
   // transformSel.value directly, unchanged) but is visually hidden — sighted
@@ -1140,13 +1141,13 @@ export function renderTool(p = {}) {
     ? `<div class="tool-picker">
       <label class="sr-only" for="transformSel">Choose a tool</label>
       <select id="transformSel" class="transform-sel sr-only">
-        ${transformGroups.map(([group, opts]) => `<optgroup label="${group}">${opts.map(([v, label]) => `<option value="${v}"${v === "none" ? " selected" : ""}>${label}</option>`).join("")}</optgroup>`).join("")}
+        ${TRANSFORM_GROUPS.map(([group, opts]) => `<optgroup label="${group}">${opts.map(([v, label]) => `<option value="${v}"${v === "none" ? " selected" : ""}>${label}</option>`).join("")}</optgroup>`).join("")}
       </select>
       <div class="picker-tabs" role="tablist" aria-label="Tool categories">
-        ${transformGroups.map(([group], i) => `<button type="button" class="tab${i === 0 ? " is-active" : ""}" role="tab" aria-selected="${i === 0}" data-group-tab="${slug(group)}">${esc(group)}</button>`).join("\n        ")}
+        ${TRANSFORM_GROUPS.map(([group], i) => `<button type="button" class="tab${i === 0 ? " is-active" : ""}" role="tab" aria-selected="${i === 0}" data-group-tab="${slug(group)}">${esc(group)}</button>`).join("\n        ")}
       </div>
       <div class="picker-panels">
-        ${transformGroups.map(([group, opts], i) => `<div class="chip-grid" data-group-panel="${slug(group)}"${i === 0 ? "" : " hidden"}>
+        ${TRANSFORM_GROUPS.map(([group, opts], i) => `<div class="chip-grid" data-group-panel="${slug(group)}"${i === 0 ? "" : " hidden"}>
           ${opts.map(([v, label]) => `<button type="button" class="chip${v === "none" ? " is-active" : ""}" data-value="${v}">${esc(label)}</button>`).join("\n          ")}
         </div>`).join("\n        ")}
       </div>
