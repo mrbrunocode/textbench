@@ -156,7 +156,10 @@ main.wrap { flex: 1; padding-top: var(--space-6); padding-bottom: var(--space-16
   color: var(--text-primary); background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius-md); padding: 0 var(--space-4); margin-bottom: var(--space-4);
 }
-.transform-sel.sr-only { margin-bottom: 0; }
+.transform-sel.sr-only {
+  position: absolute; width: 1px; height: 1px; margin-bottom: 0; padding: 0;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
 
 /* Tool picker: category tabs + a chip grid replace the flat 43-item <select>
    visually. The <select> above stays in the DOM (sr-only) as the real source
