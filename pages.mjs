@@ -411,6 +411,70 @@ export const PAGES = [
     ],
   },
   {
+    slug: "csv-to-json-converter",
+    eyebrow: "CSV to JSON",
+    title: "CSV to JSON Converter — Online, Instant",
+    description:
+      "Convert CSV to a JSON array of objects, using the first row as keys. Free, instant, runs entirely in your browser.",
+    intro:
+      "Paste CSV below — the first row is used as field names, and each following row becomes one JSON object. Handles quoted fields with embedded commas correctly.",
+    transform: "csv-to-json",
+    shape: "simple",
+    faq: [
+      { q: "What if my CSV has no header row?", a: "The first row is always treated as the header/keys — if your data has no header, add one temporary row of column names before converting, then remove it from the output afterward." },
+      { q: "Does it handle quoted fields with commas inside them?", a: "Yes — a quoted field like \"Smith, John\" is parsed as one value, not split on the internal comma." },
+      { q: "What data type are the values in the output?", a: "Everything becomes a JSON string — numbers and booleans in the CSV aren't auto-detected and converted to their native JSON types, since CSV itself has no type information to distinguish \"123\" the number from \"123\" the string." },
+    ],
+  },
+  {
+    slug: "json-to-csv-converter",
+    eyebrow: "JSON to CSV",
+    title: "JSON to CSV Converter — Online, Instant",
+    description:
+      "Convert a JSON array of objects to CSV, using the first object's keys as columns. Free, instant, runs entirely in your browser.",
+    intro:
+      "Paste a JSON array of objects below — the first object's keys become the CSV header, and each object becomes one row. Fields containing a comma, quote or newline are automatically quoted.",
+    transform: "json-to-csv",
+    shape: "simple",
+    faq: [
+      { q: "Does it work with nested objects or arrays as values?", a: "Nested values are stringified into the cell as-is (e.g. \"[object Object]\" for a nested object) rather than flattened into separate columns — flatten nested data yourself first for a clean CSV." },
+      { q: "What if objects in the array have different keys?", a: "Only the first object's keys become columns — later objects with extra keys will have those extra fields dropped, and objects missing a key from the first one leave that cell empty." },
+      { q: "What if I paste something that isn't a JSON array?", a: "You'll see an error message explaining a JSON array of objects is expected, instead of a broken or empty CSV." },
+    ],
+  },
+  {
+    slug: "yaml-to-json-converter",
+    eyebrow: "YAML to JSON",
+    title: "YAML to JSON Converter — Online, Instant",
+    description:
+      "Convert YAML to JSON, pretty-printed with 2-space indentation. Free, instant, runs entirely in your browser.",
+    intro:
+      "Paste YAML below — config files, Docker Compose, GitHub Actions workflows, anything — and get back the equivalent JSON, pretty-printed and ready to use wherever YAML isn't accepted.",
+    transform: "yaml-to-json",
+    shape: "simple",
+    faq: [
+      { q: "Does it support the full YAML spec, including anchors and aliases?", a: "It uses a standard YAML 1.2 parser (js-yaml, the same library many JavaScript tools rely on), so anchors, aliases, multi-document markers and the usual scalar types are all supported." },
+      { q: "What happens if the YAML has a syntax error?", a: "You'll see \"Invalid YAML:\" followed by the parser's own error message, which usually names the line where parsing failed." },
+      { q: "Is my YAML uploaded anywhere?", a: "No — parsing runs entirely in your browser (the parser library itself is fetched from a CDN once, the same way this page's fonts are, but your pasted content never is)." },
+    ],
+  },
+  {
+    slug: "json-to-yaml-converter",
+    eyebrow: "JSON to YAML",
+    title: "JSON to YAML Converter — Online, Instant",
+    description:
+      "Convert JSON to clean, readable YAML. Free, instant, runs entirely in your browser.",
+    intro:
+      "Paste JSON below and get back the equivalent YAML — useful for turning an API response or config into the format a Kubernetes manifest, GitHub Actions workflow, or Docker Compose file expects.",
+    transform: "json-to-yaml",
+    shape: "simple",
+    faq: [
+      { q: "Does it preserve key order?", a: "Yes — object keys appear in the YAML output in the same order they appeared in the JSON." },
+      { q: "What if my input isn't valid JSON?", a: "You'll see \"Invalid JSON:\" and the parser's error message instead of broken output." },
+      { q: "Is my data uploaded anywhere?", a: "No — conversion runs entirely in your browser; only the small YAML-serialization library itself is fetched from a CDN once." },
+    ],
+  },
+  {
     slug: "qr-code-generator",
     eyebrow: "QR Code Generator",
     title: "QR Code Generator — Text or URL to QR, Free",
@@ -1000,6 +1064,12 @@ export function renderTool(p = {}) {
       ["json-format", "Format / validate JSON"],
       ["json-minify", "Minify JSON"],
       ["markdown-to-html", "Markdown to HTML"],
+    ]],
+    ["Convert data formats", [
+      ["csv-to-json", "CSV to JSON"],
+      ["json-to-csv", "JSON to CSV"],
+      ["yaml-to-json", "YAML to JSON"],
+      ["json-to-yaml", "JSON to YAML"],
     ]],
     ["Hash", [
       ["md5-hash", "MD5 hash"],

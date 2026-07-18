@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Morse Code to Text Translator | Textbench</title>
-<meta name="description" content="Translate Morse code (dots and dashes) back into readable text. Free, instant, browser-only.">
-<link rel="canonical" href="https://textbench.app/tools/morse-code-to-text">
-<meta property="og:title" content="Morse Code to Text Translator">
-<meta property="og:description" content="Translate Morse code (dots and dashes) back into readable text. Free, instant, browser-only.">
+<title>JSON to YAML Converter — Online, Instant | Textbench</title>
+<meta name="description" content="Convert JSON to clean, readable YAML. Free, instant, runs entirely in your browser.">
+<link rel="canonical" href="https://textbench.app/tools/json-to-yaml-converter">
+<meta property="og:title" content="JSON to YAML Converter — Online, Instant">
+<meta property="og:description" content="Convert JSON to clean, readable YAML. Free, instant, runs entirely in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://textbench.app/tools/morse-code-to-text">
+<meta property="og:url" content="https://textbench.app/tools/json-to-yaml-converter">
 <meta property="og:image" content="https://textbench.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://textbench.app/assets/og-image.png">
@@ -22,9 +22,9 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/morse-code-to-text","description":"Translate Morse code (dots and dashes) back into readable text. Free, instant, browser-only.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-17","dateModified":"2026-07-17"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"Morse → Text","item":"https://textbench.app/tools/morse-code-to-text"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What format does the Morse code need to be in?","acceptedAnswer":{"@type":"Answer","text":"Each letter's dots/dashes separated by a space, and \"/\" between words — the same format produced by this tool's text-to-Morse translator."}},{"@type":"Question","name":"What happens with a code that doesn't match a known letter?","acceptedAnswer":{"@type":"Answer","text":"Unrecognized groups are skipped, so a typo in the Morse (an extra dot, a missing dash) will drop that one letter rather than corrupt the whole result."}},{"@type":"Question","name":"Is Morse code still used for anything today?","acceptedAnswer":{"@type":"Answer","text":"Mainly amateur radio, some aviation/maritime signaling, and accessibility tools — but it's also a common puzzle/learning exercise, which is the more typical use for a tool like this."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/json-to-yaml-converter","description":"Convert JSON to clean, readable YAML. Free, instant, runs entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-17","dateModified":"2026-07-17"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"JSON to YAML","item":"https://textbench.app/tools/json-to-yaml-converter"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it preserve key order?","acceptedAnswer":{"@type":"Answer","text":"Yes — object keys appear in the YAML output in the same order they appeared in the JSON."}},{"@type":"Question","name":"What if my input isn't valid JSON?","acceptedAnswer":{"@type":"Answer","text":"You'll see \"Invalid JSON:\" and the parser's error message instead of broken output."}},{"@type":"Question","name":"Is my data uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No — conversion runs entirely in your browser; only the small YAML-serialization library itself is fetched from a CDN once."}}]}</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2653891546345771" crossorigin="anonymous"></script>
 
 </head>
@@ -43,12 +43,12 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 <main class="wrap" id="main">
 
   <section class="hero">
-    <span class="eyebrow">Morse → Text</span>
-    <h1>Morse Code to Text Translator</h1>
-    <p class="lede">Paste Morse code below — letters space-separated, words separated by &quot;/&quot; — to translate it back into readable text.</p>
+    <span class="eyebrow">JSON to YAML</span>
+    <h1>JSON to YAML Converter — Online, Instant</h1>
+    <p class="lede">Paste JSON below and get back the equivalent YAML — useful for turning an API response or config into the format a Kubernetes manifest, GitHub Actions workflow, or Docker Compose file expects.</p>
   </section>
   
-  <section class="tool" data-transform="morse-decode" data-shape="simple">
+  <section class="tool" data-transform="json-to-yaml" data-shape="simple">
     
     
     <div class="extra-row" data-for="find-replace" hidden>
@@ -115,9 +115,9 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   <section class="faq">
     <h2>Common questions</h2>
     <div class="faq-grid">
-      <div class="faq-item"><h3>What format does the Morse code need to be in?</h3><p>Each letter's dots/dashes separated by a space, and &quot;/&quot; between words — the same format produced by this tool's text-to-Morse translator.</p></div>
-      <div class="faq-item"><h3>What happens with a code that doesn't match a known letter?</h3><p>Unrecognized groups are skipped, so a typo in the Morse (an extra dot, a missing dash) will drop that one letter rather than corrupt the whole result.</p></div>
-      <div class="faq-item"><h3>Is Morse code still used for anything today?</h3><p>Mainly amateur radio, some aviation/maritime signaling, and accessibility tools — but it's also a common puzzle/learning exercise, which is the more typical use for a tool like this.</p></div>
+      <div class="faq-item"><h3>Does it preserve key order?</h3><p>Yes — object keys appear in the YAML output in the same order they appeared in the JSON.</p></div>
+      <div class="faq-item"><h3>What if my input isn't valid JSON?</h3><p>You'll see &quot;Invalid JSON:&quot; and the parser's error message instead of broken output.</p></div>
+      <div class="faq-item"><h3>Is my data uploaded anywhere?</h3><p>No — conversion runs entirely in your browser; only the small YAML-serialization library itself is fetched from a CDN once.</p></div>
     </div>
   </section>
   
@@ -151,7 +151,6 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/csv-to-json-converter">CSV to JSON</a>
       <a href="/tools/json-to-csv-converter">JSON to CSV</a>
       <a href="/tools/yaml-to-json-converter">YAML to JSON</a>
-      <a href="/tools/json-to-yaml-converter">JSON to YAML</a>
       <a href="/tools/qr-code-generator">QR Code Generator</a>
       <a href="/tools/lorem-ipsum-generator">Lorem Ipsum</a>
       <a href="/tools/alternating-case-converter">aLtErNaTiNg cAsE</a>
@@ -170,6 +169,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/text-to-hex">Text to Hex</a>
       <a href="/tools/hex-to-text">Hex to Text</a>
       <a href="/tools/morse-code-translator">Text → Morse</a>
+      <a href="/tools/morse-code-to-text">Morse → Text</a>
       <a href="/tools/rot13-cipher">ROT13</a>
       <a href="/tools/json-formatter">JSON Formatter</a>
       <a href="/tools/json-validator">JSON Validator</a>

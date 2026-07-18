@@ -207,3 +207,32 @@ test("markdownToHtml escapes raw HTML instead of passing it through", () => {
 test("markdownToHtml wraps a plain paragraph in <p>", () => {
   assert.equal(t.markdownToHtml("just some text"), "<p>just some text</p>");
 });
+
+test("csvToJson converts rows to an array of objects keyed by header", () => {
+  const out = JSON.parse(t.csvToJson("name,age\nAda,30\nGrace,45"));
+  assert.deepEqual(out, [{ name: "Ada", age: "30" }, { name: "Grace", age: "45" }]);
+});
+
+test("csvToJson handles quoted fields with embedded commas", () => {
+  const out = JSON.parse(t.csvToJson('name,note\n"Smith, John",ok'));
+  assert.deepEqual(out, [{ name: "Smith, John", note: "ok" }]);
+});
+
+test("jsonToCsv converts an array of objects to CSV with a header row", () => {
+  const out = t.jsonToCsv(JSON.stringify([{ name: "Ada", age: 30 }, { name: "Grace", age: 45 }]));
+  assert.equal(out, "name,age\nAda,30\nGrace,45");
+});
+
+test("jsonToCsv quotes fields containing a comma", () => {
+  const out = t.jsonToCsv(JSON.stringify([{ name: "Smith, John", note: "ok" }]));
+  assert.equal(out, 'name,note\n"Smith, John",ok');
+});
+
+test("jsonToCsv rejects non-array input with a clear message", () => {
+  assert.match(t.jsonToCsv('{"a":1}'), /^Invalid input: expected a JSON array/);
+});
+
+test("csvToJson and jsonToCsv round-trip a simple table", () => {
+  const csv = "name,age\nAda,30\nGrace,45";
+  assert.equal(t.jsonToCsv(t.csvToJson(csv)), csv);
+});

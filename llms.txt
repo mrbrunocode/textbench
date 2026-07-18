@@ -1,6 +1,6 @@
 # Textbench
 
-> Case conversion, cleanup, encoding, hashing, generators and more — 43 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.
+> Case conversion, cleanup, encoding, hashing, generators, JSON/YAML/CSV conversion, regex testing and more — 59 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.
 
 Textbench is a static web app: no signup, no backend, no per-visitor cost. Everything runs client-side.
 
@@ -36,6 +36,10 @@ Textbench is a static web app: no signup, no backend, no per-visitor cost. Every
 - [Text Repeater](https://textbench.app/tools/text-repeater): Repeat a word, phrase or block of text any number of times, one copy per line. Free, instant, runs entirely in your browser.
 - [Find & Replace](https://textbench.app/tools/find-and-replace): Find and replace text online, with an optional regular-expression mode for pattern matching. Free, instant, nothing uploaded.
 - [Regex Tester](https://textbench.app/tools/regex-tester): Test a regular expression against real text with live match highlighting and capture groups shown per match. Free, instant, runs entirely in your browser.
+- [CSV to JSON](https://textbench.app/tools/csv-to-json-converter): Convert CSV to a JSON array of objects, using the first row as keys. Free, instant, runs entirely in your browser.
+- [JSON to CSV](https://textbench.app/tools/json-to-csv-converter): Convert a JSON array of objects to CSV, using the first object's keys as columns. Free, instant, runs entirely in your browser.
+- [YAML to JSON](https://textbench.app/tools/yaml-to-json-converter): Convert YAML to JSON, pretty-printed with 2-space indentation. Free, instant, runs entirely in your browser.
+- [JSON to YAML](https://textbench.app/tools/json-to-yaml-converter): Convert JSON to clean, readable YAML. Free, instant, runs entirely in your browser.
 - [QR Code Generator](https://textbench.app/tools/qr-code-generator): Turn any text or URL into a scannable QR code, generated entirely in your browser. Free, instant, downloadable as a PNG.
 - [Lorem Ipsum](https://textbench.app/tools/lorem-ipsum-generator): Generate lorem ipsum placeholder text, any number of paragraphs. Free, instant, runs entirely in your browser.
 - [aLtErNaTiNg cAsE](https://textbench.app/tools/alternating-case-converter): Convert text to aLtErNaTiNg CaSe, flipping upper and lower case letter by letter. Free, instant, browser-only.

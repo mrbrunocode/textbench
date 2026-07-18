@@ -221,6 +221,78 @@
     return html.join("\n");
   }
   function normalizeMd(s) { return s.replace(/\r\n?/g, "\n"); }
+
+  // ── CSV <-> JSON (hand-rolled; no library needed for this pair) ──────────
+  function parseCsvLineForJson(line) {
+    var cells = [], cur = "", inQuotes = false;
+    for (var i = 0; i < line.length; i++) {
+      var c = line[i];
+      if (inQuotes) {
+        if (c === '"') { if (line[i + 1] === '"') { cur += '"'; i++; } else inQuotes = false; }
+        else cur += c;
+      } else {
+        if (c === '"') inQuotes = true;
+        else if (c === ",") { cells.push(cur); cur = ""; }
+        else cur += c;
+      }
+    }
+    cells.push(cur);
+    return cells;
+  }
+  function csvToJson(s) {
+    var lines = s.replace(/\r\n?/g, "\n").split("\n").filter(function (l) { return l.length > 0; });
+    if (!lines.length) return "[]";
+    var header = parseCsvLineForJson(lines[0]);
+    var rows = lines.slice(1).map(function (line) {
+      var cells = parseCsvLineForJson(line);
+      var obj = {};
+      header.forEach(function (h, i) { obj[h] = cells[i] !== undefined ? cells[i] : ""; });
+      return obj;
+    });
+    return JSON.stringify(rows, null, 2);
+  }
+  function csvCell(v) {
+    var s = v === null || v === undefined ? "" : String(v);
+    return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  }
+  function jsonToCsv(s) {
+    if (!s.trim()) return "";
+    var data;
+    try { data = JSON.parse(s); } catch (e) { return "Invalid JSON: " + e.message; }
+    if (!Array.isArray(data)) return "Invalid input: expected a JSON array of objects.";
+    if (!data.length) return "";
+    var header = Object.keys(data[0]);
+    var lines = [header.map(csvCell).join(",")];
+    data.forEach(function (row) { lines.push(header.map(function (h) { return csvCell(row[h]); }).join(",")); });
+    return lines.join("\n");
+  }
+
+  // ── YAML <-> JSON (via js-yaml, loaded lazily on first use) ──────────────
+  var yamlLibPromise = null;
+  function loadYamlLib() {
+    if (yamlLibPromise) return yamlLibPromise;
+    yamlLibPromise = new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = "https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.1/js-yaml.min.js";
+      s.onload = resolve;
+      s.onerror = function () { reject(new Error("Could not load the YAML library.")); };
+      document.head.appendChild(s);
+    });
+    return yamlLibPromise;
+  }
+  function yamlToJson(s) {
+    if (!s.trim()) return "";
+    return loadYamlLib().then(function () {
+      try { return JSON.stringify(window.jsyaml.load(s), null, 2); }
+      catch (e) { return "Invalid YAML: " + e.message; }
+    });
+  }
+  function jsonToYaml(s) {
+    if (!s.trim()) return "";
+    var data;
+    try { data = JSON.parse(s); } catch (e) { return Promise.resolve("Invalid JSON: " + e.message); }
+    return loadYamlLib().then(function () { return window.jsyaml.dump(data); });
+  }
   var MORSE = { A: ".-", B: "-...", C: "-.-.", D: "-..", E: ".", F: "..-.", G: "--.", H: "....", I: "..", J: ".---",
     K: "-.-", L: ".-..", M: "--", N: "-.", O: "---", P: ".--.", Q: "--.-", R: ".-.", S: "...", T: "-",
     U: "..-", V: "...-", W: ".--", X: "-..-", Y: "-.--", Z: "--..",
@@ -404,6 +476,10 @@
     "json-format": jsonFormat,
     "json-minify": jsonMinify,
     "markdown-to-html": markdownToHtml,
+    "csv-to-json": csvToJson,
+    "json-to-csv": jsonToCsv,
+    "yaml-to-json": yamlToJson,
+    "json-to-yaml": jsonToYaml,
   };
 
   // Exposes the pure transform functions to Node's test runner (see
@@ -432,6 +508,7 @@
       randomPassword: randomPassword, strikethroughText: strikethroughText,
       upsideDownText: upsideDownText, boldUnicodeText: boldUnicodeText,
       jsonFormat: jsonFormat, jsonMinify: jsonMinify, markdownToHtml: markdownToHtml,
+      csvToJson: csvToJson, jsonToCsv: jsonToCsv, yamlToJson: yamlToJson, jsonToYaml: jsonToYaml,
       loremSentence: loremSentence, loremParagraph: loremParagraph, loremIpsum: loremIpsum,
     };
     return;
