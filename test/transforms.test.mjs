@@ -178,3 +178,32 @@ test("jsonFormat and jsonMinify round-trip to the same parsed value", () => {
   assert.deepEqual(JSON.parse(t.jsonFormat(input)), JSON.parse(input));
   assert.deepEqual(JSON.parse(t.jsonMinify(input)), JSON.parse(input));
 });
+
+test("markdownToHtml converts headers, bold, italic, inline code and links", () => {
+  const out = t.markdownToHtml("# Title\n\nSome **bold** and *italic* and `code` and [a link](https://x.com).");
+  assert.ok(out.includes("<h1>Title</h1>"));
+  assert.ok(out.includes("<strong>bold</strong>"));
+  assert.ok(out.includes("<em>italic</em>"));
+  assert.ok(out.includes("<code>code</code>"));
+  assert.ok(out.includes('<a href="https://x.com">a link</a>'));
+});
+
+test("markdownToHtml converts an unordered list", () => {
+  const out = t.markdownToHtml("- one\n- two\n- three");
+  assert.equal(out, "<ul>\n<li>one</li>\n<li>two</li>\n<li>three</li>\n</ul>");
+});
+
+test("markdownToHtml converts a fenced code block without interpreting its contents as markdown", () => {
+  const out = t.markdownToHtml("```\n**not bold**\n```");
+  assert.ok(out.includes("<pre><code>**not bold**</code></pre>"));
+});
+
+test("markdownToHtml escapes raw HTML instead of passing it through", () => {
+  const out = t.markdownToHtml("<script>alert(1)</script>");
+  assert.ok(!out.includes("<script>"));
+  assert.ok(out.includes("&lt;script&gt;"));
+});
+
+test("markdownToHtml wraps a plain paragraph in <p>", () => {
+  assert.equal(t.markdownToHtml("just some text"), "<p>just some text</p>");
+});

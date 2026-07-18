@@ -58,6 +58,7 @@ Textbench is a static web app: no signup, no backend, no per-visitor cost. Every
 - [JSON Formatter](https://textbench.app/tools/json-formatter): Paste minified or messy JSON and get it pretty-printed with 2-space indentation, instantly. Free, browser-only, catches syntax errors as it formats.
 - [JSON Validator](https://textbench.app/tools/json-validator): Paste JSON and instantly see whether it's valid — and exactly where the syntax error is if it isn't. Free, browser-only, nothing uploaded.
 - [JSON Minifier](https://textbench.app/tools/json-minifier): Strip all whitespace from JSON down to the smallest valid form, in one line. Free, browser-only, useful before pasting JSON into a size-limited field.
+- [Markdown to HTML](https://textbench.app/tools/markdown-to-html-converter): Convert Markdown to clean HTML — headers, bold/italic, links, lists, code blocks and blockquotes. Free, instant, runs entirely in your browser.
 - [MD5 Hash](https://textbench.app/tools/md5-hash-generator): Generate the MD5 hash of any text, entirely in your browser. Free, instant, nothing uploaded.
 - [SHA-256 Hash](https://textbench.app/tools/sha256-hash-generator): Generate the SHA-256 hash of any text using your browser's built-in Web Crypto API. Free, instant, nothing uploaded.
 - [UUID Generator](https://textbench.app/tools/uuid-generator): Generate random UUID v4 identifiers, one or many at once. Free, instant, cryptographically random, browser-only.

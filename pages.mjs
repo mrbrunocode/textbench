@@ -763,6 +763,22 @@ export const PAGES = [
     ],
   },
   {
+    slug: "markdown-to-html-converter",
+    eyebrow: "Markdown to HTML",
+    title: "Markdown to HTML Converter — Online, Instant",
+    description:
+      "Convert Markdown to clean HTML — headers, bold/italic, links, lists, code blocks and blockquotes. Free, instant, runs entirely in your browser.",
+    intro:
+      "Paste Markdown below and get back the equivalent HTML, ready to paste into a CMS or static site. Covers the everyday subset — headers, bold/italic, inline and fenced code, links, images, lists, blockquotes and horizontal rules.",
+    transform: "markdown-to-html",
+    shape: "simple",
+    faq: [
+      { q: "Does it support the full CommonMark spec?", a: "No — it covers the commonly-used subset (headers, bold/italic, code, links, images, lists, blockquotes, horizontal rules, paragraphs), which is enough for READMEs and notes, but not every CommonMark edge case (nested blockquotes, footnotes, tables aren't supported)." },
+      { q: "Is raw HTML in my Markdown passed through untouched?", a: "No — for safety, any HTML you paste is escaped rather than passed through raw, so the output can't include arbitrary injected markup. Use standard Markdown syntax for formatting instead." },
+      { q: "Does it handle fenced code blocks with triple backticks?", a: "Yes — content between a pair of \\`\\`\\` lines is treated as a code block and rendered inside <pre><code>, with the code's own contents escaped rather than interpreted as Markdown." },
+    ],
+  },
+  {
     slug: "md5-hash-generator",
     eyebrow: "MD5 Hash",
     title: "MD5 Hash Generator",
@@ -967,6 +983,7 @@ export function renderTool(p = {}) {
     ["Format & validate", [
       ["json-format", "Format / validate JSON"],
       ["json-minify", "Minify JSON"],
+      ["markdown-to-html", "Markdown to HTML"],
     ]],
     ["Hash", [
       ["md5-hash", "MD5 hash"],

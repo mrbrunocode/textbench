@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROT13 Encoder/Decoder — Encode or Decode Text | Textbench</title>
-<meta name="description" content="Encode or decode text with the ROT13 cipher — a simple letter-rotation cipher that's its own inverse. Free, instant, browser-only.">
-<link rel="canonical" href="https://textbench.app/tools/rot13-cipher">
-<meta property="og:title" content="ROT13 Encoder/Decoder — Encode or Decode Text">
-<meta property="og:description" content="Encode or decode text with the ROT13 cipher — a simple letter-rotation cipher that's its own inverse. Free, instant, browser-only.">
+<title>Markdown to HTML Converter — Online, Instant | Textbench</title>
+<meta name="description" content="Convert Markdown to clean HTML — headers, bold/italic, links, lists, code blocks and blockquotes. Free, instant, runs entirely in your browser.">
+<link rel="canonical" href="https://textbench.app/tools/markdown-to-html-converter">
+<meta property="og:title" content="Markdown to HTML Converter — Online, Instant">
+<meta property="og:description" content="Convert Markdown to clean HTML — headers, bold/italic, links, lists, code blocks and blockquotes. Free, instant, runs entirely in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://textbench.app/tools/rot13-cipher">
+<meta property="og:url" content="https://textbench.app/tools/markdown-to-html-converter">
 <meta property="og:image" content="https://textbench.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://textbench.app/assets/og-image.png">
@@ -22,9 +22,9 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/rot13-cipher","description":"Encode or decode text with the ROT13 cipher — a simple letter-rotation cipher that's its own inverse. Free, instant, browser-only.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-17","dateModified":"2026-07-17"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"ROT13","item":"https://textbench.app/tools/rot13-cipher"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is ROT13 secure encryption?","acceptedAnswer":{"@type":"Answer","text":"No — it's a simple obfuscation cipher historically used to hide spoilers or punchlines from casual glance, not a security mechanism. It provides no real protection against anyone who wants to read it."}},{"@type":"Question","name":"Why does the same page both encode and decode?","acceptedAnswer":{"@type":"Answer","text":"Because ROT13 is symmetric: applying it twice returns the original text, so encoding and decoding are literally the same operation."}},{"@type":"Question","name":"Does it affect numbers or symbols?","acceptedAnswer":{"@type":"Answer","text":"No — only the 26 letters (A–Z, a–z) are rotated; numbers, spaces and punctuation pass through unchanged."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/markdown-to-html-converter","description":"Convert Markdown to clean HTML — headers, bold/italic, links, lists, code blocks and blockquotes. Free, instant, runs entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-17","dateModified":"2026-07-17"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"Markdown to HTML","item":"https://textbench.app/tools/markdown-to-html-converter"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it support the full CommonMark spec?","acceptedAnswer":{"@type":"Answer","text":"No — it covers the commonly-used subset (headers, bold/italic, code, links, images, lists, blockquotes, horizontal rules, paragraphs), which is enough for READMEs and notes, but not every CommonMark edge case (nested blockquotes, footnotes, tables aren't supported)."}},{"@type":"Question","name":"Is raw HTML in my Markdown passed through untouched?","acceptedAnswer":{"@type":"Answer","text":"No — for safety, any HTML you paste is escaped rather than passed through raw, so the output can't include arbitrary injected markup. Use standard Markdown syntax for formatting instead."}},{"@type":"Question","name":"Does it handle fenced code blocks with triple backticks?","acceptedAnswer":{"@type":"Answer","text":"Yes — content between a pair of \\`\\`\\` lines is treated as a code block and rendered inside <pre><code>, with the code's own contents escaped rather than interpreted as Markdown."}}]}</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2653891546345771" crossorigin="anonymous"></script>
 
 </head>
@@ -43,12 +43,12 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 <main class="wrap" id="main">
 
   <section class="hero">
-    <span class="eyebrow">ROT13</span>
-    <h1>ROT13 Encoder/Decoder — Encode or Decode Text</h1>
-    <p class="lede">Paste text below to run it through ROT13 — each letter is shifted 13 places through the alphabet. Since 13 is half of 26, running the same text through ROT13 twice returns the original — so this one page both encodes and decodes.</p>
+    <span class="eyebrow">Markdown to HTML</span>
+    <h1>Markdown to HTML Converter — Online, Instant</h1>
+    <p class="lede">Paste Markdown below and get back the equivalent HTML, ready to paste into a CMS or static site. Covers the everyday subset — headers, bold/italic, inline and fenced code, links, images, lists, blockquotes and horizontal rules.</p>
   </section>
   
-  <section class="tool" data-transform="rot13" data-shape="simple">
+  <section class="tool" data-transform="markdown-to-html" data-shape="simple">
     
     
     <div class="extra-row" data-for="find-replace" hidden>
@@ -115,9 +115,9 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   <section class="faq">
     <h2>Common questions</h2>
     <div class="faq-grid">
-      <div class="faq-item"><h3>Is ROT13 secure encryption?</h3><p>No — it's a simple obfuscation cipher historically used to hide spoilers or punchlines from casual glance, not a security mechanism. It provides no real protection against anyone who wants to read it.</p></div>
-      <div class="faq-item"><h3>Why does the same page both encode and decode?</h3><p>Because ROT13 is symmetric: applying it twice returns the original text, so encoding and decoding are literally the same operation.</p></div>
-      <div class="faq-item"><h3>Does it affect numbers or symbols?</h3><p>No — only the 26 letters (A–Z, a–z) are rotated; numbers, spaces and punctuation pass through unchanged.</p></div>
+      <div class="faq-item"><h3>Does it support the full CommonMark spec?</h3><p>No — it covers the commonly-used subset (headers, bold/italic, code, links, images, lists, blockquotes, horizontal rules, paragraphs), which is enough for READMEs and notes, but not every CommonMark edge case (nested blockquotes, footnotes, tables aren't supported).</p></div>
+      <div class="faq-item"><h3>Is raw HTML in my Markdown passed through untouched?</h3><p>No — for safety, any HTML you paste is escaped rather than passed through raw, so the output can't include arbitrary injected markup. Use standard Markdown syntax for formatting instead.</p></div>
+      <div class="faq-item"><h3>Does it handle fenced code blocks with triple backticks?</h3><p>Yes — content between a pair of \`\`\` lines is treated as a code block and rendered inside &lt;pre&gt;&lt;code&gt;, with the code's own contents escaped rather than interpreted as Markdown.</p></div>
     </div>
   </section>
   
@@ -166,10 +166,10 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/hex-to-text">Hex to Text</a>
       <a href="/tools/morse-code-translator">Text → Morse</a>
       <a href="/tools/morse-code-to-text">Morse → Text</a>
+      <a href="/tools/rot13-cipher">ROT13</a>
       <a href="/tools/json-formatter">JSON Formatter</a>
       <a href="/tools/json-validator">JSON Validator</a>
       <a href="/tools/json-minifier">JSON Minifier</a>
-      <a href="/tools/markdown-to-html-converter">Markdown to HTML</a>
       <a href="/tools/md5-hash-generator">MD5 Hash</a>
       <a href="/tools/sha256-hash-generator">SHA-256 Hash</a>
       <a href="/tools/uuid-generator">UUID Generator</a>

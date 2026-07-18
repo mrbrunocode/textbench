@@ -164,6 +164,63 @@
     try { return JSON.stringify(JSON.parse(s)); }
     catch (e) { return "Invalid JSON: " + e.message; }
   }
+  // A small, dependency-free Markdown-to-HTML converter covering the
+  // commonly-used subset (headers, bold/italic, inline/fenced code, links,
+  // lists, blockquotes, horizontal rules, paragraphs) — not a full CommonMark
+  // implementation, but enough for READMEs, notes and comments.
+  function mdInline(s) {
+    s = htmlEntitiesEncode(s);
+    s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
+    s = s.replace(/\*\*([^*]+)\*\*|__([^_]+)__/g, function (m, a, b) { return "<strong>" + (a || b) + "</strong>"; });
+    s = s.replace(/\*([^*]+)\*|_([^_]+)_/g, function (m, a, b) { return "<em>" + (a || b) + "</em>"; });
+    s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img alt="$1" src="$2">');
+    s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+    return s;
+  }
+  function markdownToHtml(s) {
+    var lines = normalizeMd(s).split("\n");
+    var html = [], i = 0, para = [];
+    function flushPara() {
+      if (para.length) { html.push("<p>" + mdInline(para.join(" ")) + "</p>"); para = []; }
+    }
+    var listStack = []; // stack of "ul" | "ol" currently open
+    function closeLists() { while (listStack.length) { html.push("</" + listStack.pop() + ">"); } }
+    while (i < lines.length) {
+      var line = lines[i];
+      var h = line.match(/^(#{1,6})\s+(.*)$/);
+      var fence = line.match(/^```/);
+      var quote = line.match(/^>\s?(.*)$/);
+      var ul = line.match(/^[-*]\s+(.*)$/);
+      var ol = line.match(/^\d+\.\s+(.*)$/);
+      var hr = line.match(/^(-{3,}|\*{3,}|_{3,})\s*$/);
+      if (fence) {
+        flushPara(); closeLists();
+        var codeLines = [];
+        i++;
+        while (i < lines.length && !/^```/.test(lines[i])) { codeLines.push(lines[i]); i++; }
+        html.push("<pre><code>" + htmlEntitiesEncode(codeLines.join("\n")) + "</code></pre>");
+        i++; continue;
+      }
+      if (h) { flushPara(); closeLists(); html.push("<h" + h[1].length + ">" + mdInline(h[2]) + "</h" + h[1].length + ">"); i++; continue; }
+      if (hr) { flushPara(); closeLists(); html.push("<hr>"); i++; continue; }
+      if (quote) { flushPara(); closeLists(); html.push("<blockquote>" + mdInline(quote[1]) + "</blockquote>"); i++; continue; }
+      if (ul) {
+        flushPara();
+        if (listStack[listStack.length - 1] !== "ul") { closeLists(); html.push("<ul>"); listStack.push("ul"); }
+        html.push("<li>" + mdInline(ul[1]) + "</li>"); i++; continue;
+      }
+      if (ol) {
+        flushPara();
+        if (listStack[listStack.length - 1] !== "ol") { closeLists(); html.push("<ol>"); listStack.push("ol"); }
+        html.push("<li>" + mdInline(ol[1]) + "</li>"); i++; continue;
+      }
+      if (line.trim() === "") { flushPara(); closeLists(); i++; continue; }
+      para.push(line.trim()); i++;
+    }
+    flushPara(); closeLists();
+    return html.join("\n");
+  }
+  function normalizeMd(s) { return s.replace(/\r\n?/g, "\n"); }
   var MORSE = { A: ".-", B: "-...", C: "-.-.", D: "-..", E: ".", F: "..-.", G: "--.", H: "....", I: "..", J: ".---",
     K: "-.-", L: ".-..", M: "--", N: "-.", O: "---", P: ".--.", Q: "--.-", R: ".-.", S: "...", T: "-",
     U: "..-", V: "...-", W: ".--", X: "-..-", Y: "-.--", Z: "--..",
@@ -346,6 +403,7 @@
     "bold-text": boldUnicodeText,
     "json-format": jsonFormat,
     "json-minify": jsonMinify,
+    "markdown-to-html": markdownToHtml,
   };
 
   // Exposes the pure transform functions to Node's test runner (see
@@ -373,7 +431,7 @@
       md5: md5, sha256Async: sha256Async, uuidV4: uuidV4, uuidGenerator: uuidGenerator,
       randomPassword: randomPassword, strikethroughText: strikethroughText,
       upsideDownText: upsideDownText, boldUnicodeText: boldUnicodeText,
-      jsonFormat: jsonFormat, jsonMinify: jsonMinify,
+      jsonFormat: jsonFormat, jsonMinify: jsonMinify, markdownToHtml: markdownToHtml,
       loremSentence: loremSentence, loremParagraph: loremParagraph, loremIpsum: loremIpsum,
     };
     return;
