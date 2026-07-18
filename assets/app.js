@@ -82,7 +82,12 @@
     if (dir === "za") lines.reverse();
     return lines.join("\n");
   }
-  function reverseText(s) { return s.split("").reverse().join(""); }
+  // Array.from (not split("")) so a surrogate-pair character — most emoji,
+  // e.g. "🌍" — is treated as one Unicode code point and reversed as a whole
+  // unit, instead of being torn into two lone surrogates that recombine into
+  // invalid text (encodeURIComponent throws on the result, and it renders as
+  // mojibake/replacement glyphs).
+  function reverseText(s) { return Array.from(s).reverse().join(""); }
   function reverseLines(s) { return s.split("\n").reverse().join("\n"); }
   function trimLines(s) { return s.split("\n").map(function (l) { return l.trim(); }).join("\n"); }
   function addLineNumbers(s) { return s.split("\n").map(function (l, i) { return (i + 1) + ". " + l; }).join("\n"); }
@@ -232,28 +237,41 @@
   function normalizeMd(s) { return s.replace(/\r\n?/g, "\n"); }
 
   // ── CSV <-> JSON (hand-rolled; no library needed for this pair) ──────────
-  function parseCsvLineForJson(line) {
-    var cells = [], cur = "", inQuotes = false;
-    for (var i = 0; i < line.length; i++) {
-      var c = line[i];
+  // Parses the WHOLE input at once, quote-state carried across the entire
+  // string, rather than splitting into lines first — a quoted CSV field is
+  // allowed to contain a literal newline (e.g. a multi-line address or note),
+  // and splitting on "\n" before parsing quotes tears that field in two,
+  // producing extra bogus rows. This is also what jsonToCsv's own csvCell()
+  // produces for a value containing "\n" (it quotes the whole field), so
+  // splitting into lines first broke the JSON -> CSV -> JSON round-trip for
+  // any value with an embedded newline.
+  function parseCsvRecords(s) {
+    var text = s.replace(/\r\n?/g, "\n");
+    var rows = [], row = [], cur = "", inQuotes = false;
+    for (var i = 0; i < text.length; i++) {
+      var c = text[i];
       if (inQuotes) {
-        if (c === '"') { if (line[i + 1] === '"') { cur += '"'; i++; } else inQuotes = false; }
+        if (c === '"') { if (text[i + 1] === '"') { cur += '"'; i++; } else inQuotes = false; }
         else cur += c;
       } else {
         if (c === '"') inQuotes = true;
-        else if (c === ",") { cells.push(cur); cur = ""; }
+        else if (c === ",") { row.push(cur); cur = ""; }
+        else if (c === "\n") { row.push(cur); rows.push(row); row = []; cur = ""; }
         else cur += c;
       }
     }
-    cells.push(cur);
-    return cells;
+    if (cur.length > 0 || row.length > 0) { row.push(cur); rows.push(row); }
+    // A raw blank source line (nothing between two newlines) parses to a
+    // single empty-string cell — drop it, matching the previous behaviour of
+    // filtering zero-length lines before parsing (a genuine single-column
+    // row with an empty value still has a non-empty line, so is unaffected).
+    return rows.filter(function (r) { return !(r.length === 1 && r[0] === ""); });
   }
   function csvToJson(s) {
-    var lines = s.replace(/\r\n?/g, "\n").split("\n").filter(function (l) { return l.length > 0; });
-    if (!lines.length) return "[]";
-    var header = parseCsvLineForJson(lines[0]);
-    var rows = lines.slice(1).map(function (line) {
-      var cells = parseCsvLineForJson(line);
+    var records = parseCsvRecords(s);
+    if (!records.length) return "[]";
+    var header = records[0];
+    var rows = records.slice(1).map(function (cells) {
       var obj = {};
       header.forEach(function (h, i) { obj[h] = cells[i] !== undefined ? cells[i] : ""; });
       return obj;
@@ -270,7 +288,15 @@
     try { data = JSON.parse(s); } catch (e) { return "Invalid JSON: " + e.message; }
     if (!Array.isArray(data)) return "Invalid input: expected a JSON array of objects.";
     if (!data.length) return "";
-    var header = Object.keys(data[0]);
+    // Union of every row's keys, not just data[0]'s — objects further down
+    // the array commonly have extra/optional fields the first one lacks
+    // (sparse data is the normal case for real-world JSON), and using only
+    // the first row's keys as the header silently dropped that data instead
+    // of at least surfacing an empty cell for it.
+    var header = [], seen = Object.create(null);
+    data.forEach(function (row) {
+      Object.keys(row || {}).forEach(function (k) { if (!seen[k]) { seen[k] = 1; header.push(k); } });
+    });
     var lines = [header.map(csvCell).join(",")];
     data.forEach(function (row) { lines.push(header.map(function (h) { return csvCell(row[h]); }).join(",")); });
     return lines.join("\n");
@@ -401,7 +427,9 @@
   }
 
   // ── Fun text styles (Unicode tricks) ────────────────────────────────────
-  function strikethroughText(s) { return s.split("").map(function (c) { return c + "̶"; }).join(""); }
+  // Array.from, same reasoning as reverseText above: a combining strikethrough
+  // mark must land after the whole code point, not after half a surrogate pair.
+  function strikethroughText(s) { return Array.from(s).map(function (c) { return c + "̶"; }).join(""); }
   var UPSIDE_MAP = { a: "ɐ", b: "q", c: "ɔ", d: "p", e: "ǝ", f: "ɟ", g: "ƃ", h: "ɥ",
     i: "ı", j: "ɾ", k: "ʞ", l: "l", m: "ɯ", n: "u", o: "o", p: "d", q: "b", r: "ɹ",
     s: "s", t: "ʇ", u: "n", v: "ʌ", w: "ʍ", x: "x", y: "ʎ", z: "z",
@@ -411,7 +439,10 @@
     "0": "0", "1": "⇂", "2": "ᄅ", "3": "Ɛ", "4": "ㄣ", "5": "ϛ", "6": "9", "9": "6",
     "7": "ㄥ", "8": "8", ".": "˙", ",": "'", "'": ",", "?": "¿", "!": "¡", "(": ")", ")": "(" };
   function upsideDownText(s) {
-    return s.split("").map(function (c) { return UPSIDE_MAP[c] !== undefined ? UPSIDE_MAP[c] : c; }).reverse().join("");
+    // Array.from, same reasoning as reverseText above — otherwise reversing
+    // a surrogate-pair character (most emoji) splits it into two lone
+    // surrogates before either half can be reunited.
+    return Array.from(s).map(function (c) { return UPSIDE_MAP[c] !== undefined ? UPSIDE_MAP[c] : c; }).reverse().join("");
   }
   var BOLD_MAP = (function () {
     var m = {}, i;
@@ -664,8 +695,18 @@
     loadQrLib().then(function () {
       if (editor.value !== text) return; // input changed again while the library was loading
       qrCanvasEl.innerHTML = "";
-      qrInstance = new window.QRCode(qrCanvasEl, { text: text, width: 200, height: 200 });
-      qrHintEl.hidden = true;
+      // The QR library throws (a raw, technical exception, e.g. "Cannot read
+      // properties of undefined") once text exceeds the format's real
+      // capacity, rather than returning an error — surfacing that message
+      // as-is contradicts this page's own FAQ ("if that happens, shorten the
+      // text"), so catch it here and show that same actionable guidance.
+      try {
+        qrInstance = new window.QRCode(qrCanvasEl, { text: text, width: 200, height: 200 });
+        qrHintEl.hidden = true;
+      } catch (e) {
+        qrHintEl.textContent = "This text is too long to fit in a QR code — try shortening it.";
+        qrHintEl.hidden = false;
+      }
     }).catch(function (e) {
       qrHintEl.textContent = e.message;
       qrHintEl.hidden = false;

@@ -237,6 +237,47 @@ test("csvToJson and jsonToCsv round-trip a simple table", () => {
   assert.equal(t.jsonToCsv(t.csvToJson(csv)), csv);
 });
 
+test("csvToJson keeps a quoted field's embedded newline inside a single row", () => {
+  // Regression test: a quoted CSV field is allowed to contain a literal "\n"
+  // (a multi-line address or note is the common real case) — splitting the
+  // input into lines before parsing quotes used to tear that field in two,
+  // producing an extra bogus row instead of one row with a multi-line value.
+  const csv = 'name,note\nAda,"line1\nline2"\nGrace,simple';
+  const out = JSON.parse(t.csvToJson(csv));
+  assert.deepEqual(out, [
+    { name: "Ada", note: "line1\nline2" },
+    { name: "Grace", note: "simple" },
+  ]);
+});
+
+test("jsonToCsv and csvToJson round-trip a value with an embedded newline", () => {
+  const data = [{ name: "Ada", note: "line1\nline2" }, { name: "Grace", note: "simple" }];
+  const roundTripped = JSON.parse(t.csvToJson(t.jsonToCsv(JSON.stringify(data))));
+  assert.deepEqual(roundTripped, data);
+});
+
+test("jsonToCsv unions keys across all rows instead of only the first row's", () => {
+  // Regression test: a header built from data[0]'s keys alone silently
+  // dropped any field present only on a later object — real-world JSON
+  // arrays commonly have sparse/optional fields, so this is the normal case,
+  // not an edge case.
+  const data = [{ name: "Ada" }, { name: "Grace", extra: "keep me" }];
+  const out = t.jsonToCsv(JSON.stringify(data));
+  assert.equal(out, "name,extra\nAda,\nGrace,keep me");
+});
+
+test("reverseText, strikethroughText and upsideDownText keep surrogate-pair characters intact", () => {
+  // Regression test: iterating with split("") (or reversing char-by-char)
+  // operates on UTF-16 code units, not Unicode code points — a surrogate-pair
+  // character (most emoji, e.g. the globe below) got torn into two lone
+  // surrogates, producing invalid text (encodeURIComponent throws on it).
+  const emoji = "🌍";
+  assert.doesNotThrow(() => encodeURIComponent(t.reverseText("Hi " + emoji + "!")));
+  assert.doesNotThrow(() => encodeURIComponent(t.strikethroughText("Hi " + emoji + "!")));
+  assert.doesNotThrow(() => encodeURIComponent(t.upsideDownText("Hi " + emoji + "!")));
+  assert.equal(t.reverseText("a" + emoji + "b"), "b" + emoji + "a");
+});
+
 test("nextChipValue toggles the same chip back to \"none\", switches chip otherwise", () => {
   // Regression test: clicking an already-active picker chip used to be a
   // no-op, leaving no way back to the default word/character counter view
