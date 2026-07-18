@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HTML Entity Encoder — Escape Special Characters | Textbench</title>
-<meta name="description" content="Escape text for safe use inside HTML — converts &lt;, &gt;, &amp;, quotes and apostrophes to their HTML entity equivalents. Free, instant, browser-only.">
-<link rel="canonical" href="https://textbench.app/tools/html-entity-encode">
-<meta property="og:title" content="HTML Entity Encoder — Escape Special Characters">
-<meta property="og:description" content="Escape text for safe use inside HTML — converts &lt;, &gt;, &amp;, quotes and apostrophes to their HTML entity equivalents. Free, instant, browser-only.">
+<title>Twitter / X Character Counter — 280 Character Limit | Textbench</title>
+<meta name="description" content="Count characters against X's 280-character post limit, live as you type, with the number remaining turning red once you go over. Free, instant, browser-only.">
+<link rel="canonical" href="https://textbench.app/tools/twitter-character-counter">
+<meta property="og:title" content="Twitter / X Character Counter — 280 Character Limit">
+<meta property="og:description" content="Count characters against X's 280-character post limit, live as you type, with the number remaining turning red once you go over. Free, instant, browser-only.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://textbench.app/tools/html-entity-encode">
+<meta property="og:url" content="https://textbench.app/tools/twitter-character-counter">
 <meta property="og:image" content="https://textbench.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://textbench.app/assets/og-image.png">
@@ -22,9 +22,9 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/html-entity-encode","description":"Escape text for safe use inside HTML — converts <, >, &, quotes and apostrophes to their HTML entity equivalents. Free, instant, browser-only.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-17","dateModified":"2026-07-17"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"HTML Encode","item":"https://textbench.app/tools/html-entity-encode"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why would I need to escape text before putting it in HTML?","acceptedAnswer":{"@type":"Answer","text":"If user-provided or arbitrary text is inserted into an HTML page without escaping, characters like < and > can be interpreted as markup — at best breaking the layout, at worst creating an XSS vulnerability. Escaping neutralizes that."}},{"@type":"Question","name":"Does this escape every possible character?","acceptedAnswer":{"@type":"Answer","text":"It escapes the five characters that matter for HTML safety: <, >, &, \" and '. That covers the standard XSS-prevention case; it doesn't transliterate accented letters or emoji, which don't need escaping in HTML."}},{"@type":"Question","name":"Is this a substitute for proper server-side sanitization?","acceptedAnswer":{"@type":"Answer","text":"For anything security-sensitive (rendering user input in a real application), use your framework's built-in escaping at the point of output — this tool is for one-off manual encoding, not a runtime security control."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/twitter-character-counter","description":"Count characters against X's 280-character post limit, live as you type, with the number remaining turning red once you go over. Free, instant, browser-only.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-17","dateModified":"2026-07-17"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"X / Twitter Counter","item":"https://textbench.app/tools/twitter-character-counter"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does X count links and mentions differently?","acceptedAnswer":{"@type":"Answer","text":"Yes — X shortens URLs to a fixed length (currently 23 characters) regardless of the real link length, and this counter can't know that, so a post full of links may show as \"over\" here while actually fitting on X. Treat plain text counts as exact and link-heavy posts as an estimate."}},{"@type":"Question","name":"Do emoji count as one character on X?","acceptedAnswer":{"@type":"Answer","text":"Most single emoji count as 2 characters on X's own counter (it counts in UTF-16 code units), which can differ from this tool's count for emoji-heavy text — for plain text they'll match."}},{"@type":"Question","name":"Is 280 the limit for everyone?","acceptedAnswer":{"@type":"Answer","text":"280 is the standard limit for most accounts. Some subscription tiers get a much higher limit, in which case this specific page isn't the right target — use the plain character counter instead and track your own limit."}}]}</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2653891546345771" crossorigin="anonymous"></script>
 
 </head>
@@ -43,44 +43,14 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 <main class="wrap" id="main">
 
   <section class="hero">
-    <span class="eyebrow">HTML Encode</span>
-    <h1>HTML Entity Encoder — Escape Special Characters</h1>
-    <p class="lede">Paste text below to escape it for safe embedding inside HTML — the characters that would otherwise be interpreted as markup (&lt;, &gt;, &amp;, &quot;, ') are converted to their entity codes.</p>
+    <span class="eyebrow">X / Twitter Counter</span>
+    <h1>Twitter / X Character Counter — 280 Character Limit</h1>
+    <p class="lede">Type or paste your post below and watch the &quot;left of 280&quot; counter — it turns red the moment you go over, so you know exactly how much to trim before you paste it into X.</p>
   </section>
   
-  <section class="tool" data-transform="html-entities-encode" data-shape="simple">
+  <section class="tool" data-transform="none" data-shape="counter">
     
-    
-    <div class="extra-row" data-for="find-replace" hidden>
-      <label class="field"><span>Find</span><input type="text" id="findInput" placeholder="text or pattern"></label>
-      <label class="field"><span>Replace with</span><input type="text" id="replaceInput" placeholder="replacement"></label>
-      <label class="check"><input type="checkbox" id="regexToggle"> Regex mode</label>
-    </div>
-    
-    <div class="extra-row" data-for="text-repeater" hidden>
-      <label class="field field--num"><span>Repeat</span><input type="number" id="repeatCount" min="1" max="1000" value="5"></label>
-    </div>
-    
-    <div class="extra-row" data-for="lorem-ipsum" hidden>
-      <label class="field field--num"><span>Paragraphs</span><input type="number" id="loremCount" min="1" max="50" value="3"></label>
-    </div>
-    
-    <div class="extra-row" data-for="uuid-generator" hidden>
-      <label class="field field--num"><span>How many</span><input type="number" id="uuidCount" min="1" max="200" value="5"></label>
-    </div>
-    
-    <div class="extra-row" data-for="password-generator" hidden>
-      <label class="field field--num"><span>Length</span><input type="number" id="pwLength" min="4" max="128" value="16"></label>
-      <label class="check"><input type="checkbox" id="pwUpper" checked> Uppercase</label>
-      <label class="check"><input type="checkbox" id="pwNumbers" checked> Numbers</label>
-      <label class="check"><input type="checkbox" id="pwSymbols"> Symbols</label>
-    </div>
-    <label for="editor">Your text</label>
-    <textarea id="editor" class="editor" placeholder="Type or paste your text here…" spellcheck="true"></textarea>
-    <label for="output">Result</label>
-    <textarea id="output" class="editor editor--output" readonly aria-live="polite" placeholder="Result appears here…"></textarea>
-    
-    <div class="stats" role="status" aria-live="polite">
+    <div class="stats" role="status" aria-live="polite" data-limit="280">
       <div class="stat" data-stat="words">
         <span class="stat-num" data-count="words">0</span>
         <span class="stat-label">words</span>
@@ -89,7 +59,10 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         <span class="stat-num" data-count="characters">0</span>
         <span class="stat-label">characters</span>
       </div>
-      
+      <div class="stat stat--limit" data-stat="remaining">
+        <span class="stat-num" data-count="remaining">280</span>
+        <span class="stat-label">left of 280</span>
+      </div>
       <div class="stat" data-stat="charactersNoSpaces">
         <span class="stat-num" data-count="charactersNoSpaces">0</span>
         <span class="stat-label">no spaces</span>
@@ -103,9 +76,10 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         <span class="stat-label">min read</span>
       </div>
     </div>
+    <label class="sr-only" for="editor">Your text</label>
+    <textarea id="editor" class="editor" placeholder="Type or paste your text here…" spellcheck="true"></textarea>
     <div class="tool-actions">
-      <button type="button" class="btn" id="copyBtn">Copy result</button>
-      <button type="button" class="btn" id="downloadBtn">Download .txt</button>
+      <button type="button" class="btn" id="copyBtn">Copy text</button>
       <button type="button" class="btn" id="clearBtn">Clear</button>
     </div>
   </section>
@@ -115,9 +89,9 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   <section class="faq">
     <h2>Common questions</h2>
     <div class="faq-grid">
-      <div class="faq-item"><h3>Why would I need to escape text before putting it in HTML?</h3><p>If user-provided or arbitrary text is inserted into an HTML page without escaping, characters like &lt; and &gt; can be interpreted as markup — at best breaking the layout, at worst creating an XSS vulnerability. Escaping neutralizes that.</p></div>
-      <div class="faq-item"><h3>Does this escape every possible character?</h3><p>It escapes the five characters that matter for HTML safety: &lt;, &gt;, &amp;, &quot; and '. That covers the standard XSS-prevention case; it doesn't transliterate accented letters or emoji, which don't need escaping in HTML.</p></div>
-      <div class="faq-item"><h3>Is this a substitute for proper server-side sanitization?</h3><p>For anything security-sensitive (rendering user input in a real application), use your framework's built-in escaping at the point of output — this tool is for one-off manual encoding, not a runtime security control.</p></div>
+      <div class="faq-item"><h3>Does X count links and mentions differently?</h3><p>Yes — X shortens URLs to a fixed length (currently 23 characters) regardless of the real link length, and this counter can't know that, so a post full of links may show as &quot;over&quot; here while actually fitting on X. Treat plain text counts as exact and link-heavy posts as an estimate.</p></div>
+      <div class="faq-item"><h3>Do emoji count as one character on X?</h3><p>Most single emoji count as 2 characters on X's own counter (it counts in UTF-16 code units), which can differ from this tool's count for emoji-heavy text — for plain text they'll match.</p></div>
+      <div class="faq-item"><h3>Is 280 the limit for everyone?</h3><p>280 is the standard limit for most accounts. Some subscription tiers get a much higher limit, in which case this specific page isn't the right target — use the plain character counter instead and track your own limit.</p></div>
     </div>
   </section>
   
@@ -126,7 +100,6 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
     <div class="related-grid">
       <a href="/tools/word-counter">Word Counter</a>
       <a href="/tools/character-counter">Character Counter</a>
-      <a href="/tools/twitter-character-counter">X / Twitter Counter</a>
       <a href="/tools/meta-description-length-checker">Meta Description</a>
       <a href="/tools/youtube-title-length-checker">YouTube Title</a>
       <a href="/tools/reading-time-calculator">Reading Time</a>
@@ -157,6 +130,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/base64-decode">Base64 Decode</a>
       <a href="/tools/url-encode">URL Encode</a>
       <a href="/tools/url-decode">URL Decode</a>
+      <a href="/tools/html-entity-encode">HTML Encode</a>
       <a href="/tools/html-entity-decode">HTML Decode</a>
       <a href="/tools/text-to-binary">Text to Binary</a>
       <a href="/tools/binary-to-text">Binary to Text</a>

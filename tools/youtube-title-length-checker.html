@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HTML Entity Encoder — Escape Special Characters | Textbench</title>
-<meta name="description" content="Escape text for safe use inside HTML — converts &lt;, &gt;, &amp;, quotes and apostrophes to their HTML entity equivalents. Free, instant, browser-only.">
-<link rel="canonical" href="https://textbench.app/tools/html-entity-encode">
-<meta property="og:title" content="HTML Entity Encoder — Escape Special Characters">
-<meta property="og:description" content="Escape text for safe use inside HTML — converts &lt;, &gt;, &amp;, quotes and apostrophes to their HTML entity equivalents. Free, instant, browser-only.">
+<title>YouTube Title Length Checker — Stay Under 100 Characters | Textbench</title>
+<meta name="description" content="Check a video title against YouTube's 100-character title limit, live as you type, with the remaining count turning red once you go over. Free, browser-only.">
+<link rel="canonical" href="https://textbench.app/tools/youtube-title-length-checker">
+<meta property="og:title" content="YouTube Title Length Checker — Stay Under 100 Characters">
+<meta property="og:description" content="Check a video title against YouTube's 100-character title limit, live as you type, with the remaining count turning red once you go over. Free, browser-only.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://textbench.app/tools/html-entity-encode">
+<meta property="og:url" content="https://textbench.app/tools/youtube-title-length-checker">
 <meta property="og:image" content="https://textbench.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://textbench.app/assets/og-image.png">
@@ -22,9 +22,9 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/html-entity-encode","description":"Escape text for safe use inside HTML — converts <, >, &, quotes and apostrophes to their HTML entity equivalents. Free, instant, browser-only.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-17","dateModified":"2026-07-17"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"HTML Encode","item":"https://textbench.app/tools/html-entity-encode"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why would I need to escape text before putting it in HTML?","acceptedAnswer":{"@type":"Answer","text":"If user-provided or arbitrary text is inserted into an HTML page without escaping, characters like < and > can be interpreted as markup — at best breaking the layout, at worst creating an XSS vulnerability. Escaping neutralizes that."}},{"@type":"Question","name":"Does this escape every possible character?","acceptedAnswer":{"@type":"Answer","text":"It escapes the five characters that matter for HTML safety: <, >, &, \" and '. That covers the standard XSS-prevention case; it doesn't transliterate accented letters or emoji, which don't need escaping in HTML."}},{"@type":"Question","name":"Is this a substitute for proper server-side sanitization?","acceptedAnswer":{"@type":"Answer","text":"For anything security-sensitive (rendering user input in a real application), use your framework's built-in escaping at the point of output — this tool is for one-off manual encoding, not a runtime security control."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/youtube-title-length-checker","description":"Check a video title against YouTube's 100-character title limit, live as you type, with the remaining count turning red once you go over. Free, browser-only.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-17","dateModified":"2026-07-17"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"YouTube Title","item":"https://textbench.app/tools/youtube-title-length-checker"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is 100 characters a hard limit on YouTube?","acceptedAnswer":{"@type":"Answer","text":"Yes — YouTube's title field hard-stops accepting input at 100 characters, so a title that goes over this limit will simply get cut off at upload rather than rejected with a warning."}},{"@type":"Question","name":"Does YouTube truncate titles shorter than that in search results?","acceptedAnswer":{"@type":"Answer","text":"Yes — search and suggested-video listings typically show far fewer characters (often 60–70) before truncating with an ellipsis, especially on mobile, even though the full 100 are stored and shown on the watch page itself."}},{"@type":"Question","name":"Do emoji in titles count against the limit?","acceptedAnswer":{"@type":"Answer","text":"Yes, and similarly to other platforms a multi-part emoji (skin tone or flag combinations) can count as more than one character — leave a little headroom if your title is emoji-heavy."}}]}</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2653891546345771" crossorigin="anonymous"></script>
 
 </head>
@@ -43,44 +43,14 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 <main class="wrap" id="main">
 
   <section class="hero">
-    <span class="eyebrow">HTML Encode</span>
-    <h1>HTML Entity Encoder — Escape Special Characters</h1>
-    <p class="lede">Paste text below to escape it for safe embedding inside HTML — the characters that would otherwise be interpreted as markup (&lt;, &gt;, &amp;, &quot;, ') are converted to their entity codes.</p>
+    <span class="eyebrow">YouTube Title</span>
+    <h1>YouTube Title Length Checker — Stay Under 100 Characters</h1>
+    <p class="lede">Paste a draft video title below — the &quot;left of 100&quot; counter turns red the moment you exceed YouTube's hard title limit, so you catch it before the upload form does.</p>
   </section>
   
-  <section class="tool" data-transform="html-entities-encode" data-shape="simple">
+  <section class="tool" data-transform="none" data-shape="counter">
     
-    
-    <div class="extra-row" data-for="find-replace" hidden>
-      <label class="field"><span>Find</span><input type="text" id="findInput" placeholder="text or pattern"></label>
-      <label class="field"><span>Replace with</span><input type="text" id="replaceInput" placeholder="replacement"></label>
-      <label class="check"><input type="checkbox" id="regexToggle"> Regex mode</label>
-    </div>
-    
-    <div class="extra-row" data-for="text-repeater" hidden>
-      <label class="field field--num"><span>Repeat</span><input type="number" id="repeatCount" min="1" max="1000" value="5"></label>
-    </div>
-    
-    <div class="extra-row" data-for="lorem-ipsum" hidden>
-      <label class="field field--num"><span>Paragraphs</span><input type="number" id="loremCount" min="1" max="50" value="3"></label>
-    </div>
-    
-    <div class="extra-row" data-for="uuid-generator" hidden>
-      <label class="field field--num"><span>How many</span><input type="number" id="uuidCount" min="1" max="200" value="5"></label>
-    </div>
-    
-    <div class="extra-row" data-for="password-generator" hidden>
-      <label class="field field--num"><span>Length</span><input type="number" id="pwLength" min="4" max="128" value="16"></label>
-      <label class="check"><input type="checkbox" id="pwUpper" checked> Uppercase</label>
-      <label class="check"><input type="checkbox" id="pwNumbers" checked> Numbers</label>
-      <label class="check"><input type="checkbox" id="pwSymbols"> Symbols</label>
-    </div>
-    <label for="editor">Your text</label>
-    <textarea id="editor" class="editor" placeholder="Type or paste your text here…" spellcheck="true"></textarea>
-    <label for="output">Result</label>
-    <textarea id="output" class="editor editor--output" readonly aria-live="polite" placeholder="Result appears here…"></textarea>
-    
-    <div class="stats" role="status" aria-live="polite">
+    <div class="stats" role="status" aria-live="polite" data-limit="100">
       <div class="stat" data-stat="words">
         <span class="stat-num" data-count="words">0</span>
         <span class="stat-label">words</span>
@@ -89,7 +59,10 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         <span class="stat-num" data-count="characters">0</span>
         <span class="stat-label">characters</span>
       </div>
-      
+      <div class="stat stat--limit" data-stat="remaining">
+        <span class="stat-num" data-count="remaining">100</span>
+        <span class="stat-label">left of 100</span>
+      </div>
       <div class="stat" data-stat="charactersNoSpaces">
         <span class="stat-num" data-count="charactersNoSpaces">0</span>
         <span class="stat-label">no spaces</span>
@@ -103,9 +76,10 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         <span class="stat-label">min read</span>
       </div>
     </div>
+    <label class="sr-only" for="editor">Your text</label>
+    <textarea id="editor" class="editor" placeholder="Type or paste your text here…" spellcheck="true"></textarea>
     <div class="tool-actions">
-      <button type="button" class="btn" id="copyBtn">Copy result</button>
-      <button type="button" class="btn" id="downloadBtn">Download .txt</button>
+      <button type="button" class="btn" id="copyBtn">Copy text</button>
       <button type="button" class="btn" id="clearBtn">Clear</button>
     </div>
   </section>
@@ -115,9 +89,9 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   <section class="faq">
     <h2>Common questions</h2>
     <div class="faq-grid">
-      <div class="faq-item"><h3>Why would I need to escape text before putting it in HTML?</h3><p>If user-provided or arbitrary text is inserted into an HTML page without escaping, characters like &lt; and &gt; can be interpreted as markup — at best breaking the layout, at worst creating an XSS vulnerability. Escaping neutralizes that.</p></div>
-      <div class="faq-item"><h3>Does this escape every possible character?</h3><p>It escapes the five characters that matter for HTML safety: &lt;, &gt;, &amp;, &quot; and '. That covers the standard XSS-prevention case; it doesn't transliterate accented letters or emoji, which don't need escaping in HTML.</p></div>
-      <div class="faq-item"><h3>Is this a substitute for proper server-side sanitization?</h3><p>For anything security-sensitive (rendering user input in a real application), use your framework's built-in escaping at the point of output — this tool is for one-off manual encoding, not a runtime security control.</p></div>
+      <div class="faq-item"><h3>Is 100 characters a hard limit on YouTube?</h3><p>Yes — YouTube's title field hard-stops accepting input at 100 characters, so a title that goes over this limit will simply get cut off at upload rather than rejected with a warning.</p></div>
+      <div class="faq-item"><h3>Does YouTube truncate titles shorter than that in search results?</h3><p>Yes — search and suggested-video listings typically show far fewer characters (often 60–70) before truncating with an ellipsis, especially on mobile, even though the full 100 are stored and shown on the watch page itself.</p></div>
+      <div class="faq-item"><h3>Do emoji in titles count against the limit?</h3><p>Yes, and similarly to other platforms a multi-part emoji (skin tone or flag combinations) can count as more than one character — leave a little headroom if your title is emoji-heavy.</p></div>
     </div>
   </section>
   
@@ -128,7 +102,6 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/character-counter">Character Counter</a>
       <a href="/tools/twitter-character-counter">X / Twitter Counter</a>
       <a href="/tools/meta-description-length-checker">Meta Description</a>
-      <a href="/tools/youtube-title-length-checker">YouTube Title</a>
       <a href="/tools/reading-time-calculator">Reading Time</a>
       <a href="/tools/uppercase-converter">UPPERCASE</a>
       <a href="/tools/lowercase-converter">lowercase</a>
@@ -157,6 +130,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/tools/base64-decode">Base64 Decode</a>
       <a href="/tools/url-encode">URL Encode</a>
       <a href="/tools/url-decode">URL Decode</a>
+      <a href="/tools/html-entity-encode">HTML Encode</a>
       <a href="/tools/html-entity-decode">HTML Decode</a>
       <a href="/tools/text-to-binary">Text to Binary</a>
       <a href="/tools/binary-to-text">Binary to Text</a>

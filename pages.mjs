@@ -55,6 +55,57 @@ export const PAGES = [
     ],
   },
   {
+    slug: "twitter-character-counter",
+    eyebrow: "X / Twitter Counter",
+    title: "Twitter / X Character Counter — 280 Character Limit",
+    description:
+      "Count characters against X's 280-character post limit, live as you type, with the number remaining turning red once you go over. Free, instant, browser-only.",
+    intro:
+      "Type or paste your post below and watch the \"left of 280\" counter — it turns red the moment you go over, so you know exactly how much to trim before you paste it into X.",
+    transform: "none",
+    shape: "counter",
+    limit: 280,
+    faq: [
+      { q: "Does X count links and mentions differently?", a: "Yes — X shortens URLs to a fixed length (currently 23 characters) regardless of the real link length, and this counter can't know that, so a post full of links may show as \"over\" here while actually fitting on X. Treat plain text counts as exact and link-heavy posts as an estimate." },
+      { q: "Do emoji count as one character on X?", a: "Most single emoji count as 2 characters on X's own counter (it counts in UTF-16 code units), which can differ from this tool's count for emoji-heavy text — for plain text they'll match." },
+      { q: "Is 280 the limit for everyone?", a: "280 is the standard limit for most accounts. Some subscription tiers get a much higher limit, in which case this specific page isn't the right target — use the plain character counter instead and track your own limit." },
+    ],
+  },
+  {
+    slug: "meta-description-length-checker",
+    eyebrow: "Meta Description",
+    title: "Meta Description Length Checker — Stay Under ~155 Characters",
+    description:
+      "Check a meta description against the ~155-character length Google typically shows in search results, live as you type. Free, instant, browser-only.",
+    intro:
+      "Paste a draft meta description below and watch the \"left of 155\" counter — it turns red once you're past the length Google typically displays before truncating with an ellipsis in search results.",
+    transform: "none",
+    shape: "counter",
+    limit: 155,
+    faq: [
+      { q: "Why 155 and not some other number?", a: "155–160 characters is the commonly cited safe zone for Google's search snippet before it starts truncating, though the exact cutoff varies by pixel width, font, and device rather than a fixed character count — 155 is a reliable, conservative target." },
+      { q: "Does going over 155 mean Google won't show my description?", a: "No — Google may still display it, sometimes rewriting or truncating it with an ellipsis, or replacing it entirely with page text it judges more relevant to the search query. Staying under the limit just improves the odds your own wording is what shows." },
+      { q: "Should title tags use this same limit?", a: "No — title tags have their own, shorter effective limit (closer to 50–60 characters). Use the plain character counter for titles and treat this page's 155 target as meta-description-specific." },
+    ],
+  },
+  {
+    slug: "youtube-title-length-checker",
+    eyebrow: "YouTube Title",
+    title: "YouTube Title Length Checker — Stay Under 100 Characters",
+    description:
+      "Check a video title against YouTube's 100-character title limit, live as you type, with the remaining count turning red once you go over. Free, browser-only.",
+    intro:
+      "Paste a draft video title below — the \"left of 100\" counter turns red the moment you exceed YouTube's hard title limit, so you catch it before the upload form does.",
+    transform: "none",
+    shape: "counter",
+    limit: 100,
+    faq: [
+      { q: "Is 100 characters a hard limit on YouTube?", a: "Yes — YouTube's title field hard-stops accepting input at 100 characters, so a title that goes over this limit will simply get cut off at upload rather than rejected with a warning." },
+      { q: "Does YouTube truncate titles shorter than that in search results?", a: "Yes — search and suggested-video listings typically show far fewer characters (often 60–70) before truncating with an ellipsis, especially on mobile, even though the full 100 are stored and shown on the watch page itself." },
+      { q: "Do emoji in titles count against the limit?", a: "Yes, and similarly to other platforms a multi-part emoji (skin tone or flag combinations) can count as more than one character — leave a little headroom if your title is emoji-heavy." },
+    ],
+  },
+  {
     slug: "reading-time-calculator",
     eyebrow: "Reading Time",
     title: "Reading Time Calculator — How Long To Read This?",
@@ -778,10 +829,22 @@ export function renderTool(p = {}) {
         <span class="stat-label">${label}</span>
       </div>`;
 
+  // A page-specific character limit (e.g. a platform's post length cap) adds
+  // one extra stat card showing how much room is left, going red past zero.
+  // Purely additive: pages with no `limit` render the stats bar exactly as
+  // before. See assets/app.js's render() for the data-limit read.
+  const limitStat = p.limit
+    ? `<div class="stat stat--limit" data-stat="remaining">
+        <span class="stat-num" data-count="remaining">${p.limit}</span>
+        <span class="stat-label">left of ${p.limit}</span>
+      </div>`
+    : "";
+
   const statsBar = `
-    <div class="stats" role="status" aria-live="polite">
+    <div class="stats" role="status" aria-live="polite"${p.limit ? ` data-limit="${p.limit}"` : ""}>
       ${stat("words", "words")}
       ${stat("characters", "characters")}
+      ${limitStat}
       ${stat("charactersNoSpaces", "no spaces")}
       ${stat("sentences", "sentences")}
       ${stat("reading", "min read")}

@@ -408,6 +408,11 @@
     return fn(text);
   }
 
+  var statsEl = document.querySelector(".stats");
+  var limitVal = statsEl && statsEl.getAttribute("data-limit") ? parseInt(statsEl.getAttribute("data-limit"), 10) : null;
+  var limitNumEl = document.querySelector('[data-count="remaining"]');
+  var limitCardEl = document.querySelector(".stat--limit");
+
   var renderToken = 0;
   function render() {
     var myToken = ++renderToken;
@@ -421,6 +426,11 @@
         var key = el.getAttribute("data-count");
         if (key in c) el.textContent = fmt(c[key]);
       });
+      if (limitVal !== null && limitNumEl) {
+        var remaining = limitVal - c.characters;
+        limitNumEl.textContent = fmt(remaining);
+        if (limitCardEl) limitCardEl.classList.toggle("is-over", remaining < 0);
+      }
       if (output) output.value = resultText;
     });
   }
