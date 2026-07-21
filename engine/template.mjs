@@ -77,6 +77,30 @@ export function adSlot() {
   return `<div class="ad-slot ad-slot--placeholder" aria-hidden="true"><!-- one ad unit renders here once AdSense is configured (scripts/enable-adsense.mjs); reserved so the layout never shifts on launch --></div>`;
 }
 
+/**
+ * A single, clearly-labeled affiliate recommendation card, split by audience
+ * ("writing" vs "dev" — see pages.mjs affiliateAudience()). Renders nothing
+ * until the matching pair of config vars is set (same off-by-default pattern
+ * as adSlot()) — never a dead or placeholder link. One partner, one line of
+ * copy, no banner imagery, positioned AFTER the ad slot and FAQ so it never
+ * competes with the paid ad or the tool itself.
+ */
+// cfg defaults to the real site.config.mjs values, keyed by audience; tests
+// pass an explicit pair so both the "off" and "configured" branches are
+// checkable without mocking a module of `const` bindings.
+export function affiliateSlot(audience, cfg) {
+  const writing = { name: C.AFFILIATE_WRITING_NAME, url: C.AFFILIATE_WRITING_URL, blurb: C.AFFILIATE_WRITING_BLURB };
+  const dev = { name: C.AFFILIATE_DEV_NAME, url: C.AFFILIATE_DEV_URL, blurb: C.AFFILIATE_DEV_BLURB };
+  const { name, url, blurb } = cfg || (audience === "dev" ? dev : writing);
+  if (!name || !url || !blurb) return "";
+  return `
+  <aside class="affiliate-card">
+    <p class="affiliate-label">Sponsored</p>
+    <p>${esc(blurb)}</p>
+    <a href="${esc(url)}" rel="sponsored noopener" target="_blank">Try ${esc(name)} →</a>
+  </aside>`;
+}
+
 export const faqSchema = (faq) =>
   faq && faq.length
     ? `<script type="application/ld+json">${JSON.stringify({

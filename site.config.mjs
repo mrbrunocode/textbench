@@ -62,6 +62,18 @@ export const GA_ID = "G-LJCXH0BF41";
 export const ADSENSE_PUB = "ca-pub-2653891546345771";
 export const ADSENSE_SLOT = "";
 
+// Affiliate recommendation card, split by audience: "writing" tools (case
+// converters, counters, cleanup) get a writing-tool partner; "dev" tools
+// (encode/decode, hash, JSON/YAML/CSV, generators) get a dev-tool partner.
+// Both empty until real affiliate accounts exist — see engine/template.mjs
+// affiliateSlot() for the off-by-default rendering rule.
+export const AFFILIATE_WRITING_NAME = "";
+export const AFFILIATE_WRITING_URL = "";
+export const AFFILIATE_WRITING_BLURB = "";
+export const AFFILIATE_DEV_NAME = "";
+export const AFFILIATE_DEV_URL = "";
+export const AFFILIATE_DEV_BLURB = "";
+
 // Google Fonts to preload/link in every <head>. Inter (UI) + JetBrains Mono
 // (the big number/output display) is the design system's pairing — see
 // design-system/tokens/typography.css.

@@ -1022,6 +1022,26 @@ export const PAGES = [
 // Grouped into optgroups — 40+ flat options in one dropdown is unusable;
 // grouping by what the tool DOES (not the underlying implementation) is
 // how a visitor actually thinks about picking one.
+// Which TRANSFORM_GROUPS read as "developer" tools vs "writing" tools — used
+// to pick which of the two affiliate partners (see site.config.mjs) fits a
+// given page, rather than forcing one partner on a 43-tool spread that's
+// genuinely two different audiences.
+const DEV_GROUPS = new Set(["Encode & decode", "Format & validate", "Convert data formats", "Hash"]);
+// "Generate" is a mixed group — slugify/text-repeater/find-replace/lorem-ipsum
+// read as writing tools, but uuid-generator and password-generator are
+// squarely developer/security tools (a VPN fits a password generator far
+// better than a grammar checker does) — override those two individually
+// rather than splitting the whole group over two entries.
+const DEV_TRANSFORMS = new Set(["uuid-generator", "password-generator"]);
+
+export function affiliateAudience(transform) {
+  if (DEV_TRANSFORMS.has(transform)) return "dev";
+  for (const [group, opts] of TRANSFORM_GROUPS) {
+    if (opts.some(([v]) => v === transform)) return DEV_GROUPS.has(group) ? "dev" : "writing";
+  }
+  return "writing";
+}
+
 export const TRANSFORM_GROUPS = [
   ["Count & analyze", [
     ["none", "Word / character counter"],

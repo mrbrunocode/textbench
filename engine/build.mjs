@@ -25,8 +25,8 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { mkdir, writeFile, readFile, rm } from "node:fs/promises";
 import * as C from "../site.config.mjs";
-import { renderDocument, adSlot, faqHtml, esc } from "./template.mjs";
-import { PAGES, renderTool } from "../pages.mjs";
+import { renderDocument, adSlot, affiliateSlot, faqHtml, esc } from "./template.mjs";
+import { PAGES, renderTool, affiliateAudience } from "../pages.mjs";
 import { home, about, privacy, terms, contact } from "../content.mjs";
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -59,6 +59,7 @@ function collectionPage(p) {
   ${adSlot()}
   ${p.extra || ""}
   ${faqHtml(p.faq)}
+  ${affiliateSlot(affiliateAudience(p.transform))}
   ${relatedLinks(p.slug)}`;
   return renderDocument({
     title: p.h1 || p.title,

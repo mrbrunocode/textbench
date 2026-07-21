@@ -253,6 +253,20 @@ main.wrap { flex: 1; padding-top: var(--space-6); padding-bottom: var(--space-16
 .ad-slot { margin: var(--space-8) 0; text-align: center; min-height: 90px; }
 .ad-slot--placeholder { min-height: 0; }
 
+/* ---- Affiliate card ---- */
+.affiliate-card {
+  margin-top: var(--space-8); padding: var(--space-4) var(--space-5); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); background: var(--surface); font-size: var(--text-sm);
+}
+.affiliate-card p { margin: 0 0 var(--space-2); color: var(--text-secondary); }
+.affiliate-card p:last-of-type { margin-bottom: var(--space-3); }
+.affiliate-label {
+  font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;
+  color: var(--text-tertiary); margin-bottom: var(--space-2) !important;
+}
+.affiliate-card a { font-weight: 600; color: var(--accent); }
+.affiliate-card a:hover { text-decoration: underline; }
+
 /* ---- FAQ ---- */
 .faq { margin-top: var(--space-12); }
 .faq-grid { display: grid; gap: var(--space-5); margin-top: var(--space-5); }
