@@ -318,3 +318,79 @@ test("runRegexMatch throws for an invalid pattern, for the caller to report", ()
 test("runRegexMatch returns no matches when the pattern doesn't match", () => {
   assert.deepEqual(rw.runRegexMatch("xyz", "", "abc"), []);
 });
+
+test("markdownToText strips headers, emphasis, links, images, lists and blockquotes", () => {
+  const out = t.markdownToText(
+    "# Title\n\nSome **bold** and *italic* and `code` and [a link](https://x.com) and ![alt](img.png).\n\n- one\n- two\n\n> a quote"
+  );
+  assert.ok(!out.includes("#"));
+  assert.ok(!out.includes("**"));
+  assert.ok(!out.includes("`"));
+  assert.ok(!out.includes("["));
+  assert.ok(!out.includes("]("));
+  assert.ok(out.includes("Title"));
+  assert.ok(out.includes("bold"));
+  assert.ok(out.includes("italic"));
+  assert.ok(out.includes("code"));
+  assert.ok(out.includes("a link"));
+  assert.ok(out.includes("alt"));
+  assert.ok(out.includes("one"));
+  assert.ok(out.includes("a quote"));
+});
+
+test("markdownToText keeps fenced code block content but drops the fence markers", () => {
+  const out = t.markdownToText("```\nconst x = 1;\n```");
+  assert.equal(out, "const x = 1;");
+});
+
+test("markdownToText does not interpret markdown syntax inside a fenced code block", () => {
+  const out = t.markdownToText("```\n**not bold**\n```");
+  assert.equal(out, "**not bold**");
+});
+
+test("markdownToText collapses runs of blank lines down to one", () => {
+  const out = t.markdownToText("one\n\n\n\n\ntwo");
+  assert.equal(out, "one\n\ntwo");
+});
+
+test("wordFrequency counts case-insensitively and sorts by count descending", () => {
+  const out = t.wordFrequency("the cat sat on the mat. The Cat ran.");
+  const lines = out.split("\n");
+  assert.equal(lines[0], "the — 3");
+  assert.equal(lines[1], "cat — 2");
+});
+
+test("wordFrequency breaks ties alphabetically", () => {
+  const out = t.wordFrequency("zebra apple");
+  assert.deepEqual(out.split("\n"), ["apple — 1", "zebra — 1"]);
+});
+
+test("wordFrequency returns empty string for empty input", () => {
+  assert.equal(t.wordFrequency(""), "");
+});
+
+test("compareTexts reports identical word/char counts and 100% overlap for identical texts", () => {
+  const c = t.compareTexts("hello world", "hello world");
+  assert.equal(c.wordsA, 2);
+  assert.equal(c.wordsB, 2);
+  assert.equal(c.wordDelta, 0);
+  assert.equal(c.charDelta, 0);
+  assert.equal(c.overlapPct, 100);
+});
+
+test("compareTexts reports 0% overlap for completely disjoint vocabularies", () => {
+  const c = t.compareTexts("apple banana", "xyz qrs");
+  assert.equal(c.overlapPct, 0);
+});
+
+test("compareTexts computes word and character deltas as B minus A", () => {
+  const c = t.compareTexts("one two", "one two three");
+  assert.equal(c.wordDelta, 1);
+  assert.equal(c.charDelta, "one two three".length - "one two".length);
+});
+
+test("compareTexts treats two empty texts as fully overlapping (not a division-by-zero NaN)", () => {
+  const c = t.compareTexts("", "");
+  assert.equal(c.overlapPct, 100);
+  assert.equal(c.wordDelta, 0);
+});

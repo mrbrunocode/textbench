@@ -1,6 +1,6 @@
 # Textbench
 
-> Case conversion, cleanup, encoding, hashing, generators, JSON/YAML/CSV conversion, regex testing and more — 61 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.
+> Case conversion, cleanup, encoding, hashing, generators, JSON/YAML/CSV conversion, regex testing and more — 64 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.
 
 Textbench is a static web app: no signup, no backend, no per-visitor cost. Everything runs client-side.
 
@@ -18,6 +18,8 @@ Textbench is a static web app: no signup, no backend, no per-visitor cost. Every
 - [Meta Description](https://textbench.app/tools/meta-description-length-checker): Check a meta description against the ~155-character length Google typically shows in search results, live as you type. Free, instant, browser-only.
 - [YouTube Title](https://textbench.app/tools/youtube-title-length-checker): Check a video title against YouTube's 100-character title limit, live as you type, with the remaining count turning red once you go over. Free, browser-only.
 - [Reading Time](https://textbench.app/tools/reading-time-calculator): Estimate reading time from your text. Paste an article or script and see how many minutes it takes to read aloud or silently, at your chosen pace.
+- [Word Frequency](https://textbench.app/tools/word-frequency-counter): See which words you use most, sorted by count. Useful for spotting overused words in a draft, or building a quick keyword list. Free, instant, browser-only.
+- [Compare Texts](https://textbench.app/tools/compare-two-texts): Paste two texts and see the word count difference, character count difference, and how much vocabulary they share. A quick stats comparison, not a line-by-line diff.
 - [UPPERCASE](https://textbench.app/tools/uppercase-converter): Convert any text to UPPERCASE instantly. Paste your text, copy the result — no signup, runs entirely in your browser.
 - [lowercase](https://textbench.app/tools/lowercase-converter): Convert any text to lowercase instantly. Paste your text, copy the result — no signup, runs entirely in your browser.
 - [Title Case](https://textbench.app/tools/title-case-converter): Convert text to Title Case, capitalizing the first letter of each word. Free, instant, runs in your browser.
@@ -66,6 +68,7 @@ Textbench is a static web app: no signup, no backend, no per-visitor cost. Every
 - [JSON Validator](https://textbench.app/tools/json-validator): Paste JSON and instantly see whether it's valid — and exactly where the syntax error is if it isn't. Free, browser-only, nothing uploaded.
 - [JSON Minifier](https://textbench.app/tools/json-minifier): Strip all whitespace from JSON down to the smallest valid form, in one line. Free, browser-only, useful before pasting JSON into a size-limited field.
 - [Markdown to HTML](https://textbench.app/tools/markdown-to-html-converter): Convert Markdown to clean HTML — headers, bold/italic, links, lists, code blocks and blockquotes. Free, instant, runs entirely in your browser.
+- [Markdown to Plain Text](https://textbench.app/tools/markdown-to-plain-text): Strip Markdown formatting down to clean plain text — headers, bold/italic, links and lists all lose their markup, keeping just the words. Free, instant, runs entirely in your browser.
 - [MD5 Hash](https://textbench.app/tools/md5-hash-generator): Generate the MD5 hash of any text, entirely in your browser. Free, instant, nothing uploaded.
 - [SHA-256 Hash](https://textbench.app/tools/sha256-hash-generator): Generate the SHA-256 hash of any text using your browser's built-in Web Crypto API. Free, instant, nothing uploaded.
 - [UUID Generator](https://textbench.app/tools/uuid-generator): Generate random UUID v4 identifiers, one or many at once. Free, instant, cryptographically random, browser-only.

@@ -1,0 +1,17 @@
+{
+  "name": "Textbench",
+  "short_name": "Textbench",
+  "description": "Case conversion, cleanup, encoding, hashing, generators, JSON/YAML/CSV conversion, regex testing and more — 64 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0d12",
+  "theme_color": "#0a0d12",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

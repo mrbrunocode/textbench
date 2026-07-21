@@ -197,6 +197,7 @@ export function renderDocument(o) {
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="${ogImage}">
 <link rel="icon" type="image/svg+xml" href="${r}assets/favicon.svg">
+<link rel="manifest" href="${r}manifest.json">
 <meta name="theme-color" content="${themeColor}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -216,7 +217,12 @@ ${headExtra}
     <svg class="logo-mark" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect width="22" height="22" rx="5" fill="currentColor" opacity="0.14"/><text x="11" y="15.5" font-family="Fira Code, monospace" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">#</text></svg>
     ${esc(C.NAME)}
   </a>
-  <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+  <div class="header-actions">
+    <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
+      <span>Search tools</span><kbd>⌘K</kbd>
+    </button>
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+  </div>
 </header>
 <nav class="main-nav" aria-label="Site">
   ${C.NAV.map((n) => `<a href="${n.href}">${esc(n.label)}</a>`).join("\n  ")}

@@ -48,6 +48,20 @@ function relatedLinks(currentSlug) {
   </nav>`;
 }
 
+// Site-wide tools index for the Cmd+K command palette (see assets/app.js).
+// A JSON data island, not an executed script — the palette reads it via
+// JSON.parse(textContent), so this is inert data even if a title ever
+// contained something script-like. Present on every page (via headExtra
+// below) so the palette works the same from any page, including the four
+// prose pages.
+function toolsIndexScript() {
+  // Full absolute paths baked in at build time (not reconstructed client-side
+  // from a bare slug) so the palette never has to guess the collection dir
+  // or the current page's depth — it just navigates to item.path directly.
+  const items = PAGES.map((p) => ({ title: p.eyebrow || p.title, path: `/${C.COLLECTION_DIR}/${p.slug}` }));
+  return `<script id="toolsIndex" type="application/json">${JSON.stringify(items)}</script>`;
+}
+
 function collectionPage(p) {
   const body = `
   <section class="hero">
@@ -69,6 +83,7 @@ function collectionPage(p) {
     faq: p.faq,
     depth: 1,
     bodyHtml: body,
+    headExtra: toolsIndexScript(),
   });
 }
 
@@ -81,6 +96,7 @@ function proseDocument(page) {
     eyebrow: page.title,
     depth: 0,
     bodyHtml: page.bodyHtml,
+    headExtra: toolsIndexScript(),
   });
 }
 
@@ -94,6 +110,7 @@ function homeDocument() {
     canonicalPath: "/",
     depth: 0,
     bodyHtml: body,
+    headExtra: toolsIndexScript(),
   });
 }
 
@@ -111,6 +128,27 @@ function sitemap() {
 ${urls}
 </urlset>
 `;
+}
+
+// manifest.json — generated from the same config as everything else, so its
+// description/theme-color/name can never drift out of sync with the rest of
+// the site the way a hand-maintained static copy would (it previously said
+// "61 free text tools" after the count had grown to 64).
+function manifest() {
+  return JSON.stringify(
+    {
+      name: C.NAME,
+      short_name: C.NAME,
+      description: C.DESCRIPTION,
+      start_url: "/",
+      display: "standalone",
+      background_color: C.THEME_COLOR,
+      theme_color: C.THEME_COLOR,
+      icons: [{ src: "/assets/favicon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" }],
+    },
+    null,
+    2
+  );
 }
 
 function robots() {
@@ -161,6 +199,7 @@ async function main() {
   await writeFile(join(ROOT, "sitemap.xml"), sitemap());
   await writeFile(join(ROOT, "robots.txt"), robots());
   await writeFile(join(ROOT, "llms.txt"), llmsTxt());
+  await writeFile(join(ROOT, "manifest.json"), manifest());
 
   // Keep package.json's description in sync with the live tool count —
   // it's npm metadata only (nothing in the build reads it back), but it's
@@ -172,7 +211,7 @@ async function main() {
     await writeFile(pkgPath, JSON.stringify(pkg, null, 2) + "\n");
   }
 
-  console.log(`Built: index + 4 prose pages + ${n} ${C.COLLECTION_DIR} page(s) + sitemap/robots/llms.`);
+  console.log(`Built: index + 4 prose pages + ${n} ${C.COLLECTION_DIR} page(s) + sitemap/robots/llms/manifest.`);
   console.log(`Site: ${C.NAME} <${C.SITE_URL}>`);
   if (!C.ADSENSE_PUB) console.log("Note: AdSense not configured yet — ad slot renders as a reserved placeholder. See scripts/enable-adsense.mjs.");
 }

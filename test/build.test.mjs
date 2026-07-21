@@ -38,3 +38,19 @@ test("generated page contains its own title and FAQ text", () => {
   assert.ok(html.includes(p.title), "generated page missing its own <title>/heading text");
   assert.ok(html.includes(p.faq[0].q), "generated page missing its first FAQ question");
 });
+
+test("manifest.json is valid JSON with the current tool count, not a stale hand-typed one", () => {
+  const manifest = JSON.parse(readFileSync(join(ROOT, "manifest.json"), "utf8"));
+  assert.equal(manifest.name, C.NAME);
+  assert.equal(manifest.start_url, "/");
+  assert.ok(manifest.icons.length > 0, "manifest should list at least one icon");
+  assert.ok(manifest.description.includes(String(PAGES.length)), "manifest description should mention the current tool count");
+});
+
+test("every generated page links the manifest and the app registers a service worker", () => {
+  const p = PAGES[0];
+  const html = readFileSync(join(ROOT, C.COLLECTION_DIR, `${p.slug}.html`), "utf8");
+  assert.match(html, /<link rel="manifest" href="[^"]*manifest\.json">/);
+  const appJs = readFileSync(join(ROOT, "assets", "app.js"), "utf8");
+  assert.match(appJs, /serviceWorker/);
+});

@@ -122,6 +122,37 @@ export const PAGES = [
     ],
   },
   {
+    slug: "word-frequency-counter",
+    eyebrow: "Word Frequency",
+    title: "Word Frequency Counter — Find Your Most-Used Words",
+    description:
+      "See which words you use most, sorted by count. Useful for spotting overused words in a draft, or building a quick keyword list. Free, instant, browser-only.",
+    intro:
+      "Paste your text and get every distinct word back, sorted by how often it appears — most-used first. Handy for a writer checking whether they've leaned on the same word too many times, or for a quick, informal sense of what a piece of text is actually about.",
+    transform: "word-frequency",
+    shape: "simple",
+    faq: [
+      { q: "Is it case-sensitive?", a: "No — \"Word\" and \"word\" are counted together, since that matches how you'd actually judge whether you've overused a word." },
+      { q: "Are common words like \"the\" and \"and\" filtered out?", a: "No stop-word filtering — every word is counted, including short common ones. For a piece of prose that's usually fine since you're scanning for surprises further down the list; for a proper keyword-extraction use case you'd want to skip past the stop words by eye." },
+      { q: "How are ties broken?", a: "Words with the same count are sorted alphabetically, so the order is stable and predictable rather than depending on where a word first appeared." },
+    ],
+  },
+  {
+    slug: "compare-two-texts",
+    eyebrow: "Compare Texts",
+    title: "Compare Two Texts — Word & Character Count Difference",
+    description:
+      "Paste two texts and see the word count difference, character count difference, and how much vocabulary they share. A quick stats comparison, not a line-by-line diff.",
+    intro:
+      "Paste two versions of a text into the two boxes below to see, at a glance, how different they are: the word and character count gap between them, and roughly what percentage of their vocabulary overlaps. This is a lightweight stats comparison, not a line-by-line diff — if you need to see exactly which lines or words changed, use a dedicated diff checker instead.",
+    shape: "compare",
+    faq: [
+      { q: "Does this show which words or lines actually changed?", a: "No — this only reports counts and an overall overlap percentage, not the specific differences. For a line-by-line or word-by-word diff, use a dedicated diff tool instead; this is meant for a faster, rougher sense of \"how different are these two\"." },
+      { q: "How is \"shared words\" calculated?", a: "It's the percentage overlap between the two texts' sets of distinct lowercase words (a Jaccard similarity) — words appearing in both, divided by the total number of distinct words across both. It's about vocabulary overlap, not word order or exact phrasing." },
+      { q: "Is my text uploaded anywhere?", a: "No. Both texts are compared entirely in your browser — nothing is sent to a server." },
+    ],
+  },
+  {
     slug: "uppercase-converter",
     eyebrow: "UPPERCASE",
     title: "Uppercase Converter — Convert Text to ALL CAPS",
@@ -899,6 +930,22 @@ export const PAGES = [
     ],
   },
   {
+    slug: "markdown-to-plain-text",
+    eyebrow: "Markdown to Plain Text",
+    title: "Markdown to Plain Text Converter — Strip Markdown Formatting",
+    description:
+      "Strip Markdown formatting down to clean plain text — headers, bold/italic, links and lists all lose their markup, keeping just the words. Free, instant, runs entirely in your browser.",
+    intro:
+      "Paste Markdown-formatted text and get back the same words with every bit of syntax removed — no #, **, [](), or list markers, just clean prose. Useful for pasting a README or changelog into an email, a plain textarea, or anywhere Markdown syntax would otherwise show up literally.",
+    transform: "markdown-to-text",
+    shape: "simple",
+    faq: [
+      { q: "How is this different from Markdown to HTML?", a: "Markdown to HTML converts the syntax into tags for rendering on a web page. This strips the syntax entirely instead, leaving plain words — for when you want the content with no markup of any kind, not even HTML." },
+      { q: "What happens to links and images?", a: "A link `[text](url)` becomes just `text` — the URL is dropped. An image `![alt](url)` becomes its alt text. If you need the URLs kept, this isn't the right tool." },
+      { q: "Are fenced code blocks kept?", a: "The code inside a pair of \\`\\`\\` lines is kept as-is; only the \\`\\`\\` fence markers themselves are removed." },
+    ],
+  },
+  {
     slug: "md5-hash-generator",
     eyebrow: "MD5 Hash",
     title: "MD5 Hash Generator",
@@ -1045,6 +1092,7 @@ export function affiliateAudience(transform) {
 export const TRANSFORM_GROUPS = [
   ["Count & analyze", [
     ["none", "Word / character counter"],
+    ["word-frequency", "Word frequency counter"],
   ]],
   ["Change case", [
     ["uppercase", "UPPERCASE"],
@@ -1092,6 +1140,7 @@ export const TRANSFORM_GROUPS = [
     ["json-format", "Format / validate JSON"],
     ["json-minify", "Minify JSON"],
     ["markdown-to-html", "Markdown to HTML"],
+    ["markdown-to-text", "Markdown to plain text"],
   ]],
   ["Convert data formats", [
     ["csv-to-json", "CSV to JSON"],
@@ -1157,6 +1206,10 @@ export function renderTool(p = {}) {
   // one click to a category, one click to a tool. Keyboard/screen-reader users
   // still get the plain, fully-operable native select.
   const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  // Populated client-side from localStorage (see assets/app.js) — empty and
+  // hidden until JS finds a non-empty recent-tools list, so a first-time
+  // visitor or a no-JS fallback sees nothing here rather than an empty box.
+  const recentTools = isHome ? `<div class="recent-tools" id="recentTools" hidden><span class="recent-tools-label">Recently used</span><div class="recent-tools-chips" id="recentToolsChips"></div></div>` : "";
   const transformDropdown = isHome
     ? `<div class="tool-picker">
       <label class="sr-only" for="transformSel">Choose a tool</label>
@@ -1276,10 +1329,43 @@ export function renderTool(p = {}) {
   </section>`;
   }
 
+  // Compare two texts: a lightweight stats comparison (word/character count
+  // delta + a bag-of-words overlap %), not a line-by-line diff — that's a
+  // different, heavier tool (Diffhero) this deliberately doesn't duplicate.
+  // Standalone-page only, same reasoning as regex/qrcode above: two full
+  // editors is a genuinely different layout from the home page's
+  // swap-a-transform workbench.
+  if (shape === "compare" && !isHome) {
+    return `
+  <section class="tool tool--compare" data-transform="none" data-shape="compare">
+    <div class="compare-inputs">
+      <div class="compare-pane">
+        <label for="editor">Text A</label>
+        <textarea id="editor" class="editor" placeholder="Paste the first text here…" spellcheck="true"></textarea>
+      </div>
+      <div class="compare-pane">
+        <label for="compareB">Text B</label>
+        <textarea id="compareB" class="editor" placeholder="Paste the second text here…" spellcheck="true"></textarea>
+      </div>
+    </div>
+    <div class="stats compare-stats" role="status" aria-live="polite">
+      <div class="stat"><span class="stat-num" id="compareWordsA">0</span><span class="stat-label">words in A</span></div>
+      <div class="stat"><span class="stat-num" id="compareWordsB">0</span><span class="stat-label">words in B</span></div>
+      <div class="stat"><span class="stat-num" id="compareWordDelta">0</span><span class="stat-label">word difference</span></div>
+      <div class="stat"><span class="stat-num" id="compareCharDelta">0</span><span class="stat-label">character difference</span></div>
+      <div class="stat"><span class="stat-num" id="compareOverlap">0%</span><span class="stat-label">shared words</span></div>
+    </div>
+    <div class="tool-actions">
+      <button type="button" class="btn" id="clearBtn">Clear</button>
+    </div>
+  </section>`;
+  }
+
   const editorHidden = !isHome && NO_INPUT_SHAPES.indexOf(shape) !== -1 ? " hidden" : "";
 
   return `
   <section class="tool" data-transform="${isHome ? "none" : transform}" data-shape="${isHome ? "home" : shape}">
+    ${recentTools}
     ${transformDropdown}
     ${findReplaceRow}
     ${repeaterRow}

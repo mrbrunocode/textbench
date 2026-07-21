@@ -23,6 +23,147 @@
     });
   }
 
+  // Installable/offline shell: registers the service worker that caches
+  // style.css/app.js/regex-worker.js/the icon (see sw.js) so the tools
+  // themselves work offline once a page has loaded once. Deliberately placed
+  // before the "prose pages have no editor" bail-out below, unlike most of
+  // this file, so it runs site-wide (about/privacy/contact/terms included),
+  // not just on tool pages — the `typeof navigator` guard keeps this safe
+  // under the Node test harness, which stubs `document` but not `navigator`.
+  // Deliberately never caches HTML pages — see sw.js's own comment for why.
+  if (typeof navigator !== "undefined" && "serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("/sw.js").catch(function () {});
+    });
+  }
+
+  // ── Cmd+K command palette: jump to any of the tools from anywhere ─────────
+  // Placed before the "prose pages have no editor" bail-out below, same
+  // reasoning as the service worker registration above — this should work
+  // from every page, not just tool pages. Guarded on both #cmdkTrigger and
+  // #toolsIndex existing, which the Node test stub never provides, so this
+  // whole block is a safe no-op under `npm test`.
+  (function () {
+    var trigger = document.getElementById("cmdkTrigger");
+    var toolsIndexEl = document.getElementById("toolsIndex");
+    if (!trigger || !toolsIndexEl) return;
+    var items = [];
+    try { items = JSON.parse(toolsIndexEl.textContent); } catch (e) {}
+    if (!items.length) return;
+
+    // ── Recently used tools: a localStorage-only, per-browser list — no
+    // backend, never synced. Doubles as the Cmd+K palette's empty-query
+    // view (jump back to what you were just using) and feeds the home
+    // page's "Recently used" chip row (see below and pages.mjs).
+    var RECENT_KEY = "textbench_recent";
+    var MAX_RECENT = 6;
+    function getRecent() {
+      try { return JSON.parse(localStorage.getItem(RECENT_KEY) || "[]"); } catch (e) { return []; }
+    }
+    function recordVisit(path, title) {
+      var list = getRecent().filter(function (r) { return r.path !== path; });
+      list.unshift({ path: path, title: title });
+      if (list.length > MAX_RECENT) list.length = MAX_RECENT;
+      try { localStorage.setItem(RECENT_KEY, JSON.stringify(list)); } catch (e) {}
+    }
+    var currentPath = location.pathname.replace(/\/$/, "") || "/";
+    var currentItem = null;
+    for (var ci = 0; ci < items.length; ci++) { if (items[ci].path === currentPath) { currentItem = items[ci]; break; } }
+    if (currentItem) recordVisit(currentItem.path, currentItem.title);
+
+    // Home page's "Recently used" chip row — same data, a second surface.
+    // Hidden by default in the markup (pages.mjs); only unhidden here if
+    // there's actually something to show.
+    var recentBox = document.getElementById("recentTools");
+    var recentChipsEl = document.getElementById("recentToolsChips");
+    if (recentBox && recentChipsEl) {
+      var homeRecent = getRecent();
+      if (homeRecent.length) {
+        recentChipsEl.innerHTML = homeRecent.map(function (item) {
+          return '<a class="recent-tools-chip" href="' + item.path.replace(/"/g, "&quot;") + '">' +
+            item.title.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") + "</a>";
+        }).join("");
+        recentBox.hidden = false;
+      }
+    }
+
+    var overlay = null, input, resultsEl, filtered = items, activeIndex = 0, showingRecent = false;
+
+    function render() {
+      var heading = showingRecent ? '<li class="cmdk-heading">Recently used</li>' : "";
+      resultsEl.innerHTML = heading + filtered.map(function (item, i) {
+        return '<li class="cmdk-item' + (i === activeIndex ? " is-active" : "") + '" data-path="' + item.path.replace(/"/g, "&quot;") + '">' +
+          item.title.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") + "</li>";
+      }).join("");
+      var activeEl = resultsEl.querySelector(".is-active");
+      if (activeEl && activeEl.scrollIntoView) activeEl.scrollIntoView({ block: "nearest" });
+    }
+
+    function filter(query) {
+      var q = query.trim().toLowerCase();
+      if (!q) {
+        var recent = getRecent();
+        showingRecent = recent.length > 0;
+        filtered = showingRecent ? recent : items;
+      } else {
+        showingRecent = false;
+        filtered = items.filter(function (item) { return item.title.toLowerCase().indexOf(q) !== -1; });
+      }
+      activeIndex = 0;
+      render();
+    }
+
+    function open() {
+      if (!overlay) build();
+      overlay.hidden = false;
+      input.value = "";
+      filter("");
+      input.focus();
+    }
+    function close() {
+      if (overlay) overlay.hidden = true;
+    }
+
+    function go(path) { if (path) location.href = path; }
+
+    function onKeydown(e) {
+      if (e.key === "Escape") { close(); return; }
+      if (e.key === "ArrowDown") { e.preventDefault(); activeIndex = Math.min(activeIndex + 1, filtered.length - 1); render(); return; }
+      if (e.key === "ArrowUp") { e.preventDefault(); activeIndex = Math.max(activeIndex - 1, 0); render(); return; }
+      if (e.key === "Enter") { e.preventDefault(); var item = filtered[activeIndex]; if (item) go(item.path); }
+    }
+
+    function build() {
+      overlay = document.createElement("div");
+      overlay.className = "cmdk-overlay";
+      overlay.hidden = true;
+      overlay.innerHTML =
+        '<div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Search tools">' +
+        '<input type="text" class="cmdk-input" placeholder="Search tools…" autocomplete="off" spellcheck="false" aria-label="Search tools">' +
+        '<ul class="cmdk-results"></ul>' +
+        "</div>";
+      document.body.appendChild(overlay);
+      input = overlay.querySelector(".cmdk-input");
+      resultsEl = overlay.querySelector(".cmdk-results");
+      overlay.addEventListener("click", function (e) { if (e.target === overlay) close(); });
+      resultsEl.addEventListener("click", function (e) {
+        var li = e.target.closest ? e.target.closest(".cmdk-item") : null;
+        if (li) go(li.getAttribute("data-path"));
+      });
+      input.addEventListener("input", function () { filter(input.value); });
+      input.addEventListener("keydown", onKeydown);
+    }
+
+    trigger.addEventListener("click", open);
+    document.addEventListener("keydown", function (e) {
+      var isK = e.key === "k" || e.key === "K";
+      if (isK && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        if (overlay && !overlay.hidden) close(); else open();
+      }
+    });
+  })();
+
   var editor = document.getElementById("editor");
   if (!editor) return; // prose pages have no editor
 
@@ -235,6 +376,71 @@
     return html.join("\n");
   }
   function normalizeMd(s) { return s.replace(/\r\n?/g, "\n"); }
+
+  // Strips Markdown syntax down to clean prose — the inverse direction from
+  // markdownToHtml above, for pasting Markdown-formatted text (a README, a
+  // changelog) somewhere that wants plain text instead (an email, a plain
+  // textarea). Line-based like markdownToHtml, but each line just has its
+  // markup removed rather than replaced with a tag.
+  function markdownToText(s) {
+    var lines = normalizeMd(s).split("\n");
+    var out = [];
+    var inFence = false;
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      if (/^```/.test(line)) { inFence = !inFence; continue; } // fence markers themselves are dropped, code content kept
+      if (inFence) { out.push(line); continue; }
+      var t = line
+        .replace(/^(#{1,6})\s+/, "") // headers
+        .replace(/^>\s?/, "") // blockquote
+        .replace(/^[-*]\s+/, "") // unordered list marker
+        .replace(/^\d+\.\s+/, "") // ordered list marker
+        .replace(/^(-{3,}|\*{3,}|_{3,})\s*$/, "") // horizontal rule
+        .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1") // images -> alt text
+        .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1") // links -> link text
+        .replace(/(\*\*\*|___)(.*?)\1/g, "$2") // bold+italic
+        .replace(/(\*\*|__)(.*?)\1/g, "$2") // bold
+        .replace(/(\*|_)(.*?)\1/g, "$2") // italic
+        .replace(/`([^`]*)`/g, "$1"); // inline code
+      out.push(t);
+    }
+    // Collapse 3+ blank lines down to a single blank line between paragraphs.
+    return out.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+  }
+
+  // Sorted "word — count" list, most-frequent first (ties broken
+  // alphabetically for a stable, predictable order). Punctuation-stripped,
+  // case-insensitive — "Word," and "word" are the same word.
+  function wordFrequency(s) {
+    var words = (s.toLowerCase().match(/[a-z0-9']+/g) || []);
+    var counts = {};
+    for (var i = 0; i < words.length; i++) counts[words[i]] = (counts[words[i]] || 0) + 1;
+    var entries = Object.keys(counts).map(function (w) { return [w, counts[w]]; });
+    entries.sort(function (a, b) { return b[1] - a[1] || (a[0] < b[0] ? -1 : 1); });
+    return entries.map(function (e) { return e[0] + " — " + e[1]; }).join("\n");
+  }
+
+  // Lightweight stats comparison between two texts — word/character count
+  // deltas plus a bag-of-words overlap percentage (Jaccard similarity on the
+  // unique lowercase word sets). Deliberately NOT a line-by-line diff — that's
+  // Diffhero's job; this answers "how different are these, roughly" in one
+  // glance, not "which exact lines changed".
+  function compareTexts(a, b) {
+    var wa = count(a).words, wb = count(b).words;
+    var ca = a.length, cb = b.length;
+    var setA = {}, setB = {};
+    (a.toLowerCase().match(/[a-z0-9']+/g) || []).forEach(function (w) { setA[w] = true; });
+    (b.toLowerCase().match(/[a-z0-9']+/g) || []).forEach(function (w) { setB[w] = true; });
+    var keysA = Object.keys(setA), keysB = Object.keys(setB);
+    var shared = keysA.filter(function (w) { return setB[w]; }).length;
+    var union = keysA.length + keysB.length - shared;
+    var overlapPct = union > 0 ? Math.round((shared / union) * 100) : (keysA.length === 0 && keysB.length === 0 ? 100 : 0);
+    return {
+      wordsA: wa, wordsB: wb, wordDelta: wb - wa,
+      charsA: ca, charsB: cb, charDelta: cb - ca,
+      overlapPct: overlapPct,
+    };
+  }
 
   // ── CSV <-> JSON (hand-rolled; no library needed for this pair) ──────────
   // Parses the WHOLE input at once, quote-state carried across the entire
@@ -516,6 +722,8 @@
     "json-format": jsonFormat,
     "json-minify": jsonMinify,
     "markdown-to-html": markdownToHtml,
+    "markdown-to-text": markdownToText,
+    "word-frequency": wordFrequency,
     "csv-to-json": csvToJson,
     "json-to-csv": jsonToCsv,
     "yaml-to-json": yamlToJson,
@@ -548,6 +756,7 @@
       randomPassword: randomPassword, strikethroughText: strikethroughText,
       upsideDownText: upsideDownText, boldUnicodeText: boldUnicodeText,
       jsonFormat: jsonFormat, jsonMinify: jsonMinify, markdownToHtml: markdownToHtml,
+      markdownToText: markdownToText, wordFrequency: wordFrequency, compareTexts: compareTexts,
       csvToJson: csvToJson, jsonToCsv: jsonToCsv, yamlToJson: yamlToJson, jsonToYaml: jsonToYaml,
       loremSentence: loremSentence, loremParagraph: loremParagraph, loremIpsum: loremIpsum,
       nextChipValue: nextChipValue,
@@ -580,6 +789,12 @@
   var regexFlagM = document.getElementById("regexFlagM");
   var regexFlagS = document.getElementById("regexFlagS");
   var pwSymbolsEl = document.getElementById("pwSymbols");
+  var compareBEl = document.getElementById("compareB");
+  var compareWordsAEl = document.getElementById("compareWordsA");
+  var compareWordsBEl = document.getElementById("compareWordsB");
+  var compareWordDeltaEl = document.getElementById("compareWordDelta");
+  var compareCharDeltaEl = document.getElementById("compareCharDelta");
+  var compareOverlapEl = document.getElementById("compareOverlap");
 
   var NO_INPUT = { "lorem-ipsum": 1, "uuid-generator": 1, "password-generator": 1 };
 
@@ -758,10 +973,21 @@
     document.body.appendChild(a); a.click(); a.remove();
   });
 
+  function fmtDelta(n) { return (n > 0 ? "+" : "") + fmt(n); }
+  function renderCompare() {
+    var c = compareTexts(editor.value, compareBEl.value);
+    compareWordsAEl.textContent = fmt(c.wordsA);
+    compareWordsBEl.textContent = fmt(c.wordsB);
+    compareWordDeltaEl.textContent = fmtDelta(c.wordDelta);
+    compareCharDeltaEl.textContent = fmtDelta(c.charDelta);
+    compareOverlapEl.textContent = c.overlapPct + "%";
+  }
+
   var renderToken = 0;
   function render() {
     if (regexPatternEl) { renderRegexTester(); return; }
     if (qrCanvasEl) { renderQr(); return; }
+    if (compareBEl) { renderCompare(); return; }
     var myToken = ++renderToken;
     var t = currentTransform();
     var result = apply(NO_INPUT[t] ? "" : editor.value);
@@ -784,7 +1010,7 @@
 
   editor.addEventListener("input", render);
   [findEl, replEl, regexEl, repeatEl, loremEl, uuidCountEl, pwLenEl, pwUpperEl, pwNumbersEl, pwSymbolsEl,
-    regexPatternEl, regexFlagG, regexFlagI, regexFlagM, regexFlagS].forEach(function (el) {
+    regexPatternEl, regexFlagG, regexFlagI, regexFlagM, regexFlagS, compareBEl].forEach(function (el) {
     if (el) el.addEventListener("input", render);
   });
   if (regexPatternEl) render(); // show the empty-pattern placeholder immediately, not a blank box
@@ -881,6 +1107,6 @@
 
   var clearBtn = document.getElementById("clearBtn");
   if (clearBtn) {
-    clearBtn.addEventListener("click", function () { editor.value = ""; render(); editor.focus(); });
+    clearBtn.addEventListener("click", function () { editor.value = ""; if (compareBEl) compareBEl.value = ""; render(); editor.focus(); });
   }
 })();
