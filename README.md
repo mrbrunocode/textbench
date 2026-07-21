@@ -3,10 +3,10 @@
 A static, zero-backend utility built from the [boring-app-factory](../boring-app-factory).
 61 text tools as of 2026-07-21.
 
-**Not live yet** — pushed to GitHub, but the Cloudflare Worker isn't connected
-(Workers & Pages → Create → Connect to Git). Everything below works locally;
-textbench.app isn't serving this site until that one-time connect happens.
-See the root `../CLAUDE.md` app roster for current status.
+**Live at [textbench.app](https://textbench.app)** (confirmed 2026-07-21).
+AdSense ad slot isn't wired in yet (application status unclear — check the
+dashboard); GA4/Search Console/Bing setup should be double-checked in their
+respective dashboards. See the root `../CLAUDE.md` app roster for current status.
 
 ```bash
 node engine/build.mjs          # regenerate the whole site
