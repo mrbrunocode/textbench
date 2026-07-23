@@ -6,6 +6,21 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { PAGES } from "../pages.mjs";
+import { GUIDES } from "../guides.mjs";
+
+test("every page has a substantial, unique guide section", () => {
+  // The AdSense "low value content" fix: each page must carry its own guide
+  // block of unique supporting prose, not just the tool + short intro + FAQ.
+  const seen = new Map();
+  for (const p of PAGES) {
+    const g = p.extra || GUIDES[p.slug];
+    assert.ok(g && g.trim().length > 0, `${p.slug} is missing guide/extra content`);
+    const textLen = g.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().length;
+    assert.ok(textLen > 400, `${p.slug} guide is too thin (${textLen} chars of text)`);
+    assert.ok(!seen.has(g), `${p.slug} shares guide content with ${seen.get(g)}`);
+    seen.set(g, p.slug);
+  }
+});
 
 test("every page has a unique slug", () => {
   const slugs = PAGES.map((p) => p.slug);

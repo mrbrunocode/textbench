@@ -26,7 +26,25 @@ export const home = {
       <span><strong>0</strong> uploads</span>
     </div>
   </section>
-  ${renderTool({ home: true })}`,
+  ${renderTool({ home: true })}
+
+  <section class="guide">
+    <h2>One place for the small text jobs</h2>
+    <p>Everyone hits these tasks: a block of text that needs cleaning up, a count to check against a limit, a format to convert, something to encode or decode. Individually they're tiny — but hunting down a separate single-purpose site for each, half of them plastered in ads or asking you to sign up, wastes more time than the task itself. ${C.NAME} puts ${C.TOOL_COUNT} of them in one place, all working the same way: paste in, get the result, copy out.</p>
+
+    <h2>What you'll find here</h2>
+    <ul>
+      <li><strong>Counting &amp; checking</strong> — <a href="/${C.COLLECTION_DIR}/word-counter">word</a> and <a href="/${C.COLLECTION_DIR}/character-counter">character</a> counters, plus limit checkers for <a href="/${C.COLLECTION_DIR}/twitter-character-counter">X posts</a>, <a href="/${C.COLLECTION_DIR}/meta-description-length-checker">meta descriptions</a> and <a href="/${C.COLLECTION_DIR}/reading-time-calculator">reading time</a>.</li>
+      <li><strong>Cleaning &amp; reorganising</strong> — change <a href="/${C.COLLECTION_DIR}/uppercase-converter">case</a>, <a href="/${C.COLLECTION_DIR}/remove-duplicate-lines">remove duplicate lines</a>, <a href="/${C.COLLECTION_DIR}/sort-lines-alphabetically">sort</a>, <a href="/${C.COLLECTION_DIR}/remove-extra-spaces">strip extra spaces</a>, and <a href="/${C.COLLECTION_DIR}/find-and-replace">find &amp; replace</a>.</li>
+      <li><strong>Converting</strong> — <a href="/${C.COLLECTION_DIR}/csv-to-json-converter">CSV↔JSON</a>, <a href="/${C.COLLECTION_DIR}/yaml-to-json-converter">YAML↔JSON</a>, <a href="/${C.COLLECTION_DIR}/markdown-to-html-converter">Markdown to HTML</a>, and <a href="/${C.COLLECTION_DIR}/json-formatter">JSON formatting</a>.</li>
+      <li><strong>Encoding &amp; hashing</strong> — <a href="/${C.COLLECTION_DIR}/base64-encode">Base64</a>, <a href="/${C.COLLECTION_DIR}/url-encode">URL</a> and <a href="/${C.COLLECTION_DIR}/html-entity-encode">HTML-entity</a> encoding, plus <a href="/${C.COLLECTION_DIR}/md5-hash-generator">MD5</a> / <a href="/${C.COLLECTION_DIR}/sha256-hash-generator">SHA-256</a> hashes.</li>
+      <li><strong>Generating</strong> — <a href="/${C.COLLECTION_DIR}/uuid-generator">UUIDs</a>, <a href="/${C.COLLECTION_DIR}/random-password-generator">passwords</a>, <a href="/${C.COLLECTION_DIR}/lorem-ipsum-generator">lorem ipsum</a> and <a href="/${C.COLLECTION_DIR}/qr-code-generator">QR codes</a>.</li>
+    </ul>
+
+    <h2>Why "nothing leaves your browser" is the point</h2>
+    <p>Almost every tool here runs entirely on your device in JavaScript — your text is processed in the page and never sent to a server. That's not just a privacy nicety: it means you can safely paste things you shouldn't upload to a random website, like an API response with tokens in it, a config file, or an internal document. It also means the tools keep working offline once the page has loaded, and there's nothing for anyone to log or store. No account, no daily limits, no paywall — open a tool and use it.</p>
+    <p>Each tool has its own page with a short guide covering how it works and the gotchas worth knowing — because a password generator, a Base64 encoder and a Unicode "bold" text trick each come with their own things you'd want to get right.</p>
+  </section>`,
 };
 
 export const about = {

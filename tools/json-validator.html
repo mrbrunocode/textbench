@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=b29fe7a8">
+<link rel="stylesheet" href="../assets/style.css?v=6a9b63f6">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -121,6 +121,18 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   </section>
   <div class="ad-slot ad-slot--placeholder" aria-hidden="true"><!-- one ad unit renders here once AdSense is configured (scripts/enable-adsense.mjs); reserved so the layout never shifts on launch --></div>
   
+  <section class="guide">
+    <h2>Checking whether JSON is valid</h2>
+    <p>Before you paste JSON into code or send it to an API, it's worth confirming it actually parses. This checks your input against the JSON spec and tells you whether it's valid — saving you from a runtime error later that just says "unexpected token."</p>
+    <h3>The usual culprits</h3>
+    <ul>
+      <li><b>Trailing commas</b> after the last item — allowed in JavaScript, invalid in strict JSON.</li>
+      <li><b>Single quotes</b> — JSON requires double quotes for strings and keys.</li>
+      <li><b>Unquoted keys</b>, or <b>comments</b> (JSON has none).</li>
+      <li><b>Mismatched or missing brackets/braces.</b></li>
+    </ul>
+    <p>If your data legitimately uses comments or trailing commas, it's really JSON5 or a config dialect, not strict JSON — worth knowing before you feed it to a strict parser. To reformat valid JSON nicely, use the JSON Formatter. All local; nothing is uploaded.</p>
+  </section>
   
   <section class="faq">
     <h2>Common questions</h2>
@@ -133,71 +145,21 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   
   
   <nav class="related" aria-label="More tools">
-    <h2>More tools</h2>
+    <h2>Related tools</h2>
     <div class="related-grid">
-      <a href="/tools/word-counter">Word Counter</a>
-      <a href="/tools/character-counter">Character Counter</a>
-      <a href="/tools/twitter-character-counter">X / Twitter Counter</a>
-      <a href="/tools/meta-description-length-checker">Meta Description</a>
-      <a href="/tools/youtube-title-length-checker">YouTube Title</a>
-      <a href="/tools/reading-time-calculator">Reading Time</a>
-      <a href="/tools/word-frequency-counter">Word Frequency</a>
-      <a href="/tools/compare-two-texts">Compare Texts</a>
-      <a href="/tools/uppercase-converter">UPPERCASE</a>
-      <a href="/tools/lowercase-converter">lowercase</a>
-      <a href="/tools/title-case-converter">Title Case</a>
-      <a href="/tools/sentence-case-converter">Sentence case</a>
-      <a href="/tools/remove-duplicate-lines">Remove Duplicates</a>
-      <a href="/tools/remove-extra-spaces">Extra Spaces</a>
-      <a href="/tools/remove-line-breaks">Line Breaks</a>
-      <a href="/tools/remove-empty-lines">Empty Lines</a>
-      <a href="/tools/sort-lines-alphabetically">Sort Lines</a>
-      <a href="/tools/reverse-text">Reverse Text</a>
-      <a href="/tools/reverse-line-order">Reverse Line Order</a>
-      <a href="/tools/trim-whitespace-from-lines">Trim Lines</a>
-      <a href="/tools/sort-lines-descending">Sort Z to A</a>
-      <a href="/tools/add-line-numbers">Line Numbers</a>
-      <a href="/tools/slugify-text">Slugify</a>
-      <a href="/tools/text-repeater">Text Repeater</a>
-      <a href="/tools/find-and-replace">Find &amp; Replace</a>
-      <a href="/tools/regex-tester">Regex Tester</a>
-      <a href="/tools/email-regex-tester">Email Regex Tester</a>
-      <a href="/tools/phone-number-regex-tester">Phone Number Regex Tester</a>
-      <a href="/tools/csv-to-json-converter">CSV to JSON</a>
-      <a href="/tools/json-to-csv-converter">JSON to CSV</a>
-      <a href="/tools/yaml-to-json-converter">YAML to JSON</a>
-      <a href="/tools/json-to-yaml-converter">JSON to YAML</a>
-      <a href="/tools/qr-code-generator">QR Code Generator</a>
-      <a href="/tools/lorem-ipsum-generator">Lorem Ipsum</a>
-      <a href="/tools/alternating-case-converter">aLtErNaTiNg cAsE</a>
-      <a href="/tools/inverse-case-converter">InVeRsE cAsE</a>
-      <a href="/tools/extract-emails-from-text">Extract Emails</a>
-      <a href="/tools/extract-urls-from-text">Extract URLs</a>
-      <a href="/tools/extract-numbers-from-text">Extract Numbers</a>
-      <a href="/tools/base64-encode">Base64 Encode</a>
-      <a href="/tools/base64-decode">Base64 Decode</a>
-      <a href="/tools/url-encode">URL Encode</a>
-      <a href="/tools/url-decode">URL Decode</a>
-      <a href="/tools/html-entity-encode">HTML Encode</a>
-      <a href="/tools/html-entity-decode">HTML Decode</a>
-      <a href="/tools/text-to-binary">Text to Binary</a>
-      <a href="/tools/binary-to-text">Binary to Text</a>
-      <a href="/tools/text-to-hex">Text to Hex</a>
-      <a href="/tools/hex-to-text">Hex to Text</a>
-      <a href="/tools/morse-code-translator">Text → Morse</a>
-      <a href="/tools/morse-code-to-text">Morse → Text</a>
-      <a href="/tools/rot13-cipher">ROT13</a>
-      <a href="/tools/json-formatter">JSON Formatter</a>
       <a href="/tools/json-minifier">JSON Minifier</a>
+      <a href="/tools/json-formatter">JSON Formatter</a>
       <a href="/tools/markdown-to-html-converter">Markdown to HTML</a>
+      <a href="/tools/rot13-cipher">ROT13</a>
       <a href="/tools/markdown-to-plain-text">Markdown to Plain Text</a>
+      <a href="/tools/morse-code-to-text">Morse → Text</a>
       <a href="/tools/md5-hash-generator">MD5 Hash</a>
+      <a href="/tools/morse-code-translator">Text → Morse</a>
       <a href="/tools/sha256-hash-generator">SHA-256 Hash</a>
+      <a href="/tools/hex-to-text">Hex to Text</a>
       <a href="/tools/uuid-generator">UUID Generator</a>
-      <a href="/tools/random-password-generator">Password Generator</a>
-      <a href="/tools/strikethrough-text-generator">Strikethrough</a>
-      <a href="/tools/upside-down-text-generator">Upside Down</a>
-      <a href="/tools/bold-text-generator">Bold Unicode</a>
+      <a href="/tools/text-to-hex">Text to Hex</a>
+      <a class="related-all" href="/">Browse all 64 tools →</a>
     </div>
   </nav>
 </main>

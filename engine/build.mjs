@@ -27,6 +27,7 @@ import { mkdir, writeFile, readFile, rm } from "node:fs/promises";
 import * as C from "../site.config.mjs";
 import { renderDocument, adSlot, affiliateSlot, faqHtml, esc } from "./template.mjs";
 import { PAGES, renderTool, affiliateAudience } from "../pages.mjs";
+import { GUIDES } from "../guides.mjs";
 import { home, about, privacy, terms, contact } from "../content.mjs";
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -34,16 +35,39 @@ const COLL = join(ROOT, C.COLLECTION_DIR);
 
 // Internal linking: every page lists the others in the collection. This is the
 // crawl-and-rank engine — hundreds of pages each one click from every other.
+// On a tool page we show a CURATED window of ~12 thematically-adjacent tools
+// (PAGES is ordered so neighbours are related), not the full wall of 64 — a
+// giant identical link list on every page is a classic doorway/low-value
+// signal and buries the page's own content. Full crawl coverage still comes
+// from the homepage (which lists all) and the sitemap. On the homepage
+// (currentSlug === null) we list everything, since that page IS the index.
+const RELATED_WINDOW = 12;
 function relatedLinks(currentSlug) {
-  const links = PAGES.filter((p) => p.slug !== currentSlug)
+  let chosen;
+  if (currentSlug == null) {
+    chosen = PAGES;
+  } else {
+    const i = PAGES.findIndex((p) => p.slug === currentSlug);
+    chosen = [];
+    for (let off = 1; chosen.length < RELATED_WINDOW && off < PAGES.length; off++) {
+      const after = PAGES[(i + off) % PAGES.length];
+      const before = PAGES[(i - off + PAGES.length) % PAGES.length];
+      if (after.slug !== currentSlug && !chosen.includes(after)) chosen.push(after);
+      if (chosen.length < RELATED_WINDOW && before.slug !== currentSlug && !chosen.includes(before)) chosen.push(before);
+    }
+  }
+  const links = chosen
+    .filter((p) => p.slug !== currentSlug)
     .map((p) => `<a href="/${C.COLLECTION_DIR}/${p.slug}">${esc(p.eyebrow || p.title)}</a>`)
     .join("\n      ");
   if (!links) return "";
+  const browseAll =
+    currentSlug == null ? "" : `\n      <a class="related-all" href="/">Browse all ${PAGES.length} tools →</a>`;
   return `
   <nav class="related" aria-label="More tools">
-    <h2>More tools</h2>
+    <h2>${currentSlug == null ? "All tools" : "Related tools"}</h2>
     <div class="related-grid">
-      ${links}
+      ${links}${browseAll}
     </div>
   </nav>`;
 }
@@ -71,7 +95,7 @@ function collectionPage(p) {
   </section>
   ${renderTool(p)}
   ${adSlot()}
-  ${p.extra || ""}
+  ${p.extra || GUIDES[p.slug] || ""}
   ${faqHtml(p.faq)}
   ${affiliateSlot(affiliateAudience(p.transform))}
   ${relatedLinks(p.slug)}`;
