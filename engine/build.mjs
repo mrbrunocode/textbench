@@ -28,6 +28,7 @@ import * as C from "../site.config.mjs";
 import { renderDocument, adSlot, affiliateSlot, faqHtml, esc } from "./template.mjs";
 import { PAGES, renderTool, affiliateAudience } from "../pages.mjs";
 import { GUIDES } from "../guides.mjs";
+import { ARTICLES } from "../articles.mjs";
 import { home, about, privacy, terms, contact } from "../content.mjs";
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -138,10 +139,96 @@ function homeDocument() {
   });
 }
 
+// ── Editorial articles (/guides) ───────────────────────────────────────────
+const GUIDES_DIR = "guides";
+const fmtDate = (iso) =>
+  new Date(iso + "T00:00:00Z").toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+
+// Author byline — a real, named person linking to their own site is the
+// E-E-A-T "Who" signal AdSense and Google's quality raters look for.
+function byline(a) {
+  return `
+  <p class="byline">By <a href="${C.AUTHOR_URL}" rel="author noopener" target="_blank">${esc(C.AUTHOR_NAME)}</a>
+    · <time datetime="${a.date}">${fmtDate(a.date)}</time>
+    · ${a.read} min read</p>`;
+}
+
+function authorBox() {
+  return `
+  <aside class="author-box">
+    <p class="author-box-name">${esc(C.AUTHOR_NAME)}</p>
+    <p>${esc(C.AUTHOR_BIO)} <a href="${C.AUTHOR_URL}" rel="author noopener" target="_blank">${esc(C.AUTHOR_NAME.replace(/ FK$/, ""))}'s site →</a></p>
+  </aside>`;
+}
+
+function articleSchema(a) {
+  return `<script type="application/ld+json">${JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: a.title,
+    description: a.description,
+    author: { "@type": "Person", name: C.AUTHOR_NAME, url: C.AUTHOR_URL },
+    publisher: { "@type": "Organization", name: C.NAME },
+    datePublished: a.date,
+    dateModified: a.date,
+    mainEntityOfPage: `${C.SITE_URL}/${GUIDES_DIR}/${a.slug}`,
+  })}</script>`;
+}
+
+function articleDocument(a) {
+  const body = `
+  <article class="prose article">
+    <span class="eyebrow">Guide</span>
+    <h1>${esc(a.title)}</h1>
+    ${byline(a)}
+    ${a.bodyHtml}
+    ${authorBox()}
+    <p class="article-back"><a href="/${GUIDES_DIR}">← All guides</a></p>
+  </article>`;
+  return renderDocument({
+    title: a.title,
+    description: a.description,
+    canonicalPath: `/${GUIDES_DIR}/${a.slug}`,
+    eyebrow: "Guides",
+    depth: 1,
+    bodyHtml: body,
+    headExtra: articleSchema(a) + toolsIndexScript(),
+  });
+}
+
+function guidesIndexDocument() {
+  const cards = ARTICLES.map(
+    (a) => `
+    <a class="guide-card" href="/${GUIDES_DIR}/${a.slug}">
+      <h2>${esc(a.title)}</h2>
+      <p>${esc(a.excerpt)}</p>
+      <span class="guide-card-meta">${a.read} min read</span>
+    </a>`
+  ).join("\n");
+  const body = `
+  <section class="hero hero--home">
+    <h1>${esc(C.NAME)} guides</h1>
+    <p class="lede">Plain-English writing on text, encoding, data formats and the tools here — what these concepts actually are, and how to use them well.</p>
+  </section>
+  <div class="guide-list">${cards}
+  </div>`;
+  return renderDocument({
+    title: `${C.NAME} Guides — Text, Encoding & Data Formats Explained`,
+    description: `In-depth guides on working with text: Base64, character encoding, regular expressions, hashing, JSON vs YAML vs CSV, strong passwords, and cleaning up messy text.`,
+    canonicalPath: `/${GUIDES_DIR}`,
+    eyebrow: "Guides",
+    depth: 0,
+    bodyHtml: body,
+    headExtra: toolsIndexScript(),
+  });
+}
+
 function sitemap() {
   const all = [
     "/",
+    `/${GUIDES_DIR}`,
     ...[about, privacy, terms, contact].map((p) => p.path),
+    ...ARTICLES.map((a) => `/${GUIDES_DIR}/${a.slug}`),
     ...PAGES.map((p) => `/${C.COLLECTION_DIR}/${p.slug}`),
   ];
   const urls = all
@@ -195,10 +282,14 @@ ${C.NAME} is a static web app: no signup, no backend, no per-visitor cost. Every
 
 ## Primary pages
 - [Home / the tool](${C.SITE_URL}/)
+- [Guides](${C.SITE_URL}/${GUIDES_DIR})
 - [About](${C.SITE_URL}/about)
 - [Privacy policy](${C.SITE_URL}/privacy)
 - [Terms of Service](${C.SITE_URL}/terms)
 - [Contact](${C.SITE_URL}/contact)
+
+## Guides
+${ARTICLES.map((a) => `- [${a.title}](${C.SITE_URL}/${GUIDES_DIR}/${a.slug}): ${a.description}`).join("\n")}
 
 ## ${C.COLLECTION_DIR}
 ${list}
@@ -218,6 +309,15 @@ async function main() {
   await writeFile(join(ROOT, "index.html"), homeDocument());
   for (const page of [about, privacy, terms, contact]) {
     await writeFile(join(ROOT, page.path.replace(/^\//, "") + ".html"), proseDocument(page));
+  }
+
+  // Editorial articles: /guides index + /guides/<slug> pages.
+  const guidesOut = join(ROOT, GUIDES_DIR);
+  await rm(guidesOut, { recursive: true, force: true });
+  await mkdir(guidesOut, { recursive: true });
+  await writeFile(join(ROOT, `${GUIDES_DIR}.html`), guidesIndexDocument());
+  for (const a of ARTICLES) {
+    await writeFile(join(guidesOut, `${a.slug}.html`), articleDocument(a));
   }
 
   await writeFile(join(ROOT, "sitemap.xml"), sitemap());

@@ -38,11 +38,19 @@ export const COLLECTION_DIR = "tools";
 
 // Top-nav links shown on every page (order matters). Keep it short.
 export const NAV = [
+  { href: "/guides", label: "Guides" },
   { href: "/about", label: "About" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },
   { href: "/contact", label: "Contact" },
 ];
+
+// Author identity (E-E-A-T). Articles carry a byline linking here; the About
+// page names the same person. brunofk.dev is the developer's own site.
+export const AUTHOR_NAME = "Bruno FK";
+export const AUTHOR_URL = "https://brunofk.dev";
+export const AUTHOR_BIO =
+  "Bruno FK is an Edinburgh-based software developer who builds small, fast, privacy-respecting web tools. He built Textbench to collect the everyday text jobs he kept reaching for into one clean, ad-light, browser-only place.";
 
 // Dates used in legal pages + JSON-LD. Bump CONTENT_DATE when page copy
 // actually changes (drives datePublished/dateModified); bump LAST_UPDATED by

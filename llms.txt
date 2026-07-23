@@ -6,10 +6,20 @@ Textbench is a static web app: no signup, no backend, no per-visitor cost. Every
 
 ## Primary pages
 - [Home / the tool](https://textbench.app/)
+- [Guides](https://textbench.app/guides)
 - [About](https://textbench.app/about)
 - [Privacy policy](https://textbench.app/privacy)
 - [Terms of Service](https://textbench.app/terms)
 - [Contact](https://textbench.app/contact)
+
+## Guides
+- [Base64, explained: what it is, what it isn't, and when to use it](https://textbench.app/guides/base64-explained): A clear explanation of Base64 encoding: what problem it solves, why it makes data bigger, and the crucial reason it is not — and never should be used as — encryption.
+- [How to choose (and manage) a strong password](https://textbench.app/guides/how-to-choose-a-strong-password): What actually makes a password strong in 2026 — why length beats complexity, why reuse is the real risk, and how a password manager makes both problems disappear.
+- [Regular expressions for non-programmers: a gentle introduction](https://textbench.app/guides/regex-for-non-programmers): Regex looks like line noise but the core ideas are simple. A friendly introduction to matching patterns in text, with practical examples you can use today.
+- [Character encoding explained: Unicode, UTF-8, and why text breaks](https://textbench.app/guides/character-encoding-explained): Why does text sometimes turn into question marks or gibberish? A clear explanation of character encoding, Unicode and UTF-8 — and how to avoid the mess.
+- [JSON, YAML and CSV: which data format should you use?](https://textbench.app/guides/json-yaml-csv-which-format): The three formats you'll meet most for structured data — what each is good and bad at, when to pick which, and how to convert cleanly between them.
+- [Hashing explained: what MD5 and SHA-256 are actually for](https://textbench.app/guides/hashing-explained): What a hash function is, why the same input always gives the same fingerprint, and the critical differences between MD5, SHA-256 and password hashing.
+- [Cleaning up messy text: a practical workflow](https://textbench.app/guides/cleaning-messy-text): Text copied from PDFs, emails and the web arrives full of junk. A step-by-step workflow for turning a mess into clean, usable text, in the right order.
 
 ## tools
 - [Word Counter](https://textbench.app/tools/word-counter): A free word counter that updates as you type. See words, characters, sentences and reading time live — no signup, nothing uploaded, everything stays in your browser.

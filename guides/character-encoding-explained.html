@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character encoding explained: Unicode, UTF-8, and why text breaks | Textbench</title>
+<meta name="description" content="Why does text sometimes turn into question marks or gibberish? A clear explanation of character encoding, Unicode and UTF-8 — and how to avoid the mess.">
+<link rel="canonical" href="https://textbench.app/guides/character-encoding-explained">
+<meta property="og:title" content="Character encoding explained: Unicode, UTF-8, and why text breaks">
+<meta property="og:description" content="Why does text sometimes turn into question marks or gibberish? A clear explanation of character encoding, Unicode and UTF-8 — and how to avoid the mess.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://textbench.app/guides/character-encoding-explained">
+<meta property="og:image" content="https://textbench.app/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://textbench.app/assets/og-image.png">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#0a0d12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css?v=5547d9cb">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/guides/character-encoding-explained","description":"Why does text sometimes turn into question marks or gibberish? A clear explanation of character encoding, Unicode and UTF-8 — and how to avoid the mess.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"datePublished":"2026-07-17","dateModified":"2026-07-17"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://textbench.app/guides/character-encoding-explained"}]}</script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2653891546345771" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Character encoding explained: Unicode, UTF-8, and why text breaks","description":"Why does text sometimes turn into question marks or gibberish? A clear explanation of character encoding, Unicode and UTF-8 — and how to avoid the mess.","author":{"@type":"Person","name":"Bruno FK","url":"https://brunofk.dev"},"publisher":{"@type":"Organization","name":"Textbench"},"datePublished":"2026-07-23","dateModified":"2026-07-23","mainEntityOfPage":"https://textbench.app/guides/character-encoding-explained"}</script><script id="toolsIndex" type="application/json">[{"title":"Word Counter","path":"/tools/word-counter"},{"title":"Character Counter","path":"/tools/character-counter"},{"title":"X / Twitter Counter","path":"/tools/twitter-character-counter"},{"title":"Meta Description","path":"/tools/meta-description-length-checker"},{"title":"YouTube Title","path":"/tools/youtube-title-length-checker"},{"title":"Reading Time","path":"/tools/reading-time-calculator"},{"title":"Word Frequency","path":"/tools/word-frequency-counter"},{"title":"Compare Texts","path":"/tools/compare-two-texts"},{"title":"UPPERCASE","path":"/tools/uppercase-converter"},{"title":"lowercase","path":"/tools/lowercase-converter"},{"title":"Title Case","path":"/tools/title-case-converter"},{"title":"Sentence case","path":"/tools/sentence-case-converter"},{"title":"Remove Duplicates","path":"/tools/remove-duplicate-lines"},{"title":"Extra Spaces","path":"/tools/remove-extra-spaces"},{"title":"Line Breaks","path":"/tools/remove-line-breaks"},{"title":"Empty Lines","path":"/tools/remove-empty-lines"},{"title":"Sort Lines","path":"/tools/sort-lines-alphabetically"},{"title":"Reverse Text","path":"/tools/reverse-text"},{"title":"Reverse Line Order","path":"/tools/reverse-line-order"},{"title":"Trim Lines","path":"/tools/trim-whitespace-from-lines"},{"title":"Sort Z to A","path":"/tools/sort-lines-descending"},{"title":"Line Numbers","path":"/tools/add-line-numbers"},{"title":"Slugify","path":"/tools/slugify-text"},{"title":"Text Repeater","path":"/tools/text-repeater"},{"title":"Find & Replace","path":"/tools/find-and-replace"},{"title":"Regex Tester","path":"/tools/regex-tester"},{"title":"Email Regex Tester","path":"/tools/email-regex-tester"},{"title":"Phone Number Regex Tester","path":"/tools/phone-number-regex-tester"},{"title":"CSV to JSON","path":"/tools/csv-to-json-converter"},{"title":"JSON to CSV","path":"/tools/json-to-csv-converter"},{"title":"YAML to JSON","path":"/tools/yaml-to-json-converter"},{"title":"JSON to YAML","path":"/tools/json-to-yaml-converter"},{"title":"QR Code Generator","path":"/tools/qr-code-generator"},{"title":"Lorem Ipsum","path":"/tools/lorem-ipsum-generator"},{"title":"aLtErNaTiNg cAsE","path":"/tools/alternating-case-converter"},{"title":"InVeRsE cAsE","path":"/tools/inverse-case-converter"},{"title":"Extract Emails","path":"/tools/extract-emails-from-text"},{"title":"Extract URLs","path":"/tools/extract-urls-from-text"},{"title":"Extract Numbers","path":"/tools/extract-numbers-from-text"},{"title":"Base64 Encode","path":"/tools/base64-encode"},{"title":"Base64 Decode","path":"/tools/base64-decode"},{"title":"URL Encode","path":"/tools/url-encode"},{"title":"URL Decode","path":"/tools/url-decode"},{"title":"HTML Encode","path":"/tools/html-entity-encode"},{"title":"HTML Decode","path":"/tools/html-entity-decode"},{"title":"Text to Binary","path":"/tools/text-to-binary"},{"title":"Binary to Text","path":"/tools/binary-to-text"},{"title":"Text to Hex","path":"/tools/text-to-hex"},{"title":"Hex to Text","path":"/tools/hex-to-text"},{"title":"Text → Morse","path":"/tools/morse-code-translator"},{"title":"Morse → Text","path":"/tools/morse-code-to-text"},{"title":"ROT13","path":"/tools/rot13-cipher"},{"title":"JSON Formatter","path":"/tools/json-formatter"},{"title":"JSON Validator","path":"/tools/json-validator"},{"title":"JSON Minifier","path":"/tools/json-minifier"},{"title":"Markdown to HTML","path":"/tools/markdown-to-html-converter"},{"title":"Markdown to Plain Text","path":"/tools/markdown-to-plain-text"},{"title":"MD5 Hash","path":"/tools/md5-hash-generator"},{"title":"SHA-256 Hash","path":"/tools/sha256-hash-generator"},{"title":"UUID Generator","path":"/tools/uuid-generator"},{"title":"Password Generator","path":"/tools/random-password-generator"},{"title":"Strikethrough","path":"/tools/strikethrough-text-generator"},{"title":"Upside Down","path":"/tools/upside-down-text-generator"},{"title":"Bold Unicode","path":"/tools/bold-text-generator"}]</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header>
+  <a class="logo" href="/">
+    <svg class="logo-mark" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect width="22" height="22" rx="5" fill="currentColor" opacity="0.14"/><text x="11" y="15.5" font-family="Fira Code, monospace" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">#</text></svg>
+    Textbench
+  </a>
+  <div class="header-actions">
+    <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
+      <span>Search tools</span><kbd>⌘K</kbd>
+    </button>
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+  </div>
+</header>
+<nav class="main-nav" aria-label="Site">
+  <a href="/guides">Guides</a>
+  <a href="/about">About</a>
+  <a href="/privacy">Privacy</a>
+  <a href="/terms">Terms</a>
+  <a href="/contact">Contact</a>
+</nav>
+<main class="wrap" id="main">
+
+  <article class="prose article">
+    <span class="eyebrow">Guide</span>
+    <h1>Character encoding explained: Unicode, UTF-8, and why text breaks</h1>
+    
+  <p class="byline">By <a href="https://brunofk.dev" rel="author noopener" target="_blank">Bruno FK</a>
+    · <time datetime="2026-07-23">23 July 2026</time>
+    · 7 min read</p>
+    
+    <p>You've seen it: a perfectly normal "café" shows up as "cafÃ©", an apostrophe becomes "â€™", or names full of accents dissolve into question marks and boxes. It looks like corruption, but it usually isn't — it's a <em>character encoding</em> mismatch, and once you understand what's happening, both the cause and the fix become obvious. This is one of those topics that quietly underlies a huge amount of "why is my text broken" frustration.</p>
+
+    <h2>Computers store numbers, not letters</h2>
+    <p>A computer has no idea what an "A" is. It stores numbers. So to store text, there has to be an agreed mapping from characters to numbers — "A is 65, B is 66", and so on. That mapping is a <em>character set</em>, and the rules for turning those numbers into actual bytes on disk or on the wire is an <em>encoding</em>. Text breaks when the thing writing the bytes and the thing reading them disagree about which mapping is in use.</p>
+
+    <h2>From ASCII's 128 characters to Unicode's universe</h2>
+    <p>The original standard, ASCII, mapped 128 characters — enough for English letters, digits, and basic punctuation. That was fine until the rest of the world needed computers. Accented letters, Cyrillic, Arabic, Chinese, and eventually emoji have no place in 128 slots. For a while, everyone invented their own incompatible extensions, which is precisely why text moved between systems and shattered.</p>
+    <p><strong>Unicode</strong> is the fix: one giant, universal character set with a unique number (a "code point") for every character in every writing system — over a million slots, covering essentially all human text plus emoji. Unicode says "the letter é is code point U+00E9, the emoji 😀 is U+1F600." It's the agreed-upon map everyone can share.</p>
+
+    <h2>UTF-8: how Unicode becomes bytes</h2>
+    <p>Unicode assigns the numbers; it doesn't say how to store them as bytes. That's an encoding's job, and the one that won — used by the vast majority of the web — is <strong>UTF-8</strong>. Its clever trick is being variable-width: the common ASCII characters still take a single byte (so plain English text is identical to old ASCII, and files stay small), while less common characters take two, three, or four bytes as needed. It's efficient, backwards-compatible, and universal. If you get to choose an encoding, the answer is UTF-8, essentially always.</p>
+
+    <h2>So why does text still break?</h2>
+    <p>The gibberish happens when bytes written as UTF-8 are <em>read</em> as if they were some other encoding (often the old Windows "Latin-1"), or vice versa. "café" in UTF-8 stores the é as two bytes; a reader that thinks each byte is one Latin-1 character shows those two bytes as two characters — "Ã©" — and you get "cafÃ©". The bytes are fine; the <em>interpretation</em> is wrong. The question-marks-and-boxes version happens when a character has no representation in the encoding or font being used to display it, so it's replaced with a placeholder.</p>
+    <p>The practical fixes follow directly:</p>
+    <ul>
+      <li><strong>Declare UTF-8 everywhere</strong> — in your HTML (<code>&lt;meta charset="utf-8"&gt;</code>), your database, your file saves, your API headers. Most "mojibake" is a missing or wrong declaration.</li>
+      <li><strong>Save and export as UTF-8.</strong> A CSV that opens fine in one program and breaks in another is often an encoding mismatch on export.</li>
+      <li><strong>Watch invisible impostors.</strong> A "non-breaking space" or a smart quote pasted from a word processor looks normal but is a different character underneath, which can break exact matches and comparisons.</li>
+    </ul>
+
+    <h2>Seeing the bytes for yourself</h2>
+    <p>When encoding is the suspect, it helps to look at what's actually there. Converting a snippet of text <a href="/tools/text-to-hex">to hexadecimal</a> or <a href="/tools/text-to-binary">to binary</a> shows you the real bytes — you can see an accented character take several bytes in UTF-8, which is a concrete way to understand what's happening under the surface. The takeaway: text is numbers-plus-an-agreement, Unicode is the agreement, UTF-8 is how to store it, and "broken" text is almost always a disagreement about which encoding is in play. Standardise on UTF-8 and most of the mess simply never happens.</p>
+    
+  <aside class="author-box">
+    <p class="author-box-name">Bruno FK</p>
+    <p>Bruno FK is an Edinburgh-based software developer who builds small, fast, privacy-respecting web tools. He built Textbench to collect the everyday text jobs he kept reaching for into one clean, ad-light, browser-only place. <a href="https://brunofk.dev" rel="author noopener" target="_blank">Bruno's site →</a></p>
+  </aside>
+    <p class="article-back"><a href="/guides">← All guides</a></p>
+  </article>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <div><span class="fb">Textbench</span> — 64 text tools, one page, nothing uploaded. · <a href="/guides">Guides</a> · <a href="/about">About</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/contact">Contact</a> · <a href="mailto:hello@textbench.app">hello@textbench.app</a></div>
+      <div>Free. No signup, no upload — everything runs in your browser.</div>
+    </div>
+  </div>
+</footer>
+<script>window.REGEX_WORKER_URL = "../assets/regex-worker.js?v=11cab91b";</script>
+<script src="../assets/app.js?v=b2b4b280" defer></script>
+</body>
+</html>
