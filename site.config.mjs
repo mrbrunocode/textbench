@@ -39,6 +39,10 @@ export const COLLECTION_DIR = "tools";
 // Top-nav links shown on every page (order matters). Keep it short.
 export const NAV = [
   { href: "/guides", label: "Guides" },
+  // Label is "Compare", not the exact query: this anchor repeats on every
+  // page, and exact-match anchor text at that volume reads as
+  // over-optimisation. The page's own title and h1 carry the query.
+  { href: "/alternatives", label: "Compare" },
   { href: "/about", label: "About" },
   { href: "/privacy", label: "Privacy" },
   { href: "/terms", label: "Terms" },

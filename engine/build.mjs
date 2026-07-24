@@ -29,9 +29,14 @@ import { renderDocument, adSlot, affiliateSlot, faqHtml, esc } from "./template.
 import { PAGES, renderTool, affiliateAudience } from "../pages.mjs";
 import { GUIDES } from "../guides.mjs";
 import { ARTICLES } from "../articles.mjs";
-import { home, about, privacy, terms, contact } from "../content.mjs";
+import { home, about, privacy, terms, contact, alternatives } from "../content.mjs";
+import { makeDateTracker } from "./content-dates.mjs";
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
+
+// dateModified per page, changing only when that page's content changes.
+// See engine/content-dates.mjs for why this is not just the build date.
+const dates = makeDateTracker(join(ROOT, "content-dates.json"), new Date().toISOString().slice(0, 10));
 const COLL = join(ROOT, C.COLLECTION_DIR);
 
 // Internal linking: every page lists the others in the collection. This is the
@@ -109,6 +114,10 @@ function collectionPage(p) {
     depth: 1,
     bodyHtml: body,
     headExtra: toolsIndexScript(),
+    dateModified: dates.dateFor(`${C.COLLECTION_DIR}/${p.slug}`, [
+      p.title, p.h1, p.description, p.intro, p.faq,
+      p.extra || GUIDES[p.slug] || "",
+    ]),
   });
 }
 
@@ -118,6 +127,7 @@ function proseDocument(page) {
     title: page.title,
     description: page.description,
     canonicalPath: page.path,
+    dateModified: dates.dateFor(page.path, [page.title, page.description, page.bodyHtml]),
     eyebrow: page.title,
     depth: 0,
     bodyHtml: page.bodyHtml,
@@ -227,7 +237,7 @@ function sitemap() {
   const all = [
     "/",
     `/${GUIDES_DIR}`,
-    ...[about, privacy, terms, contact].map((p) => p.path),
+    ...[about, privacy, terms, contact, alternatives].map((p) => p.path),
     ...ARTICLES.map((a) => `/${GUIDES_DIR}/${a.slug}`),
     ...PAGES.map((p) => `/${C.COLLECTION_DIR}/${p.slug}`),
   ];
@@ -287,6 +297,7 @@ ${C.NAME} is a static web app: no signup, no backend, no per-visitor cost. Every
 - [Privacy policy](${C.SITE_URL}/privacy)
 - [Terms of Service](${C.SITE_URL}/terms)
 - [Contact](${C.SITE_URL}/contact)
+- [Convert Case & Text Mechanic alternatives compared](${C.SITE_URL}/alternatives)
 
 ## Guides
 ${ARTICLES.map((a) => `- [${a.title}](${C.SITE_URL}/${GUIDES_DIR}/${a.slug}): ${a.description}`).join("\n")}
@@ -307,7 +318,7 @@ async function main() {
   }
 
   await writeFile(join(ROOT, "index.html"), homeDocument());
-  for (const page of [about, privacy, terms, contact]) {
+  for (const page of [about, privacy, terms, contact, alternatives]) {
     await writeFile(join(ROOT, page.path.replace(/^\//, "") + ".html"), proseDocument(page));
   }
 
@@ -335,7 +346,9 @@ async function main() {
     await writeFile(pkgPath, JSON.stringify(pkg, null, 2) + "\n");
   }
 
-  console.log(`Built: index + 4 prose pages + ${n} ${C.COLLECTION_DIR} page(s) + sitemap/robots/llms/manifest.`);
+  const d = dates.save();
+  console.log(`Built: index + ${[about, privacy, terms, contact, alternatives].length} prose pages + ${n} ${C.COLLECTION_DIR} page(s) + sitemap/robots/llms/manifest.`);
+  console.log(`dateModified: ${d.total} pages tracked, ${d.changed.length} changed this build.`);
   console.log(`Site: ${C.NAME} <${C.SITE_URL}>`);
   if (!C.ADSENSE_PUB) console.log("Note: AdSense not configured yet — ad slot renders as a reserved placeholder. See scripts/enable-adsense.mjs.");
 }

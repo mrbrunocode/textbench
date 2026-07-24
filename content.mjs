@@ -128,6 +128,57 @@ export const terms = {
   </section>`,
 };
 
+// Commercial-intent comparison page targeting "convertcase alternative" and
+// "text mechanic alternative".
+//
+// Deliberately ONE page covering both rather than a near-duplicate page per
+// competitor: two thin comparison pages built from the same template is the
+// exact scaled-content pattern the rest of this repo works to avoid.
+//
+// Claims were checked against each site on 2026-07-24 and are dated in the
+// copy. Note this comparison is genuinely narrower than it looks — Convert
+// Case has a much larger catalogue than Textbench and the page says so.
+// Re-verify before revising; competitors change.
+export const alternatives = {
+  path: "/alternatives",
+  title: `Convert Case & Text Mechanic Alternatives — ${C.NAME} Compared`,
+  description:
+    "How Textbench compares with Convert Case and Text Mechanic: what runs in your browser, what's rate-limited, and which one to use for which job.",
+  bodyHtml: `
+  <section class="prose">
+    <h1>Convert Case and Text Mechanic alternatives</h1>
+    <p>If you've landed here you're probably using one of the long-standing online text-tool sites and wondering whether something else is better. This is an honest comparison, including the part where one of them beats ${C.NAME} outright.</p>
+    <p><strong>Short version:</strong> ${C.NAME} runs every tool in your browser with no rate limit and no paid tier. Convert Case has a considerably bigger catalogue. Text Mechanic caps free use per hour.</p>
+
+    <h2>Text Mechanic: the hourly cap</h2>
+    <p>Text Mechanic offers roughly 30+ tools and needs no signup, but free use is metered — hit it enough in a session and you get "Limit of 4 free tasks per hour exceeded", with Text Mechanic Pro sold as the way to remove it (checked July 2026).</p>
+    <p>That limit also tells you something about the architecture: work you can rate-limit per hour is work happening on a server, which means your pasted text is being sent to one. For a case conversion that's unremarkable; for an API response with a token in it, or an internal document, it's worth knowing.</p>
+    <p>${C.NAME} has no per-hour cap because there's nothing to cap — the work happens on your machine, so there's no server cost to ration and no queue to stand in.</p>
+
+    <h2>Convert Case: genuinely bigger</h2>
+    <p>Convert Case is free, needs no signup, and covers roughly 150+ tools across case conversion, code and data formatting, image conversion, Unicode font styles and random generators. That is <strong>more than ${C.NAME}'s ${C.TOOL_COUNT}</strong>, and if you want image format conversion or a specific generator that isn't here, it may simply have it and ${C.NAME} won't. Both sites carry ads.</p>
+    <p>Where ${C.NAME} differs is what happens to your text. Convert Case doesn't state whether it processes client- or server-side; ${C.NAME} does everything locally and you can verify it — open the Network tab while you use a tool and nothing carrying your text goes out, and the tools keep working with your connection off.</p>
+
+    <h2>What ${C.NAME} does differently</h2>
+    <ul>
+      <li><strong>Everything client-side.</strong> Paste an API response, a config file, or an internal document without handing it to a third party. The one exception is documented on its own page: <a href="/tools/qr-code-generator">the QR generator</a> calls an external image service, and says so.</li>
+      <li><strong>No caps, no Pro tier.</strong> No per-hour limit, no monthly counter, no feature held back for a paid plan.</li>
+      <li><strong>Works offline.</strong> It's installable and the tools keep running with no connection.</li>
+      <li><strong>A guide on every tool page</strong> covering the parts that actually bite — <a href="/tools/uppercase-converter">why uppercasing German ß isn't reversible</a>, <a href="/tools/md5-hash-generator">why MD5 isn't for passwords</a>, <a href="/tools/base64-encode">why Base64 isn't encryption</a>.</li>
+      <li><strong>Fast to get around.</strong> Cmd/Ctrl+K opens a search over all ${C.TOOL_COUNT} tools from any page.</li>
+    </ul>
+
+    <h2>Which to use</h2>
+    <ul>
+      <li><strong>Sensitive text</strong> — anything with credentials, customer data or unreleased work in it: use a client-side tool. That's ${C.NAME}'s whole design.</li>
+      <li><strong>A tool ${C.NAME} doesn't have</strong> — image conversion and some niche generators aren't here. Convert Case's catalogue is larger; use it.</li>
+      <li><strong>Bulk or repetitive work</strong> — an hourly cap gets in the way fast, so a local tool suits better.</li>
+      <li><strong>You just need one quick conversion</strong> — honestly, any of the three will do it. <a href="/">Start here</a> if you'd rather it not leave your browser.</li>
+    </ul>
+    <p class="note">${C.NAME} is not affiliated with Convert Case or Text Mechanic. Their features, limits and pricing were checked in July 2026 and may have changed since — the fastest way to be sure is to look at their sites.</p>
+  </section>`,
+};
+
 export const contact = {
   path: "/contact",
   title: `Contact — ${C.NAME}`,

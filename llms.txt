@@ -11,6 +11,7 @@ Textbench is a static web app: no signup, no backend, no per-visitor cost. Every
 - [Privacy policy](https://textbench.app/privacy)
 - [Terms of Service](https://textbench.app/terms)
 - [Contact](https://textbench.app/contact)
+- [Convert Case & Text Mechanic alternatives compared](https://textbench.app/alternatives)
 
 ## Guides
 - [Base64, explained: what it is, what it isn't, and when to use it](https://textbench.app/guides/base64-explained): A clear explanation of Base64 encoding: what problem it solves, why it makes data bigger, and the crucial reason it is not — and never should be used as — encryption.
