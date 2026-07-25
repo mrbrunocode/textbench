@@ -179,6 +179,43 @@ export const alternatives = {
   </section>`,
 };
 
+// The public "embed this" page. Its job is to make embedding easy enough that
+// people actually do it — each embed places a real link on someone else's site,
+// which is the family's binding constraint (see docs/seo-strategy.md).
+export const embed = {
+  path: "/embed",
+  title: `Embed a free text tool on your site — ${C.NAME}`,
+  description:
+    "Put a live word counter on your own page for free. One line of HTML, no account, no tracking, nothing to maintain.",
+  bodyHtml: `
+  <section class="prose">
+    <h1>Embed a text tool on your site</h1>
+    <p>If you run a writing blog, a course page, a style guide or a submission-guidelines page, you can drop a working ${C.NAME} tool straight into it. It's free, there's no account, and there's nothing to keep updated — the widget improves whenever ${C.NAME} does.</p>
+
+    <h2>Word counter</h2>
+    <p>A live word, character, sentence and reading-time counter. Everything runs in the reader's own browser, exactly as it does here, so nothing your visitors type is sent anywhere — not to us, and not to you.</p>
+    <p>Paste this where you want it to appear:</p>
+    <pre class="embed-code"><code>&lt;iframe src="${C.SITE_URL}/embed/word-counter" width="100%" height="320"
+        style="border:1px solid #ddd;border-radius:8px;max-width:640px"
+        title="Word counter by ${C.NAME}" loading="lazy"&gt;&lt;/iframe&gt;
+&lt;p style="font-size:13px"&gt;&lt;a href="${C.SITE_URL}/${C.COLLECTION_DIR}/word-counter"&gt;Word counter&lt;/a&gt;
+   by &lt;a href="${C.SITE_URL}"&gt;${C.NAME}&lt;/a&gt;&lt;/p&gt;</code></pre>
+    <p><a href="/embed/word-counter" target="_blank" rel="noopener">Preview the widget →</a></p>
+
+    <h2>Why the snippet includes a credit line</h2>
+    <p>The second half of that snippet — the small line under the widget — is the only thing we ask for, and it's deliberately plain HTML rather than something hidden. A link inside an iframe belongs to the iframe, not to your page, so without that visible line an embed gives us nothing at all. If you'd rather not include it, the widget will still work; we'd just quietly appreciate it if you did.</p>
+
+    <h2>The details</h2>
+    <ul>
+      <li><strong>No tracking of your visitors.</strong> The widget runs the same client-side code as the rest of the site. Nothing typed into it leaves the reader's browser.</li>
+      <li><strong>No account, no key, no rate limit.</strong> Embed it on as many pages as you like.</li>
+      <li><strong>Resize it freely.</strong> Adjust <code>width</code> and <code>height</code> to suit your layout; the widget is responsive down to narrow columns.</li>
+      <li><strong>It won't break.</strong> The embed URL is stable. If we change the tool, your embed picks it up automatically.</li>
+    </ul>
+    <p>Want a different tool embeddable — a character counter for a submissions page, or the <a href="/${C.COLLECTION_DIR}/readability-checker">readability checker</a> for an editorial style guide? <a href="/contact">Ask</a> and it'll likely get added.</p>
+  </section>`,
+};
+
 export const contact = {
   path: "/contact",
   title: `Contact — ${C.NAME}`,

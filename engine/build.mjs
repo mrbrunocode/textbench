@@ -29,7 +29,8 @@ import { renderDocument, adSlot, affiliateSlot, faqHtml, esc } from "./template.
 import { PAGES, renderTool, affiliateAudience } from "../pages.mjs";
 import { GUIDES } from "../guides.mjs";
 import { ARTICLES } from "../articles.mjs";
-import { home, about, privacy, terms, contact, alternatives } from "../content.mjs";
+import { home, about, privacy, terms, contact, alternatives, embed } from "../content.mjs";
+import { EMBEDDABLE, embedPage } from "./embed.mjs";
 import { makeDateTracker } from "./content-dates.mjs";
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -237,7 +238,7 @@ function sitemap() {
   const all = [
     "/",
     `/${GUIDES_DIR}`,
-    ...[about, privacy, terms, contact, alternatives].map((p) => p.path),
+    ...[about, privacy, terms, contact, alternatives, embed].map((p) => p.path),
     ...ARTICLES.map((a) => `/${GUIDES_DIR}/${a.slug}`),
     ...PAGES.map((p) => `/${C.COLLECTION_DIR}/${p.slug}`),
   ];
@@ -298,6 +299,7 @@ ${C.NAME} is a static web app: no signup, no backend, no per-visitor cost. Every
 - [Terms of Service](${C.SITE_URL}/terms)
 - [Contact](${C.SITE_URL}/contact)
 - [Convert Case & Text Mechanic alternatives compared](${C.SITE_URL}/alternatives)
+- [Embed a tool on your site](${C.SITE_URL}/embed)
 
 ## Guides
 ${ARTICLES.map((a) => `- [${a.title}](${C.SITE_URL}/${GUIDES_DIR}/${a.slug}): ${a.description}`).join("\n")}
@@ -318,7 +320,7 @@ async function main() {
   }
 
   await writeFile(join(ROOT, "index.html"), homeDocument());
-  for (const page of [about, privacy, terms, contact, alternatives]) {
+  for (const page of [about, privacy, terms, contact, alternatives, embed]) {
     await writeFile(join(ROOT, page.path.replace(/^\//, "") + ".html"), proseDocument(page));
   }
 
@@ -330,6 +332,13 @@ async function main() {
   for (const a of ARTICLES) {
     await writeFile(join(guidesOut, `${a.slug}.html`), articleDocument(a));
   }
+
+  const embedOut = join(ROOT, "embed");
+  await mkdir(embedOut, { recursive: true });
+  for (const item of EMBEDDABLE) {
+    await writeFile(join(embedOut, `${item.slug}.html`), embedPage(item));
+  }
+  console.log(`Wrote ${EMBEDDABLE.length} embed widget(s) to embed/ (noindex, not in sitemap).`);
 
   await writeFile(join(ROOT, "sitemap.xml"), sitemap());
   await writeFile(join(ROOT, "robots.txt"), robots());

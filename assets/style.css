@@ -400,3 +400,7 @@ footer { border-top: 1px solid var(--border-subtle); padding: var(--space-8) 0; 
 .read-subs { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); margin-top: var(--space-5); padding-top: var(--space-4); border-top: 1px solid var(--border-subtle); }
 .read-sub { font-size: var(--text-xs); color: var(--text-secondary); }
 .read-sub span:first-child { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--text-primary); }
+
+/* ---- Embed snippet block (/embed) ---- */
+.embed-code { background: var(--surface-elevated); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-4); overflow-x: auto; font-size: var(--text-xs); line-height: 1.6; }
+.embed-code code { font-family: var(--font-display); white-space: pre; color: var(--text-primary); }

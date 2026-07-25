@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word counter — Textbench</title>
+<meta name="robots" content="noindex,follow">
+<link rel="stylesheet" href="/assets/style.css?v=34915600">
+<style>
+  /* Widget chrome only: no nav, no footer, no ads, no page padding. */
+  body { padding: var(--space-4); background: var(--bg); }
+  .embed-credit { margin-top: var(--space-3); font-size: var(--text-xs); color: var(--text-secondary); text-align: right; }
+  .embed-credit a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .embed-credit a:hover { text-decoration: underline; }
+</style>
+</head>
+<body class="embed">
+
+  <section class="tool" data-transform="none" data-shape="counter">
+    
+    <div class="stats" role="status" aria-live="polite">
+      <div class="stat" data-stat="words">
+        <span class="stat-num" data-count="words">0</span>
+        <span class="stat-label">words</span>
+      </div>
+      <div class="stat" data-stat="characters">
+        <span class="stat-num" data-count="characters">0</span>
+        <span class="stat-label">characters</span>
+      </div>
+      
+      <div class="stat" data-stat="charactersNoSpaces">
+        <span class="stat-num" data-count="charactersNoSpaces">0</span>
+        <span class="stat-label">no spaces</span>
+      </div>
+      <div class="stat" data-stat="sentences">
+        <span class="stat-num" data-count="sentences">0</span>
+        <span class="stat-label">sentences</span>
+      </div>
+      <div class="stat" data-stat="reading">
+        <span class="stat-num" data-count="reading">0</span>
+        <span class="stat-label">min read</span>
+      </div>
+    </div>
+    <label class="sr-only" for="editor">Your text</label>
+    <textarea id="editor" class="editor" placeholder="Type or paste your text here…" spellcheck="true"></textarea>
+    <div class="tool-actions">
+      <button type="button" class="btn" id="copyBtn">Copy text</button>
+      <button type="button" class="btn" id="clearBtn">Clear</button>
+    </div>
+  </section>
+<p class="embed-credit">Powered by <a href="https://textbench.app/tools/word-counter" target="_blank" rel="noopener">Textbench</a></p>
+<script src="/assets/app.js?v=c5716f95" defer></script>
+</body>
+</html>
