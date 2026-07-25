@@ -54,6 +54,10 @@ export const home = {
           <li><a href="/${C.COLLECTION_DIR}/json-formatter">JSON formatter</a></li>
           <li><a href="/${C.COLLECTION_DIR}/base64-encode">Base64 encode</a></li>
         </ul>
+      </div>
+      <div class="note" id="totdNote" hidden>
+        <p class="note-head">Tool of the day</p>
+        <p class="note-body" id="totdBody"></p>
       </div>`,
 
   belowHtml: `

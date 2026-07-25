@@ -51,6 +51,55 @@
     try { items = JSON.parse(toolsIndexEl.textContent); } catch (e) {}
     if (!items.length) return;
 
+    // ── First-visit ⌘K discovery hint ────────────────────────────────────
+    // 65 tools in a flat sidebar make the small "Search tools ⌘K" chip easy
+    // to never notice. A one-time, dismissible nudge — localStorage-only,
+    // same pattern as the recent-tools list below — never nags again once
+    // seen. Dismissed by: using the palette, pressing the shortcut, clicking
+    // anywhere else on the page, or an 8s timeout, whichever comes first.
+    (function () {
+      var HINT_KEY = "textbench_cmdk_hint_seen";
+      var seen = true;
+      try { seen = localStorage.getItem(HINT_KEY) === "1"; } catch (e) {}
+      if (seen) return;
+      trigger.classList.add("cmdk-trigger--hint");
+      var dismissed = false;
+      function dismiss() {
+        if (dismissed) return;
+        dismissed = true;
+        trigger.classList.remove("cmdk-trigger--hint");
+        try { localStorage.setItem(HINT_KEY, "1"); } catch (e) {}
+        document.removeEventListener("keydown", onKey);
+        document.removeEventListener("click", onClick);
+      }
+      function onKey(e) {
+        var isK = e.key === "k" || e.key === "K";
+        if (isK && (e.metaKey || e.ctrlKey)) dismiss();
+      }
+      function onClick() { dismiss(); }
+      document.addEventListener("keydown", onKey);
+      document.addEventListener("click", onClick);
+      setTimeout(dismiss, 8000);
+    })();
+
+    // ── Tool of the day: a deterministic, client-side pick from the full
+    // catalogue, keyed by day-of-year so it's stable within a day without
+    // any backend. Purely a small margin flourish — reuses the same
+    // toolsIndex data island the palette already parses, no extra request.
+    var totdNote = document.getElementById("totdNote");
+    var totdBody = document.getElementById("totdBody");
+    if (totdNote && totdBody) {
+      var now = new Date();
+      var startOfYear = new Date(now.getFullYear(), 0, 0);
+      var dayOfYear = Math.floor((now - startOfYear) / 86400000);
+      var pick = items[dayOfYear % items.length];
+      if (pick) {
+        totdBody.innerHTML = '<a href="' + pick.path.replace(/"/g, "&quot;") + '">' +
+          pick.title.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") + "</a>";
+        totdNote.hidden = false;
+      }
+    }
+
     // ── Recently used tools: a localStorage-only, per-browser list — no
     // backend, never synced. Doubles as the Cmd+K palette's empty-query
     // view (jump back to what you were just using) and feeds the home

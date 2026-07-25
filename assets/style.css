@@ -164,12 +164,32 @@ h3 { font-size: var(--text-md); }
 }
 .theme-toggle:hover { background: var(--surface-hover); }
 .cmdk-trigger {
+  position: relative;
   display: flex; align-items: center; gap: var(--space-2);
   background: var(--surface-elevated); border: 1px solid var(--border-subtle); color: var(--text-secondary);
   height: 36px; padding: 0 var(--space-3); border-radius: var(--radius-full); cursor: pointer; font-size: var(--text-sm);
   transition: background var(--duration-fast) var(--ease-out);
 }
 .cmdk-trigger:hover { background: var(--surface-hover); }
+
+/* First-visit discovery hint (see assets/app.js) — a quiet pulsing ring plus
+   a small callout, shown once per browser and dismissed by any interaction. */
+@keyframes cmdk-hint-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-soft); }
+  50% { box-shadow: 0 0 0 6px var(--accent-soft); }
+}
+.cmdk-trigger--hint { border-color: var(--accent); animation: cmdk-hint-pulse 1.8s ease-in-out infinite; }
+.cmdk-trigger--hint::after {
+  content: "Try ⌘K to jump to any tool"; position: absolute; top: calc(100% + 10px); right: 0;
+  background: var(--text-primary); color: var(--bg); font-family: var(--font-ui); font-weight: 500;
+  font-size: var(--text-xs); white-space: nowrap; padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); pointer-events: none; z-index: 50;
+}
+.cmdk-trigger--hint::before {
+  content: ""; position: absolute; top: 100%; right: 14px; margin-top: 3px;
+  border: 5px solid transparent; border-bottom-color: var(--text-primary); pointer-events: none; z-index: 50;
+}
+@media (max-width: 560px) { .cmdk-trigger--hint::after { right: -8px; } }
 .cmdk-trigger kbd {
   font-family: var(--font-display); font-size: 11px; color: var(--text-tertiary);
   background: var(--surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 1px 5px;
@@ -198,9 +218,20 @@ h3 { font-size: var(--text-md); }
 
 .recent-tools { margin-bottom: var(--space-4); }
 .recent-tools-label { display: block; font-size: var(--text-xs); text-transform: uppercase; letter-spacing: .06em; color: var(--text-tertiary); margin-bottom: var(--space-2); }
-.recent-tools-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+/* Single row, not a wrap grid: the list only grows over time (see app.js's
+   MAX_RECENT cap of 6), so a horizontal scroll with a fade at the trailing
+   edge degrades more gracefully than reflowing to more rows would, and it
+   can never push the fixed-width margin column or widen the work shell. */
+.recent-tools-chips {
+  display: flex; flex-wrap: nowrap; gap: var(--space-2); overflow-x: auto; padding-bottom: 2px;
+  scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
+}
+.recent-tools-chips::-webkit-scrollbar { display: none; }
 .recent-tools-chip {
-  display: inline-flex; align-items: center; font-size: var(--text-sm); color: var(--text-secondary);
+  display: inline-flex; align-items: center; flex: 0 0 auto; white-space: nowrap;
+  font-size: var(--text-sm); color: var(--text-secondary);
   background: var(--surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-full);
   padding: var(--space-1) var(--space-3); transition: background var(--duration-fast) var(--ease-out);
 }
@@ -343,14 +374,21 @@ h3 { font-size: var(--text-md); }
 .stat-label { display: block; font-size: var(--text-xs); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.08em; margin-top: var(--space-2); }
 .tool label { display: block; font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); margin-bottom: var(--space-2); }
 .tool label[for="editor"] { margin-top: 0; }
-.tool label[for="output"] { margin-top: var(--space-4); }
+/* The result is data, not prose, and the site's own convention is a hairline
+   rule to set a section off rather than a card — same device as .stats'
+   border-bottom and .tool's own top/bottom rules. */
+.tool label[for="output"] {
+  margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--border-subtle);
+}
 .editor {
   width: 100%; min-height: 220px; resize: vertical; font-family: var(--font-ui); font-size: var(--text-base);
   line-height: 1.6; color: var(--text-primary); background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius-md); padding: var(--space-4);
 }
 .editor:focus-visible { border-color: var(--accent); }
-.editor--output { background: var(--surface-elevated); color: var(--text-secondary); min-height: 160px; }
+/* Data/output stays in Fira Code (see README § Layout) — the input above
+   stays in the sans since that's what's typed, but a result is output. */
+.editor--output { font-family: var(--font-display); font-size: var(--text-sm); background: var(--surface-elevated); color: var(--text-secondary); min-height: 160px; }
 .editor[hidden], label[hidden] { display: none; }
 .tool-actions { display: flex; gap: var(--space-3); margin-top: var(--space-4); flex-wrap: wrap; }
 
