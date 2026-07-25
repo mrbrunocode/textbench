@@ -102,7 +102,7 @@ export const ADSENSE_SLOT = "";
 // VERIFY THE GENERATED SNIPPET against what the portal shows before relying on
 // it — engine/template.mjs reproduces Grow's standard loader, and if Grow ever
 // changes that format, the portal is the source of truth, not this repo.
-export const GROW_SITE_ID = "";
+export const GROW_SITE_ID = "U2l0ZTowNjY3MmQ4Yi1jYTA1LTQ3OWUtOGY1NC1iY2M1OThjYWRlMmY=";
 
 // Affiliate recommendation card, split by audience: "writing" tools (case
 // converters, counters, cleanup) get a writing-tool partner; "dev" tools
