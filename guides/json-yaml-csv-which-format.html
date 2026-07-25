@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=a42ded3d">
+<link rel="stylesheet" href="../assets/style.css?v=eb77ab08">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -34,30 +34,71 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<header>
-  <a class="logo" href="/">
-    <svg class="logo-mark" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect width="22" height="22" rx="5" fill="currentColor" opacity="0.14"/><text x="11" y="15.5" font-family="Fira Code, monospace" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">#</text></svg>
-    Textbench
-  </a>
-  <div class="header-actions">
-    <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
-      <span>Search tools</span><kbd>⌘K</kbd>
-    </button>
-    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+<header class="masthead">
+  <div class="masthead-top">
+    <a class="wordmark" href="/">Textbench</a>
+    <div class="masthead-actions">
+      <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
+        <span>Search tools</span><kbd>⌘K</kbd>
+      </button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+    </div>
+  </div>
+  <div class="masthead-rule">
+    <nav class="masthead-nav" aria-label="Site">
+      <a href="/guides">Guides</a>
+      <a href="/alternatives">Compare</a>
+      <a href="/about">About</a>
+    </nav>
+    <p class="masthead-meta">65 tools · nothing uploaded · no account</p>
   </div>
 </header>
-<nav class="main-nav" aria-label="Site">
-  <a href="/guides">Guides</a>
-  <a href="/alternatives">Compare</a>
-  <a href="/about">About</a>
-  <a href="/privacy">Privacy</a>
-  <a href="/terms">Terms</a>
-  <a href="/contact">Contact</a>
-</nav>
-<main class="wrap" id="main">
+<div class="sheet sheet--read has-margin">
+  
+  <nav class="index" aria-label="Guides and site">
+    <div class="index-in">
+      <p class="index-title"><a href="/guides">Guides</a></p>
+      <section class="index-group">
+        <h2 class="index-head">Reading</h2>
+        <ul class="index-list">
+          <li><a href="/guides/base64-explained">Base64, explained: what it is, what it isn't, and when to use it</a></li>
+          <li><a href="/guides/how-to-choose-a-strong-password">How to choose (and manage) a strong password</a></li>
+          <li><a href="/guides/regex-for-non-programmers">Regular expressions for non-programmers: a gentle introduction</a></li>
+          <li><a href="/guides/character-encoding-explained">Character encoding explained: Unicode, UTF-8, and why text breaks</a></li>
+          <li><a href="/guides/json-yaml-csv-which-format" aria-current="page">JSON, YAML and CSV: which data format should you use?</a></li>
+          <li><a href="/guides/hashing-explained">Hashing explained: what MD5 and SHA-256 are actually for</a></li>
+          <li><a href="/guides/cleaning-messy-text">Cleaning up messy text: a practical workflow</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Site</h2>
+        <ul class="index-list">
+          <li><a href="/alternatives">Convert Case &amp; Text Mechanic Alternatives</a></li>
+          <li><a href="/about">About Textbench</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/embed">Embed a free text tool on your site</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Tools</h2>
+        <ul class="index-list">
+          <li><a href="/tools/word-counter">Count &amp; measure</a></li>
+          <li><a href="/tools/readability-checker">Read &amp; compare</a></li>
+          <li><a href="/tools/uppercase-converter">Change case</a></li>
+          <li><a href="/tools/remove-duplicate-lines">Clean up</a></li>
+          <li><a href="/tools/sort-lines-alphabetically">Reorder</a></li>
+          <li><a href="/tools/find-and-replace">Find &amp; extract</a></li>
+          <li><a class="index-more" href="/">All 65 tools →</a></li>
+        </ul>
+      </section>
+    </div>
+  </nav>
+  <main class="column" id="main">
 
   <article class="prose article">
-    <span class="eyebrow">Guide</span>
+    <p class="kicker"><a href="/guides">Guides</a></p>
     <h1>JSON, YAML and CSV: which data format should you use?</h1>
     
   <p class="byline">By <a href="https://brunofk.dev" rel="author noopener" target="_blank">Bruno FK</a>
@@ -66,26 +107,26 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
     
     <p>If you work with data, you'll meet JSON, YAML and CSV constantly, and they're not interchangeable — each was designed for a different job and each is genuinely bad at the others' jobs. Knowing which to reach for (and when to convert) saves a surprising amount of friction. Here's a practical comparison.</p>
 
-    <h2>CSV: flat, tabular, spreadsheet-native</h2>
+    <h2 id="csv-flat-tabular-spreadsheet-native">CSV: flat, tabular, spreadsheet-native</h2>
     <p>CSV (comma-separated values) is the simplest: rows and columns, one record per line, a header row of column names. Its whole strength is that it's <em>tabular</em> and universal — every spreadsheet and database reads and writes it, and it's compact.</p>
     <p>Its weakness is that it's <em>only</em> tabular. CSV has no way to express nesting — a record can't contain a list or a sub-record — so anything hierarchical doesn't fit. It also has no types (everything is text) and a surprising number of edge cases: commas inside a field need quoting, quotes need escaping, and line endings and encodings vary between the systems that produced the file. Use CSV when your data is genuinely a flat table and it's headed for a spreadsheet or a bulk import.</p>
 
-    <h2>JSON: the lingua franca of APIs</h2>
+    <h2 id="json-the-lingua-franca-of-apis">JSON: the lingua franca of APIs</h2>
     <p>JSON (JavaScript Object Notation) is the default for data exchanged between programs, especially over the web. Unlike CSV it handles <em>nesting</em> naturally — objects inside objects, lists of things — and it has basic types (strings, numbers, booleans, null). It's strict and unambiguous, which is exactly what you want when a machine is parsing it: double-quoted keys and strings, no trailing commas, no comments.</p>
     <p>That strictness is also its weakness for humans. JSON is fiddly to write by hand — easy to drop a comma or a brace — and can't carry comments, which config files often need. It's a format optimised for machines to exchange, not for people to author. When you're staring at a wall of minified JSON, a <a href="/tools/json-formatter">formatter</a> makes it readable, and a <a href="/tools/json-validator">validator</a> pinpoints the missing comma when it won't parse.</p>
 
-    <h2>YAML: for humans to write</h2>
+    <h2 id="yaml-for-humans-to-write">YAML: for humans to write</h2>
     <p>YAML was designed to be the format people write by hand — which is why configuration files (CI pipelines, Kubernetes, app config) so often use it. It expresses the same nested structures as JSON but with far less punctuation: indentation instead of braces, no quotes on most strings, and comments allowed. In fact YAML is a superset of JSON, so any JSON is valid YAML.</p>
     <p>YAML's readability comes at a price: <strong>indentation is structural</strong>, so a misplaced space can change the meaning or break the file entirely, and it has some famous gotchas (the word <code>no</code> can be read as the boolean <code>false</code>; <code>1.0</code> as a number). It's wonderful for hand-edited config and a poor choice for data flying between machines, where JSON's strictness is safer.</p>
 
-    <h2>Choosing quickly</h2>
+    <h2 id="choosing-quickly">Choosing quickly</h2>
     <ul>
       <li><strong>Flat, tabular data → CSV.</strong> Especially anything bound for a spreadsheet.</li>
       <li><strong>Data exchanged between programs / APIs → JSON.</strong> Strict, typed, universally supported.</li>
       <li><strong>Configuration a human edits → YAML.</strong> Readable, comment-friendly — just mind the indentation.</li>
     </ul>
 
-    <h2>Converting between them</h2>
+    <h2 id="converting-between-them">Converting between them</h2>
     <p>You'll often need to move data from one to another: an API gives you JSON but you need it in a spreadsheet; a config is JSON but you'd rather hand-edit YAML. The conversions are well-defined, with one caveat worth remembering — going from a nested format (JSON/YAML) to a flat one (CSV) loses structure, because a table has nowhere to put nesting, so flatten or reshape first. The tools handle the common directions cleanly: <a href="/tools/csv-to-json-converter">CSV↔JSON</a>, <a href="/tools/yaml-to-json-converter">YAML↔JSON</a>, and <a href="/tools/json-to-yaml-converter">JSON↔YAML</a>. Pick the format that fits the job at each stage, and convert at the boundaries — that's the whole art of it.</p>
     
   <aside class="author-box">
@@ -94,7 +135,24 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   </aside>
     <p class="article-back"><a href="/guides">← All guides</a></p>
   </article>
-</main>
+  </main>
+  
+  <aside class="margin">
+    <div class="margin-in">
+      
+      <div class="note note--contents">
+        <p class="note-head">On this page</p>
+        <ul class="note-list">
+          <li><a href="#csv-flat-tabular-spreadsheet-native">CSV: flat, tabular, spreadsheet-native</a></li>
+          <li><a href="#json-the-lingua-franca-of-apis">JSON: the lingua franca of APIs</a></li>
+          <li><a href="#yaml-for-humans-to-write">YAML: for humans to write</a></li>
+          <li><a href="#choosing-quickly">Choosing quickly</a></li>
+          <li><a href="#converting-between-them">Converting between them</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+</div>
 <footer>
   <div class="wrap">
     <div class="foot-in">

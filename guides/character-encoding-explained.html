@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=a42ded3d">
+<link rel="stylesheet" href="../assets/style.css?v=eb77ab08">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -34,30 +34,71 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<header>
-  <a class="logo" href="/">
-    <svg class="logo-mark" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect width="22" height="22" rx="5" fill="currentColor" opacity="0.14"/><text x="11" y="15.5" font-family="Fira Code, monospace" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">#</text></svg>
-    Textbench
-  </a>
-  <div class="header-actions">
-    <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
-      <span>Search tools</span><kbd>⌘K</kbd>
-    </button>
-    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+<header class="masthead">
+  <div class="masthead-top">
+    <a class="wordmark" href="/">Textbench</a>
+    <div class="masthead-actions">
+      <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
+        <span>Search tools</span><kbd>⌘K</kbd>
+      </button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+    </div>
+  </div>
+  <div class="masthead-rule">
+    <nav class="masthead-nav" aria-label="Site">
+      <a href="/guides">Guides</a>
+      <a href="/alternatives">Compare</a>
+      <a href="/about">About</a>
+    </nav>
+    <p class="masthead-meta">65 tools · nothing uploaded · no account</p>
   </div>
 </header>
-<nav class="main-nav" aria-label="Site">
-  <a href="/guides">Guides</a>
-  <a href="/alternatives">Compare</a>
-  <a href="/about">About</a>
-  <a href="/privacy">Privacy</a>
-  <a href="/terms">Terms</a>
-  <a href="/contact">Contact</a>
-</nav>
-<main class="wrap" id="main">
+<div class="sheet sheet--read has-margin">
+  
+  <nav class="index" aria-label="Guides and site">
+    <div class="index-in">
+      <p class="index-title"><a href="/guides">Guides</a></p>
+      <section class="index-group">
+        <h2 class="index-head">Reading</h2>
+        <ul class="index-list">
+          <li><a href="/guides/base64-explained">Base64, explained: what it is, what it isn't, and when to use it</a></li>
+          <li><a href="/guides/how-to-choose-a-strong-password">How to choose (and manage) a strong password</a></li>
+          <li><a href="/guides/regex-for-non-programmers">Regular expressions for non-programmers: a gentle introduction</a></li>
+          <li><a href="/guides/character-encoding-explained" aria-current="page">Character encoding explained: Unicode, UTF-8, and why text breaks</a></li>
+          <li><a href="/guides/json-yaml-csv-which-format">JSON, YAML and CSV: which data format should you use?</a></li>
+          <li><a href="/guides/hashing-explained">Hashing explained: what MD5 and SHA-256 are actually for</a></li>
+          <li><a href="/guides/cleaning-messy-text">Cleaning up messy text: a practical workflow</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Site</h2>
+        <ul class="index-list">
+          <li><a href="/alternatives">Convert Case &amp; Text Mechanic Alternatives</a></li>
+          <li><a href="/about">About Textbench</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/embed">Embed a free text tool on your site</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Tools</h2>
+        <ul class="index-list">
+          <li><a href="/tools/word-counter">Count &amp; measure</a></li>
+          <li><a href="/tools/readability-checker">Read &amp; compare</a></li>
+          <li><a href="/tools/uppercase-converter">Change case</a></li>
+          <li><a href="/tools/remove-duplicate-lines">Clean up</a></li>
+          <li><a href="/tools/sort-lines-alphabetically">Reorder</a></li>
+          <li><a href="/tools/find-and-replace">Find &amp; extract</a></li>
+          <li><a class="index-more" href="/">All 65 tools →</a></li>
+        </ul>
+      </section>
+    </div>
+  </nav>
+  <main class="column" id="main">
 
   <article class="prose article">
-    <span class="eyebrow">Guide</span>
+    <p class="kicker"><a href="/guides">Guides</a></p>
     <h1>Character encoding explained: Unicode, UTF-8, and why text breaks</h1>
     
   <p class="byline">By <a href="https://brunofk.dev" rel="author noopener" target="_blank">Bruno FK</a>
@@ -66,17 +107,17 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
     
     <p>You've seen it: a perfectly normal "café" shows up as "cafÃ©", an apostrophe becomes "â€™", or names full of accents dissolve into question marks and boxes. It looks like corruption, but it usually isn't — it's a <em>character encoding</em> mismatch, and once you understand what's happening, both the cause and the fix become obvious. This is one of those topics that quietly underlies a huge amount of "why is my text broken" frustration.</p>
 
-    <h2>Computers store numbers, not letters</h2>
+    <h2 id="computers-store-numbers-not-letters">Computers store numbers, not letters</h2>
     <p>A computer has no idea what an "A" is. It stores numbers. So to store text, there has to be an agreed mapping from characters to numbers — "A is 65, B is 66", and so on. That mapping is a <em>character set</em>, and the rules for turning those numbers into actual bytes on disk or on the wire is an <em>encoding</em>. Text breaks when the thing writing the bytes and the thing reading them disagree about which mapping is in use.</p>
 
-    <h2>From ASCII's 128 characters to Unicode's universe</h2>
+    <h2 id="from-asciis-128-characters-to-unicodes-universe">From ASCII's 128 characters to Unicode's universe</h2>
     <p>The original standard, ASCII, mapped 128 characters — enough for English letters, digits, and basic punctuation. That was fine until the rest of the world needed computers. Accented letters, Cyrillic, Arabic, Chinese, and eventually emoji have no place in 128 slots. For a while, everyone invented their own incompatible extensions, which is precisely why text moved between systems and shattered.</p>
     <p><strong>Unicode</strong> is the fix: one giant, universal character set with a unique number (a "code point") for every character in every writing system — over a million slots, covering essentially all human text plus emoji. Unicode says "the letter é is code point U+00E9, the emoji 😀 is U+1F600." It's the agreed-upon map everyone can share.</p>
 
-    <h2>UTF-8: how Unicode becomes bytes</h2>
+    <h2 id="utf-8-how-unicode-becomes-bytes">UTF-8: how Unicode becomes bytes</h2>
     <p>Unicode assigns the numbers; it doesn't say how to store them as bytes. That's an encoding's job, and the one that won — used by the vast majority of the web — is <strong>UTF-8</strong>. Its clever trick is being variable-width: the common ASCII characters still take a single byte (so plain English text is identical to old ASCII, and files stay small), while less common characters take two, three, or four bytes as needed. It's efficient, backwards-compatible, and universal. If you get to choose an encoding, the answer is UTF-8, essentially always.</p>
 
-    <h2>So why does text still break?</h2>
+    <h2 id="so-why-does-text-still-break">So why does text still break?</h2>
     <p>The gibberish happens when bytes written as UTF-8 are <em>read</em> as if they were some other encoding (often the old Windows "Latin-1"), or vice versa. "café" in UTF-8 stores the é as two bytes; a reader that thinks each byte is one Latin-1 character shows those two bytes as two characters — "Ã©" — and you get "cafÃ©". The bytes are fine; the <em>interpretation</em> is wrong. The question-marks-and-boxes version happens when a character has no representation in the encoding or font being used to display it, so it's replaced with a placeholder.</p>
     <p>The practical fixes follow directly:</p>
     <ul>
@@ -85,7 +126,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <li><strong>Watch invisible impostors.</strong> A "non-breaking space" or a smart quote pasted from a word processor looks normal but is a different character underneath, which can break exact matches and comparisons.</li>
     </ul>
 
-    <h2>Seeing the bytes for yourself</h2>
+    <h2 id="seeing-the-bytes-for-yourself">Seeing the bytes for yourself</h2>
     <p>When encoding is the suspect, it helps to look at what's actually there. Converting a snippet of text <a href="/tools/text-to-hex">to hexadecimal</a> or <a href="/tools/text-to-binary">to binary</a> shows you the real bytes — you can see an accented character take several bytes in UTF-8, which is a concrete way to understand what's happening under the surface. The takeaway: text is numbers-plus-an-agreement, Unicode is the agreement, UTF-8 is how to store it, and "broken" text is almost always a disagreement about which encoding is in play. Standardise on UTF-8 and most of the mess simply never happens.</p>
     
   <aside class="author-box">
@@ -94,7 +135,24 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   </aside>
     <p class="article-back"><a href="/guides">← All guides</a></p>
   </article>
-</main>
+  </main>
+  
+  <aside class="margin">
+    <div class="margin-in">
+      
+      <div class="note note--contents">
+        <p class="note-head">On this page</p>
+        <ul class="note-list">
+          <li><a href="#computers-store-numbers-not-letters">Computers store numbers, not letters</a></li>
+          <li><a href="#from-asciis-128-characters-to-unicodes-universe">From ASCII's 128 characters to Unicode's universe</a></li>
+          <li><a href="#utf-8-how-unicode-becomes-bytes">UTF-8: how Unicode becomes bytes</a></li>
+          <li><a href="#so-why-does-text-still-break">So why does text still break?</a></li>
+          <li><a href="#seeing-the-bytes-for-yourself">Seeing the bytes for yourself</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+</div>
 <footer>
   <div class="wrap">
     <div class="foot-in">

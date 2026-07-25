@@ -26,7 +26,7 @@ import { dirname, join } from "node:path";
 import { mkdir, writeFile, readFile, rm } from "node:fs/promises";
 import * as C from "../site.config.mjs";
 import { renderDocument, adSlot, affiliateSlot, faqHtml, esc } from "./template.mjs";
-import { PAGES, renderTool, affiliateAudience } from "../pages.mjs";
+import { PAGES, renderTool, affiliateAudience, GROUPS, GROUP_OF } from "../pages.mjs";
 import { GUIDES } from "../guides.mjs";
 import { ARTICLES } from "../articles.mjs";
 import { home, about, privacy, terms, contact, alternatives, embed } from "../content.mjs";
@@ -40,43 +40,128 @@ const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const dates = makeDateTracker(join(ROOT, "content-dates.json"), new Date().toISOString().slice(0, 10));
 const COLL = join(ROOT, C.COLLECTION_DIR);
 
-// Internal linking: every page lists the others in the collection. This is the
-// crawl-and-rank engine — hundreds of pages each one click from every other.
-// On a tool page we show a CURATED window of ~12 thematically-adjacent tools
-// (PAGES is ordered so neighbours are related), not the full wall of 64 — a
-// giant identical link list on every page is a classic doorway/low-value
-// signal and buries the page's own content. Full crawl coverage still comes
-// from the homepage (which lists all) and the sitemap. On the homepage
-// (currentSlug === null) we list everything, since that page IS the index.
+// Internal linking, in two distinct jobs that used to be one.
+//
+// The index rail (below) is NAVIGATION: all 65 tools under their GROUPS
+// headings, in the same position on every page. It is deliberately complete —
+// a reader should never have to go back to the homepage to find out what else
+// is here — and because it is site furniture in a consistent position, it is
+// read as navigation rather than as an in-content link wall.
+//
+// relatedNote() is CONTEXT: a curated window of ~12 thematically adjacent
+// tools (PAGES is ordered so neighbours are related), rendered as a margin
+// note on the page it belongs to. Full crawl coverage comes from the rail and
+// the sitemap, so this never needs to be the whole catalogue.
 const RELATED_WINDOW = 12;
-function relatedLinks(currentSlug) {
-  let chosen;
-  if (currentSlug == null) {
-    chosen = PAGES;
-  } else {
-    const i = PAGES.findIndex((p) => p.slug === currentSlug);
-    chosen = [];
-    for (let off = 1; chosen.length < RELATED_WINDOW && off < PAGES.length; off++) {
-      const after = PAGES[(i + off) % PAGES.length];
-      const before = PAGES[(i - off + PAGES.length) % PAGES.length];
-      if (after.slug !== currentSlug && !chosen.includes(after)) chosen.push(after);
-      if (chosen.length < RELATED_WINDOW && before.slug !== currentSlug && !chosen.includes(before)) chosen.push(before);
-    }
-  }
-  const links = chosen
-    .filter((p) => p.slug !== currentSlug)
-    .map((p) => `<a href="/${C.COLLECTION_DIR}/${p.slug}">${esc(p.eyebrow || p.title)}</a>`)
-    .join("\n      ");
-  if (!links) return "";
-  const browseAll =
-    currentSlug == null ? "" : `\n      <a class="related-all" href="/">Browse all ${PAGES.length} tools →</a>`;
+
+// ── The index rail ─────────────────────────────────────────────────────────
+const bySlug = Object.fromEntries(PAGES.map((p) => [p.slug, p]));
+
+function toolIndex(currentSlug) {
+  const groups = GROUPS.map(([heading, slugs]) => {
+    const items = slugs.map((slug) => {
+      const p = bySlug[slug];
+      const here = slug === currentSlug;
+      return `<li><a href="/${C.COLLECTION_DIR}/${slug}"${here ? ' aria-current="page"' : ""}>${esc(p.eyebrow || p.title)}</a></li>`;
+    }).join("\n          ");
+    return `
+      <section class="index-group">
+        <h2 class="index-head">${esc(heading)}</h2>
+        <ul class="index-list">
+          ${items}
+        </ul>
+      </section>`;
+  }).join("");
   return `
-  <nav class="related" aria-label="More tools">
-    <h2>${currentSlug == null ? "All tools" : "Related tools"}</h2>
-    <div class="related-grid">
-      ${links}${browseAll}
+  <nav class="index" aria-label="All tools">
+    <div class="index-in">
+      <p class="index-title"><a href="/">All ${PAGES.length} tools</a></p>${groups}
     </div>
   </nav>`;
+}
+
+// The reading pages get their own index — articles and site pages rather than
+// the tool list, which would be noise next to a guide.
+function readingIndex(currentPath) {
+  const link = (href, label) =>
+    `<li><a href="${href}"${href === currentPath ? ' aria-current="page"' : ""}>${esc(label)}</a></li>`;
+  return `
+  <nav class="index" aria-label="Guides and site">
+    <div class="index-in">
+      <p class="index-title"><a href="/${GUIDES_DIR}">Guides</a></p>
+      <section class="index-group">
+        <h2 class="index-head">Reading</h2>
+        <ul class="index-list">
+          ${ARTICLES.map((a) => link(`/${GUIDES_DIR}/${a.slug}`, a.title)).join("\n          ")}
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Site</h2>
+        <ul class="index-list">
+          ${[alternatives, about, privacy, terms, contact, embed].map((p) => link(p.path, p.title.replace(new RegExp(`\\s*[—|]\\s*.*$`), "").replace(`${C.NAME} `, ""))).join("\n          ")}
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Tools</h2>
+        <ul class="index-list">
+          ${GROUPS.slice(0, 6).map(([heading, slugs]) =>
+            `<li><a href="/${C.COLLECTION_DIR}/${slugs[0]}">${esc(heading)}</a></li>`).join("\n          ")}
+          <li><a class="index-more" href="/">All ${PAGES.length} tools →</a></li>
+        </ul>
+      </section>
+    </div>
+  </nav>`;
+}
+
+/**
+ * Marginalia: the editorial device this layout is built around. Notes sit in
+ * the outer column beside the measure rather than interrupting it — so a page
+ * can carry its context (what this is, what's related, what to read next)
+ * without the reader having to scroll past it to reach the text.
+ *
+ * Returns "" when there is nothing worth putting there, and the shell then
+ * drops the column entirely rather than leaving a gutter of white.
+ */
+function marginNotes(blocks) {
+  const kept = blocks.filter(Boolean);
+  if (!kept.length) return "";
+  return `
+  <aside class="margin">
+    <div class="margin-in">
+      ${kept.join("\n      ")}
+    </div>
+  </aside>`;
+}
+
+const marginNote = (head, html) => `
+      <div class="note">
+        <p class="note-head">${esc(head)}</p>
+        ${html}
+      </div>`;
+
+/** On-page contents, built from the page's own h2s (reading pages only). */
+function withContents(html) {
+  const heads = [];
+  const withIds = html.replace(/<h2([^>]*)>([\s\S]*?)<\/h2>/g, (m, attrs, inner) => {
+    if (/\bid=/.test(attrs)) return m;
+    const text = inner.replace(/<[^>]*>/g, "").trim();
+    const id = text.toLowerCase().replace(/[^\w\s-]/g, "").trim().replace(/\s+/g, "-").slice(0, 60);
+    if (!id || heads.some((h) => h.id === id)) return m;
+    heads.push({ id, text });
+    return `<h2${attrs} id="${id}">${inner}</h2>`;
+  });
+  if (heads.length < 2) return { html, contents: "" };
+  const items = heads.map((h) => `<li><a href="#${h.id}">${esc(h.text)}</a></li>`).join("\n          ");
+  return {
+    html: withIds,
+    contents: `
+      <div class="note note--contents">
+        <p class="note-head">On this page</p>
+        <ul class="note-list">
+          ${items}
+        </ul>
+      </div>`,
+  };
 }
 
 // Site-wide tools index for the Cmd+K command palette (see assets/app.js).
@@ -93,19 +178,41 @@ function toolsIndexScript() {
   return `<script id="toolsIndex" type="application/json">${JSON.stringify(items)}</script>`;
 }
 
+/** Related tools as a margin note rather than a footer grid. */
+function relatedNote(currentSlug) {
+  const i = PAGES.findIndex((x) => x.slug === currentSlug);
+  const chosen = [];
+  for (let off = 1; chosen.length < RELATED_WINDOW && off < PAGES.length; off++) {
+    const after = PAGES[(i + off) % PAGES.length];
+    const before = PAGES[(i - off + PAGES.length) % PAGES.length];
+    if (after.slug !== currentSlug && !chosen.includes(after)) chosen.push(after);
+    if (chosen.length < RELATED_WINDOW && before.slug !== currentSlug && !chosen.includes(before)) chosen.push(before);
+  }
+  if (!chosen.length) return "";
+  return `
+      <div class="note">
+        <p class="note-head">Related tools</p>
+        <ul class="note-list">
+          ${chosen.map((x) => `<li><a href="/${C.COLLECTION_DIR}/${x.slug}">${esc(x.eyebrow || x.title)}</a></li>`).join("\n          ")}
+          <li><a class="index-more" href="/">All ${PAGES.length} tools →</a></li>
+        </ul>
+      </div>`;
+}
+
 function collectionPage(p) {
+  const group = GROUP_OF[p.slug];
   const body = `
-  <section class="hero">
-    <span class="eyebrow">${esc(p.eyebrow || "")}</span>
+  <header class="standfirst">
+    <p class="kicker"><a href="/">Tools</a>${group ? ` <span aria-hidden="true">/</span> ${esc(group)}` : ""}</p>
     <h1>${esc(p.h1 || p.title)}</h1>
     <p class="lede">${esc(p.intro || p.description)}</p>
-  </section>
+  </header>
   ${renderTool(p)}
   ${adSlot()}
-  ${p.extra || GUIDES[p.slug] || ""}
-  ${faqHtml(p.faq)}
-  ${affiliateSlot(affiliateAudience(p.transform))}
-  ${relatedLinks(p.slug)}`;
+  <div class="measure">
+    ${p.extra || GUIDES[p.slug] || ""}
+    ${faqHtml(p.faq)}
+  </div>`;
   return renderDocument({
     title: p.h1 || p.title,
     description: p.description,
@@ -113,6 +220,12 @@ function collectionPage(p) {
     eyebrow: p.eyebrow || p.title,
     faq: p.faq,
     depth: 1,
+    layout: "work",
+    index: toolIndex(p.slug),
+    margin: marginNotes([
+      relatedNote(p.slug),
+      affiliateSlot(affiliateAudience(p.transform)),
+    ]),
     bodyHtml: body,
     headExtra: toolsIndexScript(),
     dateModified: dates.dateFor(`${C.COLLECTION_DIR}/${p.slug}`, [
@@ -123,7 +236,9 @@ function collectionPage(p) {
 }
 
 function proseDocument(page) {
-  // about/privacy/terms/contact: prose bodies from content.mjs, no ad slot.
+  // about/privacy/terms/contact/alternatives: prose bodies from content.mjs,
+  // no ad slot. Reading layout — the measure leads, contents sit in the margin.
+  const { html, contents } = withContents(page.bodyHtml);
   return renderDocument({
     title: page.title,
     description: page.description,
@@ -131,20 +246,28 @@ function proseDocument(page) {
     dateModified: dates.dateFor(page.path, [page.title, page.description, page.bodyHtml]),
     eyebrow: page.title,
     depth: 0,
-    bodyHtml: page.bodyHtml,
+    layout: "read",
+    index: readingIndex(page.path),
+    margin: marginNotes([contents]),
+    bodyHtml: html,
     headExtra: toolsIndexScript(),
   });
 }
 
 function homeDocument() {
+  // The homepage is a work page: the tool leads, the index rail carries the
+  // full catalogue, and the supporting prose sits below at a reading measure.
   const body = `${home.bodyHtml}
   ${adSlot()}
-  ${relatedLinks(null)}`;
+  <div class="measure">${home.belowHtml || ""}</div>`;
   return renderDocument({
     title: home.title,
     description: home.description || C.DESCRIPTION,
     canonicalPath: "/",
     depth: 0,
+    layout: "work",
+    index: toolIndex(null),
+    margin: marginNotes([home.marginHtml || ""]),
     bodyHtml: body,
     headExtra: toolsIndexScript(),
   });
@@ -187,12 +310,13 @@ function articleSchema(a) {
 }
 
 function articleDocument(a) {
+  const { html, contents } = withContents(a.bodyHtml);
   const body = `
   <article class="prose article">
-    <span class="eyebrow">Guide</span>
+    <p class="kicker"><a href="/${GUIDES_DIR}">Guides</a></p>
     <h1>${esc(a.title)}</h1>
     ${byline(a)}
-    ${a.bodyHtml}
+    ${html}
     ${authorBox()}
     <p class="article-back"><a href="/${GUIDES_DIR}">← All guides</a></p>
   </article>`;
@@ -202,6 +326,9 @@ function articleDocument(a) {
     canonicalPath: `/${GUIDES_DIR}/${a.slug}`,
     eyebrow: "Guides",
     depth: 1,
+    layout: "read",
+    index: readingIndex(`/${GUIDES_DIR}/${a.slug}`),
+    margin: marginNotes([contents]),
     bodyHtml: body,
     headExtra: articleSchema(a) + toolsIndexScript(),
   });
@@ -217,10 +344,11 @@ function guidesIndexDocument() {
     </a>`
   ).join("\n");
   const body = `
-  <section class="hero hero--home">
-    <h1>${esc(C.NAME)} guides</h1>
+  <header class="standfirst">
+    <p class="kicker">${esc(C.NAME)}</p>
+    <h1>Guides</h1>
     <p class="lede">Plain-English writing on text, encoding, data formats and the tools here — what these concepts actually are, and how to use them well.</p>
-  </section>
+  </header>
   <div class="guide-list">${cards}
   </div>`;
   return renderDocument({
@@ -229,6 +357,8 @@ function guidesIndexDocument() {
     canonicalPath: `/${GUIDES_DIR}`,
     eyebrow: "Guides",
     depth: 0,
+    layout: "read",
+    index: readingIndex(`/${GUIDES_DIR}`),
     bodyHtml: body,
     headExtra: toolsIndexScript(),
   });

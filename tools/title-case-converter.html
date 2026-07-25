@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=a42ded3d">
+<link rel="stylesheet" href="../assets/style.css?v=eb77ab08">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -34,33 +34,159 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<header>
-  <a class="logo" href="/">
-    <svg class="logo-mark" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect width="22" height="22" rx="5" fill="currentColor" opacity="0.14"/><text x="11" y="15.5" font-family="Fira Code, monospace" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">#</text></svg>
-    Textbench
-  </a>
-  <div class="header-actions">
-    <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
-      <span>Search tools</span><kbd>⌘K</kbd>
-    </button>
-    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+<header class="masthead">
+  <div class="masthead-top">
+    <a class="wordmark" href="/">Textbench</a>
+    <div class="masthead-actions">
+      <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
+        <span>Search tools</span><kbd>⌘K</kbd>
+      </button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+    </div>
+  </div>
+  <div class="masthead-rule">
+    <nav class="masthead-nav" aria-label="Site">
+      <a href="/guides">Guides</a>
+      <a href="/alternatives">Compare</a>
+      <a href="/about">About</a>
+    </nav>
+    <p class="masthead-meta">65 tools · nothing uploaded · no account</p>
   </div>
 </header>
-<nav class="main-nav" aria-label="Site">
-  <a href="/guides">Guides</a>
-  <a href="/alternatives">Compare</a>
-  <a href="/about">About</a>
-  <a href="/privacy">Privacy</a>
-  <a href="/terms">Terms</a>
-  <a href="/contact">Contact</a>
-</nav>
-<main class="wrap" id="main">
+<div class="sheet sheet--work has-margin">
+  
+  <nav class="index" aria-label="All tools">
+    <div class="index-in">
+      <p class="index-title"><a href="/">All 65 tools</a></p>
+      <section class="index-group">
+        <h2 class="index-head">Count &amp; measure</h2>
+        <ul class="index-list">
+          <li><a href="/tools/word-counter">Word Counter</a></li>
+          <li><a href="/tools/character-counter">Character Counter</a></li>
+          <li><a href="/tools/twitter-character-counter">X / Twitter Counter</a></li>
+          <li><a href="/tools/meta-description-length-checker">Meta Description</a></li>
+          <li><a href="/tools/youtube-title-length-checker">YouTube Title</a></li>
+          <li><a href="/tools/reading-time-calculator">Reading Time</a></li>
+          <li><a href="/tools/word-frequency-counter">Word Frequency</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Read &amp; compare</h2>
+        <ul class="index-list">
+          <li><a href="/tools/readability-checker">Readability Checker</a></li>
+          <li><a href="/tools/compare-two-texts">Compare Texts</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Change case</h2>
+        <ul class="index-list">
+          <li><a href="/tools/uppercase-converter">UPPERCASE</a></li>
+          <li><a href="/tools/lowercase-converter">lowercase</a></li>
+          <li><a href="/tools/title-case-converter" aria-current="page">Title Case</a></li>
+          <li><a href="/tools/sentence-case-converter">Sentence case</a></li>
+          <li><a href="/tools/alternating-case-converter">aLtErNaTiNg cAsE</a></li>
+          <li><a href="/tools/inverse-case-converter">InVeRsE cAsE</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Clean up</h2>
+        <ul class="index-list">
+          <li><a href="/tools/remove-duplicate-lines">Remove Duplicates</a></li>
+          <li><a href="/tools/remove-extra-spaces">Extra Spaces</a></li>
+          <li><a href="/tools/remove-line-breaks">Line Breaks</a></li>
+          <li><a href="/tools/remove-empty-lines">Empty Lines</a></li>
+          <li><a href="/tools/trim-whitespace-from-lines">Trim Lines</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Reorder</h2>
+        <ul class="index-list">
+          <li><a href="/tools/sort-lines-alphabetically">Sort Lines</a></li>
+          <li><a href="/tools/sort-lines-descending">Sort Z to A</a></li>
+          <li><a href="/tools/reverse-text">Reverse Text</a></li>
+          <li><a href="/tools/reverse-line-order">Reverse Line Order</a></li>
+          <li><a href="/tools/add-line-numbers">Line Numbers</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Find &amp; extract</h2>
+        <ul class="index-list">
+          <li><a href="/tools/find-and-replace">Find &amp; Replace</a></li>
+          <li><a href="/tools/regex-tester">Regex Tester</a></li>
+          <li><a href="/tools/email-regex-tester">Email Regex Tester</a></li>
+          <li><a href="/tools/phone-number-regex-tester">Phone Number Regex Tester</a></li>
+          <li><a href="/tools/extract-emails-from-text">Extract Emails</a></li>
+          <li><a href="/tools/extract-urls-from-text">Extract URLs</a></li>
+          <li><a href="/tools/extract-numbers-from-text">Extract Numbers</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Encode &amp; decode</h2>
+        <ul class="index-list">
+          <li><a href="/tools/base64-encode">Base64 Encode</a></li>
+          <li><a href="/tools/base64-decode">Base64 Decode</a></li>
+          <li><a href="/tools/url-encode">URL Encode</a></li>
+          <li><a href="/tools/url-decode">URL Decode</a></li>
+          <li><a href="/tools/html-entity-encode">HTML Encode</a></li>
+          <li><a href="/tools/html-entity-decode">HTML Decode</a></li>
+          <li><a href="/tools/text-to-binary">Text to Binary</a></li>
+          <li><a href="/tools/binary-to-text">Binary to Text</a></li>
+          <li><a href="/tools/text-to-hex">Text to Hex</a></li>
+          <li><a href="/tools/hex-to-text">Hex to Text</a></li>
+          <li><a href="/tools/morse-code-translator">Text → Morse</a></li>
+          <li><a href="/tools/morse-code-to-text">Morse → Text</a></li>
+          <li><a href="/tools/rot13-cipher">ROT13</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Data formats</h2>
+        <ul class="index-list">
+          <li><a href="/tools/json-formatter">JSON Formatter</a></li>
+          <li><a href="/tools/json-validator">JSON Validator</a></li>
+          <li><a href="/tools/json-minifier">JSON Minifier</a></li>
+          <li><a href="/tools/csv-to-json-converter">CSV to JSON</a></li>
+          <li><a href="/tools/json-to-csv-converter">JSON to CSV</a></li>
+          <li><a href="/tools/yaml-to-json-converter">YAML to JSON</a></li>
+          <li><a href="/tools/json-to-yaml-converter">JSON to YAML</a></li>
+          <li><a href="/tools/markdown-to-html-converter">Markdown to HTML</a></li>
+          <li><a href="/tools/markdown-to-plain-text">Markdown to Plain Text</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Hash</h2>
+        <ul class="index-list">
+          <li><a href="/tools/md5-hash-generator">MD5 Hash</a></li>
+          <li><a href="/tools/sha256-hash-generator">SHA-256 Hash</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Generate</h2>
+        <ul class="index-list">
+          <li><a href="/tools/slugify-text">Slugify</a></li>
+          <li><a href="/tools/text-repeater">Text Repeater</a></li>
+          <li><a href="/tools/lorem-ipsum-generator">Lorem Ipsum</a></li>
+          <li><a href="/tools/uuid-generator">UUID Generator</a></li>
+          <li><a href="/tools/random-password-generator">Password Generator</a></li>
+          <li><a href="/tools/qr-code-generator">QR Code Generator</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Unicode styles</h2>
+        <ul class="index-list">
+          <li><a href="/tools/strikethrough-text-generator">Strikethrough</a></li>
+          <li><a href="/tools/upside-down-text-generator">Upside Down</a></li>
+          <li><a href="/tools/bold-text-generator">Bold Unicode</a></li>
+        </ul>
+      </section>
+    </div>
+  </nav>
+  <main class="column" id="main">
 
-  <section class="hero">
-    <span class="eyebrow">Title Case</span>
+  <header class="standfirst">
+    <p class="kicker"><a href="/">Tools</a> <span aria-hidden="true">/</span> Change case</p>
     <h1>Title Case Converter — Capitalize Each Word</h1>
     <p class="lede">Paste your text to capitalize the first letter of every word — the format used for headlines, book titles and proper nouns in many style guides.</p>
-  </section>
+  </header>
   
   <section class="tool" data-transform="titlecase" data-shape="simple">
     
@@ -125,7 +251,8 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
     </div>
   </section>
   <div class="ad-slot ad-slot--placeholder" aria-hidden="true"><!-- one ad unit renders here once AdSense is configured (scripts/enable-adsense.mjs); reserved so the layout never shifts on launch --></div>
-  
+  <div class="measure">
+    
   <section class="guide">
     <h2>Putting headings into Title Case</h2>
     <p>Title Case capitalises the first letter of each significant word — the convention for headlines, titles and headings in most English style guides. Paste a line and get it back correctly capitalised without going word by word.</p>
@@ -133,7 +260,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
     <p>Style guides differ on whether short words (a, an, the, and, or, of, in) get capitalised. The common rule is to lowercase articles, coordinating conjunctions and short prepositions <em>unless</em> they're the first or last word of the title — which is what most people mean by "title case." Proper nouns and the first word are always capitalised. It's a convention, not a law, so give the result a quick read against your own style guide for edge cases like hyphenated compounds.</p>
     <p>For all-caps or a single leading capital, use the UPPERCASE and Sentence case tools instead. Everything runs in your browser.</p>
   </section>
-  
+    
   <section class="faq">
     <h2>Common questions</h2>
     <div class="faq-grid">
@@ -142,27 +269,33 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <div class="faq-item"><h3>Can I undo this?</h3><p>There's no built-in undo — copy your original text somewhere safe first if you might need it back exactly as typed.</p></div>
     </div>
   </section>
+  </div>
+  </main>
   
-  
-  <nav class="related" aria-label="More tools">
-    <h2>Related tools</h2>
-    <div class="related-grid">
-      <a href="/tools/sentence-case-converter">Sentence case</a>
-      <a href="/tools/lowercase-converter">lowercase</a>
-      <a href="/tools/remove-duplicate-lines">Remove Duplicates</a>
-      <a href="/tools/uppercase-converter">UPPERCASE</a>
-      <a href="/tools/remove-extra-spaces">Extra Spaces</a>
-      <a href="/tools/compare-two-texts">Compare Texts</a>
-      <a href="/tools/remove-line-breaks">Line Breaks</a>
-      <a href="/tools/word-frequency-counter">Word Frequency</a>
-      <a href="/tools/remove-empty-lines">Empty Lines</a>
-      <a href="/tools/reading-time-calculator">Reading Time</a>
-      <a href="/tools/sort-lines-alphabetically">Sort Lines</a>
-      <a href="/tools/readability-checker">Readability Checker</a>
-      <a class="related-all" href="/">Browse all 65 tools →</a>
+  <aside class="margin">
+    <div class="margin-in">
+      
+      <div class="note">
+        <p class="note-head">Related tools</p>
+        <ul class="note-list">
+          <li><a href="/tools/sentence-case-converter">Sentence case</a></li>
+          <li><a href="/tools/lowercase-converter">lowercase</a></li>
+          <li><a href="/tools/remove-duplicate-lines">Remove Duplicates</a></li>
+          <li><a href="/tools/uppercase-converter">UPPERCASE</a></li>
+          <li><a href="/tools/remove-extra-spaces">Extra Spaces</a></li>
+          <li><a href="/tools/compare-two-texts">Compare Texts</a></li>
+          <li><a href="/tools/remove-line-breaks">Line Breaks</a></li>
+          <li><a href="/tools/word-frequency-counter">Word Frequency</a></li>
+          <li><a href="/tools/remove-empty-lines">Empty Lines</a></li>
+          <li><a href="/tools/reading-time-calculator">Reading Time</a></li>
+          <li><a href="/tools/sort-lines-alphabetically">Sort Lines</a></li>
+          <li><a href="/tools/readability-checker">Readability Checker</a></li>
+          <li><a class="index-more" href="/">All 65 tools →</a></li>
+        </ul>
+      </div>
     </div>
-  </nav>
-</main>
+  </aside>
+</div>
 <footer>
   <div class="wrap">
     <div class="foot-in">

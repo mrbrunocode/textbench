@@ -1111,6 +1111,75 @@ export function affiliateAudience(transform) {
   return "writing";
 }
 
+/**
+ * Editorial index — every PAGES slug filed under a heading, in reading order.
+ *
+ * NOT the same thing as TRANSFORM_GROUPS below, and the two are not
+ * interchangeable. TRANSFORM_GROUPS lists *transforms* for the in-tool picker;
+ * this lists *pages* for the site index rail. Deriving one from the other was
+ * the obvious shortcut and it doesn't work: eleven pages share
+ * `transform: "none"` (the counters, the readability checker, three regex
+ * testers and the QR generator), which is one picker entry but six different
+ * places in an index — and compare-two-texts has no transform at all.
+ *
+ * Every slug must appear exactly once; the test suite enforces it. The rail is
+ * built from this, so an unfiled page would simply vanish from site navigation.
+ */
+export const GROUPS = [
+  ["Count & measure", [
+    "word-counter", "character-counter", "twitter-character-counter",
+    "meta-description-length-checker", "youtube-title-length-checker",
+    "reading-time-calculator", "word-frequency-counter",
+  ]],
+  ["Read & compare", [
+    "readability-checker", "compare-two-texts",
+  ]],
+  ["Change case", [
+    "uppercase-converter", "lowercase-converter", "title-case-converter",
+    "sentence-case-converter", "alternating-case-converter", "inverse-case-converter",
+  ]],
+  ["Clean up", [
+    "remove-duplicate-lines", "remove-extra-spaces", "remove-line-breaks",
+    "remove-empty-lines", "trim-whitespace-from-lines",
+  ]],
+  ["Reorder", [
+    "sort-lines-alphabetically", "sort-lines-descending", "reverse-text",
+    "reverse-line-order", "add-line-numbers",
+  ]],
+  ["Find & extract", [
+    "find-and-replace", "regex-tester", "email-regex-tester",
+    "phone-number-regex-tester", "extract-emails-from-text",
+    "extract-urls-from-text", "extract-numbers-from-text",
+  ]],
+  ["Encode & decode", [
+    "base64-encode", "base64-decode", "url-encode", "url-decode",
+    "html-entity-encode", "html-entity-decode", "text-to-binary", "binary-to-text",
+    "text-to-hex", "hex-to-text", "morse-code-translator", "morse-code-to-text",
+    "rot13-cipher",
+  ]],
+  ["Data formats", [
+    "json-formatter", "json-validator", "json-minifier",
+    "csv-to-json-converter", "json-to-csv-converter",
+    "yaml-to-json-converter", "json-to-yaml-converter",
+    "markdown-to-html-converter", "markdown-to-plain-text",
+  ]],
+  ["Hash", [
+    "md5-hash-generator", "sha256-hash-generator",
+  ]],
+  ["Generate", [
+    "slugify-text", "text-repeater", "lorem-ipsum-generator",
+    "uuid-generator", "random-password-generator", "qr-code-generator",
+  ]],
+  ["Unicode styles", [
+    "strikethrough-text-generator", "upside-down-text-generator", "bold-text-generator",
+  ]],
+];
+
+/** slug → group heading, for breadcrumbs and marking the rail's current section. */
+export const GROUP_OF = Object.fromEntries(
+  GROUPS.flatMap(([heading, slugs]) => slugs.map((s) => [s, heading])),
+);
+
 export const TRANSFORM_GROUPS = [
   ["Count & analyze", [
     ["none", "Word / character counter"],

@@ -36,7 +36,18 @@ export const DESCRIPTION =
 // "calculators", etc. One word, lowercase, no slashes.
 export const COLLECTION_DIR = "tools";
 
-// Top-nav links shown on every page (order matters). Keep it short.
+// The masthead carries only the three links a reader might actually want next.
+// The full NAV below still renders in the footer, so privacy/terms/contact are
+// one scroll away on every page (and AdSense's linked-privacy-policy
+// requirement is satisfied) without six items wrapping across two lines of the
+// masthead on a phone.
+export const NAV_MAIN = [
+  { href: "/guides", label: "Guides" },
+  { href: "/alternatives", label: "Compare" },
+  { href: "/about", label: "About" },
+];
+
+// Full link set — footer, and the source of truth for what exists.
 export const NAV = [
   { href: "/guides", label: "Guides" },
   // Label is "Compare", not the exact query: this anchor repeats on every

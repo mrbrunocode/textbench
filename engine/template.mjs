@@ -159,6 +159,9 @@ export const faqHtml = (faq) =>
  * @param {string}  [o.themeColor]      override the browser-chrome color
  * @param {string}  [o.bodyClass]       extra class on <body>
  * @param {string}  [o.headExtra]       extra markup injected at end of <head>
+ * @param {string}  [o.layout="read"]   "work" (a tool leads the page) | "read" (prose leads)
+ * @param {string}  [o.index]           left index-rail markup (site navigation)
+ * @param {string}  [o.margin]          marginalia for the outer column, beside the measure
  */
 export function renderDocument(o) {
   const {
@@ -172,6 +175,9 @@ export function renderDocument(o) {
     themeColor = C.THEME_COLOR,
     bodyClass = "",
     headExtra = "",
+    layout = "read",
+    index = "",
+    margin = "",
     // Last time this page's content actually changed (see content-dates.mjs).
     // Falls back to the site-wide constant for pages not yet tracked.
     dateModified = C.CONTENT_DATE,
@@ -241,24 +247,30 @@ ${headExtra}
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ""}>
 <a class="skip-link" href="#main">Skip to content</a>
-<header>
-  <a class="logo" href="/">
-    <svg class="logo-mark" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect width="22" height="22" rx="5" fill="currentColor" opacity="0.14"/><text x="11" y="15.5" font-family="Fira Code, monospace" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">#</text></svg>
-    ${esc(C.NAME)}
-  </a>
-  <div class="header-actions">
-    <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
-      <span>Search tools</span><kbd>⌘K</kbd>
-    </button>
-    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+<header class="masthead">
+  <div class="masthead-top">
+    <a class="wordmark" href="/">${esc(C.NAME)}</a>
+    <div class="masthead-actions">
+      <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
+        <span>Search tools</span><kbd>⌘K</kbd>
+      </button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+    </div>
+  </div>
+  <div class="masthead-rule">
+    <nav class="masthead-nav" aria-label="Site">
+      ${C.NAV_MAIN.map((n) => `<a href="${n.href}">${esc(n.label)}</a>`).join("\n      ")}
+    </nav>
+    <p class="masthead-meta">${C.TOOL_COUNT} tools · nothing uploaded · no account</p>
   </div>
 </header>
-<nav class="main-nav" aria-label="Site">
-  ${C.NAV.map((n) => `<a href="${n.href}">${esc(n.label)}</a>`).join("\n  ")}
-</nav>
-<main class="wrap" id="main">
+<div class="sheet sheet--${layout}${index ? "" : " sheet--noindex"}${margin ? " has-margin" : ""}">
+  ${index}
+  <main class="column" id="main">
 ${bodyHtml}
-</main>
+  </main>
+  ${margin}
+</div>
 <footer>
   <div class="wrap">
     <div class="foot-in">

@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=a42ded3d">
+<link rel="stylesheet" href="../assets/style.css?v=eb77ab08">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -34,30 +34,71 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<header>
-  <a class="logo" href="/">
-    <svg class="logo-mark" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect width="22" height="22" rx="5" fill="currentColor" opacity="0.14"/><text x="11" y="15.5" font-family="Fira Code, monospace" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">#</text></svg>
-    Textbench
-  </a>
-  <div class="header-actions">
-    <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
-      <span>Search tools</span><kbd>⌘K</kbd>
-    </button>
-    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+<header class="masthead">
+  <div class="masthead-top">
+    <a class="wordmark" href="/">Textbench</a>
+    <div class="masthead-actions">
+      <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
+        <span>Search tools</span><kbd>⌘K</kbd>
+      </button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+    </div>
+  </div>
+  <div class="masthead-rule">
+    <nav class="masthead-nav" aria-label="Site">
+      <a href="/guides">Guides</a>
+      <a href="/alternatives">Compare</a>
+      <a href="/about">About</a>
+    </nav>
+    <p class="masthead-meta">65 tools · nothing uploaded · no account</p>
   </div>
 </header>
-<nav class="main-nav" aria-label="Site">
-  <a href="/guides">Guides</a>
-  <a href="/alternatives">Compare</a>
-  <a href="/about">About</a>
-  <a href="/privacy">Privacy</a>
-  <a href="/terms">Terms</a>
-  <a href="/contact">Contact</a>
-</nav>
-<main class="wrap" id="main">
+<div class="sheet sheet--read has-margin">
+  
+  <nav class="index" aria-label="Guides and site">
+    <div class="index-in">
+      <p class="index-title"><a href="/guides">Guides</a></p>
+      <section class="index-group">
+        <h2 class="index-head">Reading</h2>
+        <ul class="index-list">
+          <li><a href="/guides/base64-explained" aria-current="page">Base64, explained: what it is, what it isn't, and when to use it</a></li>
+          <li><a href="/guides/how-to-choose-a-strong-password">How to choose (and manage) a strong password</a></li>
+          <li><a href="/guides/regex-for-non-programmers">Regular expressions for non-programmers: a gentle introduction</a></li>
+          <li><a href="/guides/character-encoding-explained">Character encoding explained: Unicode, UTF-8, and why text breaks</a></li>
+          <li><a href="/guides/json-yaml-csv-which-format">JSON, YAML and CSV: which data format should you use?</a></li>
+          <li><a href="/guides/hashing-explained">Hashing explained: what MD5 and SHA-256 are actually for</a></li>
+          <li><a href="/guides/cleaning-messy-text">Cleaning up messy text: a practical workflow</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Site</h2>
+        <ul class="index-list">
+          <li><a href="/alternatives">Convert Case &amp; Text Mechanic Alternatives</a></li>
+          <li><a href="/about">About Textbench</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/embed">Embed a free text tool on your site</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Tools</h2>
+        <ul class="index-list">
+          <li><a href="/tools/word-counter">Count &amp; measure</a></li>
+          <li><a href="/tools/readability-checker">Read &amp; compare</a></li>
+          <li><a href="/tools/uppercase-converter">Change case</a></li>
+          <li><a href="/tools/remove-duplicate-lines">Clean up</a></li>
+          <li><a href="/tools/sort-lines-alphabetically">Reorder</a></li>
+          <li><a href="/tools/find-and-replace">Find &amp; extract</a></li>
+          <li><a class="index-more" href="/">All 65 tools →</a></li>
+        </ul>
+      </section>
+    </div>
+  </nav>
+  <main class="column" id="main">
 
   <article class="prose article">
-    <span class="eyebrow">Guide</span>
+    <p class="kicker"><a href="/guides">Guides</a></p>
     <h1>Base64, explained: what it is, what it isn't, and when to use it</h1>
     
   <p class="byline">By <a href="https://brunofk.dev" rel="author noopener" target="_blank">Bruno FK</a>
@@ -66,18 +107,18 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
     
     <p>Base64 is one of those things that's everywhere once you notice it: in data URIs embedding an image straight into a stylesheet, in the middle of a JWT, in an email's raw source, in a config value that looks like line noise. It's genuinely useful and genuinely simple — but it's also one of the most misunderstood tools in a developer's kit, because people keep mistaking it for something it isn't. Let's fix that.</p>
 
-    <h2>The problem Base64 solves</h2>
+    <h2 id="the-problem-base64-solves">The problem Base64 solves</h2>
     <p>Computers store everything as bytes, and a byte can be any of 256 values. But a lot of systems were built to carry <em>text</em> — specifically, a limited set of printable ASCII characters — and they choke on, or silently mangle, arbitrary bytes. Email was designed for text. URLs have a restricted character set. JSON strings can't hold raw binary. So how do you send an image, or any binary data, through a channel that only reliably handles text?</p>
     <p>Base64 is the answer. It takes arbitrary bytes and re-expresses them using only 64 safe characters: <code>A–Z</code>, <code>a–z</code>, <code>0–9</code>, and <code>+</code> and <code>/</code> (with <code>=</code> as padding). Every 3 bytes of input become 4 of these safe characters. The result is pure, portable text that survives any text-only pipe — and can be decoded back into the exact original bytes on the other end.</p>
 
-    <h2>Why it makes things bigger</h2>
+    <h2 id="why-it-makes-things-bigger">Why it makes things bigger</h2>
     <p>That 3-bytes-to-4-characters ratio has a cost: Base64 output is about 33% larger than the input. It's spending size to buy safety. That's fine for small payloads — a little inline icon, a token, a short binary field — but it's the reason you don't Base64-encode large files for storage or transfer when you have a binary-safe channel available. Use it to make small data <em>portable</em>, not to store bulk data.</p>
 
-    <h2>The big misconception: Base64 is not encryption</h2>
+    <h2 id="the-big-misconception-base64-is-not-encryption">The big misconception: Base64 is not encryption</h2>
     <p>This is the one to burn into memory. <strong>Base64 is encoding, not encryption.</strong> There is no key and no secret involved. Anyone who sees a Base64 string can decode it back to the original in one step — including with the very same <a href="/tools/base64-decode">decode tool</a> that reverses this site's <a href="/tools/base64-encode">encoder</a>. It provides exactly zero confidentiality.</p>
     <p>Despite that, Base64 gets misused as if it hides something. "I'll Base64 the password in the config so it's not in plain text" offers no protection whatsoever — it's a trivial, keyless transformation an attacker undoes instantly. If data needs to be secret, it needs real encryption (with a key you protect). Base64 makes data <em>transport-safe</em>, never <em>secret</em>. The two are completely different jobs, and conflating them is how sensitive values end up effectively exposed.</p>
 
-    <h2>Where you'll legitimately use it</h2>
+    <h2 id="where-youll-legitimately-use-it">Where you'll legitimately use it</h2>
     <ul>
       <li><strong>Data URIs:</strong> embedding a small image or font directly in HTML/CSS as <code>data:image/png;base64,…</code>, avoiding a separate request.</li>
       <li><strong>Email attachments:</strong> MIME encodes attachments in Base64 so binary files survive the text-based mail system.</li>
@@ -85,7 +126,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <li><strong>Tokens:</strong> JWTs and many API tokens Base64-encode their parts — which, note, means anyone can read a JWT's contents; that's why the signature, not the encoding, is what makes it trustworthy.</li>
     </ul>
 
-    <h2>A couple of practical notes</h2>
+    <h2 id="a-couple-of-practical-notes">A couple of practical notes</h2>
     <p>There's a <strong>URL-safe variant</strong> that swaps <code>+</code> and <code>/</code> for <code>-</code> and <code>_</code>, because <code>+</code> and <code>/</code> have meaning in URLs. If a Base64 string won't decode, a mismatch between the standard and URL-safe alphabets is a common cause. And when encoding text with accents or emoji, the text is UTF-8 encoded first, so it round-trips correctly through encode and decode.</p>
     <p>Base64 is a small, honest tool: it makes bytes safe to send as text, nothing more. Understand that it adds size and adds no secrecy, and you'll reach for it in exactly the right places — and never in the wrong one.</p>
     
@@ -95,7 +136,24 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   </aside>
     <p class="article-back"><a href="/guides">← All guides</a></p>
   </article>
-</main>
+  </main>
+  
+  <aside class="margin">
+    <div class="margin-in">
+      
+      <div class="note note--contents">
+        <p class="note-head">On this page</p>
+        <ul class="note-list">
+          <li><a href="#the-problem-base64-solves">The problem Base64 solves</a></li>
+          <li><a href="#why-it-makes-things-bigger">Why it makes things bigger</a></li>
+          <li><a href="#the-big-misconception-base64-is-not-encryption">The big misconception: Base64 is not encryption</a></li>
+          <li><a href="#where-youll-legitimately-use-it">Where you'll legitimately use it</a></li>
+          <li><a href="#a-couple-of-practical-notes">A couple of practical notes</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+</div>
 <footer>
   <div class="wrap">
     <div class="foot-in">

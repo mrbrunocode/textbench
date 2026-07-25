@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=a42ded3d">
+<link rel="stylesheet" href="../assets/style.css?v=eb77ab08">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -34,30 +34,71 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<header>
-  <a class="logo" href="/">
-    <svg class="logo-mark" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect width="22" height="22" rx="5" fill="currentColor" opacity="0.14"/><text x="11" y="15.5" font-family="Fira Code, monospace" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">#</text></svg>
-    Textbench
-  </a>
-  <div class="header-actions">
-    <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
-      <span>Search tools</span><kbd>⌘K</kbd>
-    </button>
-    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+<header class="masthead">
+  <div class="masthead-top">
+    <a class="wordmark" href="/">Textbench</a>
+    <div class="masthead-actions">
+      <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
+        <span>Search tools</span><kbd>⌘K</kbd>
+      </button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+    </div>
+  </div>
+  <div class="masthead-rule">
+    <nav class="masthead-nav" aria-label="Site">
+      <a href="/guides">Guides</a>
+      <a href="/alternatives">Compare</a>
+      <a href="/about">About</a>
+    </nav>
+    <p class="masthead-meta">65 tools · nothing uploaded · no account</p>
   </div>
 </header>
-<nav class="main-nav" aria-label="Site">
-  <a href="/guides">Guides</a>
-  <a href="/alternatives">Compare</a>
-  <a href="/about">About</a>
-  <a href="/privacy">Privacy</a>
-  <a href="/terms">Terms</a>
-  <a href="/contact">Contact</a>
-</nav>
-<main class="wrap" id="main">
+<div class="sheet sheet--read has-margin">
+  
+  <nav class="index" aria-label="Guides and site">
+    <div class="index-in">
+      <p class="index-title"><a href="/guides">Guides</a></p>
+      <section class="index-group">
+        <h2 class="index-head">Reading</h2>
+        <ul class="index-list">
+          <li><a href="/guides/base64-explained">Base64, explained: what it is, what it isn't, and when to use it</a></li>
+          <li><a href="/guides/how-to-choose-a-strong-password">How to choose (and manage) a strong password</a></li>
+          <li><a href="/guides/regex-for-non-programmers">Regular expressions for non-programmers: a gentle introduction</a></li>
+          <li><a href="/guides/character-encoding-explained">Character encoding explained: Unicode, UTF-8, and why text breaks</a></li>
+          <li><a href="/guides/json-yaml-csv-which-format">JSON, YAML and CSV: which data format should you use?</a></li>
+          <li><a href="/guides/hashing-explained" aria-current="page">Hashing explained: what MD5 and SHA-256 are actually for</a></li>
+          <li><a href="/guides/cleaning-messy-text">Cleaning up messy text: a practical workflow</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Site</h2>
+        <ul class="index-list">
+          <li><a href="/alternatives">Convert Case &amp; Text Mechanic Alternatives</a></li>
+          <li><a href="/about">About Textbench</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/embed">Embed a free text tool on your site</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Tools</h2>
+        <ul class="index-list">
+          <li><a href="/tools/word-counter">Count &amp; measure</a></li>
+          <li><a href="/tools/readability-checker">Read &amp; compare</a></li>
+          <li><a href="/tools/uppercase-converter">Change case</a></li>
+          <li><a href="/tools/remove-duplicate-lines">Clean up</a></li>
+          <li><a href="/tools/sort-lines-alphabetically">Reorder</a></li>
+          <li><a href="/tools/find-and-replace">Find &amp; extract</a></li>
+          <li><a class="index-more" href="/">All 65 tools →</a></li>
+        </ul>
+      </section>
+    </div>
+  </nav>
+  <main class="column" id="main">
 
   <article class="prose article">
-    <span class="eyebrow">Guide</span>
+    <p class="kicker"><a href="/guides">Guides</a></p>
     <h1>Hashing explained: what MD5 and SHA-256 are actually for</h1>
     
   <p class="byline">By <a href="https://brunofk.dev" rel="author noopener" target="_blank">Bruno FK</a>
@@ -66,7 +107,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
     
     <p>Hashing sounds arcane but the idea is simple, and it's worth understanding because the wrong choice of hash function causes real security problems. A hash function takes any input — a word, a file, a gigabyte of data — and produces a fixed-size string of characters, its "fingerprint". This article covers what that's for, and the crucial distinctions between the hashes you'll meet: MD5, SHA-256, and the special case of password hashing.</p>
 
-    <h2>What a hash function does</h2>
+    <h2 id="what-a-hash-function-does">What a hash function does</h2>
     <p>Three properties define a useful hash:</p>
     <ul>
       <li><strong>Deterministic:</strong> the same input always produces the same hash. "hello" hashed today and next year gives the identical result.</li>
@@ -75,21 +116,21 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
     </ul>
     <p>Crucially, hashing is <strong>one-way</strong>: you can't reverse a hash back to its input. That's what separates it from encoding (like Base64, which reverses trivially) and from encryption (which reverses with a key). A hash is a fingerprint, not a container — the original isn't "inside" it.</p>
 
-    <h2>What hashes are used for</h2>
+    <h2 id="what-hashes-are-used-for">What hashes are used for</h2>
     <ul>
       <li><strong>Integrity checking.</strong> Publish a file's hash; anyone who downloads the file can hash their copy and compare. Match means the file arrived intact and untampered. This is the "checksum" you sometimes see next to a download.</li>
       <li><strong>Deduplication and caching.</strong> Two pieces of data with the same hash are (essentially certainly) identical, so hashes make quick keys for "have I seen this before?"</li>
       <li><strong>Verifying without storing.</strong> Systems can check whether you know a secret by comparing hashes, without keeping the secret itself — the idea behind (careful) password storage.</li>
     </ul>
 
-    <h2>MD5: fine for checksums, broken for security</h2>
+    <h2 id="md5-fine-for-checksums-broken-for-security">MD5: fine for checksums, broken for security</h2>
     <p>MD5 produces a 32-character hash and is fast — but it's <strong>cryptographically broken</strong>. Researchers can deliberately construct two <em>different</em> inputs that produce the <em>same</em> MD5 hash (a "collision"). That destroys any security use: if an attacker can make a malicious file hash the same as a legitimate one, the hash no longer proves integrity against a determined adversary.</p>
     <p>So the rule: never use <a href="/tools/md5-hash-generator">MD5</a> for anything an attacker might exploit — signatures, security tokens, tamper-proofing. It's still perfectly fine for its <em>non-adversarial</em> uses, though: a quick checksum against accidental corruption, a cache key, deduplication. There, you're guarding against random error, not a malicious collision, and MD5's speed is an asset.</p>
 
-    <h2>SHA-256: the current standard</h2>
+    <h2 id="sha-256-the-current-standard">SHA-256: the current standard</h2>
     <p>When you need a hash to be secure, <a href="/tools/sha256-hash-generator">SHA-256</a> (part of the SHA-2 family) is the trustworthy default. It produces a 64-character hash and has no known practical collision attacks. Use it for integrity verification that needs to resist tampering, and anywhere you'd have reached for MD5 but the threat model includes someone actively trying to cheat.</p>
 
-    <h2>The password special case: don't use a plain fast hash</h2>
+    <h2 id="the-password-special-case-dont-use-a-plain-fast-hash">The password special case: don't use a plain fast hash</h2>
     <p>Here's a subtlety that catches people out: for storing passwords, even SHA-256 isn't the right tool <em>on its own</em>. The problem is that SHA-256 is fast — and fast is exactly wrong for passwords, because it lets an attacker who steals your hash database try billions of guesses per second. Password storage needs a <strong>deliberately slow, salted</strong> hash designed for the purpose: bcrypt, scrypt, or Argon2. These add a per-user random "salt" (so identical passwords don't share a hash, defeating precomputed "rainbow tables") and are tuned to be slow enough to make mass guessing impractical.</p>
     <p>So the full map: MD5 for non-security checksums; SHA-256 for secure integrity checking and fingerprints; a purpose-built slow hash (bcrypt/scrypt/Argon2) for passwords. Reaching for the wrong one — MD5 where security matters, or a plain fast hash for passwords — is a genuinely common and genuinely damaging mistake, and now it's one you won't make.</p>
     
@@ -99,7 +140,24 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   </aside>
     <p class="article-back"><a href="/guides">← All guides</a></p>
   </article>
-</main>
+  </main>
+  
+  <aside class="margin">
+    <div class="margin-in">
+      
+      <div class="note note--contents">
+        <p class="note-head">On this page</p>
+        <ul class="note-list">
+          <li><a href="#what-a-hash-function-does">What a hash function does</a></li>
+          <li><a href="#what-hashes-are-used-for">What hashes are used for</a></li>
+          <li><a href="#md5-fine-for-checksums-broken-for-security">MD5: fine for checksums, broken for security</a></li>
+          <li><a href="#sha-256-the-current-standard">SHA-256: the current standard</a></li>
+          <li><a href="#the-password-special-case-dont-use-a-plain-fast-hash">The password special case: don't use a plain fast hash</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+</div>
 <footer>
   <div class="wrap">
     <div class="foot-in">

@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=a42ded3d">
+<link rel="stylesheet" href="../assets/style.css?v=eb77ab08">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -34,30 +34,71 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<header>
-  <a class="logo" href="/">
-    <svg class="logo-mark" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect width="22" height="22" rx="5" fill="currentColor" opacity="0.14"/><text x="11" y="15.5" font-family="Fira Code, monospace" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">#</text></svg>
-    Textbench
-  </a>
-  <div class="header-actions">
-    <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
-      <span>Search tools</span><kbd>⌘K</kbd>
-    </button>
-    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+<header class="masthead">
+  <div class="masthead-top">
+    <a class="wordmark" href="/">Textbench</a>
+    <div class="masthead-actions">
+      <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
+        <span>Search tools</span><kbd>⌘K</kbd>
+      </button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+    </div>
+  </div>
+  <div class="masthead-rule">
+    <nav class="masthead-nav" aria-label="Site">
+      <a href="/guides">Guides</a>
+      <a href="/alternatives">Compare</a>
+      <a href="/about">About</a>
+    </nav>
+    <p class="masthead-meta">65 tools · nothing uploaded · no account</p>
   </div>
 </header>
-<nav class="main-nav" aria-label="Site">
-  <a href="/guides">Guides</a>
-  <a href="/alternatives">Compare</a>
-  <a href="/about">About</a>
-  <a href="/privacy">Privacy</a>
-  <a href="/terms">Terms</a>
-  <a href="/contact">Contact</a>
-</nav>
-<main class="wrap" id="main">
+<div class="sheet sheet--read has-margin">
+  
+  <nav class="index" aria-label="Guides and site">
+    <div class="index-in">
+      <p class="index-title"><a href="/guides">Guides</a></p>
+      <section class="index-group">
+        <h2 class="index-head">Reading</h2>
+        <ul class="index-list">
+          <li><a href="/guides/base64-explained">Base64, explained: what it is, what it isn't, and when to use it</a></li>
+          <li><a href="/guides/how-to-choose-a-strong-password">How to choose (and manage) a strong password</a></li>
+          <li><a href="/guides/regex-for-non-programmers" aria-current="page">Regular expressions for non-programmers: a gentle introduction</a></li>
+          <li><a href="/guides/character-encoding-explained">Character encoding explained: Unicode, UTF-8, and why text breaks</a></li>
+          <li><a href="/guides/json-yaml-csv-which-format">JSON, YAML and CSV: which data format should you use?</a></li>
+          <li><a href="/guides/hashing-explained">Hashing explained: what MD5 and SHA-256 are actually for</a></li>
+          <li><a href="/guides/cleaning-messy-text">Cleaning up messy text: a practical workflow</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Site</h2>
+        <ul class="index-list">
+          <li><a href="/alternatives">Convert Case &amp; Text Mechanic Alternatives</a></li>
+          <li><a href="/about">About Textbench</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/embed">Embed a free text tool on your site</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Tools</h2>
+        <ul class="index-list">
+          <li><a href="/tools/word-counter">Count &amp; measure</a></li>
+          <li><a href="/tools/readability-checker">Read &amp; compare</a></li>
+          <li><a href="/tools/uppercase-converter">Change case</a></li>
+          <li><a href="/tools/remove-duplicate-lines">Clean up</a></li>
+          <li><a href="/tools/sort-lines-alphabetically">Reorder</a></li>
+          <li><a href="/tools/find-and-replace">Find &amp; extract</a></li>
+          <li><a class="index-more" href="/">All 65 tools →</a></li>
+        </ul>
+      </section>
+    </div>
+  </nav>
+  <main class="column" id="main">
 
   <article class="prose article">
-    <span class="eyebrow">Guide</span>
+    <p class="kicker"><a href="/guides">Guides</a></p>
     <h1>Regular expressions for non-programmers: a gentle introduction</h1>
     
   <p class="byline">By <a href="https://brunofk.dev" rel="author noopener" target="_blank">Bruno FK</a>
@@ -66,10 +107,10 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
     
     <p>A regular expression — "regex" — is a way of describing a <em>pattern</em> in text, so software can find, extract, or replace anything matching that pattern. It has a reputation for being impenetrable, and a dense regex genuinely is. But the core ideas are simple, and you don't need to be a programmer to get real value from them: they show up in the find-and-replace of many editors, in spreadsheets, in search boxes, and in text tools. Here's the gentle version.</p>
 
-    <h2>The one idea: describe, don't spell out</h2>
+    <h2 id="the-one-idea-describe-dont-spell-out">The one idea: describe, don't spell out</h2>
     <p>Ordinary find-and-replace makes you type the exact text you want. Regex lets you describe it instead — "any three digits", "a word starting with a capital", "anything between two brackets". That shift from spelling out to describing is the whole point, and it's what lets one pattern match thousands of different specific strings.</p>
 
-    <h2>The building blocks worth knowing</h2>
+    <h2 id="the-building-blocks-worth-knowing">The building blocks worth knowing</h2>
     <p>You can do a lot with just these:</p>
     <ul>
       <li><strong>Literal characters</strong> match themselves. <code>cat</code> matches "cat".</li>
@@ -81,16 +122,16 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
     </ul>
     <p>Put a few together and patterns start to read: <code>^\d+</code> means "a line that starts with one or more digits"; <code>[A-Z]\w+</code> means "a capital letter followed by more word characters" (roughly, a capitalised word).</p>
 
-    <h2>A worked example</h2>
+    <h2 id="a-worked-example">A worked example</h2>
     <p>Say you have a list and you want to pull out every price. Prices look like a dollar sign, some digits, a dot, and two more digits: <code>\$\d+\.\d\d</code>. Reading it left to right: a literal <code>$</code> (escaped with a backslash because <code>$</code> normally means "end of line"), one or more digits, a literal dot (escaped, because a bare dot means "any character"), then two digits. That pattern finds "$4.99" and "$1250.00" wherever they appear. The escaping — putting a backslash before a character that normally has special meaning, to match it literally — is the part that trips up beginners most, so it's worth remembering that <code>.</code>, <code>$</code>, <code>+</code>, <code>*</code>, <code>?</code> and brackets are "special" and need escaping to match literally.</p>
 
-    <h2>The classic trap: greedy matching</h2>
+    <h2 id="the-classic-trap-greedy-matching">The classic trap: greedy matching</h2>
     <p>Quantifiers are "greedy" by default — they match as much as they possibly can. If you write <code>&lt;.*&gt;</code> hoping to match one HTML tag in <code>&lt;b&gt;hi&lt;/b&gt;</code>, the <code>.*</code> greedily gobbles everything from the first <code>&lt;</code> to the <em>last</em> <code>&gt;</code>, matching the whole string. Adding a <code>?</code> after the quantifier makes it "lazy" — match as little as possible — so <code>&lt;.*?&gt;</code> matches just <code>&lt;b&gt;</code>. "It matched way more than I wanted" almost always means a greedy quantifier.</p>
 
-    <h2>Test as you build</h2>
+    <h2 id="test-as-you-build">Test as you build</h2>
     <p>Nobody writes a non-trivial regex correctly first try, and you shouldn't expect to. The reliable way to build one is incrementally, watching what it matches against real sample text — including the awkward edge cases — and adjusting. That's exactly what a live <a href="/tools/regex-tester">regex tester</a> is for: paste representative text, type the pattern, and see the matches light up as you refine it. For two common jobs there are focused testers for <a href="/tools/email-regex-tester">email</a> and <a href="/tools/phone-number-regex-tester">phone-number</a> patterns.</p>
 
-    <h2>When not to reach for regex</h2>
+    <h2 id="when-not-to-reach-for-regex">When not to reach for regex</h2>
     <p>A fair warning: regex is a pattern-matcher, not a parser. It's brilliant for finding phone-number-shaped strings or reformatting a list, and a poor fit for anything with nested structure — HTML, deeply nested JSON, matched brackets. For those, a real parser is the right tool. But for the everyday "find all the X" and "reformat every Y" jobs, a handful of the building blocks above will take you a remarkably long way.</p>
     
   <aside class="author-box">
@@ -99,7 +140,25 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   </aside>
     <p class="article-back"><a href="/guides">← All guides</a></p>
   </article>
-</main>
+  </main>
+  
+  <aside class="margin">
+    <div class="margin-in">
+      
+      <div class="note note--contents">
+        <p class="note-head">On this page</p>
+        <ul class="note-list">
+          <li><a href="#the-one-idea-describe-dont-spell-out">The one idea: describe, don't spell out</a></li>
+          <li><a href="#the-building-blocks-worth-knowing">The building blocks worth knowing</a></li>
+          <li><a href="#a-worked-example">A worked example</a></li>
+          <li><a href="#the-classic-trap-greedy-matching">The classic trap: greedy matching</a></li>
+          <li><a href="#test-as-you-build">Test as you build</a></li>
+          <li><a href="#when-not-to-reach-for-regex">When not to reach for regex</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+</div>
 <footer>
   <div class="wrap">
     <div class="foot-in">

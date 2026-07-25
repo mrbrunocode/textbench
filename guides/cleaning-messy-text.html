@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=a42ded3d">
+<link rel="stylesheet" href="../assets/style.css?v=eb77ab08">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -34,30 +34,71 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<header>
-  <a class="logo" href="/">
-    <svg class="logo-mark" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect width="22" height="22" rx="5" fill="currentColor" opacity="0.14"/><text x="11" y="15.5" font-family="Fira Code, monospace" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">#</text></svg>
-    Textbench
-  </a>
-  <div class="header-actions">
-    <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
-      <span>Search tools</span><kbd>⌘K</kbd>
-    </button>
-    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+<header class="masthead">
+  <div class="masthead-top">
+    <a class="wordmark" href="/">Textbench</a>
+    <div class="masthead-actions">
+      <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
+        <span>Search tools</span><kbd>⌘K</kbd>
+      </button>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+    </div>
+  </div>
+  <div class="masthead-rule">
+    <nav class="masthead-nav" aria-label="Site">
+      <a href="/guides">Guides</a>
+      <a href="/alternatives">Compare</a>
+      <a href="/about">About</a>
+    </nav>
+    <p class="masthead-meta">65 tools · nothing uploaded · no account</p>
   </div>
 </header>
-<nav class="main-nav" aria-label="Site">
-  <a href="/guides">Guides</a>
-  <a href="/alternatives">Compare</a>
-  <a href="/about">About</a>
-  <a href="/privacy">Privacy</a>
-  <a href="/terms">Terms</a>
-  <a href="/contact">Contact</a>
-</nav>
-<main class="wrap" id="main">
+<div class="sheet sheet--read has-margin">
+  
+  <nav class="index" aria-label="Guides and site">
+    <div class="index-in">
+      <p class="index-title"><a href="/guides">Guides</a></p>
+      <section class="index-group">
+        <h2 class="index-head">Reading</h2>
+        <ul class="index-list">
+          <li><a href="/guides/base64-explained">Base64, explained: what it is, what it isn't, and when to use it</a></li>
+          <li><a href="/guides/how-to-choose-a-strong-password">How to choose (and manage) a strong password</a></li>
+          <li><a href="/guides/regex-for-non-programmers">Regular expressions for non-programmers: a gentle introduction</a></li>
+          <li><a href="/guides/character-encoding-explained">Character encoding explained: Unicode, UTF-8, and why text breaks</a></li>
+          <li><a href="/guides/json-yaml-csv-which-format">JSON, YAML and CSV: which data format should you use?</a></li>
+          <li><a href="/guides/hashing-explained">Hashing explained: what MD5 and SHA-256 are actually for</a></li>
+          <li><a href="/guides/cleaning-messy-text" aria-current="page">Cleaning up messy text: a practical workflow</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Site</h2>
+        <ul class="index-list">
+          <li><a href="/alternatives">Convert Case &amp; Text Mechanic Alternatives</a></li>
+          <li><a href="/about">About Textbench</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/embed">Embed a free text tool on your site</a></li>
+        </ul>
+      </section>
+      <section class="index-group">
+        <h2 class="index-head">Tools</h2>
+        <ul class="index-list">
+          <li><a href="/tools/word-counter">Count &amp; measure</a></li>
+          <li><a href="/tools/readability-checker">Read &amp; compare</a></li>
+          <li><a href="/tools/uppercase-converter">Change case</a></li>
+          <li><a href="/tools/remove-duplicate-lines">Clean up</a></li>
+          <li><a href="/tools/sort-lines-alphabetically">Reorder</a></li>
+          <li><a href="/tools/find-and-replace">Find &amp; extract</a></li>
+          <li><a class="index-more" href="/">All 65 tools →</a></li>
+        </ul>
+      </section>
+    </div>
+  </nav>
+  <main class="column" id="main">
 
   <article class="prose article">
-    <span class="eyebrow">Guide</span>
+    <p class="kicker"><a href="/guides">Guides</a></p>
     <h1>Cleaning up messy text: a practical workflow</h1>
     
   <p class="byline">By <a href="https://brunofk.dev" rel="author noopener" target="_blank">Bruno FK</a>
@@ -66,10 +107,10 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
     
     <p>Copy text out of a PDF, an email, a chat log, or a web page and you rarely get clean text. You get line breaks in the middle of sentences, double spaces, blank lines everywhere, stray tabs, invisible non-breaking spaces, and duplicates. Cleaning it up by hand is tedious and error-prone. The good news is that text cleanup is a solved problem if you do the steps in the right order — and order matters more than you'd think, because some steps undo or interfere with others.</p>
 
-    <h2>Diagnose before you clean</h2>
+    <h2 id="diagnose-before-you-clean">Diagnose before you clean</h2>
     <p>First, work out what's actually wrong, because different messes need different fixes. Is the text broken into short lines mid-sentence (a PDF or email hard-wrap)? Riddled with double spaces (old typing habits, or PDF extraction)? Full of blank lines (double-spaced source)? Are there duplicates (a merged list)? Is something matching that shouldn't, hinting at invisible characters? Naming the problem tells you which tools to use.</p>
 
-    <h2>A reliable order of operations</h2>
+    <h2 id="a-reliable-order-of-operations">A reliable order of operations</h2>
     <p>The sequence below works because each step sets up the next. Skip around and you'll fight yourself — for example, sorting before trimming leaves lines mis-ordered by invisible leading spaces.</p>
     <ol>
       <li><strong>Fix line breaks first.</strong> If the text is wrongly wrapped mid-sentence, <a href="/tools/remove-line-breaks">remove the line breaks</a> to rejoin paragraphs before doing anything else, so later steps operate on whole lines that mean something.</li>
@@ -80,10 +121,10 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <li><strong>Sort, if useful.</strong> Finally, <a href="/tools/sort-lines-alphabetically">sort the list</a> — which is also a great way to eyeball any remaining near-duplicates, since they'll sit next to each other.</li>
     </ol>
 
-    <h2>The invisible-character gotcha</h2>
+    <h2 id="the-invisible-character-gotcha">The invisible-character gotcha</h2>
     <p>Sometimes text refuses to behave — two entries look identical but won't de-duplicate, or a comparison insists two "same" strings differ. The usual culprit is an invisible character: a non-breaking space (which looks exactly like a space but isn't), a zero-width character, a smart quote from a word processor, or a Windows line ending mixed in with Unix ones. When cleanup isn't working and you can't see why, that's the thing to suspect — rendering the invisibles or normalising them is what unsticks it.</p>
 
-    <h2>Why order beats effort</h2>
+    <h2 id="why-order-beats-effort">Why order beats effort</h2>
     <p>The reason this workflow feels almost effortless is that each step is trivial on its own — the skill is doing them in a sequence where they cooperate rather than interfere. Trim before you sort. Rejoin lines before you collapse spaces. De-duplicate after you've normalised, not before. Follow that order and a genuinely horrible paste — the kind that would take ten minutes of manual fiddling — becomes clean, consistent text in under a minute, every time.</p>
     
   <aside class="author-box">
@@ -92,7 +133,23 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   </aside>
     <p class="article-back"><a href="/guides">← All guides</a></p>
   </article>
-</main>
+  </main>
+  
+  <aside class="margin">
+    <div class="margin-in">
+      
+      <div class="note note--contents">
+        <p class="note-head">On this page</p>
+        <ul class="note-list">
+          <li><a href="#diagnose-before-you-clean">Diagnose before you clean</a></li>
+          <li><a href="#a-reliable-order-of-operations">A reliable order of operations</a></li>
+          <li><a href="#the-invisible-character-gotcha">The invisible-character gotcha</a></li>
+          <li><a href="#why-order-beats-effort">Why order beats effort</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+</div>
 <footer>
   <div class="wrap">
     <div class="foot-in">

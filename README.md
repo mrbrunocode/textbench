@@ -50,4 +50,38 @@ node scripts/dev-server.mjs    # preview at http://localhost:4173
 Edit `site.config.mjs` (identity/IDs), `pages.mjs` (the tool + long-tail pages),
 `content.mjs` (home/about/legal), and `assets/` (styles + logic). Then rebuild.
 
+Adding a tool means a `PAGES` row **and** filing its slug in `GROUPS` — an
+unfiled slug fails the test suite, because the index rail renders from `GROUPS`
+and the page would otherwise never appear in site navigation.
+
+### Layout
+
+Redesigned July 2026. Until then every page was `main.wrap` at 900px — a hero
+on top, sections stacked under it — and that one repeated skeleton, not the
+colours, is what made the site read as templated.
+
+The page is now a **spread**, in three tracks: an index rail, a measure, and a
+margin for notes. Two arrangements, chosen per page type in `engine/build.mjs`:
+
+| Shell | Used by | Shape |
+|---|---|---|
+| `work` | homepage + the 65 `tools/` pages | A tool leads. The measure track takes the slack so the tool has room; the margin is a fixed column carrying related tools. Supporting prose below the tool is held to a reading measure. |
+| `read` | guides, articles, about/privacy/terms/contact/alternatives | Prose leads. The measure is pinned to ~68ch and the margin takes the slack, which is what lets an on-page contents sit properly beside the text. |
+
+The **margin column is the point** — marginalia sit beside the reading column
+rather than interrupting it or being dumped in a footer. Two things follow from
+that and are worth not undoing:
+
+- **The tool is set into the sheet, not floated on it.** No card, no shadow, no
+  fill — rules above and below, ground showing through. A raised white card on
+  a warm paper ground is the "magazine with a form bolted on" failure this
+  direction is most at risk of. The controls themselves stay in the sans and
+  stay conventional; a form should still read as a form.
+- **Serif is for reading surfaces only** (`.prose`, `.guide`, ledes, headings).
+  The tool chrome stays in Public Sans and data/output stays in Fira Code.
+
+Reflow: at 1180px the margin drops below the column and runs as a horizontal
+band; at 940px the index rail moves *below* the content via flex `order`, so
+the tool still opens the page on a tablet.
+
 See the factory's `docs/playbook.md` for the full build → monetize → SEO flow.

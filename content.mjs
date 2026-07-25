@@ -16,18 +16,43 @@ import { renderTool, TRANSFORM_GROUPS } from "./pages.mjs";
 export const home = {
   title: `${C.NAME} — ${C.TAGLINE}`,
   description: C.DESCRIPTION,
+  // The tool leads the page. The old shape here was a centred headline, a
+  // centred lede and a "65 tools · 11 categories · 0 uploads" stat triplet
+  // stacked above the thing people came for — all three are on the list of
+  // what reads as generated, and the triplet in particular was answering a
+  // question nobody asks on arrival.
   bodyHtml: `
-  <section class="hero hero--home">
-    <h1>Paste in. Nothing leaves your browser.</h1>
+  <header class="standfirst standfirst--home">
+    <h1>Paste in.<br>Nothing leaves your browser.</h1>
     <p class="lede">${C.DESCRIPTION}</p>
-    <div class="hero-facts">
-      <span><strong>${C.TOOL_COUNT}</strong> tools</span>
-      <span><strong>${TRANSFORM_GROUPS.length}</strong> categories</span>
-      <span><strong>0</strong> uploads</span>
-    </div>
-  </section>
-  ${renderTool({ home: true })}
+  </header>
+  ${renderTool({ home: true })}`,
 
+  // Marginalia — the facts that used to be a stat triplet under the headline,
+  // moved out of the reader's way and given somewhere to belong.
+  marginHtml: `
+      <div class="note">
+        <p class="note-head">What this is</p>
+        <ul class="note-facts">
+          <li><b>${C.TOOL_COUNT}</b> tools</li>
+          <li><b>${TRANSFORM_GROUPS.length}</b> categories</li>
+          <li><b>Nothing</b> uploaded</li>
+          <li><b>No</b> account</li>
+        </ul>
+        <p class="note-body">Every transform runs on your own device. Turn your connection off and they all still work.</p>
+      </div>
+      <div class="note">
+        <p class="note-head">Start here</p>
+        <ul class="note-list">
+          <li><a href="/${C.COLLECTION_DIR}/word-counter">Word counter</a></li>
+          <li><a href="/${C.COLLECTION_DIR}/readability-checker">Readability checker</a></li>
+          <li><a href="/${C.COLLECTION_DIR}/remove-duplicate-lines">Remove duplicate lines</a></li>
+          <li><a href="/${C.COLLECTION_DIR}/json-formatter">JSON formatter</a></li>
+          <li><a href="/${C.COLLECTION_DIR}/base64-encode">Base64 encode</a></li>
+        </ul>
+      </div>`,
+
+  belowHtml: `
   <section class="guide">
     <h2>One place for the small text jobs</h2>
     <p>Everyone hits these tasks: a block of text that needs cleaning up, a count to check against a limit, a format to convert, something to encode or decode. Individually they're tiny — but hunting down a separate single-purpose site for each, half of them plastered in ads or asking you to sign up, wastes more time than the task itself. ${C.NAME} puts ${C.TOOL_COUNT} of them in one place, all working the same way: paste in, get the result, copy out.</p>
