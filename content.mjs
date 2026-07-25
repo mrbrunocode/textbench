@@ -21,11 +21,15 @@ export const home = {
   // stacked above the thing people came for — all three are on the list of
   // what reads as generated, and the triplet in particular was answering a
   // question nobody asks on arrival.
+  // The lede is a SIBLING of the tool, not part of the standfirst, so that on a
+  // phone it can be ordered below the tool. Six lines of marketing copy between
+  // someone and the thing they came to use is the wrong trade on a 375px
+  // screen; it stays above the fold on desktop where there's room for it.
   bodyHtml: `
   <header class="standfirst standfirst--home">
     <h1>Paste in.<br>Nothing leaves your browser.</h1>
-    <p class="lede">${C.DESCRIPTION}</p>
   </header>
+  <p class="lede lede--home">${C.DESCRIPTION}</p>
   ${renderTool({ home: true })}`,
 
   // Marginalia — the facts that used to be a stat triplet under the headline,

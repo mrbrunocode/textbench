@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=eb77ab08">
+<link rel="stylesheet" href="../assets/style.css?v=5157d484">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -59,8 +59,8 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
     <div class="index-in">
       <p class="index-title"><a href="/">All 65 tools</a></p>
       <section class="index-group">
-        <h2 class="index-head">Count &amp; measure</h2>
-        <ul class="index-list">
+        <p class="index-head" id="idx-count-measure">Count &amp; measure</p>
+        <ul class="index-list" aria-labelledby="idx-count-measure">
           <li><a href="/tools/word-counter">Word Counter</a></li>
           <li><a href="/tools/character-counter">Character Counter</a></li>
           <li><a href="/tools/twitter-character-counter">X / Twitter Counter</a></li>
@@ -71,15 +71,15 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         </ul>
       </section>
       <section class="index-group">
-        <h2 class="index-head">Read &amp; compare</h2>
-        <ul class="index-list">
+        <p class="index-head" id="idx-read-compare">Read &amp; compare</p>
+        <ul class="index-list" aria-labelledby="idx-read-compare">
           <li><a href="/tools/readability-checker">Readability Checker</a></li>
           <li><a href="/tools/compare-two-texts">Compare Texts</a></li>
         </ul>
       </section>
       <section class="index-group">
-        <h2 class="index-head">Change case</h2>
-        <ul class="index-list">
+        <p class="index-head" id="idx-change-case">Change case</p>
+        <ul class="index-list" aria-labelledby="idx-change-case">
           <li><a href="/tools/uppercase-converter">UPPERCASE</a></li>
           <li><a href="/tools/lowercase-converter">lowercase</a></li>
           <li><a href="/tools/title-case-converter">Title Case</a></li>
@@ -89,8 +89,8 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         </ul>
       </section>
       <section class="index-group">
-        <h2 class="index-head">Clean up</h2>
-        <ul class="index-list">
+        <p class="index-head" id="idx-clean-up">Clean up</p>
+        <ul class="index-list" aria-labelledby="idx-clean-up">
           <li><a href="/tools/remove-duplicate-lines">Remove Duplicates</a></li>
           <li><a href="/tools/remove-extra-spaces">Extra Spaces</a></li>
           <li><a href="/tools/remove-line-breaks">Line Breaks</a></li>
@@ -99,8 +99,8 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         </ul>
       </section>
       <section class="index-group">
-        <h2 class="index-head">Reorder</h2>
-        <ul class="index-list">
+        <p class="index-head" id="idx-reorder">Reorder</p>
+        <ul class="index-list" aria-labelledby="idx-reorder">
           <li><a href="/tools/sort-lines-alphabetically">Sort Lines</a></li>
           <li><a href="/tools/sort-lines-descending">Sort Z to A</a></li>
           <li><a href="/tools/reverse-text">Reverse Text</a></li>
@@ -109,8 +109,8 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         </ul>
       </section>
       <section class="index-group">
-        <h2 class="index-head">Find &amp; extract</h2>
-        <ul class="index-list">
+        <p class="index-head" id="idx-find-extract">Find &amp; extract</p>
+        <ul class="index-list" aria-labelledby="idx-find-extract">
           <li><a href="/tools/find-and-replace">Find &amp; Replace</a></li>
           <li><a href="/tools/regex-tester">Regex Tester</a></li>
           <li><a href="/tools/email-regex-tester">Email Regex Tester</a></li>
@@ -121,8 +121,8 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         </ul>
       </section>
       <section class="index-group">
-        <h2 class="index-head">Encode &amp; decode</h2>
-        <ul class="index-list">
+        <p class="index-head" id="idx-encode-decode">Encode &amp; decode</p>
+        <ul class="index-list" aria-labelledby="idx-encode-decode">
           <li><a href="/tools/base64-encode">Base64 Encode</a></li>
           <li><a href="/tools/base64-decode">Base64 Decode</a></li>
           <li><a href="/tools/url-encode">URL Encode</a></li>
@@ -139,8 +139,8 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         </ul>
       </section>
       <section class="index-group">
-        <h2 class="index-head">Data formats</h2>
-        <ul class="index-list">
+        <p class="index-head" id="idx-data-formats">Data formats</p>
+        <ul class="index-list" aria-labelledby="idx-data-formats">
           <li><a href="/tools/json-formatter">JSON Formatter</a></li>
           <li><a href="/tools/json-validator">JSON Validator</a></li>
           <li><a href="/tools/json-minifier">JSON Minifier</a></li>
@@ -153,15 +153,15 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         </ul>
       </section>
       <section class="index-group">
-        <h2 class="index-head">Hash</h2>
-        <ul class="index-list">
+        <p class="index-head" id="idx-hash">Hash</p>
+        <ul class="index-list" aria-labelledby="idx-hash">
           <li><a href="/tools/md5-hash-generator">MD5 Hash</a></li>
           <li><a href="/tools/sha256-hash-generator" aria-current="page">SHA-256 Hash</a></li>
         </ul>
       </section>
       <section class="index-group">
-        <h2 class="index-head">Generate</h2>
-        <ul class="index-list">
+        <p class="index-head" id="idx-generate">Generate</p>
+        <ul class="index-list" aria-labelledby="idx-generate">
           <li><a href="/tools/slugify-text">Slugify</a></li>
           <li><a href="/tools/text-repeater">Text Repeater</a></li>
           <li><a href="/tools/lorem-ipsum-generator">Lorem Ipsum</a></li>
@@ -171,8 +171,8 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         </ul>
       </section>
       <section class="index-group">
-        <h2 class="index-head">Unicode styles</h2>
-        <ul class="index-list">
+        <p class="index-head" id="idx-unicode-styles">Unicode styles</p>
+        <ul class="index-list" aria-labelledby="idx-unicode-styles">
           <li><a href="/tools/strikethrough-text-generator">Strikethrough</a></li>
           <li><a href="/tools/upside-down-text-generator">Upside Down</a></li>
           <li><a href="/tools/bold-text-generator">Bold Unicode</a></li>
@@ -185,8 +185,8 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   <header class="standfirst">
     <p class="kicker"><a href="/">Tools</a> <span aria-hidden="true">/</span> Hash</p>
     <h1>SHA-256 Hash Generator</h1>
-    <p class="lede">Type or paste text below to generate its SHA-256 hash — a 64-character hexadecimal digest, computed using your browser's native cryptography engine rather than a hand-rolled implementation.</p>
   </header>
+  <p class="lede">Type or paste text below to generate its SHA-256 hash — a 64-character hexadecimal digest, computed using your browser's native cryptography engine rather than a hand-rolled implementation.</p>
   
   <section class="tool" data-transform="sha256-hash" data-shape="simple">
     

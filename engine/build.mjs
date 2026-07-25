@@ -57,6 +57,13 @@ const RELATED_WINDOW = 12;
 // ── The index rail ─────────────────────────────────────────────────────────
 const bySlug = Object.fromEntries(PAGES.map((p) => [p.slug, p]));
 
+const idFor = (s) => s.toLowerCase().replace(/&[a-z]+;/g, " ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+
+// Group labels are navigation furniture, NOT document structure. They were
+// <h2> at first, which put eleven headings ahead of every page's real content
+// headings — bad for anyone navigating by heading, and boilerplate in a signal
+// that should be page-specific. A <p> plus aria-labelledby on the list keeps
+// the grouping announced ("list, Change case, 6 items") without the outline.
 function toolIndex(currentSlug) {
   const groups = GROUPS.map(([heading, slugs]) => {
     const items = slugs.map((slug) => {
@@ -66,8 +73,8 @@ function toolIndex(currentSlug) {
     }).join("\n          ");
     return `
       <section class="index-group">
-        <h2 class="index-head">${esc(heading)}</h2>
-        <ul class="index-list">
+        <p class="index-head" id="idx-${idFor(heading)}">${esc(heading)}</p>
+        <ul class="index-list" aria-labelledby="idx-${idFor(heading)}">
           ${items}
         </ul>
       </section>`;
@@ -90,20 +97,20 @@ function readingIndex(currentPath) {
     <div class="index-in">
       <p class="index-title"><a href="/${GUIDES_DIR}">Guides</a></p>
       <section class="index-group">
-        <h2 class="index-head">Reading</h2>
-        <ul class="index-list">
+        <p class="index-head" id="idx-reading">Reading</p>
+        <ul class="index-list" aria-labelledby="idx-reading">
           ${ARTICLES.map((a) => link(`/${GUIDES_DIR}/${a.slug}`, a.title)).join("\n          ")}
         </ul>
       </section>
       <section class="index-group">
-        <h2 class="index-head">Site</h2>
-        <ul class="index-list">
+        <p class="index-head" id="idx-site">Site</p>
+        <ul class="index-list" aria-labelledby="idx-site">
           ${[alternatives, about, privacy, terms, contact, embed].map((p) => link(p.path, p.title.replace(new RegExp(`\\s*[—|]\\s*.*$`), "").replace(`${C.NAME} `, ""))).join("\n          ")}
         </ul>
       </section>
       <section class="index-group">
-        <h2 class="index-head">Tools</h2>
-        <ul class="index-list">
+        <p class="index-head" id="idx-tools">Tools</p>
+        <ul class="index-list" aria-labelledby="idx-tools">
           ${GROUPS.slice(0, 6).map(([heading, slugs]) =>
             `<li><a href="/${C.COLLECTION_DIR}/${slugs[0]}">${esc(heading)}</a></li>`).join("\n          ")}
           <li><a class="index-more" href="/">All ${PAGES.length} tools →</a></li>
@@ -205,8 +212,8 @@ function collectionPage(p) {
   <header class="standfirst">
     <p class="kicker"><a href="/">Tools</a>${group ? ` <span aria-hidden="true">/</span> ${esc(group)}` : ""}</p>
     <h1>${esc(p.h1 || p.title)}</h1>
-    <p class="lede">${esc(p.intro || p.description)}</p>
   </header>
+  <p class="lede">${esc(p.intro || p.description)}</p>
   ${renderTool(p)}
   ${adSlot()}
   <div class="measure">

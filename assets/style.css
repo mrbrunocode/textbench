@@ -28,7 +28,12 @@
   --danger-soft: oklch(0.52 0.19 12 / 0.11);
   --bg: var(--n-0); --surface: var(--n-1); --surface-elevated: var(--n-1); --surface-hover: var(--n-2);
   --border: var(--n-4); --border-subtle: var(--n-3);
-  --text-primary: var(--n-8); --text-secondary: var(--n-6); --text-tertiary: var(--n-5);
+  /* --text-tertiary is a TEXT tier, so it has to clear AA on its own ground.
+     It used to alias --n-5, which measured 2.68:1 in light and 2.79:1 in dark —
+     fine for a hairline, not for the mono micro-labels this redesign leans on
+     for wayfinding. --n-5 itself is unchanged for borders and other non-text
+     use. */
+  --text-primary: var(--n-8); --text-secondary: var(--n-6); --text-tertiary: oklch(0.53 0.014 75);
   --focus-ring: oklch(0.50 0.17 var(--accent-h) / 0.35);
   --shadow-color: 75 20% 55%;
 }
@@ -48,7 +53,7 @@
   --danger-soft: oklch(0.68 0.19 12 / 0.16);
   --bg: var(--n-0); --surface: var(--n-1); --surface-elevated: var(--n-2); --surface-hover: var(--n-3);
   --border: var(--n-4); --border-subtle: var(--n-3);
-  --text-primary: var(--n-8); --text-secondary: var(--n-6); --text-tertiary: var(--n-5);
+  --text-primary: var(--n-8); --text-secondary: var(--n-6); --text-tertiary: oklch(0.66 0.012 50);
   --focus-ring: oklch(0.72 0.16 var(--accent-h) / 0.45);
   --shadow-color: 50 30% 4%;
 }
@@ -150,7 +155,7 @@ h3 { font-size: var(--text-md); }
   letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-secondary);
 }
 .masthead-nav a:hover { color: var(--accent); text-decoration: none; }
-.masthead-meta { color: var(--text-tertiary); white-space: nowrap; }
+.masthead-meta { color: var(--text-secondary); white-space: nowrap; }
 
 .theme-toggle {
   background: var(--surface-elevated); border: 1px solid var(--border-subtle); color: var(--text-secondary);
@@ -257,7 +262,7 @@ h3 { font-size: var(--text-md); }
 .index-group + .index-group { margin-top: var(--space-5); }
 .index-head {
   font-family: var(--font-display); font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--text-tertiary); margin-bottom: var(--space-2);
+  text-transform: uppercase; color: var(--text-secondary); margin-bottom: var(--space-2);
 }
 .index-list { list-style: none; display: grid; gap: 1px; }
 .index-list a {
@@ -276,7 +281,7 @@ h3 { font-size: var(--text-md); }
 .note { border-top: 1px solid var(--text-primary); padding-top: var(--space-3); }
 .note-head {
   font-family: var(--font-display); font-size: 11px; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--text-tertiary); margin-bottom: var(--space-3);
+  text-transform: uppercase; color: var(--text-secondary); margin-bottom: var(--space-3);
 }
 .note-body { font-size: var(--text-sm); line-height: 1.55; color: var(--text-secondary); margin-top: var(--space-3); }
 .note-list { list-style: none; display: grid; gap: var(--space-1); }
@@ -290,7 +295,7 @@ h3 { font-size: var(--text-md); }
 .standfirst { margin-bottom: var(--space-8); }
 .kicker {
   font-family: var(--font-display); font-size: var(--text-xs); letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--text-tertiary); margin-bottom: var(--space-4);
+  text-transform: uppercase; color: var(--text-secondary); margin-bottom: var(--space-4);
 }
 .kicker a { color: var(--accent); }
 .standfirst h1 { margin-bottom: var(--space-4); }
@@ -301,8 +306,9 @@ h3 { font-size: var(--text-md); }
    full-width band. */
 .lede { font-family: var(--font-serif); font-size: var(--text-md); line-height: 1.66; color: var(--text-secondary); max-width: 58ch; }
 /* The drop cap belongs to the homepage opening only. Used on every lede it
-   stops being a signal and becomes a tic. */
-.standfirst--home .lede::first-letter {
+   stops being a signal and becomes a tic. Desktop only — see the mobile block
+   at the end of this file for why it comes off on a phone. */
+.lede--home::first-letter {
   float: left; font-size: 3.1em; line-height: 0.82; font-weight: 600;
   padding: 0.08em 0.12em 0 0; color: var(--text-primary);
 }
@@ -587,10 +593,14 @@ footer .wrap { max-width: none; padding: 0 var(--bleed); }
    the content via flex order — so the tool still opens the page on a tablet,
    and the full catalogue is a scroll away rather than a click away. */
 @media (max-width: 940px) {
+  /* align-items:stretch is load-bearing, not tidiness. The grid .sheet sets
+     align-items:start, and that carries into this flex context — which makes
+     the column size to max-content instead of the viewport, so one no-wrap row
+     anywhere inside it gives the whole page a horizontal scrollbar. */
   .sheet,
   .sheet--work,
   .sheet--read,
-  .sheet.has-margin { display: flex; flex-direction: column; gap: 0; }
+  .sheet.has-margin { display: flex; flex-direction: column; gap: 0; align-items: stretch; }
   .column { order: 1; padding-top: var(--space-6); }
   .margin { order: 2; }
   .index {
@@ -601,6 +611,44 @@ footer .wrap { max-width: none; padding: 0 var(--bleed); }
   .index-in { columns: 2; column-gap: var(--space-8); }
   .index-group { break-inside: avoid; }
   .index-title { column-span: all; }
+}
+
+/* ── Phone: the tool comes first ──────────────────────────────────────────
+   The editorial premise is that prose leads, and on a reading page it should.
+   On a WORK page at 375px it was costing about two screens of scrolling before
+   anyone could reach a text box — a three-line headline, a six-line lede with
+   a drop cap, then five wrapped rows of category chips. That is the wrong
+   trade for a utility: people arrive here to do a job.
+
+   So on a phone the work shell reorders — headline, tool, then the lede and
+   the supporting prose underneath. The lede is a sibling of the tool in the
+   markup precisely so this is a reorder and not a duplicate; it stays in the
+   DOM near the top for crawlers, and it is not interactive, so moving it
+   visually costs nothing in focus order. */
+@media (max-width: 760px) {
+  .sheet--work .column { display: flex; flex-direction: column; }
+  /* Flex items default to min-width:auto, so the no-wrap tab row below would
+     push its own intrinsic width all the way back up the tree and give the
+     whole page a horizontal scrollbar. Breaking that here is what lets
+     .picker-tabs actually scroll inside itself instead of widening the page. */
+  .sheet--work .column > * { min-width: 0; max-width: 100%; }
+  .sheet--work .standfirst { order: 1; margin-bottom: var(--space-4); }
+  .sheet--work .tool       { order: 2; }
+  .sheet--work .lede       { order: 3; margin-top: var(--space-6); }
+  .sheet--work .ad-slot    { order: 4; }
+  .sheet--work .measure    { order: 5; }
+  /* A drop cap is a device for a wide measure. At 375px it eats a line and
+     reads as a mistake. */
+  .lede--home::first-letter { float: none; font-size: inherit; line-height: inherit; padding: 0; }
+  .standfirst--home h1 { font-size: clamp(1.9rem, 8vw, 2.4rem); }
+  /* Eleven category chips wrapped to five rows. One swipeable row instead —
+     same pattern CountLink already uses for its nav. */
+  .picker-tabs {
+    flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .picker-tabs::-webkit-scrollbar { display: none; }
+  .tab { white-space: nowrap; flex: 0 0 auto; }
 }
 
 @media (max-width: 700px) {
