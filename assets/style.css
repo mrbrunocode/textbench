@@ -9,8 +9,30 @@
    every value.
    ───────────────────────────────────────────────────────────────────────── */
 
-/* ---- Colors (dark-first) ---- */
+/* ---- Colors (light-first: this is a reading surface, not a console) ----
+   Warm paper neutrals at hue 50 rather than a cool grey — the ground is the
+   single biggest carrier of the editorial direction, and paper is warm. */
 :root {
+  color-scheme: light;
+  --n-0: oklch(0.975 0.006 75); --n-1: oklch(1 0 0); --n-2: oklch(0.955 0.008 75);
+  --n-3: oklch(0.92 0.010 75); --n-4: oklch(0.86 0.011 75); --n-5: oklch(0.68 0.012 75);
+  --n-6: oklch(0.47 0.015 75); --n-7: oklch(0.34 0.016 75); --n-8: oklch(0.20 0.016 75);
+  --n-9: oklch(0.12 0.014 75);
+  --accent-h: 25;
+  --accent: oklch(0.50 0.17 var(--accent-h));
+  --accent-strong: oklch(0.42 0.18 var(--accent-h));
+  --accent-soft: oklch(0.50 0.17 var(--accent-h) / 0.10);
+  --on-accent: oklch(0.99 0.005 var(--accent-h));
+  --success: oklch(0.48 0.14 152);
+  --danger: oklch(0.52 0.19 12);
+  --danger-soft: oklch(0.52 0.19 12 / 0.11);
+  --bg: var(--n-0); --surface: var(--n-1); --surface-elevated: var(--n-1); --surface-hover: var(--n-2);
+  --border: var(--n-4); --border-subtle: var(--n-3);
+  --text-primary: var(--n-8); --text-secondary: var(--n-6); --text-tertiary: var(--n-5);
+  --focus-ring: oklch(0.50 0.17 var(--accent-h) / 0.35);
+  --shadow-color: 75 20% 55%;
+}
+[data-theme="dark"] {
   color-scheme: dark;
   --n-0: oklch(0.14 0.012 50); --n-1: oklch(0.185 0.013 50); --n-2: oklch(0.23 0.014 50);
   --n-3: oklch(0.29 0.015 50); --n-4: oklch(0.36 0.015 50); --n-5: oklch(0.46 0.014 50);
@@ -32,31 +54,36 @@
 }
 [data-theme="light"] {
   color-scheme: light;
-  --n-0: oklch(0.985 0.004 50); --n-1: oklch(1 0 0); --n-2: oklch(0.975 0.005 50);
-  --n-3: oklch(0.94 0.007 50); --n-4: oklch(0.88 0.008 50); --n-5: oklch(0.72 0.01 50);
-  --n-6: oklch(0.50 0.014 50); --n-7: oklch(0.36 0.014 50); --n-8: oklch(0.19 0.014 50);
-  --n-9: oklch(0.10 0.012 50);
-  --accent: oklch(0.56 0.19 var(--accent-h));
-  --accent-strong: oklch(0.46 0.20 var(--accent-h));
-  --accent-soft: oklch(0.56 0.19 var(--accent-h) / 0.12);
+  --n-0: oklch(0.975 0.006 75); --n-1: oklch(1 0 0); --n-2: oklch(0.955 0.008 75);
+  --n-3: oklch(0.92 0.010 75); --n-4: oklch(0.86 0.011 75); --n-5: oklch(0.68 0.012 75);
+  --n-6: oklch(0.47 0.015 75); --n-7: oklch(0.34 0.016 75); --n-8: oklch(0.20 0.016 75);
+  --n-9: oklch(0.12 0.014 75);
+  --accent: oklch(0.50 0.17 var(--accent-h));
+  --accent-strong: oklch(0.42 0.18 var(--accent-h));
+  --accent-soft: oklch(0.50 0.17 var(--accent-h) / 0.10);
   --on-accent: oklch(0.99 0.005 var(--accent-h));
-  --success: oklch(0.52 0.15 152);
-  --danger: oklch(0.55 0.19 12);
-  --danger-soft: oklch(0.55 0.19 12 / 0.12);
-  --surface-elevated: var(--n-1);
-  --focus-ring: oklch(0.56 0.19 var(--accent-h) / 0.35);
-  --shadow-color: 50 30% 60%;
+  --success: oklch(0.48 0.14 152);
+  --danger: oklch(0.52 0.19 12);
+  --danger-soft: oklch(0.52 0.19 12 / 0.11);
+  --surface: var(--n-1); --surface-elevated: var(--n-1); --surface-hover: var(--n-2);
+  --focus-ring: oklch(0.50 0.17 var(--accent-h) / 0.35);
+  --shadow-color: 75 20% 55%;
 }
 
 /* ---- Type / spacing / effects ---- */
 :root {
   --font-ui: "Public Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
   --font-display: "Fira Code", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  /* Editorial serif — headings and prose. The audience is writers and the
+     product measures prose quality, so the page should visibly respect prose. */
+  --font-serif: "Newsreader", "Iowan Old Style", Palatino, Georgia, serif;
   --text-xs: 12px; --text-sm: 13px; --text-base: 15px; --text-md: 17px; --text-lg: 20px;
   --text-xl: 24px; --text-2xl: 32px; --text-3xl: 44px;
   --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 20px;
   --space-6: 24px; --space-8: 32px; --space-10: 40px; --space-12: 48px; --space-16: 64px;
-  --radius-sm: 3px; --radius-md: 5px; --radius-lg: 8px; --radius-full: 999px;
+  /* Print-crisp, not pill-soft. Uniform generous radius on every element is
+     one of the clearest generated-page tells; 2px reads as a cut edge. */
+  --radius-sm: 2px; --radius-md: 2px; --radius-lg: 2px; --radius-full: 2px;
   --container-max: 900px;
   --shadow-sm: 0 2px 6px hsl(var(--shadow-color) / 0.28), 0 1px 2px hsl(var(--shadow-color) / 0.30);
   --shadow-md: 0 8px 24px hsl(var(--shadow-color) / 0.30), 0 2px 6px hsl(var(--shadow-color) / 0.24);
@@ -79,8 +106,12 @@ body {
 }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
-h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; font-weight: 700; }
-h1 { font-size: var(--text-3xl); }
+/* Serif headings. The audience is writers and the product now scores prose
+   readability — the page should look like it belongs to that world rather
+   than to a developer console. Weight 500/600, not 700: an editorial serif
+   at bold reads as shouting. */
+h1, h2, h3 { font-family: var(--font-serif); line-height: 1.12; letter-spacing: -0.015em; font-weight: 600; }
+h1 { font-size: var(--text-3xl); font-weight: 500; text-wrap: balance; }
 h2 { font-size: var(--text-xl); }
 h3 { font-size: var(--text-md); }
 
@@ -161,16 +192,40 @@ header {
 /* ---- Main / hero ---- */
 main.wrap { flex: 1; padding-top: var(--space-6); padding-bottom: var(--space-16); }
 .hero { margin-bottom: var(--space-8); }
-.hero--home { text-align: center; margin-bottom: var(--space-10); }
-.eyebrow { display: inline-block; font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: var(--space-3); }
-.lede { font-size: var(--text-md); color: var(--text-secondary); max-width: 62ch; margin-top: var(--space-4); }
-.hero--home .lede { margin-left: auto; margin-right: auto; }
-.use-line { font-size: var(--text-sm); color: var(--text-tertiary); max-width: 60ch; margin: var(--space-3) auto 0; }
-.hero-facts {
-  display: flex; justify-content: center; gap: var(--space-6); margin-top: var(--space-6);
-  font-family: var(--font-display); font-size: var(--text-sm); color: var(--text-tertiary);
+/* A magazine opening spread: display headline in the left column, standfirst
+   in the right, colophon rule spanning both. Centred headline over centred
+   subtitle is the layout every generated page defaults to — this is the
+   arrangement print has used for a century instead, and it also stops the
+   right half of the viewport reading as dead space. */
+.hero--home {
+  text-align: left; margin-bottom: var(--space-10); max-width: none;
+  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: var(--space-4) var(--space-10); align-items: end;
 }
-.hero-facts strong { color: var(--accent); font-weight: 600; }
+.hero--home h1 { grid-column: 1; font-size: clamp(2.3rem, 5.2vw, 3.6rem); margin: 0; }
+.hero--home .lede { grid-column: 2; margin-top: 0; }
+.hero--home .hero-facts { grid-column: 1 / -1; }
+@media (max-width: 760px) {
+  .hero--home { grid-template-columns: 1fr; gap: var(--space-5); }
+  .hero--home h1, .hero--home .lede { grid-column: 1; }
+}
+.eyebrow { display: inline-block; font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: var(--space-3); }
+/* Measure held near 65 characters — the range print typography settles on
+   for comfortable reading, and the reason this is a serif column not a
+   full-width band. */
+.lede { font-family: var(--font-serif); font-size: var(--text-md); line-height: 1.66; color: var(--text-secondary); max-width: 52ch; margin-top: var(--space-4); }
+.hero--home .lede { margin-left: 0; margin-right: 0; }
+.use-line { font-size: var(--text-sm); color: var(--text-tertiary); max-width: 60ch; margin: var(--space-3) auto 0; }
+/* Was a three-number stat row ("65 tools · 11 categories · 0 uploads") — the
+   stat triplet is one of the clearest generated-page tells, and it rarely
+   states what a visitor needs at that moment. Now a colophon: small, mono,
+   rule-topped, sitting under the text block the way a masthead credit does. */
+.hero-facts {
+  display: flex; justify-content: flex-start; gap: var(--space-6); margin-top: var(--space-6);
+  font-family: var(--font-display); font-size: var(--text-xs); color: var(--text-secondary);
+  border-top: 1px solid var(--border-subtle); padding-top: var(--space-3); letter-spacing: 0.04em;
+}
+.hero-facts strong { color: var(--text-primary); font-weight: 600; }
 
 /* ---- The tool ---- */
 .tool {
@@ -404,3 +459,20 @@ footer { border-top: 1px solid var(--border-subtle); padding: var(--space-8) 0; 
 /* ---- Embed snippet block (/embed) ---- */
 .embed-code { background: var(--surface-elevated); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-4); overflow-x: auto; font-size: var(--text-xs); line-height: 1.6; }
 .embed-code code { font-family: var(--font-display); white-space: pre; color: var(--text-primary); }
+
+
+/* ---- Editorial prose (guides, about, alternatives) ----------------------
+   The tool UI deliberately stays in the sans; only reading surfaces switch to
+   the serif. A magazine with a form bolted on is the failure mode here, so
+   the split is explicit rather than global. */
+.prose, .guide { font-family: var(--font-serif); }
+.prose p, .guide p, .prose li, .guide li {
+  font-size: var(--text-md); line-height: 1.72; max-width: 66ch; color: var(--text-secondary);
+}
+.prose h1, .guide h1 { margin-bottom: var(--space-5); }
+.prose h2, .guide h2 { margin-top: var(--space-10); margin-bottom: var(--space-3); font-size: var(--text-xl); }
+.prose h3, .guide h3 { margin-top: var(--space-6); font-size: var(--text-lg); }
+/* Opening paragraph of a prose page reads a size up, as a standfirst does. */
+.prose > h1 + p, .guide > h1 + p { font-size: var(--text-lg); color: var(--text-primary); line-height: 1.62; }
+.prose code, .guide code, .prose pre, .guide pre { font-family: var(--font-display); font-size: 0.88em; }
+.article .byline { font-family: var(--font-display); font-size: var(--text-xs); letter-spacing: 0.06em; }

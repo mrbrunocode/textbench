@@ -119,8 +119,12 @@ export const AFFILIATE_DEV_BLURB = "";
 // Google Fonts to preload/link in every <head>. Inter (UI) + JetBrains Mono
 // (the big number/output display) is the design system's pairing — see
 // design-system/tokens/typography.css.
+// Newsreader carries the editorial direction: a genuine screen-reading serif
+// with optical sizing, not a decorative display face. Public Sans stays for
+// tool chrome (a form should read as a form) and Fira Code for data/output.
+// The split is deliberate — prose gets the serif, the tool stays quiet.
 export const FONT_HREF =
-  "https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap";
+  "https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap";
 
 // Default browser-chrome color (matches the dark app background token).
-export const THEME_COLOR = "#0a0d12";
+export const THEME_COLOR = "#f7f4f0";  // paper ground (light-first)
