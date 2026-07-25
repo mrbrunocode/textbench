@@ -443,3 +443,19 @@ test("fleschBand labels the standard ranges", () => {
   assert.match(t.fleschBand(65), /Plain English/);
   assert.match(t.fleschBand(20), /Very difficult/);
 });
+
+test("jsonToCsv's own page copy doesn't claim the old, now-false first-object-only behaviour", async () => {
+  // Regression: the code was changed to union every row's keys (see the
+  // comment above jsonToCsv in assets/app.js and the "unions keys across all
+  // rows" test above), but the page's FAQ/description/intro text still said
+  // "only the first object's keys become columns" for weeks afterward —
+  // actively wrong documentation is its own kind of bug. Importing pages.mjs
+  // directly (not scraping built HTML) so this fails the moment the claim
+  // regresses, in either direction, regardless of what CI step runs it.
+  const { PAGES } = await import("../pages.mjs");
+  const page = PAGES.find((p) => p.slug === "json-to-csv-converter");
+  const copy = [page.description, page.intro, ...page.faq.map((f) => f.a)].join(" ");
+  assert.doesNotMatch(copy, /only the first object.?s keys/i,
+    "page copy must not claim only the first object's keys are used — the code unions all of them");
+  assert.match(copy, /union/i, "page copy should actually say it unions every object's keys");
+});

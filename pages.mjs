@@ -524,14 +524,14 @@ export const PAGES = [
     eyebrow: "JSON to CSV",
     title: "JSON to CSV Converter — Online, Instant",
     description:
-      "Convert a JSON array of objects to CSV, using the first object's keys as columns. Free, instant, runs entirely in your browser.",
+      "Convert a JSON array of objects to CSV, using the union of every object's keys as columns. Free, instant, runs entirely in your browser.",
     intro:
-      "Paste a JSON array of objects below — the first object's keys become the CSV header, and each object becomes one row. Fields containing a comma, quote or newline are automatically quoted.",
+      "Paste a JSON array of objects below — every key used by any object becomes a CSV column, and each object becomes one row (a missing key just leaves that cell empty). Fields containing a comma, quote or newline are automatically quoted.",
     transform: "json-to-csv",
     shape: "simple",
     faq: [
       { q: "Does it work with nested objects or arrays as values?", a: "Nested values are stringified into the cell as-is (e.g. \"[object Object]\" for a nested object) rather than flattened into separate columns — flatten nested data yourself first for a clean CSV." },
-      { q: "What if objects in the array have different keys?", a: "Only the first object's keys become columns — later objects with extra keys will have those extra fields dropped, and objects missing a key from the first one leave that cell empty." },
+      { q: "What if objects in the array have different keys?", a: "The header is the union of every object's keys, not just the first one's — so an extra field on a later object still gets its own column, and any row missing a given key just gets an empty cell there. Nothing is silently dropped." },
       { q: "What if I paste something that isn't a JSON array?", a: "You'll see an error message explaining a JSON array of objects is expected, instead of a broken or empty CSV." },
     ],
   },
