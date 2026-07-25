@@ -1,6 +1,6 @@
 # Textbench
 
-> Case conversion, cleanup, encoding, hashing, generators, JSON/YAML/CSV conversion, regex testing and more — 64 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.
+> Case conversion, cleanup, encoding, hashing, generators, JSON/YAML/CSV conversion, regex testing and more — 65 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.
 
 Textbench is a static web app: no signup, no backend, no per-visitor cost. Everything runs client-side.
 
@@ -28,6 +28,7 @@ Textbench is a static web app: no signup, no backend, no per-visitor cost. Every
 - [X / Twitter Counter](https://textbench.app/tools/twitter-character-counter): Count characters against X's 280-character post limit, live as you type, with the number remaining turning red once you go over. Free, instant, browser-only.
 - [Meta Description](https://textbench.app/tools/meta-description-length-checker): Check a meta description against the ~155-character length Google typically shows in search results, live as you type. Free, instant, browser-only.
 - [YouTube Title](https://textbench.app/tools/youtube-title-length-checker): Check a video title against YouTube's 100-character title limit, live as you type, with the remaining count turning red once you go over. Free, browser-only.
+- [Readability Checker](https://textbench.app/tools/readability-checker): Score your writing for readability in your browser. Flesch Reading Ease, Flesch–Kincaid grade level and Gunning Fog index, with syllable and complex-word counts. Nothing uploaded.
 - [Reading Time](https://textbench.app/tools/reading-time-calculator): Estimate reading time from your text. Paste an article or script and see how many minutes it takes to read aloud or silently, at your chosen pace.
 - [Word Frequency](https://textbench.app/tools/word-frequency-counter): See which words you use most, sorted by count. Useful for spotting overused words in a draft, or building a quick keyword list. Free, instant, browser-only.
 - [Compare Texts](https://textbench.app/tools/compare-two-texts): Paste two texts and see the word count difference, character count difference, and how much vocabulary they share. A quick stats comparison, not a line-by-line diff.

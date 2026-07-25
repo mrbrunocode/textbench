@@ -1,8 +1,13 @@
 # Textbench
 
 A static, zero-backend utility built from the [boring-app-factory](../boring-app-factory).
-64 text tools as of 2026-07-21 (61 → 64: added Markdown to plain text, a word
-frequency counter, and a lightweight two-text comparison tool — see below).
+65 text tools as of 2026-07-25 (64 → 65: added a readability checker —
+Flesch Reading Ease, Flesch–Kincaid grade level and Gunning Fog, computed
+client-side; it closed the clearest feature gap against wordcounttool.com,
+see `docs/seo-strategy.md`).
+
+Everything user-facing derives the count from `TOOL_COUNT = PAGES.length` in
+`site.config.mjs`, so only this line needs hand-updating.
 
 **Live at [textbench.app](https://textbench.app)** (confirmed 2026-07-21).
 AdSense ad slot isn't wired in yet (application status unclear — check the

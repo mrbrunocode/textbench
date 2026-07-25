@@ -106,6 +106,28 @@ export const PAGES = [
     ],
   },
   {
+    // Its own page rather than a panel bolted onto the word counter:
+    // "readability checker" / "flesch reading ease" are distinct queries with
+    // real volume, and this is a genuinely different capability — not a thin
+    // variant of an existing tool, which is the pattern this repo avoids.
+    slug: "readability-checker",
+    eyebrow: "Readability Checker",
+    title: "Readability Checker — Flesch, Flesch–Kincaid & Gunning Fog",
+    description:
+      "Score your writing for readability in your browser. Flesch Reading Ease, Flesch–Kincaid grade level and Gunning Fog index, with syllable and complex-word counts. Nothing uploaded.",
+    intro:
+      "Paste your writing to see how hard it is to read. You get the three standard readability measures — Flesch Reading Ease, Flesch–Kincaid grade level and the Gunning Fog index — plus the raw inputs they're built from, so you can see why the score came out where it did. It all runs on your device; nothing is sent anywhere.",
+    transform: "none",
+    shape: "readability",
+    faq: [
+      { q: "What counts as a good Flesch Reading Ease score?", a: "60–70 is 'plain English', roughly 8th–9th grade, and is the usual target for general-audience writing. Above 70 reads as easy and conversational; below 50 is heavy going for most readers, and below 30 is effectively academic. Journalism typically lands in the 60s, legal and scientific writing in the 30s or lower." },
+      { q: "Why do the three scores disagree?", a: "They measure different things. Flesch Reading Ease and Flesch–Kincaid are driven by syllables per word, so long words hurt them. Gunning Fog instead counts words of three or more syllables as 'complex' and weights the proportion of them. A text with a few very long words but short sentences can score well on one and badly on another — read them together, not individually." },
+      { q: "How accurate are the syllable counts?", a: "They're estimates. Counting syllables exactly needs a pronunciation dictionary; like most readability tools, this uses a vowel-group heuristic with adjustments for silent endings. It's reliable across a paragraph or more, but individual unusual words (especially names and loanwords) can be off by one." },
+      { q: "Why does it need at least 20 words?", a: "Every one of these formulas divides by sentence and word counts, so on a very short fragment a single long word or missing full stop swings the result wildly. Showing a confident grade level for a three-word sentence would be misleading, so it waits until there's enough text to mean something." },
+      { q: "Should I write to hit a target score?", a: "Use it as a check, not a goal. The scores only measure sentence length and word length — they can't tell whether the writing is clear, accurate or well organised. Chopping sentences up to move the number will improve the score without necessarily improving the writing." },
+    ],
+  },
+  {
     slug: "reading-time-calculator",
     eyebrow: "Reading Time",
     title: "Reading Time Calculator — How Long To Read This?",
@@ -1265,6 +1287,43 @@ export function renderTool(p = {}) {
     ${statsBar}
     <label class="sr-only" for="editor">Your text</label>
     <textarea id="editor" class="editor" placeholder="Type or paste your text here…" spellcheck="true"></textarea>
+    <div class="tool-actions">
+      <button type="button" class="btn" id="copyBtn">Copy text</button>
+      <button type="button" class="btn" id="clearBtn">Clear</button>
+    </div>
+  </section>`;
+  }
+
+  // Readability: the counter shape plus a scores panel. Standalone-page only,
+  // same reasoning as the counter shape above.
+  if (shape === "readability" && !isHome) {
+    const score = (key, label, note) =>
+      `<div class="read-score">
+          <span class="read-num" data-read="${key}">—</span>
+          <span class="read-label">${label}</span>
+          <span class="read-note">${note}</span>
+        </div>`;
+    const sub = (key, label) =>
+      `<div class="read-sub"><span data-read="${key}">—</span> <span>${label}</span></div>`;
+    return `
+  <section class="tool" data-transform="none" data-shape="readability">
+    ${statsBar}
+    <label class="sr-only" for="editor">Your text</label>
+    <textarea id="editor" class="editor" placeholder="Paste the writing you want to score…" spellcheck="true"></textarea>
+    <div id="readability" class="readability is-empty" role="status" aria-live="polite"
+         data-hint="Paste at least 20 words for a reliable score.">
+      <div class="read-scores">
+        ${score("flesch", "Flesch Reading Ease", '<span data-read="fleschBand">—</span>')}
+        ${score("fleschKincaid", "Flesch–Kincaid", "US grade level")}
+        ${score("gunningFog", "Gunning Fog", "years of education")}
+      </div>
+      <div class="read-subs">
+        ${sub("wordsPerSentence", "words per sentence")}
+        ${sub("syllables", "syllables")}
+        ${sub("complexWords", "complex words (3+ syllables)")}
+        ${sub("speaking", "read aloud")}
+      </div>
+    </div>
     <div class="tool-actions">
       <button type="button" class="btn" id="copyBtn">Copy text</button>
       <button type="button" class="btn" id="clearBtn">Clear</button>

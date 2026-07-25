@@ -1,11 +1,11 @@
 {
   "/about": {
-    "hash": "ea77652bcad28b96",
-    "date": "2026-07-24"
+    "hash": "280b64aaed4e7f4a",
+    "date": "2026-07-25"
   },
   "/alternatives": {
-    "hash": "044eaaa8b178f39b",
-    "date": "2026-07-24"
+    "hash": "abca0e6400f3ae45",
+    "date": "2026-07-25"
   },
   "/contact": {
     "hash": "f798afff7a7cf623",
@@ -154,6 +154,10 @@
   "tools/random-password-generator": {
     "hash": "624a7adc82284f3e",
     "date": "2026-07-24"
+  },
+  "tools/readability-checker": {
+    "hash": "37646de36a9d0657",
+    "date": "2026-07-25"
   },
   "tools/reading-time-calculator": {
     "hash": "52894fe9036007e2",

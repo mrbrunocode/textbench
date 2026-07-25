@@ -189,6 +189,77 @@
   }
   function fmt(n) { return n.toLocaleString("en-US"); }
 
+  // ── Readability ───────────────────────────────────────────────────────────
+  // English-heuristic syllable count. There is no exact algorithm without a
+  // pronunciation dictionary; this is the standard vowel-group approach used
+  // by most readability tools, and it's why the UI calls the scores estimates.
+  // Handles the common cases: silent trailing -e, -es/-ed endings that don't
+  // add a syllable, and leading "y" (which is a consonant there, as in "yes").
+  var SPEAKING_WPM = 130;
+  function syllablesIn(word) {
+    var w = word.toLowerCase().replace(/[^a-z]/g, "");
+    if (!w) return 0;
+    if (w.length <= 3) return 1;
+    // Strip endings that don't add a syllable — but NOT a trailing -es after a
+    // sibilant, where it does ("houses" is HOU-SES, "baked" is one syllable).
+    if (!/(?:s|x|z|ch|sh)es$/.test(w)) w = w.replace(/[^laeiouy]es$/, "");
+    w = w.replace(/[^laeiouy]ed$/, "").replace(/[^laeiouy]e$/, "");
+    w = w.replace(/^y/, "");
+    // Unbounded vowel runs: "eau" in "beautiful" is one group, not two.
+    var groups = w.match(/[aeiouy]+/g);
+    return groups ? groups.length : 1;
+  }
+
+  // Returns null for text too short to score meaningfully — a single sentence
+  // produces wild values in every one of these formulas, and showing a
+  // confident "grade 27" for a three-word fragment would be worse than
+  // showing nothing.
+  function readability(text) {
+    var trimmed = text.trim();
+    if (!trimmed) return null;
+    var wordList = trimmed.split(/\s+/).filter(Boolean);
+    var words = wordList.length;
+    if (words < 20) return null;
+
+    var sentences = (trimmed.match(/[^.!?]+[.!?]+(\s|$)/g) || []).length || 1;
+    var syllables = 0, complex = 0;
+    for (var i = 0; i < words; i++) {
+      var s = syllablesIn(wordList[i]);
+      syllables += s;
+      if (s >= 3) complex++;
+    }
+
+    var wps = words / sentences;          // words per sentence
+    var spw = syllables / words;          // syllables per word
+    var flesch = 206.835 - 1.015 * wps - 84.6 * spw;
+    var fk = 0.39 * wps + 11.8 * spw - 15.59;
+    var fog = 0.4 * (wps + 100 * (complex / words));
+
+    return {
+      // Flesch can mathematically exceed 100 or fall below 0 on extreme text;
+      // clamped for display, as the standard reporting tools do.
+      flesch: Math.round(Math.min(100, Math.max(0, flesch)) * 10) / 10,
+      fleschKincaid: Math.max(0, Math.round(fk * 10) / 10),
+      gunningFog: Math.round(fog * 10) / 10,
+      syllables: syllables,
+      complexWords: complex,
+      wordsPerSentence: Math.round(wps * 10) / 10,
+      speaking: Math.max(1, Math.round(words / SPEAKING_WPM)),
+    };
+  }
+
+  // Plain-English band for a Flesch Reading Ease score, using the standard
+  // ranges. The label is the useful part — "62.4" means nothing on its own.
+  function fleschBand(score) {
+    if (score >= 90) return "Very easy — 5th grade";
+    if (score >= 80) return "Easy — 6th grade";
+    if (score >= 70) return "Fairly easy — 7th grade";
+    if (score >= 60) return "Plain English — 8th–9th grade";
+    if (score >= 50) return "Fairly difficult — 10th–12th grade";
+    if (score >= 30) return "Difficult — university";
+    return "Very difficult — graduate";
+  }
+
   // ── Transform library — pure functions, text in, text out ──────────────────
   function toTitleCase(s) {
     return s.replace(/\w\S*/g, function (t) { return t.charAt(0).toUpperCase() + t.slice(1).toLowerCase(); });
@@ -738,7 +809,8 @@
   // the DOM wiring below that a test environment has no elements for.
   if (typeof module !== "undefined" && module.exports) {
     module.exports = {
-      count: count, toTitleCase: toTitleCase, toSentenceCase: toSentenceCase,
+      count: count, syllablesIn: syllablesIn, readability: readability, fleschBand: fleschBand,
+      toTitleCase: toTitleCase, toSentenceCase: toSentenceCase,
       toAlternatingCase: toAlternatingCase, toInverseCase: toInverseCase,
       dedupeLines: dedupeLines, removeExtraSpaces: removeExtraSpaces,
       removeLineBreaks: removeLineBreaks, removeEmptyLines: removeEmptyLines,
@@ -983,6 +1055,32 @@
     compareOverlapEl.textContent = c.overlapPct + "%";
   }
 
+  // Readability panel: present only on pages that opt in (shape "readability").
+  // Stays quiet until there's enough text to score — see readability().
+  var readOutEl = document.getElementById("readability");
+  function renderReadability(text) {
+    if (!readOutEl) return;
+    var r = readability(text);
+    if (!r) {
+      readOutEl.classList.add("is-empty");
+      readOutEl.setAttribute("data-hint", "Paste at least 20 words for a reliable score.");
+      return;
+    }
+    readOutEl.classList.remove("is-empty");
+    var set = function (key, val) {
+      var el = readOutEl.querySelector('[data-read="' + key + '"]');
+      if (el) el.textContent = val;
+    };
+    set("flesch", r.flesch);
+    set("fleschBand", fleschBand(r.flesch));
+    set("fleschKincaid", r.fleschKincaid);
+    set("gunningFog", r.gunningFog);
+    set("syllables", fmt(r.syllables));
+    set("complexWords", fmt(r.complexWords));
+    set("wordsPerSentence", r.wordsPerSentence);
+    set("speaking", r.speaking + " min");
+  }
+
   var renderToken = 0;
   function render() {
     if (regexPatternEl) { renderRegexTester(); return; }
@@ -1004,6 +1102,7 @@
         limitNumEl.textContent = fmt(remaining);
         if (limitCardEl) limitCardEl.classList.toggle("is-over", remaining < 0);
       }
+      renderReadability(statsSource);
       if (output) output.value = resultText;
     });
   }

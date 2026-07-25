@@ -19,6 +19,20 @@ export const GUIDES = {
     <p>Text is split on any run of whitespace and the non-empty chunks are counted, which matches how word count works in most writing tools. A hyphenated word like "well-known" counts as one; an em dash between words doesn't join them. Alongside words you get characters, sentences and an estimated reading time, so one paste answers several questions at once.</p>
     <p>Everything runs in your browser — nothing is uploaded — so it works offline and it's safe for a draft you'd rather not paste into someone else's site.</p>`),
 
+  "readability-checker": g(`
+    <h2>What these three scores actually measure</h2>
+    <p>All three formulas here work from the same two raw ingredients: how long your sentences are, and how long your words are. Nothing else. That's worth knowing up front, because it explains both what they're good for and where they mislead. They can tell you that a passage is dense; they cannot tell you whether it's clear, accurate, well argued or worth reading.</p>
+    <h3>Flesch Reading Ease</h3>
+    <p>A 0–100 scale where higher is easier. Around 60–70 is "plain English" — roughly what a 13- to 15-year-old reads comfortably, and the usual target for writing aimed at a general audience. Newspapers typically land in the 60s. Insurance policies and academic papers sit in the 30s or below; several US states set a minimum Flesch score for consumer insurance documents, which is one of the few places these numbers carry legal weight.</p>
+    <h3>Flesch–Kincaid Grade Level</h3>
+    <p>The same inputs rearranged to output a US school grade instead of a 0–100 score. A result of 8.0 means an average American eighth-grader should follow it. It's the score most often quoted in style guides and government plain-language rules, largely because "aim for grade 8" is easier to act on than "aim for 65".</p>
+    <h3>Gunning Fog</h3>
+    <p>Estimates the years of formal education a reader needs. It works differently from the other two: instead of averaging syllables across every word, it counts what proportion of your words have three or more syllables and weights that. This is why the three scores sometimes disagree — a passage with short sentences but a handful of very long words scores badly on Fog while doing fine on Flesch. Read them together; the disagreement is information.</p>
+    <h3>Why the syllable counts are estimates</h3>
+    <p>Counting syllables exactly requires a pronunciation dictionary, because English spelling doesn't determine pronunciation ("houses" is two, "baked" is one, despite both ending in a consonant plus vowel plus s/d). Like most readability tools, this uses a vowel-group heuristic with corrections for silent endings. Across a paragraph it's reliable; on individual unusual words — especially names and loanwords — it can be out by one. That's also why nothing is scored until there are at least 20 words: below that, one long word or one missing full stop swings every formula wildly.</p>
+    <h3>How to use them without being led astray</h3>
+    <p>The failure mode is writing to the number. Because the formulas only see sentence and word length, you can improve every score by chopping sentences in half at arbitrary points and swapping precise terms for vague shorter ones — and end up with worse writing that scores better. Use the score as a smoke alarm: if a passage reads as far harder than your audience needs, something is worth looking at. Then fix it by restructuring the argument, not by hunting long words. It's all computed on your device; nothing you paste is uploaded.</p>`),
+
   "character-counter": g(`
     <h2>When characters matter more than words</h2>
     <p>Plenty of fields count characters, not words, and usually have a hard limit: a meta description (~155), an SMS (160 per segment), a database <code>VARCHAR</code>, a bio field, an ad headline. For those, the character count — and specifically whether you're under the cap — is the number that matters.</p>

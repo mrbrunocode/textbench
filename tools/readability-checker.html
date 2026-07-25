@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Readability Checker — Flesch, Flesch–Kincaid &amp; Gunning Fog | Textbench</title>
+<meta name="description" content="Score your writing for readability in your browser. Flesch Reading Ease, Flesch–Kincaid grade level and Gunning Fog index, with syllable and complex-word counts. Nothing uploaded.">
+<link rel="canonical" href="https://textbench.app/tools/readability-checker">
+<meta property="og:title" content="Readability Checker — Flesch, Flesch–Kincaid &amp; Gunning Fog">
+<meta property="og:description" content="Score your writing for readability in your browser. Flesch Reading Ease, Flesch–Kincaid grade level and Gunning Fog index, with syllable and complex-word counts. Nothing uploaded.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://textbench.app/tools/readability-checker">
+<meta property="og:image" content="https://textbench.app/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://textbench.app/assets/og-image.png">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="manifest" href="../manifest.json">
+<meta name="theme-color" content="#0a0d12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css?v=35c75ad3">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/readability-checker","description":"Score your writing for readability in your browser. Flesch Reading Ease, Flesch–Kincaid grade level and Gunning Fog index, with syllable and complex-word counts. Nothing uploaded.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Bruno FK","url":"https://brunofk.dev"},"datePublished":"2026-07-17","dateModified":"2026-07-25"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"Readability Checker","item":"https://textbench.app/tools/readability-checker"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What counts as a good Flesch Reading Ease score?","acceptedAnswer":{"@type":"Answer","text":"60–70 is 'plain English', roughly 8th–9th grade, and is the usual target for general-audience writing. Above 70 reads as easy and conversational; below 50 is heavy going for most readers, and below 30 is effectively academic. Journalism typically lands in the 60s, legal and scientific writing in the 30s or lower."}},{"@type":"Question","name":"Why do the three scores disagree?","acceptedAnswer":{"@type":"Answer","text":"They measure different things. Flesch Reading Ease and Flesch–Kincaid are driven by syllables per word, so long words hurt them. Gunning Fog instead counts words of three or more syllables as 'complex' and weights the proportion of them. A text with a few very long words but short sentences can score well on one and badly on another — read them together, not individually."}},{"@type":"Question","name":"How accurate are the syllable counts?","acceptedAnswer":{"@type":"Answer","text":"They're estimates. Counting syllables exactly needs a pronunciation dictionary; like most readability tools, this uses a vowel-group heuristic with adjustments for silent endings. It's reliable across a paragraph or more, but individual unusual words (especially names and loanwords) can be off by one."}},{"@type":"Question","name":"Why does it need at least 20 words?","acceptedAnswer":{"@type":"Answer","text":"Every one of these formulas divides by sentence and word counts, so on a very short fragment a single long word or missing full stop swings the result wildly. Showing a confident grade level for a three-word sentence would be misleading, so it waits until there's enough text to mean something."}},{"@type":"Question","name":"Should I write to hit a target score?","acceptedAnswer":{"@type":"Answer","text":"Use it as a check, not a goal. The scores only measure sentence length and word length — they can't tell whether the writing is clear, accurate or well organised. Chopping sentences up to move the number will improve the score without necessarily improving the writing."}}]}</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2653891546345771" crossorigin="anonymous"></script>
+<script id="toolsIndex" type="application/json">[{"title":"Word Counter","path":"/tools/word-counter"},{"title":"Character Counter","path":"/tools/character-counter"},{"title":"X / Twitter Counter","path":"/tools/twitter-character-counter"},{"title":"Meta Description","path":"/tools/meta-description-length-checker"},{"title":"YouTube Title","path":"/tools/youtube-title-length-checker"},{"title":"Readability Checker","path":"/tools/readability-checker"},{"title":"Reading Time","path":"/tools/reading-time-calculator"},{"title":"Word Frequency","path":"/tools/word-frequency-counter"},{"title":"Compare Texts","path":"/tools/compare-two-texts"},{"title":"UPPERCASE","path":"/tools/uppercase-converter"},{"title":"lowercase","path":"/tools/lowercase-converter"},{"title":"Title Case","path":"/tools/title-case-converter"},{"title":"Sentence case","path":"/tools/sentence-case-converter"},{"title":"Remove Duplicates","path":"/tools/remove-duplicate-lines"},{"title":"Extra Spaces","path":"/tools/remove-extra-spaces"},{"title":"Line Breaks","path":"/tools/remove-line-breaks"},{"title":"Empty Lines","path":"/tools/remove-empty-lines"},{"title":"Sort Lines","path":"/tools/sort-lines-alphabetically"},{"title":"Reverse Text","path":"/tools/reverse-text"},{"title":"Reverse Line Order","path":"/tools/reverse-line-order"},{"title":"Trim Lines","path":"/tools/trim-whitespace-from-lines"},{"title":"Sort Z to A","path":"/tools/sort-lines-descending"},{"title":"Line Numbers","path":"/tools/add-line-numbers"},{"title":"Slugify","path":"/tools/slugify-text"},{"title":"Text Repeater","path":"/tools/text-repeater"},{"title":"Find & Replace","path":"/tools/find-and-replace"},{"title":"Regex Tester","path":"/tools/regex-tester"},{"title":"Email Regex Tester","path":"/tools/email-regex-tester"},{"title":"Phone Number Regex Tester","path":"/tools/phone-number-regex-tester"},{"title":"CSV to JSON","path":"/tools/csv-to-json-converter"},{"title":"JSON to CSV","path":"/tools/json-to-csv-converter"},{"title":"YAML to JSON","path":"/tools/yaml-to-json-converter"},{"title":"JSON to YAML","path":"/tools/json-to-yaml-converter"},{"title":"QR Code Generator","path":"/tools/qr-code-generator"},{"title":"Lorem Ipsum","path":"/tools/lorem-ipsum-generator"},{"title":"aLtErNaTiNg cAsE","path":"/tools/alternating-case-converter"},{"title":"InVeRsE cAsE","path":"/tools/inverse-case-converter"},{"title":"Extract Emails","path":"/tools/extract-emails-from-text"},{"title":"Extract URLs","path":"/tools/extract-urls-from-text"},{"title":"Extract Numbers","path":"/tools/extract-numbers-from-text"},{"title":"Base64 Encode","path":"/tools/base64-encode"},{"title":"Base64 Decode","path":"/tools/base64-decode"},{"title":"URL Encode","path":"/tools/url-encode"},{"title":"URL Decode","path":"/tools/url-decode"},{"title":"HTML Encode","path":"/tools/html-entity-encode"},{"title":"HTML Decode","path":"/tools/html-entity-decode"},{"title":"Text to Binary","path":"/tools/text-to-binary"},{"title":"Binary to Text","path":"/tools/binary-to-text"},{"title":"Text to Hex","path":"/tools/text-to-hex"},{"title":"Hex to Text","path":"/tools/hex-to-text"},{"title":"Text → Morse","path":"/tools/morse-code-translator"},{"title":"Morse → Text","path":"/tools/morse-code-to-text"},{"title":"ROT13","path":"/tools/rot13-cipher"},{"title":"JSON Formatter","path":"/tools/json-formatter"},{"title":"JSON Validator","path":"/tools/json-validator"},{"title":"JSON Minifier","path":"/tools/json-minifier"},{"title":"Markdown to HTML","path":"/tools/markdown-to-html-converter"},{"title":"Markdown to Plain Text","path":"/tools/markdown-to-plain-text"},{"title":"MD5 Hash","path":"/tools/md5-hash-generator"},{"title":"SHA-256 Hash","path":"/tools/sha256-hash-generator"},{"title":"UUID Generator","path":"/tools/uuid-generator"},{"title":"Password Generator","path":"/tools/random-password-generator"},{"title":"Strikethrough","path":"/tools/strikethrough-text-generator"},{"title":"Upside Down","path":"/tools/upside-down-text-generator"},{"title":"Bold Unicode","path":"/tools/bold-text-generator"}]</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header>
+  <a class="logo" href="/">
+    <svg class="logo-mark" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><rect width="22" height="22" rx="5" fill="currentColor" opacity="0.14"/><text x="11" y="15.5" font-family="Fira Code, monospace" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">#</text></svg>
+    Textbench
+  </a>
+  <div class="header-actions">
+    <button type="button" class="cmdk-trigger" id="cmdkTrigger" aria-label="Search tools">
+      <span>Search tools</span><kbd>⌘K</kbd>
+    </button>
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark">◐</button>
+  </div>
+</header>
+<nav class="main-nav" aria-label="Site">
+  <a href="/guides">Guides</a>
+  <a href="/alternatives">Compare</a>
+  <a href="/about">About</a>
+  <a href="/privacy">Privacy</a>
+  <a href="/terms">Terms</a>
+  <a href="/contact">Contact</a>
+</nav>
+<main class="wrap" id="main">
+
+  <section class="hero">
+    <span class="eyebrow">Readability Checker</span>
+    <h1>Readability Checker — Flesch, Flesch–Kincaid &amp; Gunning Fog</h1>
+    <p class="lede">Paste your writing to see how hard it is to read. You get the three standard readability measures — Flesch Reading Ease, Flesch–Kincaid grade level and the Gunning Fog index — plus the raw inputs they're built from, so you can see why the score came out where it did. It all runs on your device; nothing is sent anywhere.</p>
+  </section>
+  
+  <section class="tool" data-transform="none" data-shape="readability">
+    
+    <div class="stats" role="status" aria-live="polite">
+      <div class="stat" data-stat="words">
+        <span class="stat-num" data-count="words">0</span>
+        <span class="stat-label">words</span>
+      </div>
+      <div class="stat" data-stat="characters">
+        <span class="stat-num" data-count="characters">0</span>
+        <span class="stat-label">characters</span>
+      </div>
+      
+      <div class="stat" data-stat="charactersNoSpaces">
+        <span class="stat-num" data-count="charactersNoSpaces">0</span>
+        <span class="stat-label">no spaces</span>
+      </div>
+      <div class="stat" data-stat="sentences">
+        <span class="stat-num" data-count="sentences">0</span>
+        <span class="stat-label">sentences</span>
+      </div>
+      <div class="stat" data-stat="reading">
+        <span class="stat-num" data-count="reading">0</span>
+        <span class="stat-label">min read</span>
+      </div>
+    </div>
+    <label class="sr-only" for="editor">Your text</label>
+    <textarea id="editor" class="editor" placeholder="Paste the writing you want to score…" spellcheck="true"></textarea>
+    <div id="readability" class="readability is-empty" role="status" aria-live="polite"
+         data-hint="Paste at least 20 words for a reliable score.">
+      <div class="read-scores">
+        <div class="read-score">
+          <span class="read-num" data-read="flesch">—</span>
+          <span class="read-label">Flesch Reading Ease</span>
+          <span class="read-note"><span data-read="fleschBand">—</span></span>
+        </div>
+        <div class="read-score">
+          <span class="read-num" data-read="fleschKincaid">—</span>
+          <span class="read-label">Flesch–Kincaid</span>
+          <span class="read-note">US grade level</span>
+        </div>
+        <div class="read-score">
+          <span class="read-num" data-read="gunningFog">—</span>
+          <span class="read-label">Gunning Fog</span>
+          <span class="read-note">years of education</span>
+        </div>
+      </div>
+      <div class="read-subs">
+        <div class="read-sub"><span data-read="wordsPerSentence">—</span> <span>words per sentence</span></div>
+        <div class="read-sub"><span data-read="syllables">—</span> <span>syllables</span></div>
+        <div class="read-sub"><span data-read="complexWords">—</span> <span>complex words (3+ syllables)</span></div>
+        <div class="read-sub"><span data-read="speaking">—</span> <span>read aloud</span></div>
+      </div>
+    </div>
+    <div class="tool-actions">
+      <button type="button" class="btn" id="copyBtn">Copy text</button>
+      <button type="button" class="btn" id="clearBtn">Clear</button>
+    </div>
+  </section>
+  <div class="ad-slot ad-slot--placeholder" aria-hidden="true"><!-- one ad unit renders here once AdSense is configured (scripts/enable-adsense.mjs); reserved so the layout never shifts on launch --></div>
+  
+  <section class="guide">
+    <h2>What these three scores actually measure</h2>
+    <p>All three formulas here work from the same two raw ingredients: how long your sentences are, and how long your words are. Nothing else. That's worth knowing up front, because it explains both what they're good for and where they mislead. They can tell you that a passage is dense; they cannot tell you whether it's clear, accurate, well argued or worth reading.</p>
+    <h3>Flesch Reading Ease</h3>
+    <p>A 0–100 scale where higher is easier. Around 60–70 is "plain English" — roughly what a 13- to 15-year-old reads comfortably, and the usual target for writing aimed at a general audience. Newspapers typically land in the 60s. Insurance policies and academic papers sit in the 30s or below; several US states set a minimum Flesch score for consumer insurance documents, which is one of the few places these numbers carry legal weight.</p>
+    <h3>Flesch–Kincaid Grade Level</h3>
+    <p>The same inputs rearranged to output a US school grade instead of a 0–100 score. A result of 8.0 means an average American eighth-grader should follow it. It's the score most often quoted in style guides and government plain-language rules, largely because "aim for grade 8" is easier to act on than "aim for 65".</p>
+    <h3>Gunning Fog</h3>
+    <p>Estimates the years of formal education a reader needs. It works differently from the other two: instead of averaging syllables across every word, it counts what proportion of your words have three or more syllables and weights that. This is why the three scores sometimes disagree — a passage with short sentences but a handful of very long words scores badly on Fog while doing fine on Flesch. Read them together; the disagreement is information.</p>
+    <h3>Why the syllable counts are estimates</h3>
+    <p>Counting syllables exactly requires a pronunciation dictionary, because English spelling doesn't determine pronunciation ("houses" is two, "baked" is one, despite both ending in a consonant plus vowel plus s/d). Like most readability tools, this uses a vowel-group heuristic with corrections for silent endings. Across a paragraph it's reliable; on individual unusual words — especially names and loanwords — it can be out by one. That's also why nothing is scored until there are at least 20 words: below that, one long word or one missing full stop swings every formula wildly.</p>
+    <h3>How to use them without being led astray</h3>
+    <p>The failure mode is writing to the number. Because the formulas only see sentence and word length, you can improve every score by chopping sentences in half at arbitrary points and swapping precise terms for vague shorter ones — and end up with worse writing that scores better. Use the score as a smoke alarm: if a passage reads as far harder than your audience needs, something is worth looking at. Then fix it by restructuring the argument, not by hunting long words. It's all computed on your device; nothing you paste is uploaded.</p>
+  </section>
+  
+  <section class="faq">
+    <h2>Common questions</h2>
+    <div class="faq-grid">
+      <div class="faq-item"><h3>What counts as a good Flesch Reading Ease score?</h3><p>60–70 is 'plain English', roughly 8th–9th grade, and is the usual target for general-audience writing. Above 70 reads as easy and conversational; below 50 is heavy going for most readers, and below 30 is effectively academic. Journalism typically lands in the 60s, legal and scientific writing in the 30s or lower.</p></div>
+      <div class="faq-item"><h3>Why do the three scores disagree?</h3><p>They measure different things. Flesch Reading Ease and Flesch–Kincaid are driven by syllables per word, so long words hurt them. Gunning Fog instead counts words of three or more syllables as 'complex' and weights the proportion of them. A text with a few very long words but short sentences can score well on one and badly on another — read them together, not individually.</p></div>
+      <div class="faq-item"><h3>How accurate are the syllable counts?</h3><p>They're estimates. Counting syllables exactly needs a pronunciation dictionary; like most readability tools, this uses a vowel-group heuristic with adjustments for silent endings. It's reliable across a paragraph or more, but individual unusual words (especially names and loanwords) can be off by one.</p></div>
+      <div class="faq-item"><h3>Why does it need at least 20 words?</h3><p>Every one of these formulas divides by sentence and word counts, so on a very short fragment a single long word or missing full stop swings the result wildly. Showing a confident grade level for a three-word sentence would be misleading, so it waits until there's enough text to mean something.</p></div>
+      <div class="faq-item"><h3>Should I write to hit a target score?</h3><p>Use it as a check, not a goal. The scores only measure sentence length and word length — they can't tell whether the writing is clear, accurate or well organised. Chopping sentences up to move the number will improve the score without necessarily improving the writing.</p></div>
+    </div>
+  </section>
+  
+  
+  <nav class="related" aria-label="More tools">
+    <h2>Related tools</h2>
+    <div class="related-grid">
+      <a href="/tools/reading-time-calculator">Reading Time</a>
+      <a href="/tools/youtube-title-length-checker">YouTube Title</a>
+      <a href="/tools/word-frequency-counter">Word Frequency</a>
+      <a href="/tools/meta-description-length-checker">Meta Description</a>
+      <a href="/tools/compare-two-texts">Compare Texts</a>
+      <a href="/tools/twitter-character-counter">X / Twitter Counter</a>
+      <a href="/tools/uppercase-converter">UPPERCASE</a>
+      <a href="/tools/character-counter">Character Counter</a>
+      <a href="/tools/lowercase-converter">lowercase</a>
+      <a href="/tools/word-counter">Word Counter</a>
+      <a href="/tools/title-case-converter">Title Case</a>
+      <a href="/tools/bold-text-generator">Bold Unicode</a>
+      <a class="related-all" href="/">Browse all 65 tools →</a>
+    </div>
+  </nav>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <div><span class="fb">Textbench</span> — 65 text tools, one page, nothing uploaded. · <a href="/guides">Guides</a> · <a href="/alternatives">Compare</a> · <a href="/about">About</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/contact">Contact</a> · <a href="mailto:hello@textbench.app">hello@textbench.app</a></div>
+      <div>Free. No signup, no upload — everything runs in your browser.<br>
+      Built and maintained by <a href="https://brunofk.dev" rel="author noopener" target="_blank">Bruno FK</a>, an independent developer in Edinburgh.</div>
+    </div>
+  </div>
+</footer>
+<script>window.REGEX_WORKER_URL = "../assets/regex-worker.js?v=11cab91b";</script>
+<script src="../assets/app.js?v=c5716f95" defer></script>
+</body>
+</html>

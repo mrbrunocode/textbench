@@ -394,3 +394,52 @@ test("compareTexts treats two empty texts as fully overlapping (not a division-b
   assert.equal(c.overlapPct, 100);
   assert.equal(c.wordDelta, 0);
 });
+
+// Readability: the syllable heuristic is the load-bearing part — every one of
+// the three scores divides by it, so a regression here silently skews all of
+// them. These are the cases the first implementation got wrong: unbounded
+// vowel runs ("beautiful" is 3, not 4) and -es after a sibilant, which IS a
+// syllable ("houses" is 2, not 1) unlike a silent -e ("baked" is 1).
+test("syllable counting handles vowel runs and sibilant -es", () => {
+  const cases = [["cat", 1], ["running", 2], ["beautiful", 3], ["implementation", 5],
+                 ["baked", 1], ["houses", 2], ["boxes", 2], ["watches", 2],
+                 ["the", 1], ["yes", 1], ["queue", 1], ["idea", 2]];
+  for (const [word, expected] of cases) {
+    assert.equal(t.syllablesIn(word), expected, `${word} should be ${expected} syllables`);
+  }
+});
+
+test("readability returns null below the 20-word floor, scores above it", () => {
+  assert.equal(t.readability(""), null);
+  assert.equal(t.readability("Too short to score reliably."), null);
+  const simple = "The cat sat on the mat. It was a warm day. The sun was out. " +
+                 "Birds sang in the tree. A dog ran past. The cat did not move.";
+  const r = t.readability(simple);
+  assert.ok(r, "should score text over 20 words");
+  assert.ok(r.flesch > 80, `simple prose should read as easy, got ${r.flesch}`);
+  assert.ok(r.gunningFog < 8, `simple prose should have a low fog index, got ${r.gunningFog}`);
+});
+
+test("harder prose scores worse than simple prose on every measure", () => {
+  const simple = "The cat sat on the mat. It was a warm day. The sun was out. " +
+                 "Birds sang in the tree. A dog ran past. The cat did not move.";
+  const hard = "The implementation of comprehensive methodological frameworks necessitates " +
+               "considerable organisational restructuring. Consequently, administrators must " +
+               "systematically evaluate infrastructural dependencies before authorising expenditure.";
+  const s = t.readability(simple), h = t.readability(hard);
+  assert.ok(h.flesch < s.flesch, "Flesch ease should be lower for harder prose");
+  assert.ok(h.fleschKincaid > s.fleschKincaid, "grade level should be higher for harder prose");
+  assert.ok(h.gunningFog > s.gunningFog, "fog index should be higher for harder prose");
+});
+
+test("Flesch is clamped to the reported 0-100 range", () => {
+  const trivial = ("a b c d e f g h i j k l m n o p q r s t u v w x y z. ").repeat(3);
+  const r = t.readability(trivial);
+  assert.ok(r.flesch <= 100 && r.flesch >= 0, `expected 0-100, got ${r.flesch}`);
+});
+
+test("fleschBand labels the standard ranges", () => {
+  assert.match(t.fleschBand(95), /Very easy/);
+  assert.match(t.fleschBand(65), /Plain English/);
+  assert.match(t.fleschBand(20), /Very difficult/);
+});
