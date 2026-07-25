@@ -9,6 +9,11 @@ see `docs/seo-strategy.md`).
 Everything user-facing derives the count from `TOOL_COUNT = PAGES.length` in
 `site.config.mjs`, so only this line needs hand-updating.
 
+**License:** source-available, not open source. No LICENSE file means all
+rights reserved by default — this repo is public so the "nothing you paste is
+uploaded" claim is checkable, not an invitation to redistribute or relaunch it
+as your own product.
+
 **Live at [textbench.app](https://textbench.app)** (confirmed 2026-07-21).
 AdSense ad slot isn't wired in yet (application status unclear — check the
 dashboard); GA4/Search Console/Bing setup should be double-checked in their
