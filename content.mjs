@@ -62,6 +62,10 @@ export const about = {
     <h2>How it works</h2>
     <p>Almost every tool here runs entirely in your browser using JavaScript — your text is processed on your own device and never sent to a server. That's not just a privacy nicety: it means you can safely paste things you shouldn't upload to a random website, like an API response with tokens in it, an internal document, or a config file. It also means the tools keep working offline once the page has loaded, and there's nothing for anyone to log or store. (A couple of tools that inherently need an external service, like fetching a QR image, say so on their own page.)</p>
 
+    <h3>You don't have to take that on trust</h3>
+    <p>Two ways to check it rather than believe it. Open your browser's Network tab while you use any tool: nothing carrying your text goes out. Or turn your connection off entirely — the tools keep working, which they couldn't if a server were doing the work.</p>
+    <p>And if you'd rather read the code than test the behaviour, <a href="${C.REPO_URL}" rel="noopener" target="_blank">the whole site is open source on GitHub</a>. Every transform, every counter, the build that generates these pages — it's all there. A privacy claim you can't verify is just marketing.</p>
+
     <h2>Why it exists</h2>
     <p>Because the single-purpose versions of these tools are often worse than they need to be: covered in ads, gated behind a signup, or quietly uploading your input to a server to do work a browser can do locally. ${C.NAME} keeps the useful part — the tool — front and centre, adds a short guide to each one covering how it works and the gotchas worth knowing, and stays free by showing a single, unobtrusive ad and nothing more. No account, no daily limits, no data collection.</p>
     <p>Found a bug or want a tool added? <a href="/contact">Get in touch</a>.</p>

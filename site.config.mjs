@@ -53,6 +53,13 @@ export const NAV = [
 // page names the same person. brunofk.dev is the developer's own site.
 export const AUTHOR_NAME = "Bruno FK";
 export const AUTHOR_URL = "https://brunofk.dev";
+
+// Public source repository. Linked from the About page and footer: for a
+// site whose central claim is "nothing you paste is uploaded", an open repo
+// turns that from an assertion a visitor has to trust into something they
+// can check — which is Google's "how was it created" question answered
+// concretely rather than rhetorically.
+export const REPO_URL = "https://github.com/mrbrunocode/textbench";
 export const AUTHOR_BIO =
   "Bruno FK is an Edinburgh-based software developer who builds small, fast, privacy-respecting web tools. He built Textbench to collect the everyday text jobs he kept reaching for into one clean, ad-light, browser-only place.";
 

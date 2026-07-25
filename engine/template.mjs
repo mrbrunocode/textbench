@@ -264,7 +264,8 @@ ${bodyHtml}
     <div class="foot-in">
       <div><span class="fb">${esc(C.NAME)}</span> — ${esc(C.TAGLINE)} · ${C.NAV.map((n) => `<a href="${n.href}">${esc(n.label)}</a>`).join(" · ")} · <a href="mailto:${C.CONTACT_EMAIL}">${esc(C.CONTACT_EMAIL)}</a></div>
       <div>Free. No signup, no upload — everything runs in your browser.<br>
-      Built and maintained by <a href="${C.AUTHOR_URL}" rel="author noopener" target="_blank">${esc(C.AUTHOR_NAME)}</a>, an independent developer in Edinburgh.</div>
+      Built and maintained by <a href="${C.AUTHOR_URL}" rel="author noopener" target="_blank">${esc(C.AUTHOR_NAME)}</a>, an independent developer in Edinburgh.<br>
+      <a href="${C.REPO_URL}" rel="noopener" target="_blank">Source on GitHub</a> — check the privacy claim yourself.</div>
     </div>
   </div>
 </footer>
