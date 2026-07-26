@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/style.css?v=982e5fb9">
+<link rel="stylesheet" href="./assets/style.css?v=a125d17d">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
@@ -201,18 +201,20 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <select id="transformSel" class="transform-sel sr-only">
         <optgroup label="Count & analyze"><option value="none" selected>Word / character counter</option><option value="word-frequency">Word frequency counter</option></optgroup><optgroup label="Change case"><option value="uppercase">UPPERCASE</option><option value="lowercase">lowercase</option><option value="titlecase">Title Case</option><option value="sentencecase">Sentence case</option><option value="alternating-case">aLtErNaTiNg CaSe</option><option value="inverse-case">InVeRsE Case</option></optgroup><optgroup label="Clean & format"><option value="dedupe-lines">Remove duplicate lines</option><option value="remove-extra-spaces">Remove extra spaces</option><option value="remove-line-breaks">Remove line breaks</option><option value="remove-empty-lines">Remove empty lines</option><option value="trim-lines">Trim each line</option><option value="remove-invisible-characters">Remove invisible characters</option><option value="smart-quotes-to-straight">Smart quotes to straight</option></optgroup><optgroup label="Reorganize"><option value="sort-az">Sort lines A → Z</option><option value="sort-za">Sort lines Z → A</option><option value="reverse-text">Reverse text</option><option value="reverse-lines">Reverse line order</option><option value="add-line-numbers">Add line numbers</option></optgroup><optgroup label="Extract"><option value="extract-emails">Extract email addresses</option><option value="extract-urls">Extract URLs</option><option value="extract-numbers">Extract numbers</option></optgroup><optgroup label="Encode & decode"><option value="base64-encode">Base64 encode</option><option value="base64-decode">Base64 decode</option><option value="url-encode">URL encode</option><option value="url-decode">URL decode</option><option value="html-entities-encode">HTML entity encode</option><option value="html-entities-decode">HTML entity decode</option><option value="binary-encode">Text to binary</option><option value="binary-decode">Binary to text</option><option value="hex-encode">Text to hex</option><option value="hex-decode">Hex to text</option><option value="morse-encode">Text to Morse code</option><option value="morse-decode">Morse code to text</option><option value="rot13">ROT13 cipher</option></optgroup><optgroup label="Format & validate"><option value="json-format">Format / validate JSON</option><option value="json-minify">Minify JSON</option><option value="markdown-to-html">Markdown to HTML</option><option value="markdown-to-text">Markdown to plain text</option></optgroup><optgroup label="Convert data formats"><option value="csv-to-json">CSV to JSON</option><option value="json-to-csv">JSON to CSV</option><option value="yaml-to-json">YAML to JSON</option><option value="json-to-yaml">JSON to YAML</option><option value="csv-to-markdown-table">CSV to Markdown table</option><option value="markdown-to-confluence">Markdown to Confluence</option><option value="markdown-to-slack">Markdown to Slack</option><option value="html-to-markdown">HTML to Markdown</option></optgroup><optgroup label="Hash"><option value="md5-hash">MD5 hash</option><option value="sha256-hash">SHA-256 hash</option></optgroup><optgroup label="Generate"><option value="slugify">Slugify / URL slug</option><option value="text-repeater">Repeat text</option><option value="find-replace">Find & replace</option><option value="lorem-ipsum">Lorem ipsum generator</option><option value="uuid-generator">UUID generator</option><option value="password-generator">Random password generator</option><option value="wrap-in-xml-tags">Wrap in XML tags</option></optgroup><optgroup label="Fun text styles"><option value="strikethrough-text">Strikethrough text</option><option value="upside-down-text">Upside down text</option><option value="bold-text">Bold Unicode text</option></optgroup>
       </select>
-      <div class="picker-tabs" role="tablist" aria-label="Tool categories">
-        <button type="button" class="tab is-active" role="tab" aria-selected="true" data-group-tab="count-analyze">Count &amp; analyze</button>
-        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="change-case">Change case</button>
-        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="clean-format">Clean &amp; format</button>
-        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="reorganize">Reorganize</button>
-        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="extract">Extract</button>
-        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="encode-decode">Encode &amp; decode</button>
-        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="format-validate">Format &amp; validate</button>
-        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="convert-data-formats">Convert data formats</button>
-        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="hash">Hash</button>
-        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="generate">Generate</button>
-        <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="fun-text-styles">Fun text styles</button>
+      <div class="picker-tabs-wrap" id="pickerTabsWrap">
+        <div class="picker-tabs" role="tablist" aria-label="Tool categories" id="pickerTabs">
+          <button type="button" class="tab is-active" role="tab" aria-selected="true" data-group-tab="count-analyze">Count &amp; analyze</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="change-case">Change case</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="clean-format">Clean &amp; format</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="reorganize">Reorganize</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="extract">Extract</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="encode-decode">Encode &amp; decode</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="format-validate">Format &amp; validate</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="convert-data-formats">Convert data formats</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="hash">Hash</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="generate">Generate</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-group-tab="fun-text-styles">Fun text styles</button>
+        </div>
       </div>
       <div class="picker-panels">
         <div class="chip-grid" data-group-panel="count-analyze">
@@ -394,7 +396,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
           <li><b>Nothing</b> uploaded</li>
           <li><b>No</b> account</li>
         </ul>
-        <p class="note-body">Every transform runs on your own device. Turn your connection off and they all still work.</p>
+        <p class="note-body">Every transform runs on your own device. Turn your connection off and they all still work — install Textbench from your browser's menu and it opens like an app, connection or not.</p>
       </div>
       <div class="note">
         <p class="note-head">Start here</p>
@@ -424,6 +426,6 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   </div>
 </footer>
 <script>window.REGEX_WORKER_URL = "./assets/regex-worker.js?v=11cab91b";</script>
-<script src="./assets/app.js?v=eaa7e3a0" defer></script>
+<script src="./assets/app.js?v=564b93c6" defer></script>
 </body>
 </html>

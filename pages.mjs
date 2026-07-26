@@ -1430,8 +1430,10 @@ export function renderTool(p = {}) {
       <select id="transformSel" class="transform-sel sr-only">
         ${TRANSFORM_GROUPS.map(([group, opts]) => `<optgroup label="${group}">${opts.map(([v, label]) => `<option value="${v}"${v === "none" ? " selected" : ""}>${label}</option>`).join("")}</optgroup>`).join("")}
       </select>
-      <div class="picker-tabs" role="tablist" aria-label="Tool categories">
-        ${TRANSFORM_GROUPS.map(([group], i) => `<button type="button" class="tab${i === 0 ? " is-active" : ""}" role="tab" aria-selected="${i === 0}" data-group-tab="${slug(group)}">${esc(group)}</button>`).join("\n        ")}
+      <div class="picker-tabs-wrap" id="pickerTabsWrap">
+        <div class="picker-tabs" role="tablist" aria-label="Tool categories" id="pickerTabs">
+          ${TRANSFORM_GROUPS.map(([group], i) => `<button type="button" class="tab${i === 0 ? " is-active" : ""}" role="tab" aria-selected="${i === 0}" data-group-tab="${slug(group)}">${esc(group)}</button>`).join("\n          ")}
+        </div>
       </div>
       <div class="picker-panels">
         ${TRANSFORM_GROUPS.map(([group, opts], i) => `<div class="chip-grid" data-group-panel="${slug(group)}"${i === 0 ? "" : " hidden"}>

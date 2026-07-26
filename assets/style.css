@@ -680,13 +680,37 @@ footer .wrap { max-width: none; padding: 0 var(--bleed); }
   .sheet--work .measure    { order: 5; }
   .standfirst--home h1 { font-size: clamp(1.9rem, 8vw, 2.4rem); }
   /* Eleven category chips wrapped to five rows. One swipeable row instead —
-     same pattern CountLink already uses for its nav. */
+     same pattern CountLink already uses for its nav. The bare scrolling row
+     had no visual hint that it scrolled — first-time visitors read "Clean &"
+     cut off at the edge as the end of the list, not as "more to the right."
+     .picker-tabs-wrap adds edge fades (via a mask, so they follow whatever
+     colour is under them in light/dark) and app.js toggles which edges show
+     based on scroll position, so the fade disappears once there's nothing
+     left in that direction. */
+  .picker-tabs-wrap {
+    position: relative; margin-bottom: var(--space-4);
+    padding-bottom: var(--space-4); border-bottom: 1px solid var(--border-subtle);
+  }
+  .picker-tabs-wrap::before, .picker-tabs-wrap::after {
+    content: ""; position: absolute; top: 0; bottom: var(--space-4); width: 28px;
+    pointer-events: none; opacity: 0; transition: opacity var(--duration-fast) var(--ease-out);
+    z-index: 1;
+  }
+  .picker-tabs-wrap::before {
+    left: 0; background: linear-gradient(to right, var(--bg), transparent);
+  }
+  .picker-tabs-wrap::after {
+    right: 0; background: linear-gradient(to left, var(--bg), transparent);
+  }
+  .picker-tabs-wrap.is-scrolled-start::before { opacity: 1; }
+  .picker-tabs-wrap.is-scrollable-end::after { opacity: 1; }
   .picker-tabs {
     flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity;
+    margin-bottom: 0; padding-bottom: 0; border-bottom: 0;
   }
   .picker-tabs::-webkit-scrollbar { display: none; }
-  .tab { white-space: nowrap; flex: 0 0 auto; }
+  .tab { white-space: nowrap; flex: 0 0 auto; scroll-snap-align: start; }
 }
 
 @media (max-width: 700px) {

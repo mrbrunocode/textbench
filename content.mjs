@@ -60,7 +60,7 @@ export const home = {
           <li><b>Nothing</b> uploaded</li>
           <li><b>No</b> account</li>
         </ul>
-        <p class="note-body">Every transform runs on your own device. Turn your connection off and they all still work.</p>
+        <p class="note-body">Every transform runs on your own device. Turn your connection off and they all still work — install Textbench from your browser's menu and it opens like an app, connection or not.</p>
       </div>
       <div class="note">
         <p class="note-head">Start here</p>

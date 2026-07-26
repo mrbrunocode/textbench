@@ -1401,6 +1401,24 @@
       transformSel.dispatchEvent(new Event("change"));
     });
   });
+  // Category tabs become a single horizontally-scrolling row below 760px
+  // (see .picker-tabs in style.css) — these fades are the only hint that
+  // there's more to see, so they need to track actual scroll position, not
+  // just be permanently on.
+  (function () {
+    var wrap = document.getElementById("pickerTabsWrap");
+    var track = document.getElementById("pickerTabs");
+    if (!wrap || !track) return;
+    function updateFade() {
+      var atStart = track.scrollLeft <= 1;
+      var atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+      wrap.classList.toggle("is-scrolled-start", !atStart);
+      wrap.classList.toggle("is-scrollable-end", !atEnd);
+    }
+    track.addEventListener("scroll", updateFade, { passive: true });
+    window.addEventListener("resize", updateFade);
+    updateFade();
+  })();
   // Home page only: extra-control rows are tagged data-for="<transform-list>";
   // show only the ones relevant to the currently selected transform.
   function syncShapeVisibility() {
