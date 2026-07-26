@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Text Repeater — Repeat Text a Set Number of Times | Textbench</title>
-<meta name="description" content="Repeat a word, phrase or block of text any number of times, one copy per line. Free, instant, runs entirely in your browser.">
-<link rel="canonical" href="https://textbench.app/tools/text-repeater">
-<meta property="og:title" content="Text Repeater — Repeat Text a Set Number of Times">
-<meta property="og:description" content="Repeat a word, phrase or block of text any number of times, one copy per line. Free, instant, runs entirely in your browser.">
+<title>Markdown to Slack Format Converter | Textbench</title>
+<meta name="description" content="Convert Markdown to Slack's mrkdwn formatting — bold, italic, strikethrough, links and lists rewritten for how Slack actually renders them. Free, instant, browser-only.">
+<link rel="canonical" href="https://textbench.app/tools/markdown-to-slack-converter">
+<meta property="og:title" content="Markdown to Slack Format Converter">
+<meta property="og:description" content="Convert Markdown to Slack's mrkdwn formatting — bold, italic, strikethrough, links and lists rewritten for how Slack actually renders them. Free, instant, browser-only.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://textbench.app/tools/text-repeater">
+<meta property="og:url" content="https://textbench.app/tools/markdown-to-slack-converter">
 <meta property="og:image" content="https://textbench.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://textbench.app/assets/og-image.png">
@@ -23,9 +23,9 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/text-repeater","description":"Repeat a word, phrase or block of text any number of times, one copy per line. Free, instant, runs entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Bruno FK","url":"https://brunofk.dev"},"datePublished":"2026-07-17","dateModified":"2026-07-24"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"Text Repeater","item":"https://textbench.app/tools/text-repeater"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is there a limit on how many times I can repeat something?","acceptedAnswer":{"@type":"Answer","text":"The repeat count is capped at 1000 per run, which keeps the browser responsive — for larger volumes, run it a few times and combine the results."}},{"@type":"Question","name":"What's this actually used for?","acceptedAnswer":{"@type":"Answer","text":"Common uses: generating filler/test data, padding a message for a character-limit test, or creating repeated placeholder rows for a spreadsheet or mockup."}},{"@type":"Question","name":"Are the repeats separated by anything?","acceptedAnswer":{"@type":"Answer","text":"Each repeat is on its own line. If you need them separated a different way (commas, no separator), copy the result into the find-and-replace tool and swap the line breaks for whatever you need."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/markdown-to-slack-converter","description":"Convert Markdown to Slack's mrkdwn formatting — bold, italic, strikethrough, links and lists rewritten for how Slack actually renders them. Free, instant, browser-only.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Bruno FK","url":"https://brunofk.dev"},"datePublished":"2026-07-17","dateModified":"2026-07-26"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"Markdown to Slack","item":"https://textbench.app/tools/markdown-to-slack-converter"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does bold use one asterisk instead of two?","acceptedAnswer":{"@type":"Answer","text":"Slack's own formatting (mrkdwn) uses a single asterisk for bold, unlike standard Markdown's double asterisk — pasting unconverted Markdown into Slack shows literal double asterisks rather than bold text, which is exactly what this fixes."}},{"@type":"Question","name":"What happens to Markdown headings, since Slack has none?","acceptedAnswer":{"@type":"Answer","text":"A heading becomes bold text — the closest thing Slack supports — since Slack messages have no separate heading level of their own."}},{"@type":"Question","name":"How are links formatted for Slack?","acceptedAnswer":{"@type":"Answer","text":"A Markdown [text](url) link becomes Slack's own <url|text> format, which is what makes the link clickable with custom link text inside a Slack message."}}]}</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2653891546345771" crossorigin="anonymous"></script>
 <script data-grow-initializer="">
 !(function(){window.growMe||((window.growMe=function(e){window.growMe._.push(e);}),(window.growMe._=[]));var e=document.createElement("script");(e.type="text/javascript"),(e.src="https://faves.grow.me/main.js"),(e.defer=!0),e.setAttribute("data-grow-faves-site-id","U2l0ZTowNjY3MmQ4Yi1jYTA1LTQ3OWUtOGY1NC1iY2M1OThjYWRlMmY=");var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t);})();
@@ -152,7 +152,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
           <li><a href="/tools/markdown-to-plain-text">Markdown to Plain Text</a></li>
           <li><a href="/tools/markdown-table-generator">Markdown Table</a></li>
           <li><a href="/tools/markdown-to-confluence-converter">Markdown to Confluence</a></li>
-          <li><a href="/tools/markdown-to-slack-converter">Markdown to Slack</a></li>
+          <li><a href="/tools/markdown-to-slack-converter" aria-current="page">Markdown to Slack</a></li>
           <li><a href="/tools/html-to-markdown-converter">HTML to Markdown</a></li>
         </ul>
       </section>
@@ -167,7 +167,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         <p class="index-head" id="idx-generate">Generate</p>
         <ul class="index-list" aria-labelledby="idx-generate">
           <li><a href="/tools/slugify-text">Slugify</a></li>
-          <li><a href="/tools/text-repeater" aria-current="page">Text Repeater</a></li>
+          <li><a href="/tools/text-repeater">Text Repeater</a></li>
           <li><a href="/tools/lorem-ipsum-generator">Lorem Ipsum</a></li>
           <li><a href="/tools/uuid-generator">UUID Generator</a></li>
           <li><a href="/tools/random-password-generator">Password Generator</a></li>
@@ -187,12 +187,12 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   <main class="column" id="main">
 
   <header class="standfirst">
-    <p class="kicker"><a href="/">Tools</a> <span aria-hidden="true">/</span> Generate</p>
-    <h1>Text Repeater — Repeat Text a Set Number of Times</h1>
+    <p class="kicker"><a href="/">Tools</a> <span aria-hidden="true">/</span> Data formats</p>
+    <h1>Markdown to Slack Format Converter</h1>
   </header>
-  <p class="lede">Type or paste text below, set how many times you want it repeated, and get every copy back at once — one per line, ready to copy.</p>
+  <p class="lede">Paste Markdown written for a README or a doc and get back the equivalent Slack message formatting — single-asterisk bold, underscore italic, &lt;url|text&gt; links — so a message posted in Slack renders the way it looked in the source, instead of showing literal asterisks and brackets.</p>
   
-  <section class="tool" data-transform="text-repeater" data-shape="repeater">
+  <section class="tool" data-transform="markdown-to-slack" data-shape="simple">
     
     
     
@@ -202,7 +202,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <label class="check"><input type="checkbox" id="regexToggle"> Regex mode</label>
     </div>
     
-    <div class="extra-row" data-for="text-repeater">
+    <div class="extra-row" data-for="text-repeater" hidden>
       <label class="field field--num"><span>Repeat</span><input type="number" id="repeatCount" min="1" max="1000" value="5"></label>
     </div>
     
@@ -258,22 +258,24 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   <div class="measure">
     
   <section class="guide">
-    <h2>Repeating text without copy-pasting</h2>
-    <p>Sometimes you need the same string many times — test data to fill a field, a separator line, a placeholder paragraph repeated to check a layout, or a bit of ASCII art. Type it once, set how many times, and get the whole block back rather than mashing Ctrl-V.</p>
-    <h3>Handy options</h3>
+    <h2>Why a Markdown message looks broken when you paste it into Slack</h2>
+    <p>Slack has its own lightweight formatting language (mrkdwn), and it overlaps with Markdown just enough to be misleading. Bold in Slack is a single asterisk, not two — so <code>**bold**</code> pasted straight in shows up as literal asterisks around plain text, not bold. Slack also has no heading syntax at all, so a <code>#</code> line renders as a literal pound sign followed by your text.</p>
+    <h3>What this rewrites</h3>
     <ul>
-      <li>Repeat on one line or one per line, depending on whether you're building a delimited string or a list.</li>
-      <li>Great for generating quick filler: repeat a sentence to reach a rough word count, or a row to stress-test a table.</li>
+      <li>Double-asterisk/underscore bold becomes single-asterisk bold; single-asterisk/underscore italic becomes underscore italic (Slack's own convention, the reverse of Markdown's default).</li>
+      <li>A heading becomes bold text, the closest Slack equivalent.</li>
+      <li>A <code>[text](url)</code> link becomes Slack's own clickable <code>&lt;url|text&gt;</code> format.</li>
+      <li>List markers become a plain "•" bullet, since Slack doesn't render a leading <code>-</code> as a bullet the way Markdown does.</li>
     </ul>
-    <p>For realistic placeholder prose rather than one repeated phrase, the Lorem Ipsum generator is a better fit; for repeated <em>unique</em> values like IDs, see the UUID generator. All local — nothing is uploaded.</p>
+    <p>Handy for pasting release notes, a changelog entry, or a doc excerpt into a Slack channel and having it actually look formatted instead of showing raw syntax. Runs entirely in your browser — nothing is sent anywhere.</p>
   </section>
     
   <section class="faq">
     <h2>Common questions</h2>
     <div class="faq-grid">
-      <div class="faq-item"><h3>Is there a limit on how many times I can repeat something?</h3><p>The repeat count is capped at 1000 per run, which keeps the browser responsive — for larger volumes, run it a few times and combine the results.</p></div>
-      <div class="faq-item"><h3>What's this actually used for?</h3><p>Common uses: generating filler/test data, padding a message for a character-limit test, or creating repeated placeholder rows for a spreadsheet or mockup.</p></div>
-      <div class="faq-item"><h3>Are the repeats separated by anything?</h3><p>Each repeat is on its own line. If you need them separated a different way (commas, no separator), copy the result into the find-and-replace tool and swap the line breaks for whatever you need.</p></div>
+      <div class="faq-item"><h3>Why does bold use one asterisk instead of two?</h3><p>Slack's own formatting (mrkdwn) uses a single asterisk for bold, unlike standard Markdown's double asterisk — pasting unconverted Markdown into Slack shows literal double asterisks rather than bold text, which is exactly what this fixes.</p></div>
+      <div class="faq-item"><h3>What happens to Markdown headings, since Slack has none?</h3><p>A heading becomes bold text — the closest thing Slack supports — since Slack messages have no separate heading level of their own.</p></div>
+      <div class="faq-item"><h3>How are links formatted for Slack?</h3><p>A Markdown [text](url) link becomes Slack's own &lt;url|text&gt; format, which is what makes the link clickable with custom link text inside a Slack message.</p></div>
     </div>
   </section>
   </div>
@@ -285,18 +287,18 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <div class="note">
         <p class="note-head">Related tools</p>
         <ul class="note-list">
-          <li><a href="/tools/find-and-replace">Find &amp; Replace</a></li>
-          <li><a href="/tools/slugify-text">Slugify</a></li>
-          <li><a href="/tools/regex-tester">Regex Tester</a></li>
-          <li><a href="/tools/add-line-numbers">Line Numbers</a></li>
-          <li><a href="/tools/email-regex-tester">Email Regex Tester</a></li>
-          <li><a href="/tools/sort-lines-descending">Sort Z to A</a></li>
-          <li><a href="/tools/phone-number-regex-tester">Phone Number Regex Tester</a></li>
-          <li><a href="/tools/trim-whitespace-from-lines">Trim Lines</a></li>
-          <li><a href="/tools/csv-to-json-converter">CSV to JSON</a></li>
-          <li><a href="/tools/reverse-line-order">Reverse Line Order</a></li>
-          <li><a href="/tools/json-to-csv-converter">JSON to CSV</a></li>
-          <li><a href="/tools/reverse-text">Reverse Text</a></li>
+          <li><a href="/tools/html-to-markdown-converter">HTML to Markdown</a></li>
+          <li><a href="/tools/markdown-to-confluence-converter">Markdown to Confluence</a></li>
+          <li><a href="/tools/md5-hash-generator">MD5 Hash</a></li>
+          <li><a href="/tools/markdown-table-generator">Markdown Table</a></li>
+          <li><a href="/tools/sha256-hash-generator">SHA-256 Hash</a></li>
+          <li><a href="/tools/markdown-to-plain-text">Markdown to Plain Text</a></li>
+          <li><a href="/tools/uuid-generator">UUID Generator</a></li>
+          <li><a href="/tools/markdown-to-html-converter">Markdown to HTML</a></li>
+          <li><a href="/tools/random-password-generator">Password Generator</a></li>
+          <li><a href="/tools/json-minifier">JSON Minifier</a></li>
+          <li><a href="/tools/strikethrough-text-generator">Strikethrough</a></li>
+          <li><a href="/tools/json-validator">JSON Validator</a></li>
           <li><a class="index-more" href="/">All 69 tools →</a></li>
         </ul>
       </div>

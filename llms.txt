@@ -1,6 +1,6 @@
 # Textbench
 
-> Case conversion, cleanup, encoding, hashing, generators, JSON/YAML/CSV conversion, regex testing and more — 65 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.
+> Case conversion, cleanup, encoding, hashing, generators, JSON/YAML/CSV conversion, regex testing and more — 69 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.
 
 Textbench is a static web app: no signup, no backend, no per-visitor cost. Everything runs client-side.
 
@@ -82,6 +82,10 @@ Textbench is a static web app: no signup, no backend, no per-visitor cost. Every
 - [JSON Minifier](https://textbench.app/tools/json-minifier): Strip all whitespace from JSON down to the smallest valid form, in one line. Free, browser-only, useful before pasting JSON into a size-limited field.
 - [Markdown to HTML](https://textbench.app/tools/markdown-to-html-converter): Convert Markdown to clean HTML — headers, bold/italic, links, lists, code blocks and blockquotes. Free, instant, runs entirely in your browser.
 - [Markdown to Plain Text](https://textbench.app/tools/markdown-to-plain-text): Strip Markdown formatting down to clean plain text — headers, bold/italic, links and lists all lose their markup, keeping just the words. Free, instant, runs entirely in your browser.
+- [Markdown Table](https://textbench.app/tools/markdown-table-generator): Paste CSV or tab-separated data and get a formatted Markdown table back, header row and all. Free, instant, runs entirely in your browser.
+- [Markdown to Confluence](https://textbench.app/tools/markdown-to-confluence-converter): Convert Markdown to Confluence wiki markup — headings, bold/italic, links, lists, code blocks and quotes. Free, instant, runs entirely in your browser.
+- [Markdown to Slack](https://textbench.app/tools/markdown-to-slack-converter): Convert Markdown to Slack's mrkdwn formatting — bold, italic, strikethrough, links and lists rewritten for how Slack actually renders them. Free, instant, browser-only.
+- [HTML to Markdown](https://textbench.app/tools/html-to-markdown-converter): Convert HTML back into Markdown — headings, bold/italic, links, images, lists, blockquotes and code. Free, instant, runs entirely in your browser.
 - [MD5 Hash](https://textbench.app/tools/md5-hash-generator): Generate the MD5 hash of any text, entirely in your browser. Free, instant, nothing uploaded.
 - [SHA-256 Hash](https://textbench.app/tools/sha256-hash-generator): Generate the SHA-256 hash of any text using your browser's built-in Web Crypto API. Free, instant, nothing uploaded.
 - [UUID Generator](https://textbench.app/tools/uuid-generator): Generate random UUID v4 identifiers, one or many at once. Free, instant, cryptographically random, browser-only.

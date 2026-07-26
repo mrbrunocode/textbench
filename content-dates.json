@@ -1,11 +1,11 @@
 {
   "/about": {
-    "hash": "c902238776b2f401",
-    "date": "2026-07-25"
+    "hash": "b5c0035d6ca9d1d0",
+    "date": "2026-07-26"
   },
   "/alternatives": {
-    "hash": "abca0e6400f3ae45",
-    "date": "2026-07-25"
+    "hash": "5e2319e0d2dfc968",
+    "date": "2026-07-26"
   },
   "/contact": {
     "hash": "f798afff7a7cf623",
@@ -91,6 +91,10 @@
     "hash": "aac1a64b9a0aa73e",
     "date": "2026-07-24"
   },
+  "tools/html-to-markdown-converter": {
+    "hash": "70198602b19f5ae1",
+    "date": "2026-07-26"
+  },
   "tools/inverse-case-converter": {
     "hash": "34a2aea26dcee5bf",
     "date": "2026-07-24"
@@ -123,6 +127,14 @@
     "hash": "7a3fd50848076ccd",
     "date": "2026-07-24"
   },
+  "tools/markdown-table-generator": {
+    "hash": "6db7abb2efbb247b",
+    "date": "2026-07-26"
+  },
+  "tools/markdown-to-confluence-converter": {
+    "hash": "a9e2d42483d8d053",
+    "date": "2026-07-26"
+  },
   "tools/markdown-to-html-converter": {
     "hash": "26c232e025afc4b1",
     "date": "2026-07-24"
@@ -130,6 +142,10 @@
   "tools/markdown-to-plain-text": {
     "hash": "724d78c5016a5956",
     "date": "2026-07-24"
+  },
+  "tools/markdown-to-slack-converter": {
+    "hash": "3632937aecd0c78a",
+    "date": "2026-07-26"
   },
   "tools/md5-hash-generator": {
     "hash": "4f70ece3c67919f6",

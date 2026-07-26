@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Case conversion, cleanup, encoding, hashing, generators, JSON/YAML/CSV conversion, regex testing and more — 65 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.",
+  "description": "Case conversion, cleanup, encoding, hashing, generators, JSON/YAML/CSV conversion, regex testing and more — 69 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.",
   "scripts": {
     "build": "node engine/build.mjs",
     "dev": "node engine/build.mjs && node scripts/dev-server.mjs",

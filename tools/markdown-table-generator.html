@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Text Repeater — Repeat Text a Set Number of Times | Textbench</title>
-<meta name="description" content="Repeat a word, phrase or block of text any number of times, one copy per line. Free, instant, runs entirely in your browser.">
-<link rel="canonical" href="https://textbench.app/tools/text-repeater">
-<meta property="og:title" content="Text Repeater — Repeat Text a Set Number of Times">
-<meta property="og:description" content="Repeat a word, phrase or block of text any number of times, one copy per line. Free, instant, runs entirely in your browser.">
+<title>Markdown Table Generator — Paste CSV or TSV, Get a Table | Textbench</title>
+<meta name="description" content="Paste CSV or tab-separated data and get a formatted Markdown table back, header row and all. Free, instant, runs entirely in your browser.">
+<link rel="canonical" href="https://textbench.app/tools/markdown-table-generator">
+<meta property="og:title" content="Markdown Table Generator — Paste CSV or TSV, Get a Table">
+<meta property="og:description" content="Paste CSV or tab-separated data and get a formatted Markdown table back, header row and all. Free, instant, runs entirely in your browser.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://textbench.app/tools/text-repeater">
+<meta property="og:url" content="https://textbench.app/tools/markdown-table-generator">
 <meta property="og:image" content="https://textbench.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://textbench.app/assets/og-image.png">
@@ -23,9 +23,9 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/text-repeater","description":"Repeat a word, phrase or block of text any number of times, one copy per line. Free, instant, runs entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Bruno FK","url":"https://brunofk.dev"},"datePublished":"2026-07-17","dateModified":"2026-07-24"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"Text Repeater","item":"https://textbench.app/tools/text-repeater"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is there a limit on how many times I can repeat something?","acceptedAnswer":{"@type":"Answer","text":"The repeat count is capped at 1000 per run, which keeps the browser responsive — for larger volumes, run it a few times and combine the results."}},{"@type":"Question","name":"What's this actually used for?","acceptedAnswer":{"@type":"Answer","text":"Common uses: generating filler/test data, padding a message for a character-limit test, or creating repeated placeholder rows for a spreadsheet or mockup."}},{"@type":"Question","name":"Are the repeats separated by anything?","acceptedAnswer":{"@type":"Answer","text":"Each repeat is on its own line. If you need them separated a different way (commas, no separator), copy the result into the find-and-replace tool and swap the line breaks for whatever you need."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/markdown-table-generator","description":"Paste CSV or tab-separated data and get a formatted Markdown table back, header row and all. Free, instant, runs entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Bruno FK","url":"https://brunofk.dev"},"datePublished":"2026-07-17","dateModified":"2026-07-26"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"Markdown Table","item":"https://textbench.app/tools/markdown-table-generator"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it work with data copied from Excel or Google Sheets?","acceptedAnswer":{"@type":"Answer","text":"Yes — when you copy a range from a spreadsheet and paste it in, the cells are tab-separated, and this detects that automatically from the first line and splits on tabs instead of commas."}},{"@type":"Question","name":"What happens to a pipe character inside a cell?","acceptedAnswer":{"@type":"Answer","text":"It's escaped to \\| automatically, since an unescaped pipe would otherwise be read as a new column boundary in the Markdown table syntax."}},{"@type":"Question","name":"Do the columns need to line up visually in the output?","acceptedAnswer":{"@type":"Answer","text":"No — GitHub-flavored Markdown (and most renderers) only require the pipes and the separator row, not visually padded columns, so the raw output renders correctly even though the source text isn't hand-aligned."}}]}</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2653891546345771" crossorigin="anonymous"></script>
 <script data-grow-initializer="">
 !(function(){window.growMe||((window.growMe=function(e){window.growMe._.push(e);}),(window.growMe._=[]));var e=document.createElement("script");(e.type="text/javascript"),(e.src="https://faves.grow.me/main.js"),(e.defer=!0),e.setAttribute("data-grow-faves-site-id","U2l0ZTowNjY3MmQ4Yi1jYTA1LTQ3OWUtOGY1NC1iY2M1OThjYWRlMmY=");var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t);})();
@@ -150,7 +150,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
           <li><a href="/tools/json-to-yaml-converter">JSON to YAML</a></li>
           <li><a href="/tools/markdown-to-html-converter">Markdown to HTML</a></li>
           <li><a href="/tools/markdown-to-plain-text">Markdown to Plain Text</a></li>
-          <li><a href="/tools/markdown-table-generator">Markdown Table</a></li>
+          <li><a href="/tools/markdown-table-generator" aria-current="page">Markdown Table</a></li>
           <li><a href="/tools/markdown-to-confluence-converter">Markdown to Confluence</a></li>
           <li><a href="/tools/markdown-to-slack-converter">Markdown to Slack</a></li>
           <li><a href="/tools/html-to-markdown-converter">HTML to Markdown</a></li>
@@ -167,7 +167,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         <p class="index-head" id="idx-generate">Generate</p>
         <ul class="index-list" aria-labelledby="idx-generate">
           <li><a href="/tools/slugify-text">Slugify</a></li>
-          <li><a href="/tools/text-repeater" aria-current="page">Text Repeater</a></li>
+          <li><a href="/tools/text-repeater">Text Repeater</a></li>
           <li><a href="/tools/lorem-ipsum-generator">Lorem Ipsum</a></li>
           <li><a href="/tools/uuid-generator">UUID Generator</a></li>
           <li><a href="/tools/random-password-generator">Password Generator</a></li>
@@ -187,12 +187,12 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   <main class="column" id="main">
 
   <header class="standfirst">
-    <p class="kicker"><a href="/">Tools</a> <span aria-hidden="true">/</span> Generate</p>
-    <h1>Text Repeater — Repeat Text a Set Number of Times</h1>
+    <p class="kicker"><a href="/">Tools</a> <span aria-hidden="true">/</span> Data formats</p>
+    <h1>Markdown Table Generator — Paste CSV or TSV, Get a Table</h1>
   </header>
-  <p class="lede">Type or paste text below, set how many times you want it repeated, and get every copy back at once — one per line, ready to copy.</p>
+  <p class="lede">Paste rows copied straight out of a spreadsheet — comma- or tab-separated, either works — and get back a proper Markdown table: a header row, the required separator row, and every cell aligned with pipes, ready to drop into a README or a pull request description.</p>
   
-  <section class="tool" data-transform="text-repeater" data-shape="repeater">
+  <section class="tool" data-transform="csv-to-markdown-table" data-shape="simple">
     
     
     
@@ -202,7 +202,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <label class="check"><input type="checkbox" id="regexToggle"> Regex mode</label>
     </div>
     
-    <div class="extra-row" data-for="text-repeater">
+    <div class="extra-row" data-for="text-repeater" hidden>
       <label class="field field--num"><span>Repeat</span><input type="number" id="repeatCount" min="1" max="1000" value="5"></label>
     </div>
     
@@ -258,22 +258,25 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   <div class="measure">
     
   <section class="guide">
-    <h2>Repeating text without copy-pasting</h2>
-    <p>Sometimes you need the same string many times — test data to fill a field, a separator line, a placeholder paragraph repeated to check a layout, or a bit of ASCII art. Type it once, set how many times, and get the whole block back rather than mashing Ctrl-V.</p>
-    <h3>Handy options</h3>
+    <h2>From spreadsheet cells to a Markdown table</h2>
+    <p>Markdown's table syntax — pipes for columns, a dashed row underneath the header — is simple once written, but tedious to type by hand for anything wider than three columns, and easy to get subtly wrong (a missing pipe, a separator row with the wrong column count). This builds it for you from data you already have: select a range in a spreadsheet, copy it, paste it here.</p>
+    <h3>Comma or tab, either works</h3>
+    <p>Pasting straight out of Excel, Google Sheets, or Numbers copies the cells as tab-separated values, which this detects automatically from the first line. Comma-separated (CSV) input works the same way. Either way you get a table with the header row, the required <code>---</code> separator, and every data row, escaped so a stray pipe character in a cell doesn't break the column boundaries.</p>
+    <h3>Where this is useful</h3>
     <ul>
-      <li>Repeat on one line or one per line, depending on whether you're building a delimited string or a list.</li>
-      <li>Great for generating quick filler: repeat a sentence to reach a rough word count, or a row to stress-test a table.</li>
+      <li>Documenting a config's options, a CLI's flags, or an API's parameters in a README.</li>
+      <li>Turning a spreadsheet of test cases or comparison data into a table for a GitHub issue or pull request.</li>
+      <li>Any place a Markdown renderer (GitHub, GitLab, most static-site generators, most wikis) is the target.</li>
     </ul>
-    <p>For realistic placeholder prose rather than one repeated phrase, the Lorem Ipsum generator is a better fit; for repeated <em>unique</em> values like IDs, see the UUID generator. All local — nothing is uploaded.</p>
+    <p>Everything runs in your browser — nothing you paste is uploaded.</p>
   </section>
     
   <section class="faq">
     <h2>Common questions</h2>
     <div class="faq-grid">
-      <div class="faq-item"><h3>Is there a limit on how many times I can repeat something?</h3><p>The repeat count is capped at 1000 per run, which keeps the browser responsive — for larger volumes, run it a few times and combine the results.</p></div>
-      <div class="faq-item"><h3>What's this actually used for?</h3><p>Common uses: generating filler/test data, padding a message for a character-limit test, or creating repeated placeholder rows for a spreadsheet or mockup.</p></div>
-      <div class="faq-item"><h3>Are the repeats separated by anything?</h3><p>Each repeat is on its own line. If you need them separated a different way (commas, no separator), copy the result into the find-and-replace tool and swap the line breaks for whatever you need.</p></div>
+      <div class="faq-item"><h3>Does it work with data copied from Excel or Google Sheets?</h3><p>Yes — when you copy a range from a spreadsheet and paste it in, the cells are tab-separated, and this detects that automatically from the first line and splits on tabs instead of commas.</p></div>
+      <div class="faq-item"><h3>What happens to a pipe character inside a cell?</h3><p>It's escaped to \| automatically, since an unescaped pipe would otherwise be read as a new column boundary in the Markdown table syntax.</p></div>
+      <div class="faq-item"><h3>Do the columns need to line up visually in the output?</h3><p>No — GitHub-flavored Markdown (and most renderers) only require the pipes and the separator row, not visually padded columns, so the raw output renders correctly even though the source text isn't hand-aligned.</p></div>
     </div>
   </section>
   </div>
@@ -285,18 +288,18 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <div class="note">
         <p class="note-head">Related tools</p>
         <ul class="note-list">
-          <li><a href="/tools/find-and-replace">Find &amp; Replace</a></li>
-          <li><a href="/tools/slugify-text">Slugify</a></li>
-          <li><a href="/tools/regex-tester">Regex Tester</a></li>
-          <li><a href="/tools/add-line-numbers">Line Numbers</a></li>
-          <li><a href="/tools/email-regex-tester">Email Regex Tester</a></li>
-          <li><a href="/tools/sort-lines-descending">Sort Z to A</a></li>
-          <li><a href="/tools/phone-number-regex-tester">Phone Number Regex Tester</a></li>
-          <li><a href="/tools/trim-whitespace-from-lines">Trim Lines</a></li>
-          <li><a href="/tools/csv-to-json-converter">CSV to JSON</a></li>
-          <li><a href="/tools/reverse-line-order">Reverse Line Order</a></li>
-          <li><a href="/tools/json-to-csv-converter">JSON to CSV</a></li>
-          <li><a href="/tools/reverse-text">Reverse Text</a></li>
+          <li><a href="/tools/markdown-to-confluence-converter">Markdown to Confluence</a></li>
+          <li><a href="/tools/markdown-to-plain-text">Markdown to Plain Text</a></li>
+          <li><a href="/tools/markdown-to-slack-converter">Markdown to Slack</a></li>
+          <li><a href="/tools/markdown-to-html-converter">Markdown to HTML</a></li>
+          <li><a href="/tools/html-to-markdown-converter">HTML to Markdown</a></li>
+          <li><a href="/tools/json-minifier">JSON Minifier</a></li>
+          <li><a href="/tools/md5-hash-generator">MD5 Hash</a></li>
+          <li><a href="/tools/json-validator">JSON Validator</a></li>
+          <li><a href="/tools/sha256-hash-generator">SHA-256 Hash</a></li>
+          <li><a href="/tools/json-formatter">JSON Formatter</a></li>
+          <li><a href="/tools/uuid-generator">UUID Generator</a></li>
+          <li><a href="/tools/rot13-cipher">ROT13</a></li>
           <li><a class="index-more" href="/">All 69 tools →</a></li>
         </ul>
       </div>

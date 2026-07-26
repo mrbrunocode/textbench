@@ -654,6 +654,160 @@
     try { data = JSON.parse(s); } catch (e) { return Promise.resolve("Invalid JSON: " + e.message); }
     return loadYamlLib().then(function () { return window.jsyaml.dump(data); });
   }
+
+  // ── CSV/TSV -> Markdown table (reuses parseCsvRecords above for comma-
+  // delimited input; tab-delimited — the common case when pasting straight
+  // out of a spreadsheet — is split directly since a literal tab inside a
+  // pasted cell is vanishingly rare, unlike a literal comma) ────────────────
+  function csvToMarkdownTable(s) {
+    var text = s.replace(/\r\n?/g, "\n").trim();
+    if (!text) return "";
+    var firstLine = text.split("\n")[0];
+    var useTab = firstLine.indexOf("\t") !== -1;
+    var rows = useTab
+      ? text.split("\n").filter(function (l) { return l.trim() !== ""; }).map(function (l) { return l.split("\t"); })
+      : parseCsvRecords(text);
+    if (!rows.length) return "";
+    var colCount = rows[0].length;
+    rows = rows.map(function (r) {
+      var row = r.slice(0, colCount).map(function (c) { return (c || "").trim(); });
+      while (row.length < colCount) row.push("");
+      return row;
+    });
+    var escapeCell = function (c) { return c.replace(/\|/g, "\\|").replace(/\n/g, " "); };
+    var header = rows[0], body = rows.slice(1);
+    var out = ["| " + header.map(escapeCell).join(" | ") + " |"];
+    out.push("| " + header.map(function () { return "---"; }).join(" | ") + " |");
+    body.forEach(function (r) { out.push("| " + r.map(escapeCell).join(" | ") + " |"); });
+    return out.join("\n");
+  }
+
+  // ── Markdown -> Confluence wiki markup ────────────────────────────────────
+  // Bold is converted via a placeholder () before the italic pass runs,
+  // so a **bold** span's now-single asterisks in the output don't get
+  // re-matched by the italic regex that runs right after it.
+  function mdInlineConfluence(s) {
+    s = s.replace(/`([^`]+)`/g, function (m, c) { return "{{" + c + "}}"; });
+    s = s.replace(/\*\*([^*]+)\*\*|__([^_]+)__/g, function (m, a, b) { return "" + (a || b) + ""; });
+    s = s.replace(/\*([^*]+)\*|_([^_]+)_/g, function (m, a, b) { return "_" + (a || b) + "_"; });
+    s = s.replace(/([^]+)/g, function (m, a) { return "*" + a + "*"; });
+    s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, "!$2!");
+    s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, "[$1|$2]");
+    return s;
+  }
+  function markdownToConfluence(s) {
+    var lines = normalizeMd(s).split("\n");
+    var out = [], i = 0, inFence = false;
+    while (i < lines.length) {
+      var line = lines[i];
+      var fence = line.match(/^```(\w*)\s*$/);
+      if (fence) {
+        out.push(inFence ? "{code}" : (fence[1] ? "{code:" + fence[1] + "}" : "{code}"));
+        inFence = !inFence; i++; continue;
+      }
+      if (inFence) { out.push(line); i++; continue; }
+      var h = line.match(/^(#{1,6})\s+(.*)$/);
+      var quote = line.match(/^>\s?(.*)$/);
+      var ul = line.match(/^[-*]\s+(.*)$/);
+      var ol = line.match(/^\d+\.\s+(.*)$/);
+      var hr = line.match(/^(-{3,}|\*{3,}|_{3,})\s*$/);
+      if (h) { out.push("h" + h[1].length + ". " + mdInlineConfluence(h[2])); i++; continue; }
+      if (hr) { out.push("----"); i++; continue; }
+      if (quote) { out.push("bq. " + mdInlineConfluence(quote[1])); i++; continue; }
+      if (ul) { out.push("* " + mdInlineConfluence(ul[1])); i++; continue; }
+      if (ol) { out.push("# " + mdInlineConfluence(ol[1])); i++; continue; }
+      out.push(mdInlineConfluence(line));
+      i++;
+    }
+    return out.join("\n");
+  }
+
+  // ── Markdown -> Slack mrkdwn ───────────────────────────────────────────────
+  // Slack has no heading syntax, so a heading becomes bold text instead — the
+  // closest Slack equivalent — and no native list bullet, so "-"/"*" items
+  // get a literal "•" (Slack doesn't render "- " as a bullet the way
+  // Markdown does).
+  function mdInlineSlack(s) {
+    s = s.replace(/~~([^~]+)~~/g, function (m, x) { return "~" + x + "~"; });
+    s = s.replace(/\*\*([^*]+)\*\*|__([^_]+)__/g, function (m, a, b) { return "" + (a || b) + ""; });
+    s = s.replace(/\*([^*]+)\*|_([^_]+)_/g, function (m, a, b) { return "_" + (a || b) + "_"; });
+    s = s.replace(/([^]+)/g, function (m, a) { return "*" + a + "*"; });
+    s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, function (m, alt, url) { return "<" + url + "|" + (alt || url) + ">"; });
+    s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, function (m, text, url) { return "<" + url + "|" + text + ">"; });
+    return s;
+  }
+  function markdownToSlack(s) {
+    var lines = normalizeMd(s).split("\n");
+    var out = [], i = 0, inFence = false;
+    while (i < lines.length) {
+      var line = lines[i];
+      if (/^```/.test(line)) { out.push("```"); inFence = !inFence; i++; continue; }
+      if (inFence) { out.push(line); i++; continue; }
+      var h = line.match(/^(#{1,6})\s+(.*)$/);
+      var ul = line.match(/^[-*]\s+(.*)$/);
+      var ol = line.match(/^(\d+\.)\s+(.*)$/);
+      var quote = line.match(/^>\s?(.*)$/);
+      if (h) { out.push("*" + mdInlineSlack(h[2]) + "*"); i++; continue; }
+      if (ul) { out.push("• " + mdInlineSlack(ul[1])); i++; continue; }
+      if (ol) { out.push(ol[1] + " " + mdInlineSlack(ol[2])); i++; continue; }
+      if (quote) { out.push("> " + mdInlineSlack(quote[1])); i++; continue; }
+      out.push(mdInlineSlack(line));
+      i++;
+    }
+    return out.join("\n");
+  }
+
+  // ── HTML -> Markdown ───────────────────────────────────────────────────────
+  // The inverse of markdownToHtml above, covering the same commonly-used
+  // subset. Block tags are converted first (so their inner text is isolated
+  // per-block before inline conversion runs on it), then inline tags, then
+  // any remaining unrecognized tag is stripped rather than left in the output.
+  function htmlToMarkdown(s) {
+    function decodeEntities(x) {
+      return x.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'").replace(/&amp;/g, "&");
+    }
+    function inline(x) {
+      x = x.replace(/<(strong|b)>([\s\S]*?)<\/\1>/gi, "**$2**");
+      x = x.replace(/<(em|i)>([\s\S]*?)<\/\1>/gi, "*$2*");
+      x = x.replace(/<code>([\s\S]*?)<\/code>/gi, "`$1`");
+      x = x.replace(/<img\s+([^>]*)\/?>/gi, function (m, attrs) {
+        var srcM = attrs.match(/src=["']([^"']*)["']/i);
+        var altM = attrs.match(/alt=["']([^"']*)["']/i);
+        return "![" + (altM ? altM[1] : "") + "](" + (srcM ? srcM[1] : "") + ")";
+      });
+      x = x.replace(/<a\s+([^>]*)>([\s\S]*?)<\/a>/gi, function (m, attrs, text) {
+        var hrefM = attrs.match(/href=["']([^"']*)["']/i);
+        return "[" + text + "](" + (hrefM ? hrefM[1] : "") + ")";
+      });
+      x = x.replace(/<[^>]+>/g, "");
+      return decodeEntities(x);
+    }
+    var h = s.replace(/<(script|style)[\s\S]*?<\/\1>/gi, "");
+    h = h.replace(/<pre>\s*<code[^>]*>([\s\S]*?)<\/code>\s*<\/pre>/gi, function (m, code) {
+      return "\n```\n" + decodeEntities(code) + "\n```\n";
+    });
+    h = h.replace(/<h([1-6])[^>]*>([\s\S]*?)<\/h\1>/gi, function (m, lvl, text) {
+      return "\n" + "#".repeat(Number(lvl)) + " " + inline(text) + "\n";
+    });
+    h = h.replace(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/gi, function (m, text) {
+      return "\n> " + inline(text).trim() + "\n";
+    });
+    h = h.replace(/<ul[^>]*>([\s\S]*?)<\/ul>/gi, function (m, body) {
+      return "\n" + body.replace(/<li[^>]*>([\s\S]*?)<\/li>/gi, function (mm, item) { return "- " + inline(item).trim() + "\n"; }) + "\n";
+    });
+    h = h.replace(/<ol[^>]*>([\s\S]*?)<\/ol>/gi, function (m, body) {
+      var n = 0;
+      return "\n" + body.replace(/<li[^>]*>([\s\S]*?)<\/li>/gi, function (mm, item) { n++; return n + ". " + inline(item).trim() + "\n"; }) + "\n";
+    });
+    h = h.replace(/<hr\s*\/?>/gi, "\n---\n");
+    h = h.replace(/<br\s*\/?>/gi, "  \n");
+    h = h.replace(/<\/p>\s*<p[^>]*>/gi, "\n\n");
+    h = h.replace(/<\/?p[^>]*>/gi, "\n\n");
+    h = inline(h);
+    return h.replace(/\n{3,}/g, "\n\n").trim();
+  }
+
   var MORSE = { A: ".-", B: "-...", C: "-.-.", D: "-..", E: ".", F: "..-.", G: "--.", H: "....", I: "..", J: ".---",
     K: "-.-", L: ".-..", M: "--", N: "-.", O: "---", P: ".--.", Q: "--.-", R: ".-.", S: "...", T: "-",
     U: "..-", V: "...-", W: ".--", X: "-..-", Y: "-.--", Z: "--..",
@@ -843,6 +997,10 @@
     "json-minify": jsonMinify,
     "markdown-to-html": markdownToHtml,
     "markdown-to-text": markdownToText,
+    "csv-to-markdown-table": csvToMarkdownTable,
+    "markdown-to-confluence": markdownToConfluence,
+    "markdown-to-slack": markdownToSlack,
+    "html-to-markdown": htmlToMarkdown,
     "word-frequency": wordFrequency,
     "csv-to-json": csvToJson,
     "json-to-csv": jsonToCsv,
@@ -878,6 +1036,8 @@
       upsideDownText: upsideDownText, boldUnicodeText: boldUnicodeText,
       jsonFormat: jsonFormat, jsonMinify: jsonMinify, markdownToHtml: markdownToHtml,
       markdownToText: markdownToText, wordFrequency: wordFrequency, compareTexts: compareTexts,
+      csvToMarkdownTable: csvToMarkdownTable, markdownToConfluence: markdownToConfluence,
+      markdownToSlack: markdownToSlack, htmlToMarkdown: htmlToMarkdown,
       csvToJson: csvToJson, jsonToCsv: jsonToCsv, yamlToJson: yamlToJson, jsonToYaml: jsonToYaml,
       loremSentence: loremSentence, loremParagraph: loremParagraph, loremIpsum: loremIpsum,
       nextChipValue: nextChipValue,

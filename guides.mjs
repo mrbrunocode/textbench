@@ -537,6 +537,54 @@ export const GUIDES = {
     </ul>
     <p>This is also the honest way to get a word count of Markdown: strip the syntax first, then count, so the markup characters don't inflate the total. For the opposite direction — Markdown to formatted HTML — use the Markdown to HTML tool. All local; nothing uploaded.</p>`),
 
+  "markdown-table-generator": g(`
+    <h2>From spreadsheet cells to a Markdown table</h2>
+    <p>Markdown's table syntax — pipes for columns, a dashed row underneath the header — is simple once written, but tedious to type by hand for anything wider than three columns, and easy to get subtly wrong (a missing pipe, a separator row with the wrong column count). This builds it for you from data you already have: select a range in a spreadsheet, copy it, paste it here.</p>
+    <h3>Comma or tab, either works</h3>
+    <p>Pasting straight out of Excel, Google Sheets, or Numbers copies the cells as tab-separated values, which this detects automatically from the first line. Comma-separated (CSV) input works the same way. Either way you get a table with the header row, the required <code>---</code> separator, and every data row, escaped so a stray pipe character in a cell doesn't break the column boundaries.</p>
+    <h3>Where this is useful</h3>
+    <ul>
+      <li>Documenting a config's options, a CLI's flags, or an API's parameters in a README.</li>
+      <li>Turning a spreadsheet of test cases or comparison data into a table for a GitHub issue or pull request.</li>
+      <li>Any place a Markdown renderer (GitHub, GitLab, most static-site generators, most wikis) is the target.</li>
+    </ul>
+    <p>Everything runs in your browser — nothing you paste is uploaded.</p>`),
+
+  "markdown-to-confluence-converter": g(`
+    <h2>Why Markdown and Confluence don't paste cleanly into each other</h2>
+    <p>Confluence predates the Markdown-everywhere convention and has its own wiki markup: <code>h1.</code> for headings instead of <code>#</code>, a single asterisk for bold instead of two, <code>bq.</code> for a blockquote, <code>{code}</code> macros instead of triple-backtick fences. Paste raw Markdown into Confluence's source editor and none of that gets interpreted — you get literal asterisks and pound signs on the page.</p>
+    <h3>What gets converted</h3>
+    <ul>
+      <li>Headings (<code>#</code> through <code>######</code>) become <code>h1.</code> through <code>h6.</code></li>
+      <li>Bold and italic are remapped to Confluence's single-asterisk/underscore convention.</li>
+      <li>Links, images, ordered and unordered lists, blockquotes, and fenced code blocks (with the language hint preserved) all get their Confluence equivalents.</li>
+    </ul>
+    <h3>Where to paste the result</h3>
+    <p>This targets Confluence's classic wiki markup — the format used by the source/markup editor and the REST API's <code>wiki</code> body representation, not the newer default rich-text editor, which doesn't accept a markup paste mode. If your team writes specs or runbooks in Markdown first and only later moves them into Confluence, this is the step that closes that gap. Runs entirely in your browser.</p>`),
+
+  "markdown-to-slack-converter": g(`
+    <h2>Why a Markdown message looks broken when you paste it into Slack</h2>
+    <p>Slack has its own lightweight formatting language (mrkdwn), and it overlaps with Markdown just enough to be misleading. Bold in Slack is a single asterisk, not two — so <code>**bold**</code> pasted straight in shows up as literal asterisks around plain text, not bold. Slack also has no heading syntax at all, so a <code>#</code> line renders as a literal pound sign followed by your text.</p>
+    <h3>What this rewrites</h3>
+    <ul>
+      <li>Double-asterisk/underscore bold becomes single-asterisk bold; single-asterisk/underscore italic becomes underscore italic (Slack's own convention, the reverse of Markdown's default).</li>
+      <li>A heading becomes bold text, the closest Slack equivalent.</li>
+      <li>A <code>[text](url)</code> link becomes Slack's own clickable <code>&lt;url|text&gt;</code> format.</li>
+      <li>List markers become a plain "•" bullet, since Slack doesn't render a leading <code>-</code> as a bullet the way Markdown does.</li>
+    </ul>
+    <p>Handy for pasting release notes, a changelog entry, or a doc excerpt into a Slack channel and having it actually look formatted instead of showing raw syntax. Runs entirely in your browser — nothing is sent anywhere.</p>`),
+
+  "html-to-markdown-converter": g(`
+    <h2>Turning HTML back into editable Markdown</h2>
+    <p>The reverse direction from the Markdown to HTML tool: paste HTML — copied from a web page, exported from a CMS or word processor, or output by some other tool — and get back Markdown you can actually edit as plain text, rather than a wall of tags.</p>
+    <h3>What it handles</h3>
+    <ul>
+      <li>Headings, paragraphs, bold/italic, inline and fenced code, links, images, ordered and unordered lists, blockquotes, and horizontal rules.</li>
+      <li>Any tag outside that set — <code>div</code>, <code>span</code>, inline styling, tracked-changes markup — is stripped rather than left dangling in the output, so the result stays clean Markdown rather than half-converted HTML.</li>
+    </ul>
+    <h3>A one-way trip for styling</h3>
+    <p>Markdown has no way to express arbitrary CSS — a specific font, a color, a custom size — so anything beyond structural formatting is necessarily lost in the conversion. That's expected: the point is recovering the content's structure as clean, editable Markdown, not a pixel-identical round trip. Nested lists convert but lose their indentation level, so this is best suited to typical article- or README-level HTML rather than deeply structured documents. Runs entirely in your browser; nothing you paste is uploaded.</p>`),
+
   "md5-hash-generator": g(`
     <h2>Generating an MD5 hash</h2>
     <p>MD5 turns any input into a fixed 32-character hex fingerprint. The same input always produces the same hash, so it's a fast way to make a checksum — verifying a file downloaded intact, generating a cache key, or spotting whether two blobs of data are identical.</p>

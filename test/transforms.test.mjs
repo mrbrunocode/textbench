@@ -353,6 +353,119 @@ test("markdownToText collapses runs of blank lines down to one", () => {
   assert.equal(out, "one\n\ntwo");
 });
 
+test("csvToMarkdownTable converts comma-separated rows into a piped table", () => {
+  const out = t.csvToMarkdownTable("Name,Role\nAda,Engineer\nGrace,Admiral");
+  assert.equal(out, "| Name | Role |\n| --- | --- |\n| Ada | Engineer |\n| Grace | Admiral |");
+});
+
+test("csvToMarkdownTable auto-detects tab-separated input", () => {
+  const out = t.csvToMarkdownTable("Name\tRole\nAda\tEngineer");
+  assert.equal(out, "| Name | Role |\n| --- | --- |\n| Ada | Engineer |");
+});
+
+test("csvToMarkdownTable escapes a literal pipe in a cell", () => {
+  const out = t.csvToMarkdownTable("A,B\none|two,three");
+  assert.ok(out.includes("one\\|two"));
+});
+
+test("csvToMarkdownTable pads short rows to the header's column count", () => {
+  const out = t.csvToMarkdownTable("A,B,C\n1,2");
+  assert.equal(out, "| A | B | C |\n| --- | --- | --- |\n| 1 | 2 |  |");
+});
+
+test("csvToMarkdownTable returns empty string for empty input", () => {
+  assert.equal(t.csvToMarkdownTable(""), "");
+  assert.equal(t.csvToMarkdownTable("   "), "");
+});
+
+test("markdownToConfluence converts headings, bold, italic, code and links", () => {
+  const out = t.markdownToConfluence("# Title\n\nSome **bold** and *italic* and `code` and [a link](https://x.com).");
+  assert.ok(out.includes("h1. Title"));
+  assert.ok(out.includes("*bold*"));
+  assert.ok(out.includes("_italic_"));
+  assert.ok(out.includes("{{code}}"));
+  assert.ok(out.includes("[a link|https://x.com]"));
+});
+
+test("markdownToConfluence converts lists, blockquotes and horizontal rules", () => {
+  const out = t.markdownToConfluence("- one\n- two\n\n1. first\n2. second\n\n> a quote\n\n---");
+  assert.ok(out.includes("* one"));
+  assert.ok(out.includes("* two"));
+  assert.ok(out.includes("# first"));
+  assert.ok(out.includes("# second"));
+  assert.ok(out.includes("bq. a quote"));
+  assert.ok(out.includes("----"));
+});
+
+test("markdownToConfluence converts a fenced code block into a {code} macro, keeping the language hint", () => {
+  const out = t.markdownToConfluence("```js\nconst x = 1;\n```");
+  assert.equal(out, "{code:js}\nconst x = 1;\n{code}");
+});
+
+test("markdownToConfluence does not interpret markdown syntax inside a fenced code block", () => {
+  const out = t.markdownToConfluence("```\n**not bold**\n```");
+  assert.equal(out, "{code}\n**not bold**\n{code}");
+});
+
+test("markdownToSlack converts bold and italic to Slack's single-asterisk/underscore convention", () => {
+  const out = t.markdownToSlack("Some **bold** and *italic* and __also bold__ and _also italic_.");
+  assert.ok(out.includes("*bold*"));
+  assert.ok(out.includes("_italic_"));
+  assert.ok(out.includes("*also bold*"));
+  assert.ok(out.includes("_also italic_"));
+});
+
+test("markdownToSlack converts strikethrough, links and headings", () => {
+  const out = t.markdownToSlack("# Title\n\n~~gone~~ and [a link](https://x.com).");
+  assert.ok(out.includes("*Title*"));
+  assert.ok(out.includes("~gone~"));
+  assert.ok(out.includes("<https://x.com|a link>"));
+});
+
+test("markdownToSlack converts list markers to a bullet and keeps ordered-list numbers", () => {
+  const out = t.markdownToSlack("- one\n- two\n\n1. first\n2. second");
+  assert.ok(out.includes("• one"));
+  assert.ok(out.includes("• two"));
+  assert.ok(out.includes("1. first"));
+  assert.ok(out.includes("2. second"));
+});
+
+test("markdownToSlack does not interpret markdown syntax inside a fenced code block", () => {
+  const out = t.markdownToSlack("```\n**not bold**\n```");
+  assert.equal(out, "```\n**not bold**\n```");
+});
+
+test("htmlToMarkdown converts headings, bold, italic, code and links", () => {
+  const out = t.htmlToMarkdown('<h1>Title</h1><p>Some <strong>bold</strong> and <em>italic</em> and <code>code</code> and <a href="https://x.com">a link</a>.</p>');
+  assert.ok(out.includes("# Title"));
+  assert.ok(out.includes("**bold**"));
+  assert.ok(out.includes("*italic*"));
+  assert.ok(out.includes("`code`"));
+  assert.ok(out.includes("[a link](https://x.com)"));
+});
+
+test("htmlToMarkdown converts lists, blockquotes and images", () => {
+  const out = t.htmlToMarkdown('<ul><li>one</li><li>two</li></ul><ol><li>first</li><li>second</li></ol><blockquote>a quote</blockquote><img src="a.png" alt="alt text">');
+  assert.ok(out.includes("- one"));
+  assert.ok(out.includes("- two"));
+  assert.ok(out.includes("1. first"));
+  assert.ok(out.includes("2. second"));
+  assert.ok(out.includes("> a quote"));
+  assert.ok(out.includes("![alt text](a.png)"));
+});
+
+test("htmlToMarkdown converts a <pre><code> block into a fenced code block", () => {
+  const out = t.htmlToMarkdown("<pre><code>const x = 1;</code></pre>");
+  assert.ok(out.includes("```\nconst x = 1;\n```"));
+});
+
+test("htmlToMarkdown decodes HTML entities and strips unknown tags", () => {
+  const out = t.htmlToMarkdown('<div class="wrapper"><span>a &amp; b &lt;tag&gt;</span></div>');
+  assert.ok(out.includes("a & b <tag>"));
+  assert.ok(!out.includes("<div"));
+  assert.ok(!out.includes("<span>"));
+});
+
 test("wordFrequency counts case-insensitively and sorts by count descending", () => {
   const out = t.wordFrequency("the cat sat on the mat. The Cat ran.");
   const lines = out.split("\n");

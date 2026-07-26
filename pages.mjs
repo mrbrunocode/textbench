@@ -968,6 +968,70 @@ export const PAGES = [
     ],
   },
   {
+    slug: "markdown-table-generator",
+    eyebrow: "Markdown Table",
+    title: "Markdown Table Generator — Paste CSV or TSV, Get a Table",
+    description:
+      "Paste CSV or tab-separated data and get a formatted Markdown table back, header row and all. Free, instant, runs entirely in your browser.",
+    intro:
+      "Paste rows copied straight out of a spreadsheet — comma- or tab-separated, either works — and get back a proper Markdown table: a header row, the required separator row, and every cell aligned with pipes, ready to drop into a README or a pull request description.",
+    transform: "csv-to-markdown-table",
+    shape: "simple",
+    faq: [
+      { q: "Does it work with data copied from Excel or Google Sheets?", a: "Yes — when you copy a range from a spreadsheet and paste it in, the cells are tab-separated, and this detects that automatically from the first line and splits on tabs instead of commas." },
+      { q: "What happens to a pipe character inside a cell?", a: "It's escaped to \\| automatically, since an unescaped pipe would otherwise be read as a new column boundary in the Markdown table syntax." },
+      { q: "Do the columns need to line up visually in the output?", a: "No — GitHub-flavored Markdown (and most renderers) only require the pipes and the separator row, not visually padded columns, so the raw output renders correctly even though the source text isn't hand-aligned." },
+    ],
+  },
+  {
+    slug: "markdown-to-confluence-converter",
+    eyebrow: "Markdown to Confluence",
+    title: "Markdown to Confluence Wiki Markup Converter",
+    description:
+      "Convert Markdown to Confluence wiki markup — headings, bold/italic, links, lists, code blocks and quotes. Free, instant, runs entirely in your browser.",
+    intro:
+      "Paste Markdown and get back Confluence's own wiki markup — h1./h2. headings, single-asterisk bold, bq. blockquotes, {code} blocks — ready to paste into a Confluence page's source editor instead of hand-translating the syntax yourself.",
+    transform: "markdown-to-confluence",
+    shape: "simple",
+    faq: [
+      { q: "Why is Confluence's bold syntax different from Markdown's?", a: "Confluence wiki markup uses a single asterisk (*bold*) for bold, where Markdown uses double asterisks or underscores. This tool handles that swap for you, along with italic (_text_), so you don't have to remember which syntax belongs to which format." },
+      { q: "Does it work with the newer Confluence editor?", a: "This targets classic Confluence wiki markup (used by the source/markup editor and the REST API's `wiki` representation). Confluence's newer default editor is a rich-text editor without a markup paste mode — for that, format directly or use an import feature instead." },
+      { q: "What happens to fenced code blocks?", a: "A \\`\\`\\`js fenced block becomes Confluence's {code:js}...{code} macro, keeping the language hint where one was given." },
+    ],
+  },
+  {
+    slug: "markdown-to-slack-converter",
+    eyebrow: "Markdown to Slack",
+    title: "Markdown to Slack Format Converter",
+    description:
+      "Convert Markdown to Slack's mrkdwn formatting — bold, italic, strikethrough, links and lists rewritten for how Slack actually renders them. Free, instant, browser-only.",
+    intro:
+      "Paste Markdown written for a README or a doc and get back the equivalent Slack message formatting — single-asterisk bold, underscore italic, <url|text> links — so a message posted in Slack renders the way it looked in the source, instead of showing literal asterisks and brackets.",
+    transform: "markdown-to-slack",
+    shape: "simple",
+    faq: [
+      { q: "Why does bold use one asterisk instead of two?", a: "Slack's own formatting (mrkdwn) uses a single asterisk for bold, unlike standard Markdown's double asterisk — pasting unconverted Markdown into Slack shows literal double asterisks rather than bold text, which is exactly what this fixes." },
+      { q: "What happens to Markdown headings, since Slack has none?", a: "A heading becomes bold text — the closest thing Slack supports — since Slack messages have no separate heading level of their own." },
+      { q: "How are links formatted for Slack?", a: "A Markdown [text](url) link becomes Slack's own <url|text> format, which is what makes the link clickable with custom link text inside a Slack message." },
+    ],
+  },
+  {
+    slug: "html-to-markdown-converter",
+    eyebrow: "HTML to Markdown",
+    title: "HTML to Markdown Converter — Online, Instant",
+    description:
+      "Convert HTML back into Markdown — headings, bold/italic, links, images, lists, blockquotes and code. Free, instant, runs entirely in your browser.",
+    intro:
+      "Paste HTML and get back the equivalent Markdown — the reverse of the Markdown to HTML tool — for turning a copied web page, an exported doc, or CMS output back into clean Markdown you can edit as plain text.",
+    transform: "html-to-markdown",
+    shape: "simple",
+    faq: [
+      { q: "Does it handle a full HTML document, or just a fragment?", a: "Either — it looks for the tags it knows how to convert (headings, paragraphs, lists, links, images, code, blockquotes) wherever they appear, and strips any other tag (html, head, div, span, and so on) rather than erroring on them." },
+      { q: "What happens to inline styling like colors or custom fonts?", a: "It's dropped — Markdown has no equivalent for arbitrary CSS styling, so only structural formatting (bold, italic, headings, links, lists, code, quotes) survives the conversion, which matches what Markdown itself is capable of expressing." },
+      { q: "Are nested lists supported?", a: "No — it handles a single flat level of list items; a list nested inside another list item will convert but lose its indentation level, so it's meant for typical README/article-level HTML rather than deeply structured documents." },
+    ],
+  },
+  {
     slug: "md5-hash-generator",
     eyebrow: "MD5 Hash",
     title: "MD5 Hash Generator",
@@ -1162,6 +1226,8 @@ export const GROUPS = [
     "csv-to-json-converter", "json-to-csv-converter",
     "yaml-to-json-converter", "json-to-yaml-converter",
     "markdown-to-html-converter", "markdown-to-plain-text",
+    "markdown-table-generator", "markdown-to-confluence-converter",
+    "markdown-to-slack-converter", "html-to-markdown-converter",
   ]],
   ["Hash", [
     "md5-hash-generator", "sha256-hash-generator",
@@ -1238,6 +1304,10 @@ export const TRANSFORM_GROUPS = [
     ["json-to-csv", "JSON to CSV"],
     ["yaml-to-json", "YAML to JSON"],
     ["json-to-yaml", "JSON to YAML"],
+    ["csv-to-markdown-table", "CSV to Markdown table"],
+    ["markdown-to-confluence", "Markdown to Confluence"],
+    ["markdown-to-slack", "Markdown to Slack"],
+    ["html-to-markdown", "HTML to Markdown"],
   ]],
   ["Hash", [
     ["md5-hash", "MD5 hash"],
