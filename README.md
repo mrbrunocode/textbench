@@ -84,4 +84,19 @@ Reflow: at 1180px the margin drops below the column and runs as a horizontal
 band; at 940px the index rail moves *below* the content via flex `order`, so
 the tool still opens the page on a tablet.
 
+**Homepage lede, revised 2026-07-26.** The opening lede used a floated
+first-letter drop cap (`.lede--home::first-letter`). Bruno flagged it directly
+— it never landed on the third line's baseline and read as a stock template
+flourish, not a considered choice. Checked against pro-grade references before
+fixing it: [ia.net/writer](https://ia.net/writer) and
+[transform.tools](https://transform.tools) both build hierarchy from
+weight/size/color alone — no ornamental first-letter or float tricks anywhere.
+Same move here: `content.mjs`'s `leadIn()` bolds the opening sentence
+(`.lede-lead`, `--text-primary`) against the rest of the lede
+(`--text-secondary`), derived from the same `DESCRIPTION` string so there's no
+second copy to keep in sync, and no mobile override needed (the drop cap
+needed one just to turn itself off under 760px). This is a refinement within
+the existing Editorial direction, not a new one — the spread/rail/margin
+structure above is unchanged.
+
 See the factory's `docs/playbook.md` for the full build → monetize → SEO flow.

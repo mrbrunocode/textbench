@@ -13,6 +13,23 @@
 import * as C from "./site.config.mjs";
 import { renderTool, TRANSFORM_GROUPS } from "./pages.mjs";
 
+// The homepage lede used to open with a floated first-letter drop cap. Bruno
+// flagged it directly (2026-07-26): it never sat on the third line's baseline,
+// it read as a stock template flourish rather than a considered typographic
+// choice, and it needed its own mobile override just to come back off (see the
+// git history for the old .lede--home::first-letter rule). Checked against
+// pro-grade references before replacing it — ia.net/writer and transform.tools
+// both build hierarchy from weight/size/color alone, with zero ornamental
+// first-letter or float tricks anywhere on the page. leadIn() does the same
+// here: it bolds the opening sentence in --text-primary against the rest of
+// the lede in --text-secondary, computed from C.DESCRIPTION so the two copies
+// can't drift apart. See style.css .lede-lead and README § Layout.
+function leadIn(text) {
+  const cut = text.indexOf(". ");
+  if (cut === -1) return text;
+  return `<span class="lede-lead">${text.slice(0, cut + 1)}</span>${text.slice(cut + 1)}`;
+}
+
 export const home = {
   title: `${C.NAME} — ${C.TAGLINE}`,
   description: C.DESCRIPTION,
@@ -29,7 +46,7 @@ export const home = {
   <header class="standfirst standfirst--home">
     <h1>Paste in.<br>Nothing leaves your browser.</h1>
   </header>
-  <p class="lede lede--home">${C.DESCRIPTION}</p>
+  <p class="lede lede--home">${leadIn(C.DESCRIPTION)}</p>
   ${renderTool({ home: true })}`,
 
   // Marginalia — the facts that used to be a stat triplet under the headline,

@@ -336,13 +336,16 @@ h3 { font-size: var(--text-md); }
    for comfortable reading, and the reason this is a serif column not a
    full-width band. */
 .lede { font-family: var(--font-serif); font-size: var(--text-md); line-height: 1.66; color: var(--text-secondary); max-width: 58ch; }
-/* The drop cap belongs to the homepage opening only. Used on every lede it
-   stops being a signal and becomes a tic. Desktop only — see the mobile block
-   at the end of this file for why it comes off on a phone. */
-.lede--home::first-letter {
-  float: left; font-size: 3.1em; line-height: 0.82; font-weight: 600;
-  padding: 0.08em 0.12em 0 0; color: var(--text-primary);
-}
+/* Was a floated first-letter drop cap. It never landed on the third line's
+   baseline and read as a stock flourish rather than a considered choice —
+   Bruno called it out directly. Checked against pro-grade references
+   (ia.net/writer, transform.tools) before replacing: both build hierarchy
+   from weight/size/color alone, no ornamental first-letter or float tricks.
+   Same move here — the opening sentence is bold in --text-primary, computed
+   from the same copy as the rest of the lede (see content.mjs's leadIn()) so
+   there's no second string to keep in sync. Needs no mobile override, unlike
+   the drop cap it replaces. */
+.lede-lead { color: var(--text-primary); font-weight: 600; }
 .use-line { font-size: var(--text-sm); color: var(--text-tertiary); max-width: 60ch; margin: var(--space-3) auto 0; }
 
 /* ---- The tool ----
@@ -675,9 +678,6 @@ footer .wrap { max-width: none; padding: 0 var(--bleed); }
   .sheet--work .lede       { order: 3; margin-top: var(--space-6); }
   .sheet--work .ad-slot    { order: 4; }
   .sheet--work .measure    { order: 5; }
-  /* A drop cap is a device for a wide measure. At 375px it eats a line and
-     reads as a mistake. */
-  .lede--home::first-letter { float: none; font-size: inherit; line-height: inherit; padding: 0; }
   .standfirst--home h1 { font-size: clamp(1.9rem, 8vw, 2.4rem); }
   /* Eleven category chips wrapped to five rows. One swipeable row instead —
      same pattern CountLink already uses for its nav. */
@@ -699,7 +699,6 @@ footer .wrap { max-width: none; padding: 0 var(--bleed); }
   .masthead-meta { display: none; }
   .margin-in { grid-auto-flow: row; gap: var(--space-6); }
   .index-in { columns: 1; }
-  .standfirst--home .lede::first-letter { font-size: 2.6em; }
 }
 
 /* Print: the tool's output is what anyone prints. Chrome, navigation and
