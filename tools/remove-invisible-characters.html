@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URL Encode Text Online (Percent-Encoding) | Textbench</title>
-<meta name="description" content="Percent-encode text for safe use in a URL — spaces, symbols and special characters are escaped. Free, instant, browser-only.">
-<link rel="canonical" href="https://textbench.app/tools/url-encode">
-<meta property="og:title" content="URL Encode Text Online (Percent-Encoding)">
-<meta property="og:description" content="Percent-encode text for safe use in a URL — spaces, symbols and special characters are escaped. Free, instant, browser-only.">
+<title>Remove Invisible Characters — Zero-Width Spaces, BOM &amp; More | Textbench</title>
+<meta name="description" content="Strip invisible Unicode characters — zero-width spaces, BOM, soft hyphens, directional marks — that sneak in from copy-pasting and silently break code or AI prompts. Free, browser-only.">
+<link rel="canonical" href="https://textbench.app/tools/remove-invisible-characters">
+<meta property="og:title" content="Remove Invisible Characters — Zero-Width Spaces, BOM &amp; More">
+<meta property="og:description" content="Strip invisible Unicode characters — zero-width spaces, BOM, soft hyphens, directional marks — that sneak in from copy-pasting and silently break code or AI prompts. Free, browser-only.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://textbench.app/tools/url-encode">
+<meta property="og:url" content="https://textbench.app/tools/remove-invisible-characters">
 <meta property="og:image" content="https://textbench.app/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://textbench.app/assets/og-image.png">
@@ -23,9 +23,9 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/url-encode","description":"Percent-encode text for safe use in a URL — spaces, symbols and special characters are escaped. Free, instant, browser-only.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Bruno FK","url":"https://brunofk.dev"},"datePublished":"2026-07-17","dateModified":"2026-07-24"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"URL Encode","item":"https://textbench.app/tools/url-encode"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this the same as encoding a full URL?","acceptedAnswer":{"@type":"Answer","text":"This encodes a single value (like a query parameter), escaping characters such as spaces, &, = and ? that would otherwise break a URL's structure. Don't run a whole URL through this or you'll also encode its own \"://\" and \"/\" separators."}},{"@type":"Question","name":"Why does a space become %20 and not +?","acceptedAnswer":{"@type":"Answer","text":"%20 is the standard percent-encoding for a space (used in URL paths and most contexts); \"+\" is a legacy convention specific to form-encoded query strings. This tool uses the standard %20 form."}},{"@type":"Question","name":"Is my text sent anywhere to encode it?","acceptedAnswer":{"@type":"Answer","text":"No — it uses the browser's built-in encodeURIComponent, entirely client-side."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/remove-invisible-characters","description":"Strip invisible Unicode characters — zero-width spaces, BOM, soft hyphens, directional marks — that sneak in from copy-pasting and silently break code or AI prompts. Free, browser-only.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Bruno FK","url":"https://brunofk.dev"},"datePublished":"2026-07-17","dateModified":"2026-07-26"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"Invisible Characters","item":"https://textbench.app/tools/remove-invisible-characters"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why would invisible characters be in my text at all?","acceptedAnswer":{"@type":"Answer","text":"Copying from a web page, a PDF, a word processor, or straight out of ChatGPT/Claude's own output commonly carries them along invisibly — a zero-width space marking a soft line-break point, or a BOM left over from how a file was saved."}},{"@type":"Question","name":"Does this touch a regular space or a non-breaking space?","acceptedAnswer":{"@type":"Answer","text":"A regular space is left alone. A non-breaking space is converted to a normal space rather than deleted — deleting it outright would silently merge two words into one."}},{"@type":"Question","name":"Why does this matter for AI prompts specifically?","acceptedAnswer":{"@type":"Answer","text":"A zero-width character embedded mid-word can change how a model tokenizes that word, and invisible characters inside a JSON block you're asking a model to parse (or that a model just handed back to you) can cause a parser to reject otherwise-valid-looking data — cleaning the text first rules that out."}}]}</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2653891546345771" crossorigin="anonymous"></script>
 <script data-grow-initializer="">
 !(function(){window.growMe||((window.growMe=function(e){window.growMe._.push(e);}),(window.growMe._=[]));var e=document.createElement("script");(e.type="text/javascript"),(e.src="https://faves.grow.me/main.js"),(e.defer=!0),e.setAttribute("data-grow-faves-site-id","U2l0ZTowNjY3MmQ4Yi1jYTA1LTQ3OWUtOGY1NC1iY2M1OThjYWRlMmY=");var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t);})();
@@ -96,7 +96,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
           <li><a href="/tools/remove-line-breaks">Line Breaks</a></li>
           <li><a href="/tools/remove-empty-lines">Empty Lines</a></li>
           <li><a href="/tools/trim-whitespace-from-lines">Trim Lines</a></li>
-          <li><a href="/tools/remove-invisible-characters">Invisible Characters</a></li>
+          <li><a href="/tools/remove-invisible-characters" aria-current="page">Invisible Characters</a></li>
           <li><a href="/tools/smart-quotes-to-straight-quotes-converter">Smart Quotes</a></li>
         </ul>
       </section>
@@ -127,7 +127,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         <ul class="index-list" aria-labelledby="idx-encode-decode">
           <li><a href="/tools/base64-encode">Base64 Encode</a></li>
           <li><a href="/tools/base64-decode">Base64 Decode</a></li>
-          <li><a href="/tools/url-encode" aria-current="page">URL Encode</a></li>
+          <li><a href="/tools/url-encode">URL Encode</a></li>
           <li><a href="/tools/url-decode">URL Decode</a></li>
           <li><a href="/tools/html-entity-encode">HTML Encode</a></li>
           <li><a href="/tools/html-entity-decode">HTML Decode</a></li>
@@ -190,12 +190,12 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   <main class="column" id="main">
 
   <header class="standfirst">
-    <p class="kicker"><a href="/">Tools</a> <span aria-hidden="true">/</span> Encode &amp; decode</p>
-    <h1>URL Encode Text Online (Percent-Encoding)</h1>
+    <p class="kicker"><a href="/">Tools</a> <span aria-hidden="true">/</span> Clean up</p>
+    <h1>Remove Invisible Characters — Zero-Width Spaces, BOM &amp; More</h1>
   </header>
-  <p class="lede">Paste text below to URL-encode it — spaces become %20, and other characters that aren't safe in a URL are escaped to their percent-encoded form.</p>
+  <p class="lede">Paste text below and every invisible, non-printing character is stripped out — zero-width spaces, a byte-order mark, soft hyphens, left-to-right/right-to-left marks, and the word joiner. These are invisible on screen but very real to a parser: they've been known to silently break JSON output, split a word an AI model was supposed to treat as one token, or make two strings that look identical fail an equality check.</p>
   
-  <section class="tool" data-transform="url-encode" data-shape="simple">
+  <section class="tool" data-transform="remove-invisible-characters" data-shape="simple">
     
     
     
@@ -265,22 +265,24 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   <div class="measure">
     
   <section class="guide">
-    <h2>Making text safe for a URL</h2>
-    <p>URLs can only contain a limited set of characters, so anything else — spaces, <code>&amp;</code>, <code>?</code>, <code>/</code>, <code>#</code>, accented letters, emoji — has to be percent-encoded (a space becomes <code>%20</code>) to travel safely in a query string or path. This does that encoding.</p>
-    <h3>When you need it</h3>
+    <h2>The characters you can't see, but a parser can</h2>
+    <p>Every character has a code point, even the ones with no visible glyph. A zero-width space (U+200B) takes up zero pixels but is still a real character sitting between two letters. Copy text from a web page, a PDF export, or a chat app's output and there's a decent chance a few of these hitchhike along without you ever noticing — until something downstream chokes on them.</p>
+    <h3>What actually gets stripped</h3>
     <ul>
-      <li>Building a query string by hand, where a value contains a space, an ampersand, or a slash that would otherwise break the URL's structure.</li>
-      <li>Passing a full URL as a <em>parameter</em> of another URL (a redirect target, a share link) — the inner URL's <code>?</code> and <code>&amp;</code> must be encoded so they're not read as part of the outer one.</li>
+      <li>Zero-width space, zero-width non-joiner, zero-width joiner — commonly inserted by web typesetting or word-wrap logic.</li>
+      <li>Byte-order mark (BOM) — a leftover from how some editors save UTF-8 files, sometimes ending up mid-document instead of only at the very start.</li>
+      <li>Soft hyphen, left-to-right mark, right-to-left mark, word joiner — formatting/direction hints that carry no visible content of their own.</li>
     </ul>
-    <p>Encode the <em>values</em>, not the whole finished URL, or you'll double-encode the structural characters. For the reverse use URL Decode. Everything runs in your browser.</p>
+    <h3>Why this bites specifically with AI tools</h3>
+    <p>Paste a block of JSON that looks perfectly valid and a strict parser rejects it — nine times out of ten, an invisible character snuck in somewhere. The same goes for prompts: a zero-width character landing inside a word can change how a model tokenizes it, and two strings that look byte-for-byte identical on screen can fail a direct equality check if one has an invisible character the other doesn't. Running text through this first rules that whole category of bug out. Everything happens locally — nothing you paste is uploaded.</p>
   </section>
     
   <section class="faq">
     <h2>Common questions</h2>
     <div class="faq-grid">
-      <div class="faq-item"><h3>Is this the same as encoding a full URL?</h3><p>This encodes a single value (like a query parameter), escaping characters such as spaces, &amp;, = and ? that would otherwise break a URL's structure. Don't run a whole URL through this or you'll also encode its own &quot;://&quot; and &quot;/&quot; separators.</p></div>
-      <div class="faq-item"><h3>Why does a space become %20 and not +?</h3><p>%20 is the standard percent-encoding for a space (used in URL paths and most contexts); &quot;+&quot; is a legacy convention specific to form-encoded query strings. This tool uses the standard %20 form.</p></div>
-      <div class="faq-item"><h3>Is my text sent anywhere to encode it?</h3><p>No — it uses the browser's built-in encodeURIComponent, entirely client-side.</p></div>
+      <div class="faq-item"><h3>Why would invisible characters be in my text at all?</h3><p>Copying from a web page, a PDF, a word processor, or straight out of ChatGPT/Claude's own output commonly carries them along invisibly — a zero-width space marking a soft line-break point, or a BOM left over from how a file was saved.</p></div>
+      <div class="faq-item"><h3>Does this touch a regular space or a non-breaking space?</h3><p>A regular space is left alone. A non-breaking space is converted to a normal space rather than deleted — deleting it outright would silently merge two words into one.</p></div>
+      <div class="faq-item"><h3>Why does this matter for AI prompts specifically?</h3><p>A zero-width character embedded mid-word can change how a model tokenizes that word, and invisible characters inside a JSON block you're asking a model to parse (or that a model just handed back to you) can cause a parser to reject otherwise-valid-looking data — cleaning the text first rules that out.</p></div>
     </div>
   </section>
   </div>
@@ -292,18 +294,18 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <div class="note">
         <p class="note-head">Related tools</p>
         <ul class="note-list">
-          <li><a href="/tools/url-decode">URL Decode</a></li>
-          <li><a href="/tools/base64-decode">Base64 Decode</a></li>
-          <li><a href="/tools/html-entity-encode">HTML Encode</a></li>
-          <li><a href="/tools/base64-encode">Base64 Encode</a></li>
-          <li><a href="/tools/html-entity-decode">HTML Decode</a></li>
-          <li><a href="/tools/extract-numbers-from-text">Extract Numbers</a></li>
-          <li><a href="/tools/text-to-binary">Text to Binary</a></li>
-          <li><a href="/tools/extract-urls-from-text">Extract URLs</a></li>
-          <li><a href="/tools/binary-to-text">Binary to Text</a></li>
-          <li><a href="/tools/extract-emails-from-text">Extract Emails</a></li>
-          <li><a href="/tools/text-to-hex">Text to Hex</a></li>
-          <li><a href="/tools/inverse-case-converter">InVeRsE cAsE</a></li>
+          <li><a href="/tools/smart-quotes-to-straight-quotes-converter">Smart Quotes</a></li>
+          <li><a href="/tools/trim-whitespace-from-lines">Trim Lines</a></li>
+          <li><a href="/tools/sort-lines-descending">Sort Z to A</a></li>
+          <li><a href="/tools/reverse-line-order">Reverse Line Order</a></li>
+          <li><a href="/tools/add-line-numbers">Line Numbers</a></li>
+          <li><a href="/tools/reverse-text">Reverse Text</a></li>
+          <li><a href="/tools/slugify-text">Slugify</a></li>
+          <li><a href="/tools/sort-lines-alphabetically">Sort Lines</a></li>
+          <li><a href="/tools/text-repeater">Text Repeater</a></li>
+          <li><a href="/tools/remove-empty-lines">Empty Lines</a></li>
+          <li><a href="/tools/find-and-replace">Find &amp; Replace</a></li>
+          <li><a href="/tools/remove-line-breaks">Line Breaks</a></li>
           <li><a class="index-more" href="/">All 72 tools →</a></li>
         </ul>
       </div>

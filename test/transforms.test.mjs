@@ -466,6 +466,42 @@ test("htmlToMarkdown decodes HTML entities and strips unknown tags", () => {
   assert.ok(!out.includes("<span>"));
 });
 
+test("removeInvisibleCharacters strips zero-width and formatting characters", () => {
+  const out = t.removeInvisibleCharacters("a​b‌‍﻿c­d‎‏⁠e");
+  assert.equal(out, "abcde");
+});
+
+test("removeInvisibleCharacters converts a non-breaking space to a regular space instead of deleting it", () => {
+  const out = t.removeInvisibleCharacters("a b");
+  assert.equal(out, "a b");
+});
+
+test("removeInvisibleCharacters leaves ordinary text untouched", () => {
+  assert.equal(t.removeInvisibleCharacters("hello world"), "hello world");
+});
+
+test("smartQuotesToStraight converts curly single and double quotes", () => {
+  const out = t.smartQuotesToStraight("‘hi’ said “she” and ‚he‛, „then‟");
+  assert.equal(out, "'hi' said \"she\" and 'he', \"then\"");
+});
+
+test("smartQuotesToStraight leaves straight quotes and other punctuation untouched", () => {
+  assert.equal(t.smartQuotesToStraight("already \"straight\" and 'fine'."), "already \"straight\" and 'fine'.");
+});
+
+test("wrapInXmlTags wraps text in the given tag with newlines", () => {
+  assert.equal(t.wrapInXmlTags("hello", "context"), "<context>\nhello\n</context>");
+});
+
+test("wrapInXmlTags defaults to \"context\" for an empty tag name", () => {
+  assert.equal(t.wrapInXmlTags("hello", ""), "<context>\nhello\n</context>");
+});
+
+test("wrapInXmlTags sanitizes an invalid tag name instead of producing malformed output", () => {
+  assert.equal(t.wrapInXmlTags("hello", "Document 1!"), "<document-1>\nhello\n</document-1>");
+  assert.equal(t.wrapInXmlTags("hello", "123"), "<context>\nhello\n</context>");
+});
+
 test("wordFrequency counts case-insensitively and sorts by count descending", () => {
   const out = t.wordFrequency("the cat sat on the mat. The Cat ran.");
   const lines = out.split("\n");

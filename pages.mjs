@@ -16,7 +16,7 @@
  *   description meta description + OG — unique, ~150 chars, reads like a sentence
  *   intro       lede paragraph under the h1 — unique, written from scratch
  *   transform   which transform this page is dedicated to (see assets/app.js TRANSFORMS)
- *   shape       "counter" | "simple" | "find-replace" | "repeater" | "lorem" | "uuid" | "password"
+ *   shape       "counter" | "simple" | "find-replace" | "repeater" | "lorem" | "uuid" | "password" | "wrap"
  *   faq         2–3 Q/A, unique per page (drives visible FAQ + FAQPage JSON-LD)
  */
 import { esc } from "./engine/esc.mjs";
@@ -367,6 +367,38 @@ export const PAGES = [
     ],
   },
   {
+    slug: "remove-invisible-characters",
+    eyebrow: "Invisible Characters",
+    title: "Remove Invisible Characters — Zero-Width Spaces, BOM & More",
+    description:
+      "Strip invisible Unicode characters — zero-width spaces, BOM, soft hyphens, directional marks — that sneak in from copy-pasting and silently break code or AI prompts. Free, browser-only.",
+    intro:
+      "Paste text below and every invisible, non-printing character is stripped out — zero-width spaces, a byte-order mark, soft hyphens, left-to-right/right-to-left marks, and the word joiner. These are invisible on screen but very real to a parser: they've been known to silently break JSON output, split a word an AI model was supposed to treat as one token, or make two strings that look identical fail an equality check.",
+    transform: "remove-invisible-characters",
+    shape: "simple",
+    faq: [
+      { q: "Why would invisible characters be in my text at all?", a: "Copying from a web page, a PDF, a word processor, or straight out of ChatGPT/Claude's own output commonly carries them along invisibly — a zero-width space marking a soft line-break point, or a BOM left over from how a file was saved." },
+      { q: "Does this touch a regular space or a non-breaking space?", a: "A regular space is left alone. A non-breaking space is converted to a normal space rather than deleted — deleting it outright would silently merge two words into one." },
+      { q: "Why does this matter for AI prompts specifically?", a: "A zero-width character embedded mid-word can change how a model tokenizes that word, and invisible characters inside a JSON block you're asking a model to parse (or that a model just handed back to you) can cause a parser to reject otherwise-valid-looking data — cleaning the text first rules that out." },
+    ],
+  },
+  {
+    slug: "smart-quotes-to-straight-quotes-converter",
+    eyebrow: "Smart Quotes",
+    title: "Smart Quotes to Straight Quotes Converter",
+    description:
+      "Convert curly “smart” quotes and apostrophes to plain straight quotes ' and \". Free, instant, runs entirely in your browser.",
+    intro:
+      "Paste text with typographic “curly” quotes — the kind Word, Google Docs, and iOS auto-correct insert automatically — and get back plain straight quotes and apostrophes instead. Useful anywhere curly quotes cause trouble: code, JSON, a terminal command, or a prompt pasted into an AI tool that expects a literal \" character.",
+    transform: "smart-quotes-to-straight",
+    shape: "simple",
+    faq: [
+      { q: "What counts as a “smart” quote here?", a: "Left and right curly double quotes, left and right curly single quotes/apostrophes, and the low-9 variants some apps use for opening quotes — all get converted to a plain ' or \"." },
+      { q: "Why do curly quotes break code or JSON?", a: "A parser reading ‘ or ’ doesn't recognize it as the string-delimiter character — only a straight ' or \" is valid syntax — so pasting auto-corrected text straight into code, a config file, or a JSON blob is a common source of a confusing syntax error." },
+      { q: "Does it affect any other punctuation?", a: "No — only the quote and apostrophe characters are touched; everything else in the text is left exactly as it was." },
+    ],
+  },
+  {
     slug: "sort-lines-descending",
     eyebrow: "Sort Z to A",
     title: "Sort Lines Z to A — Reverse Alphabetical Order",
@@ -597,6 +629,22 @@ export const PAGES = [
       { q: "Is this the traditional Lorem Ipsum passage?", a: "It's generated from the same classic Latin-look word set, but sentences and paragraph lengths are randomized on each run rather than reusing the fixed traditional passage — so you get fresh, varied-length placeholder copy every time instead of the same block." },
       { q: "How many paragraphs can I generate?", a: "Up to 50 in one go, which comfortably covers most mockups and layout tests." },
       { q: "Why use placeholder text instead of real content?", a: "Placeholder text lets you judge layout, type scale and spacing without being distracted by (or waiting on) real copy — standard practice in design mockups." },
+    ],
+  },
+  {
+    slug: "wrap-text-in-xml-tags",
+    eyebrow: "XML Tag Wrapper",
+    title: "Wrap Text in XML Tags — For Claude & Structured Prompts",
+    description:
+      "Wrap pasted text in a named XML tag pair — the delimiter pattern Anthropic's own docs recommend for Claude prompts. Free, instant, browser-only.",
+    intro:
+      "Paste a block of text, set a tag name, and get it back wrapped in that tag — <context>…</context> by default, or any name you choose. Anthropic's prompting docs specifically recommend XML tags to delimit a document, instructions, or examples inside a Claude prompt, and this saves typing the open and close tags by hand every time.",
+    transform: "wrap-in-xml-tags",
+    shape: "wrap",
+    faq: [
+      { q: "Why wrap prompt content in XML tags at all?", a: "Claude (and several other models) is trained to pay attention to XML-style delimiters, so wrapping a pasted document, a set of instructions, or examples in a named tag helps the model reliably tell that section apart from your surrounding instructions — clearer than relying on line breaks alone." },
+      { q: "What happens if I use a tag name with spaces or symbols?", a: "It's sanitized down to lowercase letters, digits, hyphens and underscores automatically — spaces become hyphens and other symbols are dropped — so you always get a valid, well-formed tag rather than an error." },
+      { q: "Can I nest this — wrap something that's already wrapped?", a: "Yes — run the tool once, copy the result, paste it as the input for a second tag name, and you get nested tags. Handy for wrapping several documents inside one outer <context> tag." },
     ],
   },
   {
@@ -1165,7 +1213,7 @@ const DEV_GROUPS = new Set(["Encode & decode", "Format & validate", "Convert dat
 // squarely developer/security tools (a VPN fits a password generator far
 // better than a grammar checker does) — override those two individually
 // rather than splitting the whole group over two entries.
-const DEV_TRANSFORMS = new Set(["uuid-generator", "password-generator"]);
+const DEV_TRANSFORMS = new Set(["uuid-generator", "password-generator", "wrap-in-xml-tags"]);
 
 export function affiliateAudience(transform) {
   if (DEV_TRANSFORMS.has(transform)) return "dev";
@@ -1205,6 +1253,7 @@ export const GROUPS = [
   ["Clean up", [
     "remove-duplicate-lines", "remove-extra-spaces", "remove-line-breaks",
     "remove-empty-lines", "trim-whitespace-from-lines",
+    "remove-invisible-characters", "smart-quotes-to-straight-quotes-converter",
   ]],
   ["Reorder", [
     "sort-lines-alphabetically", "sort-lines-descending", "reverse-text",
@@ -1235,6 +1284,7 @@ export const GROUPS = [
   ["Generate", [
     "slugify-text", "text-repeater", "lorem-ipsum-generator",
     "uuid-generator", "random-password-generator", "qr-code-generator",
+    "wrap-text-in-xml-tags",
   ]],
   ["Unicode styles", [
     "strikethrough-text-generator", "upside-down-text-generator", "bold-text-generator",
@@ -1265,6 +1315,8 @@ export const TRANSFORM_GROUPS = [
     ["remove-line-breaks", "Remove line breaks"],
     ["remove-empty-lines", "Remove empty lines"],
     ["trim-lines", "Trim each line"],
+    ["remove-invisible-characters", "Remove invisible characters"],
+    ["smart-quotes-to-straight", "Smart quotes to straight"],
   ]],
   ["Reorganize", [
     ["sort-az", "Sort lines A → Z"],
@@ -1320,6 +1372,7 @@ export const TRANSFORM_GROUPS = [
     ["lorem-ipsum", "Lorem ipsum generator"],
     ["uuid-generator", "UUID generator"],
     ["password-generator", "Random password generator"],
+    ["wrap-in-xml-tags", "Wrap in XML tags"],
   ]],
   ["Fun text styles", [
     ["strikethrough-text", "Strikethrough text"],
@@ -1416,6 +1469,11 @@ export function renderTool(p = {}) {
       <label class="check"><input type="checkbox" id="pwUpper" checked> Uppercase</label>
       <label class="check"><input type="checkbox" id="pwNumbers" checked> Numbers</label>
       <label class="check"><input type="checkbox" id="pwSymbols"> Symbols</label>
+    </div>`;
+
+  const wrapRow = `
+    <div class="extra-row" data-for="wrap-in-xml-tags"${isHome ? " hidden" : ""}${!isHome && shape !== "wrap" ? " hidden" : ""}>
+      <label class="field"><span>Tag name</span><input type="text" id="wrapTag" placeholder="context" value="context"></label>
     </div>`;
 
   const NO_INPUT_SHAPES = ["lorem", "uuid", "password"];
@@ -1570,6 +1628,7 @@ export function renderTool(p = {}) {
     ${loremRow}
     ${uuidRow}
     ${passwordRow}
+    ${wrapRow}
     <label for="editor"${editorHidden}>Your text</label>
     <textarea id="editor" class="editor" placeholder="Type or paste your text here…" spellcheck="true"${editorHidden}></textarea>
     <label for="output">Result</label>

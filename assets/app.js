@@ -906,6 +906,33 @@
     return out;
   }
 
+  // ── Prompt hygiene: invisible characters, smart quotes, XML wrapping ─────
+  // Zero-width space/non-joiner/joiner, BOM/zero-width-no-break-space, soft
+  // hyphen, left/right-to-left marks and word joiner are all removed outright
+  // — none of them are visible, so there's no rendering to preserve. A
+  // non-breaking space is converted to a normal space instead of deleted,
+  // since deleting it would silently merge two words together.
+  function removeInvisibleCharacters(s) {
+    return s
+      .replace(/[​‌‍﻿­‎‏⁠]/g, "")
+      .replace(/ /g, " ");
+  }
+  function smartQuotesToStraight(s) {
+    return s
+      .replace(/[‘’‚‛]/g, "'")
+      .replace(/[“”„‟]/g, '"');
+  }
+  // Wraps input in a named XML tag pair — the pattern Anthropic's own prompt
+  // docs recommend for delimiting a document/context section for Claude. The
+  // tag name is sanitized to a safe XML name (lowercase letters, digits,
+  // hyphen, underscore) rather than rejected, so a stray character the user
+  // typed doesn't just silently produce no output.
+  function wrapInXmlTags(text, tagName) {
+    var tag = (tagName || "").trim().toLowerCase().replace(/[^a-z0-9_-]+/g, "-").replace(/^-+|-+$/g, "");
+    if (!tag || /^[0-9-]/.test(tag)) tag = "context";
+    return "<" + tag + ">\n" + text + "\n</" + tag + ">";
+  }
+
   // ── Fun text styles (Unicode tricks) ────────────────────────────────────
   // Array.from, same reasoning as reverseText above: a combining strikethrough
   // mark must land after the whole code point, not after half a surrogate pair.
@@ -1001,6 +1028,8 @@
     "markdown-to-confluence": markdownToConfluence,
     "markdown-to-slack": markdownToSlack,
     "html-to-markdown": htmlToMarkdown,
+    "remove-invisible-characters": removeInvisibleCharacters,
+    "smart-quotes-to-straight": smartQuotesToStraight,
     "word-frequency": wordFrequency,
     "csv-to-json": csvToJson,
     "json-to-csv": jsonToCsv,
@@ -1038,6 +1067,8 @@
       markdownToText: markdownToText, wordFrequency: wordFrequency, compareTexts: compareTexts,
       csvToMarkdownTable: csvToMarkdownTable, markdownToConfluence: markdownToConfluence,
       markdownToSlack: markdownToSlack, htmlToMarkdown: htmlToMarkdown,
+      removeInvisibleCharacters: removeInvisibleCharacters, smartQuotesToStraight: smartQuotesToStraight,
+      wrapInXmlTags: wrapInXmlTags,
       csvToJson: csvToJson, jsonToCsv: jsonToCsv, yamlToJson: yamlToJson, jsonToYaml: jsonToYaml,
       loremSentence: loremSentence, loremParagraph: loremParagraph, loremIpsum: loremIpsum,
       nextChipValue: nextChipValue,
@@ -1071,6 +1102,7 @@
   var regexFlagS = document.getElementById("regexFlagS");
   var pwSymbolsEl = document.getElementById("pwSymbols");
   var compareBEl = document.getElementById("compareB");
+  var wrapTagEl = document.getElementById("wrapTag");
   var compareWordsAEl = document.getElementById("compareWordsA");
   var compareWordsBEl = document.getElementById("compareWordsB");
   var compareWordDeltaEl = document.getElementById("compareWordDelta");
@@ -1098,6 +1130,7 @@
       pwSymbolsEl ? pwSymbolsEl.checked : false
     );
     if (t === "sha256-hash") return sha256Async(text);
+    if (t === "wrap-in-xml-tags") return wrapInXmlTags(text, wrapTagEl ? wrapTagEl.value : "context");
     var fn = TRANSFORMS[t] || TRANSFORMS.none;
     return fn(text);
   }
@@ -1318,7 +1351,7 @@
 
   editor.addEventListener("input", render);
   [findEl, replEl, regexEl, repeatEl, loremEl, uuidCountEl, pwLenEl, pwUpperEl, pwNumbersEl, pwSymbolsEl,
-    regexPatternEl, regexFlagG, regexFlagI, regexFlagM, regexFlagS, compareBEl].forEach(function (el) {
+    regexPatternEl, regexFlagG, regexFlagI, regexFlagM, regexFlagS, compareBEl, wrapTagEl].forEach(function (el) {
     if (el) el.addEventListener("input", render);
   });
   if (regexPatternEl) render(); // show the empty-pattern placeholder immediately, not a blank box

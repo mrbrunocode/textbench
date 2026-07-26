@@ -1,6 +1,6 @@
 # Textbench
 
-> Case conversion, cleanup, encoding, hashing, generators, JSON/YAML/CSV conversion, regex testing and more — 69 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.
+> Case conversion, cleanup, encoding, hashing, generators, JSON/YAML/CSV conversion, regex testing and more — 72 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.
 
 Textbench is a static web app: no signup, no backend, no per-visitor cost. Everything runs client-side.
 
@@ -45,6 +45,8 @@ Textbench is a static web app: no signup, no backend, no per-visitor cost. Every
 - [Reverse Text](https://textbench.app/tools/reverse-text): Reverse text character by character — turn 'hello' into 'olleh'. Free, instant, runs entirely in your browser.
 - [Reverse Line Order](https://textbench.app/tools/reverse-line-order): Reverse the order of lines in a list, keeping each line's text intact — the last line becomes the first. Free, instant, runs entirely in your browser.
 - [Trim Lines](https://textbench.app/tools/trim-whitespace-from-lines): Strip leading and trailing whitespace from every line in a block of text, without touching spacing in the middle of a line. Free, instant, browser-only.
+- [Invisible Characters](https://textbench.app/tools/remove-invisible-characters): Strip invisible Unicode characters — zero-width spaces, BOM, soft hyphens, directional marks — that sneak in from copy-pasting and silently break code or AI prompts. Free, browser-only.
+- [Smart Quotes](https://textbench.app/tools/smart-quotes-to-straight-quotes-converter): Convert curly “smart” quotes and apostrophes to plain straight quotes ' and ". Free, instant, runs entirely in your browser.
 - [Sort Z to A](https://textbench.app/tools/sort-lines-descending): Sort a list of lines in reverse alphabetical order, Z to A. Free, instant, works entirely in your browser — paste a list and get it sorted.
 - [Line Numbers](https://textbench.app/tools/add-line-numbers): Add sequential line numbers to a block of text, one per line. Free, instant, runs entirely in your browser.
 - [Slugify](https://textbench.app/tools/slugify-text): Convert any text into a clean, URL-safe slug: lowercase, hyphens instead of spaces, no special characters. Free, instant.
@@ -59,6 +61,7 @@ Textbench is a static web app: no signup, no backend, no per-visitor cost. Every
 - [JSON to YAML](https://textbench.app/tools/json-to-yaml-converter): Convert JSON to clean, readable YAML. Free, instant, runs entirely in your browser.
 - [QR Code Generator](https://textbench.app/tools/qr-code-generator): Turn any text or URL into a scannable QR code, generated entirely in your browser. Free, instant, downloadable as a PNG.
 - [Lorem Ipsum](https://textbench.app/tools/lorem-ipsum-generator): Generate lorem ipsum placeholder text, any number of paragraphs. Free, instant, runs entirely in your browser.
+- [XML Tag Wrapper](https://textbench.app/tools/wrap-text-in-xml-tags): Wrap pasted text in a named XML tag pair — the delimiter pattern Anthropic's own docs recommend for Claude prompts. Free, instant, browser-only.
 - [aLtErNaTiNg cAsE](https://textbench.app/tools/alternating-case-converter): Convert text to aLtErNaTiNg CaSe, flipping upper and lower case letter by letter. Free, instant, browser-only.
 - [InVeRsE cAsE](https://textbench.app/tools/inverse-case-converter): Invert the case of every letter in your text — uppercase becomes lowercase and lowercase becomes uppercase. Free, instant, browser-only.
 - [Extract Emails](https://textbench.app/tools/extract-emails-from-text): Pull every email address out of a block of text or a document, one per line, with duplicates removed. Free, instant, nothing uploaded.

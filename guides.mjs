@@ -585,6 +585,42 @@ export const GUIDES = {
     <h3>A one-way trip for styling</h3>
     <p>Markdown has no way to express arbitrary CSS — a specific font, a color, a custom size — so anything beyond structural formatting is necessarily lost in the conversion. That's expected: the point is recovering the content's structure as clean, editable Markdown, not a pixel-identical round trip. Nested lists convert but lose their indentation level, so this is best suited to typical article- or README-level HTML rather than deeply structured documents. Runs entirely in your browser; nothing you paste is uploaded.</p>`),
 
+  "remove-invisible-characters": g(`
+    <h2>The characters you can't see, but a parser can</h2>
+    <p>Every character has a code point, even the ones with no visible glyph. A zero-width space (U+200B) takes up zero pixels but is still a real character sitting between two letters. Copy text from a web page, a PDF export, or a chat app's output and there's a decent chance a few of these hitchhike along without you ever noticing — until something downstream chokes on them.</p>
+    <h3>What actually gets stripped</h3>
+    <ul>
+      <li>Zero-width space, zero-width non-joiner, zero-width joiner — commonly inserted by web typesetting or word-wrap logic.</li>
+      <li>Byte-order mark (BOM) — a leftover from how some editors save UTF-8 files, sometimes ending up mid-document instead of only at the very start.</li>
+      <li>Soft hyphen, left-to-right mark, right-to-left mark, word joiner — formatting/direction hints that carry no visible content of their own.</li>
+    </ul>
+    <h3>Why this bites specifically with AI tools</h3>
+    <p>Paste a block of JSON that looks perfectly valid and a strict parser rejects it — nine times out of ten, an invisible character snuck in somewhere. The same goes for prompts: a zero-width character landing inside a word can change how a model tokenizes it, and two strings that look byte-for-byte identical on screen can fail a direct equality check if one has an invisible character the other doesn't. Running text through this first rules that whole category of bug out. Everything happens locally — nothing you paste is uploaded.</p>`),
+
+  "smart-quotes-to-straight-quotes-converter": g(`
+    <h2>Why your word processor is quietly rewriting your quotes</h2>
+    <p>Word, Google Docs, Pages, and iOS/Android auto-correct all convert a plain straight quote (<code>"</code>) into a curly “smart” quote as you type — a small typographic nicety for reading prose, and a real problem the moment that text needs to be something other than prose.</p>
+    <h3>Where curly quotes cause actual breakage</h3>
+    <ul>
+      <li><b>Code and config files:</b> a string literal delimited by a curly quote isn't valid syntax in virtually any programming language — you get a syntax error that's easy to stare at without seeing, since the character looks so close to the real thing.</li>
+      <li><b>JSON:</b> the spec requires a literal straight double quote; a curly one fails to parse.</li>
+      <li><b>Terminal commands:</b> a curly quote copied into a shell command isn't treated as a quote character at all, so the command breaks in a way that's often confusing to debug.</li>
+      <li><b>AI prompts:</b> pasting auto-corrected prose into a prompt that expects a literal quoted string (a fenced code block, a JSON example) carries the same risk.</li>
+    </ul>
+    <p>This swaps every curly quote and apostrophe variant back to the plain straight character, leaving the rest of the text untouched. Runs entirely in your browser.</p>`),
+
+  "wrap-text-in-xml-tags": g(`
+    <h2>Why XML tags, of all things, help an AI prompt</h2>
+    <p>It looks like an odd throwback in a plain-text prompt, but wrapping a section in a named tag — <code>&lt;context&gt;…&lt;/context&gt;</code> — gives a model an unambiguous boundary to key off, in a way a blank line or a "here's the document:" sentence doesn't as reliably. Anthropic's own prompting documentation specifically recommends this pattern for delimiting a document, a set of instructions, or examples inside a Claude prompt.</p>
+    <h3>When this earns its keep</h3>
+    <ul>
+      <li>Pasting a document or article you want a model to reference, separate from your actual instructions.</li>
+      <li>Giving a few examples of desired output, tagged distinctly from the task description.</li>
+      <li>Any prompt assembled from multiple pasted chunks, where "which part is which" needs to survive being read by a model rather than a human skimming for paragraph breaks.</li>
+    </ul>
+    <h3>Naming and nesting</h3>
+    <p>The default tag is <code>context</code>, but any name works — <code>document</code>, <code>instructions</code>, <code>example-1</code> — and an invalid character in the name you type is automatically cleaned up rather than rejected. To nest tags, run the tool once, then paste that output back in as the input for a second, outer tag name. Runs entirely in your browser; nothing you paste is uploaded.</p>`),
+
   "md5-hash-generator": g(`
     <h2>Generating an MD5 hash</h2>
     <p>MD5 turns any input into a fixed 32-character hex fingerprint. The same input always produces the same hash, so it's a fast way to make a checksum — verifying a file downloaded intact, generating a cache key, or spotting whether two blobs of data are identical.</p>

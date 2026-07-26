@@ -1,10 +1,10 @@
 {
   "/about": {
-    "hash": "b5c0035d6ca9d1d0",
+    "hash": "77155a9d548ffcff",
     "date": "2026-07-26"
   },
   "/alternatives": {
-    "hash": "5e2319e0d2dfc968",
+    "hash": "bbbd23960c501438",
     "date": "2026-07-26"
   },
   "/contact": {
@@ -199,6 +199,10 @@
     "hash": "1834e7b019c81e0b",
     "date": "2026-07-24"
   },
+  "tools/remove-invisible-characters": {
+    "hash": "db7c9bf840a53582",
+    "date": "2026-07-26"
+  },
   "tools/remove-line-breaks": {
     "hash": "84e1b2a37fa81742",
     "date": "2026-07-24"
@@ -226,6 +230,10 @@
   "tools/slugify-text": {
     "hash": "b01a5a99445ccc40",
     "date": "2026-07-24"
+  },
+  "tools/smart-quotes-to-straight-quotes-converter": {
+    "hash": "6d72205fba71a418",
+    "date": "2026-07-26"
   },
   "tools/sort-lines-alphabetically": {
     "hash": "7e35692d3b6cc8ad",
@@ -290,6 +298,10 @@
   "tools/word-frequency-counter": {
     "hash": "b653962561594ea5",
     "date": "2026-07-24"
+  },
+  "tools/wrap-text-in-xml-tags": {
+    "hash": "23947adbe452ea96",
+    "date": "2026-07-26"
   },
   "tools/yaml-to-json-converter": {
     "hash": "bdf4bf204cc1ca29",
