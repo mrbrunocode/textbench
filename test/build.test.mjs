@@ -84,13 +84,45 @@ test("tool pages use the work shell, with the tool above the supporting prose", 
   );
 });
 
-test("the index rail links every tool from every tool page", () => {
+// The rail became hub-and-spoke on 2026-07-29. It used to assert that every
+// tool page linked to all 72 tools; that flat 72x72 graph is what these tests
+// now exist to PREVENT, so the contract is inverted: the homepage carries the
+// complete index (it is the hub), and a tool page carries only its own group
+// plus a link to every other group heading.
+test("the homepage rail is the complete index — every tool, one page", () => {
+  const html = readFileSync(join(ROOT, "index.html"), "utf8");
+  const rail = html.slice(html.indexOf('<nav class="index"'), html.indexOf("</nav>", html.indexOf('<nav class="index"')));
+  for (const p of PAGES) {
+    assert.ok(rail.includes(`/${C.COLLECTION_DIR}/${p.slug}"`), `the homepage rail is missing ${p.slug}`);
+  }
+});
+
+test("a tool page's rail carries its own group, not all 72 tools", async () => {
+  const { GROUPS, GROUP_OF } = await import("../pages.mjs");
+  const groupSlugs = Object.fromEntries(GROUPS.map(([h, s]) => [h, s]));
   for (const slug of ["word-counter", "rot13-cipher", "bold-text-generator"]) {
     const html = readFileSync(join(ROOT, C.COLLECTION_DIR, `${slug}.html`), "utf8");
     const rail = html.slice(html.indexOf('<nav class="index"'), html.indexOf("</nav>", html.indexOf('<nav class="index"')));
-    for (const p of PAGES) {
-      assert.ok(rail.includes(`/${C.COLLECTION_DIR}/${p.slug}"`), `${slug}'s rail is missing ${p.slug}`);
+
+    // Its own group is expanded...
+    for (const sib of groupSlugs[GROUP_OF[slug]]) {
+      assert.ok(rail.includes(`/${C.COLLECTION_DIR}/${sib}"`), `${slug}'s rail is missing its sibling ${sib}`);
     }
+    // ...and the rest of the catalogue is NOT dumped into it.
+    const linked = [...rail.matchAll(new RegExp(`/${C.COLLECTION_DIR}/([a-z0-9-]+)"`, "g"))].map((m) => m[1]);
+    const unique = new Set(linked);
+    assert.ok(unique.size < PAGES.length,
+      `${slug}'s rail links ${unique.size} of ${PAGES.length} tools — the flat link wall is back`);
+    assert.deepEqual([...unique].filter((s) => GROUP_OF[s] !== GROUP_OF[slug]), [],
+      `${slug}'s rail links tools outside its own group`);
+
+    // Every other group is still reachable in one click, so nothing is orphaned.
+    for (const [heading] of GROUPS) {
+      if (heading === GROUP_OF[slug]) continue;
+      const id = heading.toLowerCase().replace(/&[a-z]+;/g, " ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+      assert.ok(rail.includes(`href="/#idx-${id}"`), `${slug}'s rail cannot reach the "${heading}" group`);
+    }
+
     assert.match(html, new RegExp(`href="/${C.COLLECTION_DIR}/${slug}" aria-current="page"`),
       `${slug} should be marked as the current page in its own rail`);
   }

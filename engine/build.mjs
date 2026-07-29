@@ -64,8 +64,44 @@ const idFor = (s) => s.toLowerCase().replace(/&[a-z]+;/g, " ").replace(/[^a-z0-9
 // headings — bad for anyone navigating by heading, and boilerplate in a signal
 // that should be page-specific. A <p> plus aria-labelledby on the list keeps
 // the grouping announced ("list, Change case, 6 items") without the outline.
+/*
+ * Hub-and-spoke, not a flat wall — changed 2026-07-29.
+ *
+ * This used to render all 72 tools under all 11 headings on EVERY page. That is
+ * a 72x72 internal link graph in which every page links to every other page,
+ * which conveys no hierarchy at all: with every URL one hop from every other
+ * and every link identical site-wide, there is nothing to tell a crawler which
+ * pages matter. Search Console had 68 of textbench's 87 URLs unindexed.
+ *
+ * The old shape was a deliberate UX call ("a reader should never have to go
+ * back to the homepage to find out what else is here") and that intent is kept:
+ * every group heading is still listed and still one click away, and the group
+ * you are actually in is expanded. What changes is that a tool page now links
+ * to its ~8 siblings plus 10 group headings instead of to all 71 other tools.
+ *
+ * The homepage keeps the complete index, which is what makes it the hub: one
+ * page carrying all 72 links, with every tool two clicks from anywhere
+ * (tool -> group heading -> tool) and full crawl coverage still guaranteed by
+ * that page plus sitemap.xml. Collapsed headings deep-link to the homepage's
+ * own anchor for that group, which is why the ids below must match the ones the
+ * homepage renders.
+ *
+ * NOTE: currentSlug === null means "render the full index" (homepage and the
+ * reading pages). Don't pass a slug for the homepage or it will collapse
+ * itself and the hub stops being a hub.
+ */
 function toolIndex(currentSlug) {
+  const currentGroup = currentSlug ? GROUP_OF[currentSlug] : null;
   const groups = GROUPS.map(([heading, slugs]) => {
+    const headId = `idx-${idFor(heading)}`;
+    // Full index on the homepage; elsewhere only the group being browsed.
+    const expanded = currentSlug === null || heading === currentGroup;
+    if (!expanded) {
+      return `
+      <section class="index-group index-group--collapsed">
+        <p class="index-head"><a href="/#${headId}">${esc(heading)}</a> <span class="index-count">${slugs.length}</span></p>
+      </section>`;
+    }
     const items = slugs.map((slug) => {
       const p = bySlug[slug];
       const here = slug === currentSlug;
@@ -73,14 +109,14 @@ function toolIndex(currentSlug) {
     }).join("\n          ");
     return `
       <section class="index-group">
-        <p class="index-head" id="idx-${idFor(heading)}">${esc(heading)}</p>
-        <ul class="index-list" aria-labelledby="idx-${idFor(heading)}">
+        <p class="index-head" id="${headId}">${esc(heading)}</p>
+        <ul class="index-list" aria-labelledby="${headId}">
           ${items}
         </ul>
       </section>`;
   }).join("");
   return `
-  <nav class="index" aria-label="All tools">
+  <nav class="index" aria-label="${currentSlug === null ? "All tools" : "Tools"}">
     <div class="index-in">
       <p class="index-title"><a href="/">All ${PAGES.length} tools</a></p>${groups}
     </div>
