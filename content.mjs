@@ -33,6 +33,45 @@ function leadIn(text) {
 export const home = {
   title: `${C.NAME} — ${C.TAGLINE}`,
   description: C.DESCRIPTION,
+
+  /*
+   * Homepage FAQ, added 2026-07-29.
+   *
+   * A pre-deploy sweep found the homepage carried WebApplication +
+   * BreadcrumbList JSON-LD but no FAQPage. Short, standalone question/answer
+   * pairs are the most extractable shape for AI answer engines, and the
+   * homepage is also the page AdSense reviewers weigh most heavily — it was a
+   * tool plus a rail with little prose stating what the site actually is.
+   *
+   * renderDocument() emits this as FAQPage JSON-LD and as visible markup, so
+   * every answer must stand on its own when quoted with no surrounding context.
+   */
+  faq: [
+    {
+      q: `Is ${C.NAME} free?`,
+      a: `Yes — every tool is free with no account, no signup and no usage limit. There is no paid tier, so nothing is held back or metered.`,
+    },
+    {
+      q: "Is my text uploaded anywhere?",
+      a: `No. Every tool runs entirely in your browser with JavaScript, so the text you paste never leaves your device. That also means the tools keep working with no network connection once a page has loaded.`,
+    },
+    {
+      q: `What can I do with ${C.NAME}?`,
+      a: `Change case, count words and characters, clean up whitespace and duplicate lines, sort and reverse lines, extract emails, URLs and numbers, test regular expressions, encode and decode Base64, URLs, HTML entities, binary, hex and Morse, convert between JSON, CSV, YAML and Markdown, generate hashes, UUIDs, passwords, slugs and QR codes, and check readability.`,
+    },
+    {
+      q: "Can I use it offline, or install it?",
+      a: `Yes to both. ${C.NAME} is a progressive web app: your browser will offer to install it to your home screen or dock, and because every tool runs locally it continues to work with no connection.`,
+    },
+    {
+      q: "Is there a faster way to find a specific tool?",
+      a: `Press Cmd+K (or Ctrl+K on Windows and Linux) anywhere on the site to open a command palette and jump straight to any tool by name.`,
+    },
+    {
+      q: "Do you keep a history of what I paste?",
+      a: `No. Nothing you paste is stored or transmitted. The only thing kept is a short list of which tools you have opened recently, held in your own browser's local storage so the site can surface them again — it never contains your text and never leaves your device.`,
+    },
+  ],
   // The tool leads the page. The old shape here was a centred headline, a
   // centred lede and a "65 tools · 11 categories · 0 uploads" stat triplet
   // stacked above the thing people came for — all three are on the list of
@@ -159,7 +198,7 @@ export const privacy = {
 export const terms = {
   path: "/terms",
   title: `Terms of Service — ${C.NAME}`,
-  description: `The terms for using ${C.NAME}.`,
+  description: `The terms for using ${C.NAME} — what you may do with the tools, what is not warranted, and the (deliberately short) list of limitations.`,
   bodyHtml: `
   <section class="prose">
     <h1>Terms of service</h1>
@@ -273,7 +312,7 @@ export const embed = {
 export const contact = {
   path: "/contact",
   title: `Contact — ${C.NAME}`,
-  description: `Get in touch about ${C.NAME}.`,
+  description: `Get in touch about ${C.NAME} — report a bug, request a tool, or ask about using the tools at work. One person reads every message.`,
   bodyHtml: `
   <section class="prose">
     <h1>Contact</h1>

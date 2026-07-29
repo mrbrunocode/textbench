@@ -266,7 +266,8 @@ function homeDocument() {
   // full catalogue, and the supporting prose sits below at a reading measure.
   const body = `${home.bodyHtml}
   ${adSlot()}
-  <div class="measure">${home.belowHtml || ""}</div>`;
+  <div class="measure">${home.belowHtml || ""}
+  ${faqHtml(home.faq)}</div>`;
   return renderDocument({
     title: home.title,
     description: home.description || C.DESCRIPTION,
@@ -275,6 +276,7 @@ function homeDocument() {
     layout: "work",
     index: toolIndex(null),
     margin: marginNotes([home.marginHtml || ""]),
+    faq: home.faq,
     bodyHtml: body,
     headExtra: toolsIndexScript(),
   });
@@ -410,8 +412,40 @@ function manifest() {
   );
 }
 
+/*
+ * Cloudflare prepends a "Managed content" block to whatever we serve here,
+ * and that block disallows the *training* crawlers account-wide (GPTBot,
+ * ClaudeBot, CCBot, Google-Extended, Amazonbot, Applebot-Extended,
+ * Bytespider, meta-externalagent). It does NOT name the search/citation
+ * crawlers, so they fall through to `User-agent: *` and are already allowed.
+ *
+ * These explicit allows are therefore belt-and-braces, not a fix for a block
+ * — stated plainly because a previous session mistook the absence of these
+ * lines for the reason textbench gets no ChatGPT referrals. It isn't; see the
+ * 2026-07-29 audit. The likelier reason is structural: ChatGPT performs text
+ * transforms in the conversation itself, so it has no reason to refer anyone
+ * out to a text-transform site. Worth knowing before optimising for a channel
+ * this app may simply not be able to win.
+ *
+ * Deliberately NOT re-listing GPTBot/ClaudeBot as allowed: the same token in
+ * two conflicting groups in one served file is undefined behaviour across
+ * parsers. Cloudflare's block wins and we leave it alone.
+ */
 function robots() {
   return `User-agent: *
+Allow: /
+
+# Search and citation crawlers — these send traffic or get cited.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
 Allow: /
 
 Sitemap: ${C.SITE_URL}/sitemap.xml
