@@ -192,3 +192,15 @@ test("retired mirror-pair slugs are redirected, not resurrected or 404'd", () =>
       `${slug} was in the sitemap once, so it needs a 301 — not a hard 404`);
   }
 });
+
+test("robots.txt names the user-triggered AI fetchers that send referrals", () => {
+  // AI-assistant referral is the only channel in this family that delivers
+  // engaged humans (countlink: 29% of sessions at 38s avg engagement vs 3s for
+  // direct), so these must stay explicitly named rather than left to the
+  // wildcard — see the comment above robots() in engine/build.mjs.
+  const robots = readFileSync(join(ROOT, "robots.txt"), "utf8");
+  for (const agent of ["OAI-SearchBot", "ChatGPT-User", "Claude-User", "PerplexityBot", "Perplexity-User"]) {
+    assert.match(robots, new RegExp(`^User-agent: ${agent}$`, "m"),
+      `robots.txt no longer names ${agent}`);
+  }
+});
