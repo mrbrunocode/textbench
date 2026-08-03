@@ -67,7 +67,7 @@ const idFor = (s) => s.toLowerCase().replace(/&[a-z]+;/g, " ").replace(/[^a-z0-9
 /*
  * Hub-and-spoke, not a flat wall — changed 2026-07-29.
  *
- * This used to render all 72 tools under all 11 headings on EVERY page. That is
+ * This used to render all 63 tools under all 11 headings on EVERY page. That is
  * a 72x72 internal link graph in which every page links to every other page,
  * which conveys no hierarchy at all: with every URL one hop from every other
  * and every link identical site-wide, there is nothing to tell a crawler which

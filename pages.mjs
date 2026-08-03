@@ -312,10 +312,12 @@ export const PAGES = [
       "Paste a list, one item per line, and it's sorted alphabetically. Use the toggle below to switch between A→Z and Z→A order.",
     transform: "sort-az",
     shape: "simple",
+    directions: [["sort-az", "A → Z"], ["sort-za", "Z → A"]],
     faq: [
       { q: "Is the sort case-sensitive?", a: "No — it sorts case-insensitively (\"apple\" and \"Apple\" sort the same way), which matches how most people expect an alphabetical list to behave." },
       { q: "How are numbers sorted?", a: "Numbers sort as text by default, so \"10\" comes before \"2\" (because \"1\" < \"2\" as characters). For numeric sorting, pad numbers with leading zeros first, or sort in a spreadsheet instead." },
       { q: "What happens to blank lines?", a: "Blank lines sort to wherever an empty string would fall — typically first — so you may want to remove empty lines before sorting if that's not what you want." },
+      { q: "Is Z→A just the A→Z result flipped?", a: "For most lists, yes — it reads the same as taking the A→Z sort and reversing it top to bottom. Ties (identical lines) may order slightly differently, but the overall ordering is the same either way." },
     ],
   },
   {
@@ -396,22 +398,6 @@ export const PAGES = [
       { q: "What counts as a “smart” quote here?", a: "Left and right curly double quotes, left and right curly single quotes/apostrophes, and the low-9 variants some apps use for opening quotes — all get converted to a plain ' or \"." },
       { q: "Why do curly quotes break code or JSON?", a: "A parser reading ‘ or ’ doesn't recognize it as the string-delimiter character — only a straight ' or \" is valid syntax — so pasting auto-corrected text straight into code, a config file, or a JSON blob is a common source of a confusing syntax error." },
       { q: "Does it affect any other punctuation?", a: "No — only the quote and apostrophe characters are touched; everything else in the text is left exactly as it was." },
-    ],
-  },
-  {
-    slug: "sort-lines-descending",
-    eyebrow: "Sort Z to A",
-    title: "Sort Lines Z to A — Reverse Alphabetical Order",
-    description:
-      "Sort a list of lines in reverse alphabetical order, Z to A. Free, instant, works entirely in your browser — paste a list and get it sorted.",
-    intro:
-      "Paste a list, one item per line, and it comes back sorted in reverse alphabetical order — Z to A. Useful when you want the end of the alphabet first, or just want to flip a list you already sorted the other way.",
-    transform: "sort-za",
-    shape: "simple",
-    faq: [
-      { q: "Is this just the A-Z sort reversed?", a: "For most lists, yes — the result reads the same as taking an A-to-Z sort and flipping it top to bottom. Ties (identical lines) may order slightly differently, but the overall Z-to-A ordering is the same either way." },
-      { q: "Is the sort case-sensitive?", a: "No — it sorts case-insensitively, so \"apple\" and \"Apple\" are treated as equal for ordering purposes, matching how most people expect an alphabetical list to behave." },
-      { q: "How are numbers handled?", a: "Numbers sort as text, so \"9\" comes before \"10\" here (because \"9\" > \"1\" as a character) — the opposite of what numeric sorting would give. For numeric order, pad numbers with leading zeros first." },
     ],
   },
   {
@@ -537,66 +523,39 @@ export const PAGES = [
   },
   {
     slug: "csv-to-json-converter",
-    eyebrow: "CSV to JSON",
-    title: "CSV to JSON Converter — Online, Instant",
+    eyebrow: "CSV ↔ JSON",
+    title: "CSV to JSON Converter (and JSON to CSV)",
     description:
-      "Convert CSV to a JSON array of objects, using the first row as keys. Free, instant, runs entirely in your browser.",
+      "Convert CSV to a JSON array of objects, or convert a JSON array back to CSV. Free, instant, runs entirely in your browser.",
     intro:
-      "Paste CSV below — the first row is used as field names, and each following row becomes one JSON object. Handles quoted fields with embedded commas correctly.",
+      "Paste CSV to get a JSON array of objects — the first row becomes the field names, each following row becomes one object — or flip to JSON → CSV to go the other way. Quoted fields with embedded commas are handled correctly in both directions.",
     transform: "csv-to-json",
     shape: "simple",
+    directions: [["csv-to-json", "CSV → JSON"], ["json-to-csv", "JSON → CSV"]],
     faq: [
       { q: "What if my CSV has no header row?", a: "The first row is always treated as the header/keys — if your data has no header, add one temporary row of column names before converting, then remove it from the output afterward." },
-      { q: "Does it handle quoted fields with commas inside them?", a: "Yes — a quoted field like \"Smith, John\" is parsed as one value, not split on the internal comma." },
-      { q: "What data type are the values in the output?", a: "Everything becomes a JSON string — numbers and booleans in the CSV aren't auto-detected and converted to their native JSON types, since CSV itself has no type information to distinguish \"123\" the number from \"123\" the string." },
-    ],
-  },
-  {
-    slug: "json-to-csv-converter",
-    eyebrow: "JSON to CSV",
-    title: "JSON to CSV Converter — Online, Instant",
-    description:
-      "Convert a JSON array of objects to CSV, using the union of every object's keys as columns. Free, instant, runs entirely in your browser.",
-    intro:
-      "Paste a JSON array of objects below — every key used by any object becomes a CSV column, and each object becomes one row (a missing key just leaves that cell empty). Fields containing a comma, quote or newline are automatically quoted.",
-    transform: "json-to-csv",
-    shape: "simple",
-    faq: [
-      { q: "Does it work with nested objects or arrays as values?", a: "Nested values are stringified into the cell as-is (e.g. \"[object Object]\" for a nested object) rather than flattened into separate columns — flatten nested data yourself first for a clean CSV." },
-      { q: "What if objects in the array have different keys?", a: "The header is the union of every object's keys, not just the first one's — so an extra field on a later object still gets its own column, and any row missing a given key just gets an empty cell there. Nothing is silently dropped." },
-      { q: "What if I paste something that isn't a JSON array?", a: "You'll see an error message explaining a JSON array of objects is expected, instead of a broken or empty CSV." },
+      { q: "Does it handle quoted fields with commas inside them?", a: "Yes — a quoted field like \"Smith, John\" is parsed as one value, not split on the internal comma. Going the other way, fields containing a comma, quote or newline are automatically quoted." },
+      { q: "What data type are the values in the JSON output?", a: "Everything becomes a JSON string — numbers and booleans in the CSV aren't auto-detected, since CSV itself carries no type information to distinguish \"123\" the number from \"123\" the string." },
+      { q: "What if objects in the array have different keys?", a: "Converting to CSV, the header is the union of every object's keys, not just the first one's — an extra field on a later object still gets its own column, and rows missing that key get an empty cell. Nothing is silently dropped." },
+      { q: "Does it work with nested objects or arrays as values?", a: "Nested values are stringified into the cell as-is rather than flattened into separate columns — flatten nested data yourself first for a clean CSV." },
     ],
   },
   {
     slug: "yaml-to-json-converter",
-    eyebrow: "YAML to JSON",
-    title: "YAML to JSON Converter — Online, Instant",
+    eyebrow: "YAML ↔ JSON",
+    title: "YAML to JSON Converter (and JSON to YAML)",
     description:
-      "Convert YAML to JSON, pretty-printed with 2-space indentation. Free, instant, runs entirely in your browser.",
+      "Convert YAML to pretty-printed JSON, or convert JSON to clean readable YAML. Free, instant, runs entirely in your browser.",
     intro:
-      "Paste YAML below — config files, Docker Compose, GitHub Actions workflows, anything — and get back the equivalent JSON, pretty-printed and ready to use wherever YAML isn't accepted.",
+      "Paste YAML — a config file, Docker Compose, a GitHub Actions workflow — to get the equivalent JSON, or flip to JSON → YAML to turn an API response or config into the format a Kubernetes manifest or workflow file expects.",
     transform: "yaml-to-json",
     shape: "simple",
+    directions: [["yaml-to-json", "YAML → JSON"], ["json-to-yaml", "JSON → YAML"]],
     faq: [
       { q: "Does it support the full YAML spec, including anchors and aliases?", a: "It uses a standard YAML 1.2 parser (js-yaml, the same library many JavaScript tools rely on), so anchors, aliases, multi-document markers and the usual scalar types are all supported." },
-      { q: "What happens if the YAML has a syntax error?", a: "You'll see \"Invalid YAML:\" followed by the parser's own error message, which usually names the line where parsing failed." },
-      { q: "Is my YAML uploaded anywhere?", a: "No — parsing runs entirely in your browser (the parser library itself is fetched from a CDN once, the same way this page's fonts are, but your pasted content never is)." },
-    ],
-  },
-  {
-    slug: "json-to-yaml-converter",
-    eyebrow: "JSON to YAML",
-    title: "JSON to YAML Converter — Online, Instant",
-    description:
-      "Convert JSON to clean, readable YAML. Free, instant, runs entirely in your browser.",
-    intro:
-      "Paste JSON below and get back the equivalent YAML — useful for turning an API response or config into the format a Kubernetes manifest, GitHub Actions workflow, or Docker Compose file expects.",
-    transform: "json-to-yaml",
-    shape: "simple",
-    faq: [
-      { q: "Does it preserve key order?", a: "Yes — object keys appear in the YAML output in the same order they appeared in the JSON." },
-      { q: "What if my input isn't valid JSON?", a: "You'll see \"Invalid JSON:\" and the parser's error message instead of broken output." },
-      { q: "Is my data uploaded anywhere?", a: "No — conversion runs entirely in your browser; only the small YAML-serialization library itself is fetched from a CDN once." },
+      { q: "Does it preserve key order?", a: "Yes — keys appear in the output in the same order they appeared in the input, in both directions." },
+      { q: "What happens if the input has a syntax error?", a: "You'll see \"Invalid YAML:\" or \"Invalid JSON:\" followed by the parser's own error message, which usually names the line where parsing failed — rather than broken or empty output." },
+      { q: "Is my data uploaded anywhere?", a: "No — parsing and serialization run entirely in your browser. Only the small parser library itself is fetched from a CDN once; your pasted content never leaves the page." },
     ],
   },
   {
@@ -729,194 +688,111 @@ export const PAGES = [
   },
   {
     slug: "base64-encode",
-    eyebrow: "Base64 Encode",
-    title: "Base64 Encode Text Online",
+    eyebrow: "Base64",
+    title: "Base64 Encode & Decode Online",
     description:
-      "Encode text to Base64 instantly. Free, browser-only — nothing you paste is uploaded anywhere.",
+      "Encode text to Base64 or decode it back, in one tool. Free, browser-only — nothing you paste is uploaded anywhere.",
     intro:
-      "Paste text below to encode it to Base64 — the ASCII-safe encoding commonly used for embedding binary-ish data in JSON, URLs, or email attachments.",
+      "Paste text to encode it to Base64, or flip to Decode to turn a Base64 string back into readable text. Base64 is the ASCII-safe encoding used for embedding binary-ish data in JSON, URLs, data URIs and email attachments — and because it round-trips, both directions belong on one page.",
     transform: "base64-encode",
     shape: "simple",
+    directions: [["base64-encode", "Encode"], ["base64-decode", "Decode"]],
     faq: [
-      { q: "Is Base64 encryption?", a: "No — Base64 is an encoding, not encryption. It's trivially reversible by anyone (including this same tool's decode page) and provides no confidentiality. Don't use it to protect sensitive data." },
+      { q: "Is Base64 encryption?", a: "No — Base64 is an encoding, not encryption. It's trivially reversible by anyone (including the Decode side of this page) and provides no confidentiality whatsoever. Don't use it to protect sensitive data." },
       { q: "Does it handle Unicode text correctly?", a: "Yes — the input is UTF-8 encoded before Base64 conversion, so accented letters, emoji and non-Latin scripts round-trip correctly through encode and decode." },
-      { q: "What's Base64 commonly used for?", a: "Embedding small binary data in text-only formats like JSON or XML, encoding images inline in CSS/HTML (data URIs), and email attachment encoding (MIME)." },
-    ],
-  },
-  {
-    slug: "base64-decode",
-    eyebrow: "Base64 Decode",
-    title: "Base64 Decode Text Online",
-    description:
-      "Decode a Base64 string back to readable text instantly. Free, browser-only, nothing uploaded.",
-    intro:
-      "Paste a Base64-encoded string below to decode it back to plain text.",
-    transform: "base64-decode",
-    shape: "simple",
-    faq: [
-      { q: "What happens if the input isn't valid Base64?", a: "The result area shows \"Invalid Base64 input\" rather than garbled output, so you know immediately that the string wasn't decodable as-is." },
-      { q: "Does it handle padding characters (=)?", a: "Yes — standard Base64 padding is handled automatically; you don't need to strip or add \"=\" characters yourself." },
+      { q: "What happens if the input isn't valid Base64?", a: "Decoding shows \"Invalid Base64 input\" rather than garbled output, so you know immediately the string wasn't decodable as-is. Standard \"=\" padding is handled automatically — you don't need to strip or add it." },
       { q: "Can I decode a data: URI directly?", a: "Strip the \"data:...;base64,\" prefix first — only the Base64 portion after the comma should be pasted in." },
+      { q: "What's Base64 commonly used for?", a: "Embedding small binary data in text-only formats like JSON or XML, encoding images inline in CSS/HTML (data URIs), and email attachment encoding (MIME)." },
     ],
   },
   {
     slug: "url-encode",
     eyebrow: "URL Encode",
-    title: "URL Encode Text Online (Percent-Encoding)",
+    title: "URL Encode & Decode Online (Percent-Encoding)",
     description:
-      "Percent-encode text for safe use in a URL — spaces, symbols and special characters are escaped. Free, instant, browser-only.",
+      "Percent-encode text for safe use in a URL, or decode an encoded string back to readable text. Free, instant, browser-only.",
     intro:
-      "Paste text below to URL-encode it — spaces become %20, and other characters that aren't safe in a URL are escaped to their percent-encoded form.",
+      "Paste text to percent-encode it for a URL — spaces become %20 and other unsafe characters are escaped — or flip to Decode to turn an encoded string back into readable text. Both directions of the same transformation, so you don't have to switch pages mid-task.",
     transform: "url-encode",
     shape: "simple",
+    directions: [["url-encode", "Encode"], ["url-decode", "Decode"]],
     faq: [
-      { q: "Is this the same as encoding a full URL?", a: "This encodes a single value (like a query parameter), escaping characters such as spaces, &, = and ? that would otherwise break a URL's structure. Don't run a whole URL through this or you'll also encode its own \"://\" and \"/\" separators." },
-      { q: "Why does a space become %20 and not +?", a: "%20 is the standard percent-encoding for a space (used in URL paths and most contexts); \"+\" is a legacy convention specific to form-encoded query strings. This tool uses the standard %20 form." },
-      { q: "Is my text sent anywhere to encode it?", a: "No — it uses the browser's built-in encodeURIComponent, entirely client-side." },
-    ],
-  },
-  {
-    slug: "url-decode",
-    eyebrow: "URL Decode",
-    title: "URL Decode Text Online (Percent-Decoding)",
-    description:
-      "Decode a percent-encoded URL string back to readable text. Free, instant, browser-only.",
-    intro:
-      "Paste a percent-encoded string (like a URL query parameter) below to decode it back to its original, readable form.",
-    transform: "url-decode",
-    shape: "simple",
-    faq: [
-      { q: "What if the string isn't validly encoded?", a: "You'll see \"Invalid URL-encoded input\" rather than a broken partial result, so a malformed % sequence is obvious immediately." },
-      { q: "Does it decode + as a space?", a: "No — this decodes standard percent-encoding only. If your string uses \"+\" for spaces (form-encoding), replace \"+\" with a space or %20 first." },
-      { q: "Can I decode an entire URL, not just one parameter?", a: "Yes, though be aware structural characters like \"/\" and \":\" that weren't actually percent-encoded will simply pass through unchanged." },
+      { q: "Is this the same as encoding a full URL?", a: "This encodes a single value (like a query parameter), escaping characters such as spaces, &, = and ? that would otherwise break a URL's structure. Don't run a whole URL through the encoder or you'll also encode its own \"://\" and \"/\" separators." },
+      { q: "Why does a space become %20 and not +?", a: "%20 is the standard percent-encoding for a space (used in URL paths and most contexts); \"+\" is a legacy convention specific to form-encoded query strings. This tool uses the standard %20 form, and the decoder does not treat \"+\" as a space — replace it yourself first if your string uses that convention." },
+      { q: "What if the string isn't validly encoded?", a: "Decoding shows \"Invalid URL-encoded input\" rather than a broken partial result, so a malformed % sequence is obvious immediately." },
+      { q: "Is my text sent anywhere?", a: "No — it uses the browser's built-in encodeURIComponent / decodeURIComponent, entirely client-side." },
     ],
   },
   {
     slug: "html-entity-encode",
-    eyebrow: "HTML Encode",
-    title: "HTML Entity Encoder — Escape Special Characters",
+    eyebrow: "HTML Entities",
+    title: "HTML Entity Encoder & Decoder",
     description:
-      "Escape text for safe use inside HTML — converts <, >, &, quotes and apostrophes to their HTML entity equivalents. Free, instant, browser-only.",
+      "Escape text for safe use inside HTML, or decode HTML entities back to their original characters. Free, instant, browser-only.",
     intro:
-      "Paste text below to escape it for safe embedding inside HTML — the characters that would otherwise be interpreted as markup (<, >, &, \", ') are converted to their entity codes.",
+      "Paste text to escape the characters that would otherwise be read as markup (<, >, &, \", '), or flip to Decode to turn entities like &amp; and &#39; back into normal characters. One page for both directions of HTML escaping.",
     transform: "html-entities-encode",
     shape: "simple",
+    directions: [["html-entities-encode", "Encode"], ["html-entities-decode", "Decode"]],
     faq: [
       { q: "Why would I need to escape text before putting it in HTML?", a: "If user-provided or arbitrary text is inserted into an HTML page without escaping, characters like < and > can be interpreted as markup — at best breaking the layout, at worst creating an XSS vulnerability. Escaping neutralizes that." },
-      { q: "Does this escape every possible character?", a: "It escapes the five characters that matter for HTML safety: <, >, &, \" and '. That covers the standard XSS-prevention case; it doesn't transliterate accented letters or emoji, which don't need escaping in HTML." },
+      { q: "Which characters and entities are supported?", a: "Encoding escapes the five that matter for HTML safety: <, >, &, \" and '. Decoding uses the browser's own HTML parser, so every named entity (&amp;, &copy;, &hearts;) and every numeric entity (&#39;, &#x27;) is handled — not just a hand-picked list." },
       { q: "Is this a substitute for proper server-side sanitization?", a: "For anything security-sensitive (rendering user input in a real application), use your framework's built-in escaping at the point of output — this tool is for one-off manual encoding, not a runtime security control." },
-    ],
-  },
-  {
-    slug: "html-entity-decode",
-    eyebrow: "HTML Decode",
-    title: "HTML Entity Decoder — Unescape HTML Entities",
-    description:
-      "Decode HTML entities (&amp;, &lt;, &#39;, and more) back to their original characters. Free, instant, browser-only.",
-    intro:
-      "Paste text containing HTML entities below to decode them back to normal readable characters — handles named entities like &amp; and numeric entities like &#39; alike.",
-    transform: "html-entities-decode",
-    shape: "simple",
-    faq: [
-      { q: "Which entities does it support?", a: "All of them — decoding is done by the browser's own HTML parser, so every named entity (&amp;, &copy;, &hearts;, etc.) and every numeric entity (&#39;, &#x27;) is handled correctly, not just a hand-picked list." },
-      { q: "Is this safe to use on untrusted HTML?", a: "The decoding itself doesn't execute anything — it only converts entity text to characters. It doesn't render the HTML, so no scripts run." },
       { q: "Why would text have HTML entities in it in the first place?", a: "Common sources: copying text out of a web page's source, an RSS/XML feed, or an export from a CMS that stores content with entities encoded." },
     ],
   },
   {
     slug: "text-to-binary",
-    eyebrow: "Text to Binary",
-    title: "Text to Binary Converter",
+    eyebrow: "Text ↔ Binary",
+    title: "Text to Binary Converter (and Back)",
     description:
-      "Convert text to binary code (8-bit bytes, space-separated). Free, instant, browser-only.",
+      "Convert text to binary code as 8-bit bytes, or convert binary back to readable text. Free, instant, browser-only.",
     intro:
-      "Paste text below to convert each character to its binary (base-2) representation, shown as space-separated 8-bit bytes.",
+      "Paste text to see each character as its binary (base-2) representation in space-separated 8-bit bytes, or flip to Binary → Text to reverse it. The two directions are the same mapping read each way, so they share a page.",
     transform: "binary-encode",
     shape: "simple",
+    directions: [["binary-encode", "Text → Binary"], ["binary-decode", "Binary → Text"]],
     faq: [
       { q: "How is each character converted?", a: "Text is first encoded as UTF-8 bytes, then each byte is shown as an 8-digit binary number — this correctly handles accented letters, emoji and non-English text, not just basic ASCII." },
-      { q: "Can I convert the binary back to text?", a: "Yes — use the binary-to-text converter, which reverses this exact process." },
       { q: "Why 8 digits per byte?", a: "A byte is 8 bits, so padding every binary number to 8 digits (e.g. 01000001 for \"A\") keeps every byte the same width and makes the output easy to split back apart." },
-    ],
-  },
-  {
-    slug: "binary-to-text",
-    eyebrow: "Binary to Text",
-    title: "Binary to Text Converter",
-    description:
-      "Convert binary code (space-separated 8-bit bytes) back to readable text. Free, instant, browser-only.",
-    intro:
-      "Paste space-separated binary bytes below (like 01001000 01101001) to convert them back to readable text.",
-    transform: "binary-decode",
-    shape: "simple",
-    faq: [
-      { q: "What format does the binary need to be in?", a: "Space-separated groups of 0s and 1s, one group per byte — the same format this tool's text-to-binary converter produces. Other separators (commas, no spaces) won't parse correctly." },
-      { q: "What happens with invalid binary input?", a: "You'll see \"Invalid binary input\" rather than garbled text, so a malformed byte is obvious." },
+      { q: "What format does binary input need to be in?", a: "Space-separated groups of 0s and 1s, one group per byte — exactly what the Text → Binary direction produces. Other separators (commas, no spaces) won't parse, and you'll see \"Invalid binary input\" rather than garbled text." },
       { q: "Does it handle multi-byte characters like emoji?", a: "Yes — the bytes are decoded as UTF-8, so multi-byte characters reconstruct correctly as long as all their bytes are present and in order." },
     ],
   },
   {
     slug: "text-to-hex",
-    eyebrow: "Text to Hex",
-    title: "Text to Hexadecimal Converter",
+    eyebrow: "Text ↔ Hex",
+    title: "Text to Hexadecimal Converter (and Back)",
     description:
-      "Convert text to hexadecimal byte values, space-separated. Free, instant, browser-only.",
+      "Convert text to hexadecimal byte values, or convert hex back to readable text. Free, instant, browser-only.",
     intro:
-      "Paste text below to convert it to hexadecimal — each byte of the UTF-8 encoded text shown as a two-digit hex value.",
+      "Paste text to convert it to hexadecimal — each byte of the UTF-8 encoded text as a two-digit hex value — or flip to Hex → Text to read hex bytes back as characters.",
     transform: "hex-encode",
     shape: "simple",
+    directions: [["hex-encode", "Text → Hex"], ["hex-decode", "Hex → Text"]],
     faq: [
-      { q: "Why hex instead of binary?", a: "Hex is a more compact, common way to represent byte values — two hex digits per byte instead of eight binary digits — and is the standard format used in debuggers, network dumps and color codes." },
-      { q: "Does it handle non-ASCII text?", a: "Yes — text is UTF-8 encoded first, so accented characters and emoji convert to their correct multi-byte hex sequences." },
-      { q: "Can I convert this back to text?", a: "Yes, with the hex-to-text converter." },
-    ],
-  },
-  {
-    slug: "hex-to-text",
-    eyebrow: "Hex to Text",
-    title: "Hexadecimal to Text Converter",
-    description:
-      "Convert hexadecimal byte values back to readable text. Free, instant, browser-only.",
-    intro:
-      "Paste hex byte values below (spaces, commas or a continuous string all work) to convert them back to readable text.",
-    transform: "hex-decode",
-    shape: "simple",
-    faq: [
-      { q: "What hex formats are accepted?", a: "Space-separated (\"48 69\"), comma-separated, or one continuous string (\"4869\") — all are accepted; a leading \"0x\" on values is also stripped automatically." },
-      { q: "What if the hex is invalid?", a: "You'll see \"Invalid hex input\" if the string contains non-hex characters or an odd number of hex digits (which can't form complete bytes)." },
-      { q: "Does this handle Unicode text correctly?", a: "Yes, as long as the hex represents valid UTF-8 bytes — which is exactly what this tool's text-to-hex converter produces." },
+      { q: "Why hex instead of binary?", a: "Hex is a more compact, common way to represent byte values — two hex digits per byte instead of eight binary digits — and is the standard format used in debuggers, network dumps and colour codes." },
+      { q: "What hex input formats are accepted?", a: "Space-separated (\"48 69\"), comma-separated, or one continuous string (\"4869\") — all work, and a leading \"0x\" on values is stripped automatically." },
+      { q: "What if the hex is invalid?", a: "You'll see \"Invalid hex input\" if the string contains non-hex characters or an odd number of hex digits, which can't form complete bytes." },
+      { q: "Does it handle non-ASCII text?", a: "Yes — text is UTF-8 encoded first, so accented characters and emoji convert to their correct multi-byte hex sequences and reconstruct correctly on the way back." },
     ],
   },
   {
     slug: "morse-code-translator",
-    eyebrow: "Text → Morse",
-    title: "Morse Code Translator — Text to Morse",
+    eyebrow: "Morse Code",
+    title: "Morse Code Translator — Text to Morse and Back",
     description:
-      "Translate text into Morse code — letters, numbers and basic punctuation. Free, instant, browser-only.",
+      "Translate text into Morse code, or translate dots and dashes back into readable text. Free, instant, browser-only.",
     intro:
-      "Paste text below to translate it into Morse code — dots and dashes for each letter and number, with \"/\" separating words.",
+      "Paste text to translate it into Morse code — dots and dashes per letter, \"/\" between words — or flip to Morse → Text to decode it. Both directions of International Morse Code on one page.",
     transform: "morse-encode",
     shape: "simple",
+    directions: [["morse-encode", "Text → Morse"], ["morse-decode", "Morse → Text"]],
     faq: [
       { q: "What characters does it support?", a: "Letters A–Z, digits 0–9, and basic punctuation (period, comma, question mark). Other characters are silently dropped, since standard International Morse Code doesn't define a symbol for them." },
-      { q: "How are words separated?", a: "Letters within a word are space-separated; a forward slash (/) marks the boundary between words, which is the standard written convention for Morse code." },
-      { q: "Can I convert Morse code back to text?", a: "Yes, with the Morse-to-text translator." },
-    ],
-  },
-  {
-    slug: "morse-code-to-text",
-    eyebrow: "Morse → Text",
-    title: "Morse Code to Text Translator",
-    description:
-      "Translate Morse code (dots and dashes) back into readable text. Free, instant, browser-only.",
-    intro:
-      "Paste Morse code below — letters space-separated, words separated by \"/\" — to translate it back into readable text.",
-    transform: "morse-decode",
-    shape: "simple",
-    faq: [
-      { q: "What format does the Morse code need to be in?", a: "Each letter's dots/dashes separated by a space, and \"/\" between words — the same format produced by this tool's text-to-Morse translator." },
-      { q: "What happens with a code that doesn't match a known letter?", a: "Unrecognized groups are skipped, so a typo in the Morse (an extra dot, a missing dash) will drop that one letter rather than corrupt the whole result." },
-      { q: "Is Morse code still used for anything today?", a: "Mainly amateur radio, some aviation/maritime signaling, and accessibility tools — but it's also a common puzzle/learning exercise, which is the more typical use for a tool like this." },
+      { q: "How are words separated?", a: "Letters within a word are space-separated; a forward slash (/) marks the boundary between words, which is the standard written convention for Morse code — and the format the decoder expects." },
+      { q: "What happens with a code that doesn't match a known letter?", a: "Unrecognized groups are skipped, so a typo in the Morse (an extra dot, a missing dash) drops that one letter rather than corrupting the whole result." },
+      { q: "Is Morse code still used for anything today?", a: "Mainly amateur radio, some aviation and maritime signalling, and accessibility switch devices — but it's also a common puzzle and learning exercise, which is the more typical use for a tool like this." },
     ],
   },
   {
@@ -1256,7 +1132,7 @@ export const GROUPS = [
     "remove-invisible-characters", "smart-quotes-to-straight-quotes-converter",
   ]],
   ["Reorder", [
-    "sort-lines-alphabetically", "sort-lines-descending", "reverse-text",
+    "sort-lines-alphabetically", "reverse-text",
     "reverse-line-order", "add-line-numbers",
   ]],
   ["Find & extract", [
@@ -1265,15 +1141,15 @@ export const GROUPS = [
     "extract-urls-from-text", "extract-numbers-from-text",
   ]],
   ["Encode & decode", [
-    "base64-encode", "base64-decode", "url-encode", "url-decode",
-    "html-entity-encode", "html-entity-decode", "text-to-binary", "binary-to-text",
-    "text-to-hex", "hex-to-text", "morse-code-translator", "morse-code-to-text",
+    "base64-encode", "url-encode",
+    "html-entity-encode", "text-to-binary",
+    "text-to-hex", "morse-code-translator",
     "rot13-cipher",
   ]],
   ["Data formats", [
     "json-formatter", "json-validator", "json-minifier",
-    "csv-to-json-converter", "json-to-csv-converter",
-    "yaml-to-json-converter", "json-to-yaml-converter",
+    "csv-to-json-converter",
+    "yaml-to-json-converter",
     "markdown-to-html-converter", "markdown-to-plain-text",
     "markdown-table-generator", "markdown-to-confluence-converter",
     "markdown-to-slack-converter", "html-to-markdown-converter",
@@ -1478,6 +1354,19 @@ export function renderTool(p = {}) {
       <label class="field"><span>Tag name</span><input type="text" id="wrapTag" placeholder="context" value="context"></label>
     </div>`;
 
+  // Direction toggle for the reversible tools (encode/decode, text↔binary,
+  // A→Z / Z→A …). These used to be two near-identical pages per transform pair;
+  // one page with a toggle is both the better UX and what Google's own guidance
+  // asks for ("consolidate similar pages rather than repeating lengthy text
+  // segments"). Standalone pages only — the home page already has a full picker.
+  // app.js reads data-transform off the button and re-renders.
+  const directionRow = !isHome && Array.isArray(p.directions) && p.directions.length
+    ? `
+    <div class="dir-toggle" role="group" aria-label="Direction">
+      ${p.directions.map(([value, label], i) => `<button type="button" class="dir-btn${i === 0 ? " is-active" : ""}" data-transform="${esc(value)}" aria-pressed="${i === 0}">${esc(label)}</button>`).join("\n      ")}
+    </div>`
+    : "";
+
   const NO_INPUT_SHAPES = ["lorem", "uuid", "password"];
 
   if (shape === "counter" && !isHome) {
@@ -1625,6 +1514,7 @@ export function renderTool(p = {}) {
   <section class="tool" data-transform="${isHome ? "none" : transform}" data-shape="${isHome ? "home" : shape}">
     ${recentTools}
     ${transformDropdown}
+    ${directionRow}
     ${findReplaceRow}
     ${repeaterRow}
     ${loremRow}

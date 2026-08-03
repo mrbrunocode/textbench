@@ -601,8 +601,10 @@ test("jsonToCsv's own page copy doesn't claim the old, now-false first-object-on
   // actively wrong documentation is its own kind of bug. Importing pages.mjs
   // directly (not scraping built HTML) so this fails the moment the claim
   // regresses, in either direction, regardless of what CI step runs it.
+  // The JSON→CSV direction was folded into the CSV↔JSON page on 2026-08-03
+  // (mirror-pair consolidation), so the copy this guards now lives there.
   const { PAGES } = await import("../pages.mjs");
-  const page = PAGES.find((p) => p.slug === "json-to-csv-converter");
+  const page = PAGES.find((p) => p.slug === "csv-to-json-converter");
   const copy = [page.description, page.intro, ...page.faq.map((f) => f.a)].join(" ");
   assert.doesNotMatch(copy, /only the first object.?s keys/i,
     "page copy must not claim only the first object's keys are used — the code unions all of them");

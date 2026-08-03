@@ -1384,6 +1384,23 @@
       render();
     });
   }
+  // Direction toggle on the reversible tool pages (encode/decode, text↔hex,
+  // A→Z / Z→A …). `transform` is the page-level default read from the tool
+  // element at startup; flipping the toggle reassigns it, which is all
+  // currentTransform() consults on a standalone page.
+  var dirBtns = [].slice.call(document.querySelectorAll(".dir-btn[data-transform]"));
+  dirBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      transform = btn.getAttribute("data-transform");
+      if (toolEl) toolEl.setAttribute("data-transform", transform);
+      dirBtns.forEach(function (b) {
+        var active = b === btn;
+        b.classList.toggle("is-active", active);
+        b.setAttribute("aria-pressed", String(active));
+      });
+      render();
+    });
+  });
   pickerTabs.forEach(function (tab) {
     tab.addEventListener("click", function () {
       pickerTabs.forEach(function (t) { t.classList.remove("is-active"); t.setAttribute("aria-selected", "false"); });

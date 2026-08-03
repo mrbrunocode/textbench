@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YAML to JSON Converter — Online, Instant | Textbench</title>
-<meta name="description" content="Convert YAML to JSON, pretty-printed with 2-space indentation. Free, instant, runs entirely in your browser.">
+<title>YAML to JSON Converter (and JSON to YAML) | Textbench</title>
+<meta name="description" content="Convert YAML to pretty-printed JSON, or convert JSON to clean readable YAML. Free, instant, runs entirely in your browser.">
 <link rel="canonical" href="https://textbench.app/tools/yaml-to-json-converter">
-<meta property="og:title" content="YAML to JSON Converter — Online, Instant">
-<meta property="og:description" content="Convert YAML to JSON, pretty-printed with 2-space indentation. Free, instant, runs entirely in your browser.">
+<meta property="og:title" content="YAML to JSON Converter (and JSON to YAML)">
+<meta property="og:description" content="Convert YAML to pretty-printed JSON, or convert JSON to clean readable YAML. Free, instant, runs entirely in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://textbench.app/tools/yaml-to-json-converter">
 <meta property="og:image" content="https://textbench.app/assets/og-image.png">
@@ -19,19 +19,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=a0936158">
+<link rel="stylesheet" href="../assets/style.css?v=0baf7e0c">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/yaml-to-json-converter","description":"Convert YAML to JSON, pretty-printed with 2-space indentation. Free, instant, runs entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Bruno FK","url":"https://brunofk.dev"},"datePublished":"2026-07-17","dateModified":"2026-07-24"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"YAML to JSON","item":"https://textbench.app/tools/yaml-to-json-converter"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/yaml-to-json-converter","description":"Convert YAML to pretty-printed JSON, or convert JSON to clean readable YAML. Free, instant, runs entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Bruno FK","url":"https://brunofk.dev"},"datePublished":"2026-07-17","dateModified":"2026-08-03"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"YAML ↔ JSON","item":"https://textbench.app/tools/yaml-to-json-converter"}]}</script>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it support the full YAML spec, including anchors and aliases?","acceptedAnswer":{"@type":"Answer","text":"It uses a standard YAML 1.2 parser (js-yaml, the same library many JavaScript tools rely on), so anchors, aliases, multi-document markers and the usual scalar types are all supported."}},{"@type":"Question","name":"What happens if the YAML has a syntax error?","acceptedAnswer":{"@type":"Answer","text":"You'll see \"Invalid YAML:\" followed by the parser's own error message, which usually names the line where parsing failed."}},{"@type":"Question","name":"Is my YAML uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No — parsing runs entirely in your browser (the parser library itself is fetched from a CDN once, the same way this page's fonts are, but your pasted content never is)."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it support the full YAML spec, including anchors and aliases?","acceptedAnswer":{"@type":"Answer","text":"It uses a standard YAML 1.2 parser (js-yaml, the same library many JavaScript tools rely on), so anchors, aliases, multi-document markers and the usual scalar types are all supported."}},{"@type":"Question","name":"Does it preserve key order?","acceptedAnswer":{"@type":"Answer","text":"Yes — keys appear in the output in the same order they appeared in the input, in both directions."}},{"@type":"Question","name":"What happens if the input has a syntax error?","acceptedAnswer":{"@type":"Answer","text":"You'll see \"Invalid YAML:\" or \"Invalid JSON:\" followed by the parser's own error message, which usually names the line where parsing failed — rather than broken or empty output."}},{"@type":"Question","name":"Is my data uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No — parsing and serialization run entirely in your browser. Only the small parser library itself is fetched from a CDN once; your pasted content never leaves the page."}}]}</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2653891546345771" crossorigin="anonymous"></script>
 <script data-grow-initializer="">
 !(function(){window.growMe||((window.growMe=function(e){window.growMe._.push(e);}),(window.growMe._=[]));var e=document.createElement("script");(e.type="text/javascript"),(e.src="https://faves.grow.me/main.js"),(e.defer=!0),e.setAttribute("data-grow-faves-site-id","U2l0ZTowNjY3MmQ4Yi1jYTA1LTQ3OWUtOGY1NC1iY2M1OThjYWRlMmY=");var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t);})();
 </script>
-<script id="toolsIndex" type="application/json">[{"title":"Word Counter","path":"/tools/word-counter"},{"title":"Character Counter","path":"/tools/character-counter"},{"title":"X / Twitter Counter","path":"/tools/twitter-character-counter"},{"title":"Meta Description","path":"/tools/meta-description-length-checker"},{"title":"YouTube Title","path":"/tools/youtube-title-length-checker"},{"title":"Readability Checker","path":"/tools/readability-checker"},{"title":"Reading Time","path":"/tools/reading-time-calculator"},{"title":"Word Frequency","path":"/tools/word-frequency-counter"},{"title":"Compare Texts","path":"/tools/compare-two-texts"},{"title":"UPPERCASE","path":"/tools/uppercase-converter"},{"title":"lowercase","path":"/tools/lowercase-converter"},{"title":"Title Case","path":"/tools/title-case-converter"},{"title":"Sentence case","path":"/tools/sentence-case-converter"},{"title":"Remove Duplicates","path":"/tools/remove-duplicate-lines"},{"title":"Extra Spaces","path":"/tools/remove-extra-spaces"},{"title":"Line Breaks","path":"/tools/remove-line-breaks"},{"title":"Empty Lines","path":"/tools/remove-empty-lines"},{"title":"Sort Lines","path":"/tools/sort-lines-alphabetically"},{"title":"Reverse Text","path":"/tools/reverse-text"},{"title":"Reverse Line Order","path":"/tools/reverse-line-order"},{"title":"Trim Lines","path":"/tools/trim-whitespace-from-lines"},{"title":"Invisible Characters","path":"/tools/remove-invisible-characters"},{"title":"Smart Quotes","path":"/tools/smart-quotes-to-straight-quotes-converter"},{"title":"Sort Z to A","path":"/tools/sort-lines-descending"},{"title":"Line Numbers","path":"/tools/add-line-numbers"},{"title":"Slugify","path":"/tools/slugify-text"},{"title":"Text Repeater","path":"/tools/text-repeater"},{"title":"Find & Replace","path":"/tools/find-and-replace"},{"title":"Regex Tester","path":"/tools/regex-tester"},{"title":"Email Regex Tester","path":"/tools/email-regex-tester"},{"title":"Phone Number Regex Tester","path":"/tools/phone-number-regex-tester"},{"title":"CSV to JSON","path":"/tools/csv-to-json-converter"},{"title":"JSON to CSV","path":"/tools/json-to-csv-converter"},{"title":"YAML to JSON","path":"/tools/yaml-to-json-converter"},{"title":"JSON to YAML","path":"/tools/json-to-yaml-converter"},{"title":"QR Code Generator","path":"/tools/qr-code-generator"},{"title":"Lorem Ipsum","path":"/tools/lorem-ipsum-generator"},{"title":"XML Tag Wrapper","path":"/tools/wrap-text-in-xml-tags"},{"title":"aLtErNaTiNg cAsE","path":"/tools/alternating-case-converter"},{"title":"InVeRsE cAsE","path":"/tools/inverse-case-converter"},{"title":"Extract Emails","path":"/tools/extract-emails-from-text"},{"title":"Extract URLs","path":"/tools/extract-urls-from-text"},{"title":"Extract Numbers","path":"/tools/extract-numbers-from-text"},{"title":"Base64 Encode","path":"/tools/base64-encode"},{"title":"Base64 Decode","path":"/tools/base64-decode"},{"title":"URL Encode","path":"/tools/url-encode"},{"title":"URL Decode","path":"/tools/url-decode"},{"title":"HTML Encode","path":"/tools/html-entity-encode"},{"title":"HTML Decode","path":"/tools/html-entity-decode"},{"title":"Text to Binary","path":"/tools/text-to-binary"},{"title":"Binary to Text","path":"/tools/binary-to-text"},{"title":"Text to Hex","path":"/tools/text-to-hex"},{"title":"Hex to Text","path":"/tools/hex-to-text"},{"title":"Text → Morse","path":"/tools/morse-code-translator"},{"title":"Morse → Text","path":"/tools/morse-code-to-text"},{"title":"ROT13","path":"/tools/rot13-cipher"},{"title":"JSON Formatter","path":"/tools/json-formatter"},{"title":"JSON Validator","path":"/tools/json-validator"},{"title":"JSON Minifier","path":"/tools/json-minifier"},{"title":"Markdown to HTML","path":"/tools/markdown-to-html-converter"},{"title":"Markdown to Plain Text","path":"/tools/markdown-to-plain-text"},{"title":"Markdown Table","path":"/tools/markdown-table-generator"},{"title":"Markdown to Confluence","path":"/tools/markdown-to-confluence-converter"},{"title":"Markdown to Slack","path":"/tools/markdown-to-slack-converter"},{"title":"HTML to Markdown","path":"/tools/html-to-markdown-converter"},{"title":"MD5 Hash","path":"/tools/md5-hash-generator"},{"title":"SHA-256 Hash","path":"/tools/sha256-hash-generator"},{"title":"UUID Generator","path":"/tools/uuid-generator"},{"title":"Password Generator","path":"/tools/random-password-generator"},{"title":"Strikethrough","path":"/tools/strikethrough-text-generator"},{"title":"Upside Down","path":"/tools/upside-down-text-generator"},{"title":"Bold Unicode","path":"/tools/bold-text-generator"}]</script>
+<script id="toolsIndex" type="application/json">[{"title":"Word Counter","path":"/tools/word-counter"},{"title":"Character Counter","path":"/tools/character-counter"},{"title":"X / Twitter Counter","path":"/tools/twitter-character-counter"},{"title":"Meta Description","path":"/tools/meta-description-length-checker"},{"title":"YouTube Title","path":"/tools/youtube-title-length-checker"},{"title":"Readability Checker","path":"/tools/readability-checker"},{"title":"Reading Time","path":"/tools/reading-time-calculator"},{"title":"Word Frequency","path":"/tools/word-frequency-counter"},{"title":"Compare Texts","path":"/tools/compare-two-texts"},{"title":"UPPERCASE","path":"/tools/uppercase-converter"},{"title":"lowercase","path":"/tools/lowercase-converter"},{"title":"Title Case","path":"/tools/title-case-converter"},{"title":"Sentence case","path":"/tools/sentence-case-converter"},{"title":"Remove Duplicates","path":"/tools/remove-duplicate-lines"},{"title":"Extra Spaces","path":"/tools/remove-extra-spaces"},{"title":"Line Breaks","path":"/tools/remove-line-breaks"},{"title":"Empty Lines","path":"/tools/remove-empty-lines"},{"title":"Sort Lines","path":"/tools/sort-lines-alphabetically"},{"title":"Reverse Text","path":"/tools/reverse-text"},{"title":"Reverse Line Order","path":"/tools/reverse-line-order"},{"title":"Trim Lines","path":"/tools/trim-whitespace-from-lines"},{"title":"Invisible Characters","path":"/tools/remove-invisible-characters"},{"title":"Smart Quotes","path":"/tools/smart-quotes-to-straight-quotes-converter"},{"title":"Line Numbers","path":"/tools/add-line-numbers"},{"title":"Slugify","path":"/tools/slugify-text"},{"title":"Text Repeater","path":"/tools/text-repeater"},{"title":"Find & Replace","path":"/tools/find-and-replace"},{"title":"Regex Tester","path":"/tools/regex-tester"},{"title":"Email Regex Tester","path":"/tools/email-regex-tester"},{"title":"Phone Number Regex Tester","path":"/tools/phone-number-regex-tester"},{"title":"CSV ↔ JSON","path":"/tools/csv-to-json-converter"},{"title":"YAML ↔ JSON","path":"/tools/yaml-to-json-converter"},{"title":"QR Code Generator","path":"/tools/qr-code-generator"},{"title":"Lorem Ipsum","path":"/tools/lorem-ipsum-generator"},{"title":"XML Tag Wrapper","path":"/tools/wrap-text-in-xml-tags"},{"title":"aLtErNaTiNg cAsE","path":"/tools/alternating-case-converter"},{"title":"InVeRsE cAsE","path":"/tools/inverse-case-converter"},{"title":"Extract Emails","path":"/tools/extract-emails-from-text"},{"title":"Extract URLs","path":"/tools/extract-urls-from-text"},{"title":"Extract Numbers","path":"/tools/extract-numbers-from-text"},{"title":"Base64","path":"/tools/base64-encode"},{"title":"URL Encode","path":"/tools/url-encode"},{"title":"HTML Entities","path":"/tools/html-entity-encode"},{"title":"Text ↔ Binary","path":"/tools/text-to-binary"},{"title":"Text ↔ Hex","path":"/tools/text-to-hex"},{"title":"Morse Code","path":"/tools/morse-code-translator"},{"title":"ROT13","path":"/tools/rot13-cipher"},{"title":"JSON Formatter","path":"/tools/json-formatter"},{"title":"JSON Validator","path":"/tools/json-validator"},{"title":"JSON Minifier","path":"/tools/json-minifier"},{"title":"Markdown to HTML","path":"/tools/markdown-to-html-converter"},{"title":"Markdown to Plain Text","path":"/tools/markdown-to-plain-text"},{"title":"Markdown Table","path":"/tools/markdown-table-generator"},{"title":"Markdown to Confluence","path":"/tools/markdown-to-confluence-converter"},{"title":"Markdown to Slack","path":"/tools/markdown-to-slack-converter"},{"title":"HTML to Markdown","path":"/tools/html-to-markdown-converter"},{"title":"MD5 Hash","path":"/tools/md5-hash-generator"},{"title":"SHA-256 Hash","path":"/tools/sha256-hash-generator"},{"title":"UUID Generator","path":"/tools/uuid-generator"},{"title":"Password Generator","path":"/tools/random-password-generator"},{"title":"Strikethrough","path":"/tools/strikethrough-text-generator"},{"title":"Upside Down","path":"/tools/upside-down-text-generator"},{"title":"Bold Unicode","path":"/tools/bold-text-generator"}]</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -51,14 +51,14 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/alternatives">Compare</a>
       <a href="/about">About</a>
     </nav>
-    <p class="masthead-meta">72 tools · nothing uploaded · no account</p>
+    <p class="masthead-meta">63 tools · nothing uploaded · no account</p>
   </div>
 </header>
 <div class="sheet sheet--work has-margin">
   
   <nav class="index" aria-label="Tools">
     <div class="index-in">
-      <p class="index-title"><a href="/">All 72 tools</a></p>
+      <p class="index-title"><a href="/">All 63 tools</a></p>
       <section class="index-group index-group--collapsed">
         <p class="index-head"><a href="/#idx-count-measure">Count &amp; measure</a> <span class="index-count">7</span></p>
       </section>
@@ -72,13 +72,13 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         <p class="index-head"><a href="/#idx-clean-up">Clean up</a> <span class="index-count">7</span></p>
       </section>
       <section class="index-group index-group--collapsed">
-        <p class="index-head"><a href="/#idx-reorder">Reorder</a> <span class="index-count">5</span></p>
+        <p class="index-head"><a href="/#idx-reorder">Reorder</a> <span class="index-count">4</span></p>
       </section>
       <section class="index-group index-group--collapsed">
         <p class="index-head"><a href="/#idx-find-extract">Find &amp; extract</a> <span class="index-count">7</span></p>
       </section>
       <section class="index-group index-group--collapsed">
-        <p class="index-head"><a href="/#idx-encode-decode">Encode &amp; decode</a> <span class="index-count">13</span></p>
+        <p class="index-head"><a href="/#idx-encode-decode">Encode &amp; decode</a> <span class="index-count">7</span></p>
       </section>
       <section class="index-group">
         <p class="index-head" id="idx-data-formats">Data formats</p>
@@ -86,10 +86,8 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
           <li><a href="/tools/json-formatter">JSON Formatter</a></li>
           <li><a href="/tools/json-validator">JSON Validator</a></li>
           <li><a href="/tools/json-minifier">JSON Minifier</a></li>
-          <li><a href="/tools/csv-to-json-converter">CSV to JSON</a></li>
-          <li><a href="/tools/json-to-csv-converter">JSON to CSV</a></li>
-          <li><a href="/tools/yaml-to-json-converter" aria-current="page">YAML to JSON</a></li>
-          <li><a href="/tools/json-to-yaml-converter">JSON to YAML</a></li>
+          <li><a href="/tools/csv-to-json-converter">CSV ↔ JSON</a></li>
+          <li><a href="/tools/yaml-to-json-converter" aria-current="page">YAML ↔ JSON</a></li>
           <li><a href="/tools/markdown-to-html-converter">Markdown to HTML</a></li>
           <li><a href="/tools/markdown-to-plain-text">Markdown to Plain Text</a></li>
           <li><a href="/tools/markdown-table-generator">Markdown Table</a></li>
@@ -113,13 +111,18 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 
   <header class="standfirst">
     <p class="kicker"><a href="/">Tools</a> <span aria-hidden="true">/</span> Data formats</p>
-    <h1>YAML to JSON Converter — Online, Instant</h1>
+    <h1>YAML to JSON Converter (and JSON to YAML)</h1>
   </header>
-  <p class="lede">Paste YAML below — config files, Docker Compose, GitHub Actions workflows, anything — and get back the equivalent JSON, pretty-printed and ready to use wherever YAML isn't accepted.</p>
+  <p class="lede">Paste YAML — a config file, Docker Compose, a GitHub Actions workflow — to get the equivalent JSON, or flip to JSON → YAML to turn an API response or config into the format a Kubernetes manifest or workflow file expects.</p>
   
   <section class="tool" data-transform="yaml-to-json" data-shape="simple">
     
     
+    
+    <div class="dir-toggle" role="group" aria-label="Direction">
+      <button type="button" class="dir-btn is-active" data-transform="yaml-to-json" aria-pressed="true">YAML → JSON</button>
+      <button type="button" class="dir-btn" data-transform="json-to-yaml" aria-pressed="false">JSON → YAML</button>
+    </div>
     
     <div class="extra-row" data-for="find-replace" hidden>
       <label class="field"><span>Find</span><input type="text" id="findInput" placeholder="text or pattern"></label>
@@ -194,15 +197,23 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <li><b>Indentation is structure</b> in YAML, so a mis-indented source produces a different shape — the JSON output is a good way to <em>check</em> your YAML nests the way you intended.</li>
       <li><b>Type coercion:</b> YAML reads <code>yes</code>, <code>on</code> and <code>1.0</code> as a boolean, boolean and number unless quoted — the JSON makes those implicit types explicit, which sometimes reveals a surprise.</li>
     </ul>
-    <p>For the reverse, use JSON to YAML. It runs locally, so config full of hostnames and settings never leaves your browser.</p>
+    <h3>Going the other way: JSON to YAML</h3>
+    <p>YAML is easier to read and edit by hand than JSON — no braces, no quotes on most keys, comments allowed — which is why config files favour it. Flip the direction to turn a JSON document into equivalent YAML, either to hand to a tool that expects YAML or just to make a dense JSON blob human-friendly.</p>
+    <ul>
+      <li>Braces and brackets become indentation, and most quotes disappear — much lighter to read.</li>
+      <li>Strings that <em>look</em> like other types (<code>"yes"</code>, <code>"1.0"</code>, a version number) may need quoting in YAML to stay strings; give the output a scan if that matters.</li>
+      <li>The indentation is load-bearing, so keep it intact when you paste it onward.</li>
+    </ul>
+    <p>It runs locally, so config full of hostnames and settings never leaves your browser.</p>
   </section>
     
   <section class="faq">
     <h2>Common questions</h2>
     <div class="faq-grid">
       <div class="faq-item"><h3>Does it support the full YAML spec, including anchors and aliases?</h3><p>It uses a standard YAML 1.2 parser (js-yaml, the same library many JavaScript tools rely on), so anchors, aliases, multi-document markers and the usual scalar types are all supported.</p></div>
-      <div class="faq-item"><h3>What happens if the YAML has a syntax error?</h3><p>You'll see &quot;Invalid YAML:&quot; followed by the parser's own error message, which usually names the line where parsing failed.</p></div>
-      <div class="faq-item"><h3>Is my YAML uploaded anywhere?</h3><p>No — parsing runs entirely in your browser (the parser library itself is fetched from a CDN once, the same way this page's fonts are, but your pasted content never is).</p></div>
+      <div class="faq-item"><h3>Does it preserve key order?</h3><p>Yes — keys appear in the output in the same order they appeared in the input, in both directions.</p></div>
+      <div class="faq-item"><h3>What happens if the input has a syntax error?</h3><p>You'll see &quot;Invalid YAML:&quot; or &quot;Invalid JSON:&quot; followed by the parser's own error message, which usually names the line where parsing failed — rather than broken or empty output.</p></div>
+      <div class="faq-item"><h3>Is my data uploaded anywhere?</h3><p>No — parsing and serialization run entirely in your browser. Only the small parser library itself is fetched from a CDN once; your pasted content never leaves the page.</p></div>
     </div>
   </section>
   </div>
@@ -214,10 +225,8 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <div class="note">
         <p class="note-head">Related tools</p>
         <ul class="note-list">
-          <li><a href="/tools/json-to-yaml-converter">JSON to YAML</a></li>
-          <li><a href="/tools/json-to-csv-converter">JSON to CSV</a></li>
           <li><a href="/tools/qr-code-generator">QR Code Generator</a></li>
-          <li><a href="/tools/csv-to-json-converter">CSV to JSON</a></li>
+          <li><a href="/tools/csv-to-json-converter">CSV ↔ JSON</a></li>
           <li><a href="/tools/lorem-ipsum-generator">Lorem Ipsum</a></li>
           <li><a href="/tools/phone-number-regex-tester">Phone Number Regex Tester</a></li>
           <li><a href="/tools/wrap-text-in-xml-tags">XML Tag Wrapper</a></li>
@@ -226,7 +235,9 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
           <li><a href="/tools/regex-tester">Regex Tester</a></li>
           <li><a href="/tools/inverse-case-converter">InVeRsE cAsE</a></li>
           <li><a href="/tools/find-and-replace">Find &amp; Replace</a></li>
-          <li><a class="index-more" href="/">All 72 tools →</a></li>
+          <li><a href="/tools/extract-emails-from-text">Extract Emails</a></li>
+          <li><a href="/tools/text-repeater">Text Repeater</a></li>
+          <li><a class="index-more" href="/">All 63 tools →</a></li>
         </ul>
       </div>
     </div>
@@ -235,7 +246,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 <footer>
   <div class="wrap">
     <div class="foot-in">
-      <div><span class="fb">Textbench</span> — 72 text tools, one page, nothing uploaded. · <a href="/guides">Guides</a> · <a href="/alternatives">Compare</a> · <a href="/about">About</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/contact">Contact</a> · <a href="mailto:hello@textbench.app">hello@textbench.app</a></div>
+      <div><span class="fb">Textbench</span> — 63 text tools, one page, nothing uploaded. · <a href="/guides">Guides</a> · <a href="/alternatives">Compare</a> · <a href="/about">About</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/contact">Contact</a> · <a href="mailto:hello@textbench.app">hello@textbench.app</a></div>
       <div>Free. No signup, no upload — everything runs in your browser.<br>
       Built and maintained by <a href="https://brunofk.dev" rel="author noopener" target="_blank">Bruno FK</a>, an independent developer in Edinburgh.<br>
       <a href="https://github.com/mrbrunocode/textbench" rel="noopener" target="_blank">Source on GitHub</a> — check the privacy claim yourself.</div>
@@ -243,6 +254,6 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   </div>
 </footer>
 <script>window.REGEX_WORKER_URL = "../assets/regex-worker.js?v=11cab91b";</script>
-<script src="../assets/app.js?v=564b93c6" defer></script>
+<script src="../assets/app.js?v=2bd9380a" defer></script>
 </body>
 </html>

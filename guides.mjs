@@ -172,7 +172,10 @@ export const GUIDES = {
       <li>It sorts by character, so numbers and symbols order before letters, and "10" sorts before "9" (as text, not as a number) — expected for text, surprising for numeric lists.</li>
       <li>Leading spaces affect position, so trim first if your lines have stray whitespace.</li>
     </ul>
-    <p>Sorting also groups identical lines together, which makes de-duplication easy afterward. For the reverse order use the Z→A tool. Everything runs in your browser — a list of names or IDs is never uploaded.</p>`),
+    <p>Sorting also groups identical lines together, which makes de-duplication easy afterward.</p>
+    <h3>Descending order (Z→A)</h3>
+    <p>Flip the toggle for reverse-alphabetical order. Useful when the entries near the end of the alphabet are the ones you want at the top, or simply to scan a list from both ends. It's a true reverse of the ascending sort — letters, then numbers and symbols, mirrored. To flip an existing order without re-sorting at all, use reverse-line-order instead.</p>
+    <p>Everything runs in your browser — a list of names or IDs is never uploaded.</p>`),
 
   "reverse-text": g(`
     <h2>Reversing text character by character</h2>
@@ -191,12 +194,6 @@ export const GUIDES = {
     <p>Leading and trailing whitespace is invisible but troublesome: it breaks exact-match comparisons, throws off sorting, and creates "duplicates" that don't de-duplicate. This trims the spaces and tabs from the start and end of every line, leaving the content untouched.</p>
     <h3>Why it's often step one</h3>
     <p>Trimming is the cleanup that makes other operations work. Trim before de-duplicating, and entries that differed only by a trailing space finally collapse. Trim before sorting, and lines order by their real first character instead of by a hidden leading space. Trim before comparing two lists, and spurious "changes" disappear. It's the quiet fix behind a lot of "why don't these match?" puzzles. Spaces <em>between</em> words are left alone — for those, use remove-extra-spaces. All local, nothing uploaded.</p>`),
-
-  "sort-lines-descending": g(`
-    <h2>Sorting a list Z→A</h2>
-    <p>Reverse-alphabetical sorting — Z to A. Paste one item per line and get it back in descending order. Useful when the entries near the end of the alphabet are the ones you want at the top, or simply to complement an A→Z sort when scanning a list from both ends.</p>
-    <h3>How it orders</h3>
-    <p>Like the A→Z tool, it sorts by character in reverse, so it's a true reverse of alphabetical order (letters, then numbers and symbols, mirrored). Because it's a text sort rather than a numeric one, a list of numbers won't come out in numeric order — "9" will sort before "10." Trim any leading whitespace first so lines order by their real first character. For ascending order, use the Sort A→Z tool; to simply flip an existing order without re-sorting, use reverse-line-order. Everything runs in your browser.</p>`),
 
   "add-line-numbers": g(`
     <h2>Numbering every line</h2>
@@ -271,17 +268,13 @@ export const GUIDES = {
       <li><b>Commas inside fields</b> must be quoted in the source CSV, or the columns will misalign.</li>
       <li><b>Types:</b> CSV has no types — everything is text — so numbers may come through as strings unless you convert them afterward.</li>
     </ul>
-    <p>For the reverse, use JSON to CSV. Because it runs locally, you can convert a spreadsheet of real customer or financial data without uploading it anywhere.</p>`),
-
-  "json-to-csv-converter": g(`
-    <h2>Flattening JSON into a spreadsheet</h2>
-    <p>When an API gives you JSON and you need it in Excel, Google Sheets, or a database import, CSV is the bridge. This takes an array of JSON objects and turns it into rows and columns — object keys become the header row, each object becomes a data row.</p>
-    <h3>Where JSON and CSV don't line up</h3>
+    <h3>Going the other way: JSON to CSV</h3>
+    <p>When an API gives you JSON and you need it in Excel, Google Sheets, or a database import, flip the direction. An array of JSON objects becomes rows and columns — keys become the header row, each object becomes a data row.</p>
     <ul>
-      <li><b>Nested objects and arrays</b> don't have a natural place in a flat table — they'll be stringified or flattened, so deeply nested JSON may need reshaping first.</li>
-      <li><b>Inconsistent keys:</b> if some objects have fields others don't, the CSV needs every column, with blanks where a record lacks a value.</li>
+      <li><b>Nested objects and arrays</b> don't have a natural place in a flat table — they'll be stringified rather than expanded, so deeply nested JSON may need reshaping first.</li>
+      <li><b>Inconsistent keys:</b> if some objects have fields others don't, the CSV takes every column, with blanks where a record lacks a value.</li>
     </ul>
-    <p>It works best on a flat array of similar records — exactly what most "list" API responses return. For the reverse trip use CSV to JSON. All conversion happens in your browser, so private data stays local.</p>`),
+    <p>It works best on a flat array of similar records — exactly what most "list" API responses return. Because it runs locally, you can convert a spreadsheet of real customer or financial data without uploading it anywhere.</p>`),
 
   "yaml-to-json-converter": g(`
     <h2>Converting YAML to JSON</h2>
@@ -291,18 +284,14 @@ export const GUIDES = {
       <li><b>Indentation is structure</b> in YAML, so a mis-indented source produces a different shape — the JSON output is a good way to <em>check</em> your YAML nests the way you intended.</li>
       <li><b>Type coercion:</b> YAML reads <code>yes</code>, <code>on</code> and <code>1.0</code> as a boolean, boolean and number unless quoted — the JSON makes those implicit types explicit, which sometimes reveals a surprise.</li>
     </ul>
-    <p>For the reverse, use JSON to YAML. It runs locally, so config full of hostnames and settings never leaves your browser.</p>`),
-
-  "json-to-yaml-converter": g(`
-    <h2>Converting JSON to YAML</h2>
-    <p>YAML is easier to read and edit by hand than JSON — no braces, no quotes on most keys, comments allowed — which is why config files favour it. This converts a JSON document into equivalent YAML so you can hand it to a tool that expects YAML, or just make a dense JSON blob human-friendly.</p>
-    <h3>What changes and what to check</h3>
+    <h3>Going the other way: JSON to YAML</h3>
+    <p>YAML is easier to read and edit by hand than JSON — no braces, no quotes on most keys, comments allowed — which is why config files favour it. Flip the direction to turn a JSON document into equivalent YAML, either to hand to a tool that expects YAML or just to make a dense JSON blob human-friendly.</p>
     <ul>
       <li>Braces and brackets become indentation, and most quotes disappear — much lighter to read.</li>
       <li>Strings that <em>look</em> like other types (<code>"yes"</code>, <code>"1.0"</code>, a version number) may need quoting in YAML to stay strings; give the output a scan if that matters.</li>
-      <li>YAML can't be validated by eye as easily as you'd hope — the indentation is load-bearing, so keep it intact when you paste it onward.</li>
+      <li>The indentation is load-bearing, so keep it intact when you paste it onward.</li>
     </ul>
-    <p>For the reverse use YAML to JSON. All local — nothing is uploaded.</p>`),
+    <p>It runs locally, so config full of hostnames and settings never leaves your browser.</p>`),
 
   "qr-code-generator": g(`
     <h2>Making a QR code</h2>
@@ -372,18 +361,16 @@ export const GUIDES = {
     <h2>Encoding text to Base64</h2>
     <p>Base64 turns arbitrary data into a safe set of ASCII characters (A–Z, a–z, 0–9, + and /), so it can travel through systems built for text. You'll see it embedding small images in CSS/HTML as data URIs, carrying binary-ish payloads inside JSON, in email attachments (MIME), and in some tokens.</p>
     <h3>The one thing to remember</h3>
-    <p>Base64 is <b>encoding, not encryption</b>. It's trivially reversible by anyone — including this tool's own decode page — so it provides zero confidentiality. Never use it to "hide" a password or sensitive value; it only makes data transport-safe, not secret. Note also that Base64 makes data about a third larger, so it's for small payloads, not bulk storage. Unicode input is UTF-8 encoded first, so accents and emoji round-trip correctly. For the reverse, use Base64 Decode. Everything runs locally.</p>`),
-
-  "base64-decode": g(`
-    <h2>Decoding Base64 back to text</h2>
-    <p>Paste a Base64 string and get the original text back. This is what you reach for when a config value, a token payload, an API field, or a data URI is Base64-encoded and you need to read what's actually inside it.</p>
+    <p>Base64 is <b>encoding, not encryption</b>. It's trivially reversible by anyone — including the Decode side of this page — so it provides zero confidentiality. Never use it to "hide" a password or sensitive value; it only makes data transport-safe, not secret. Note also that Base64 makes data about a third larger, so it's for small payloads, not bulk storage. Unicode input is UTF-8 encoded first, so accents and emoji round-trip correctly.</p>
+    <h3>Decoding back to text</h3>
+    <p>Switch to Decode and paste a Base64 string to get the original back. This is what you reach for when a config value, a token payload, an API field, or a data URI is Base64-encoded and you need to read what's actually inside it.</p>
     <h3>If decoding fails or looks wrong</h3>
     <ul>
       <li><b>It's not text:</b> Base64 often encodes binary (an image, a compressed blob), which won't render as readable characters — that's expected, not an error.</li>
       <li><b>URL-safe variant:</b> some systems use <code>-</code> and <code>_</code> in place of <code>+</code> and <code>/</code>; if a string won't decode, that's a common reason.</li>
       <li><b>Padding:</b> a truncated string missing its trailing <code>=</code> padding may fail.</li>
     </ul>
-    <p>Remember Base64 isn't encryption — decoding needs no key, so anything "protected" only by Base64 isn't protected. All local; nothing uploaded.</p>`),
+    <p>Both directions run entirely in your browser — nothing is uploaded, so it's safe for tokens and config values you'd rather not paste into someone else's site.</p>`),
 
   "url-encode": g(`
     <h2>Making text safe for a URL</h2>
@@ -393,17 +380,15 @@ export const GUIDES = {
       <li>Building a query string by hand, where a value contains a space, an ampersand, or a slash that would otherwise break the URL's structure.</li>
       <li>Passing a full URL as a <em>parameter</em> of another URL (a redirect target, a share link) — the inner URL's <code>?</code> and <code>&amp;</code> must be encoded so they're not read as part of the outer one.</li>
     </ul>
-    <p>Encode the <em>values</em>, not the whole finished URL, or you'll double-encode the structural characters. For the reverse use URL Decode. Everything runs in your browser.</p>`),
-
-  "url-decode": g(`
-    <h2>Reading a percent-encoded URL</h2>
-    <p>A URL full of <code>%20</code>, <code>%3D</code> and <code>%26</code> is hard to read. This decodes it back to plain text so you can see the real values — handy for debugging a link, reading a redirect target, or understanding what a query string actually contains.</p>
+    <p>Encode the <em>values</em>, not the whole finished URL, or you'll double-encode the structural characters.</p>
+    <h3>Reading a percent-encoded URL</h3>
+    <p>Switch to Decode to turn a URL full of <code>%20</code>, <code>%3D</code> and <code>%26</code> back into plain text — handy for debugging a link, reading a redirect target, or understanding what a query string actually contains.</p>
     <h3>Common sequences you'll see</h3>
     <ul>
       <li><code>%20</code> is a space, <code>%3D</code> is <code>=</code>, <code>%26</code> is <code>&amp;</code>, <code>%2F</code> is <code>/</code>, <code>%3F</code> is <code>?</code>.</li>
       <li>A <code>+</code> in a query string often means a space too (from form encoding) — worth knowing if a decode looks slightly off.</li>
     </ul>
-    <p>Decoding a URL that was double-encoded may need two passes. For the reverse direction use URL Encode. It's all local, so you can decode links containing private tokens without uploading them.</p>`),
+    <p>Decoding a URL that was double-encoded may need two passes. Everything runs in your browser, so you can decode links containing private tokens without uploading them.</p>`),
 
   "html-entity-encode": g(`
     <h2>Escaping text for safe HTML</h2>
@@ -413,33 +398,22 @@ export const GUIDES = {
       <li><b>Showing code in a page:</b> to display an HTML example without the browser rendering it, the angle brackets have to be entities — otherwise your <code>&lt;div&gt;</code> vanishes into an actual div.</li>
       <li><b>Safety:</b> escaping user-supplied text before putting it in a page is a core defence against cross-site scripting (XSS). If you're inserting untrusted input into HTML, encoding it is not optional.</li>
     </ul>
-    <p>For the reverse, use HTML Decode. All processing is local; nothing is uploaded.</p>`),
-
-  "html-entity-decode": g(`
-    <h2>Turning HTML entities back into characters</h2>
-    <p>Paste text littered with <code>&amp;amp;</code>, <code>&amp;lt;</code>, <code>&amp;quot;</code> or numeric entities like <code>&amp;#39;</code> and get the real characters back. Useful when you've scraped or copied content out of HTML and it's full of escaped sequences instead of the punctuation it represents.</p>
-    <h3>What it handles</h3>
-    <ul>
-      <li><b>Named entities</b> (<code>&amp;amp;</code> → &amp;, <code>&amp;nbsp;</code> → a space, <code>&amp;copy;</code> → ©).</li>
-      <li><b>Numeric entities</b>, both decimal (<code>&amp;#169;</code>) and hex (<code>&amp;#xA9;</code>).</li>
-    </ul>
-    <p>A frequent culprit is double-encoding, where <code>&amp;amp;lt;</code> needs decoding twice to get back to <code>&lt;</code> — run it through again if one pass isn't enough. For the reverse, use HTML Encode. Everything runs in your browser.</p>`),
+    <h3>Turning entities back into characters</h3>
+    <p>Switch to Decode to take text littered with <code>&amp;amp;</code>, <code>&amp;lt;</code>, <code>&amp;quot;</code> or numeric entities like <code>&amp;#39;</code> and get the real characters back. Useful when you've scraped or copied content out of HTML and it's full of escaped sequences instead of the punctuation it represents. It handles <b>named entities</b> (<code>&amp;amp;</code> → &amp;, <code>&amp;nbsp;</code> → a space, <code>&amp;copy;</code> → ©) and <b>numeric entities</b>, both decimal (<code>&amp;#169;</code>) and hex (<code>&amp;#xA9;</code>).</p>
+    <p>A frequent culprit is double-encoding, where <code>&amp;amp;lt;</code> needs decoding twice to get back to <code>&lt;</code> — run it through again if one pass isn't enough. All processing is local; nothing is uploaded.</p>`),
 
   "text-to-binary": g(`
     <h2>Converting text to binary</h2>
     <p>This shows the ones and zeros behind your text: each character is turned into its binary code (using its character-code value), so "Hi" becomes the two 8-bit groups that represent H and i. It's mostly a learning and curiosity tool — seeing how text is really stored — plus the odd puzzle or novelty use.</p>
     <h3>What's actually happening</h3>
-    <p>Each character maps to a number (its Unicode code point); that number is written in base 2. Plain ASCII characters fit in 8 bits each; characters beyond ASCII (accents, emoji) use more, so their binary is longer. The result is space-separated groups so it's readable and reversible. To go back, use Binary to Text. If you want the more compact base-16 view instead, Text to Hex is the tool. All local — nothing is uploaded.</p>`),
-
-  "binary-to-text": g(`
-    <h2>Decoding binary back to text</h2>
-    <p>Paste groups of ones and zeros and get the text they represent. Each binary group is read as a number and mapped back to its character — the reverse of turning text into binary. Handy for puzzles, coursework, or decoding a binary string someone sent you.</p>
-    <h3>For a clean decode</h3>
+    <p>Each character maps to a number (its Unicode code point); that number is written in base 2. Plain ASCII characters fit in 8 bits each; characters beyond ASCII (accents, emoji) use more, so their binary is longer. The result is space-separated groups so it's readable and reversible.</p>
+    <h3>Decoding binary back to text</h3>
+    <p>Switch to Binary → Text and paste groups of ones and zeros to get the text they represent. Each group is read as a number and mapped back to its character. Handy for puzzles, coursework, or decoding a binary string someone sent you.</p>
     <ul>
       <li><b>Separate the groups</b> (usually with spaces) so the tool knows where one character ends and the next begins — a single unbroken run of bits is ambiguous unless it's neatly in 8-bit bytes.</li>
       <li><b>Standard bytes are 8 bits;</b> if the source used a different grouping, decoding may come out garbled.</li>
     </ul>
-    <p>For the reverse direction use Text to Binary; for base-16 instead of base-2, see Hex to Text. Everything runs in your browser.</p>`),
+    <p>If you want the more compact base-16 view instead, Text to Hex is the tool. All local — nothing is uploaded.</p>`),
 
   "text-to-hex": g(`
     <h2>Converting text to hexadecimal</h2>
@@ -449,18 +423,16 @@ export const GUIDES = {
       <li>Inspecting the actual bytes of a string when debugging an encoding problem.</li>
       <li>Reading or writing values that are conventionally hex — colour codes, byte offsets, some IDs.</li>
     </ul>
-    <p>Non-ASCII characters (accents, emoji) are multiple bytes, so they produce more hex digits — a good illustration of how UTF-8 encodes them. For the reverse use Hex to Text; for base-2 instead, Text to Binary. All processing is local.</p>`),
-
-  "hex-to-text": g(`
-    <h2>Decoding hex back to readable text</h2>
-    <p>Paste hexadecimal and get the text it represents. Each pair of hex digits is read as a byte and turned back into its character — the reverse of Text to Hex. It's the everyday move when a log, a debugger, or a data dump shows you hex and you need to know what it actually says.</p>
+    <p>Non-ASCII characters (accents, emoji) are multiple bytes, so they produce more hex digits — a good illustration of how UTF-8 encodes them.</p>
+    <h3>Decoding hex back to readable text</h3>
+    <p>Switch to Hex → Text and paste hexadecimal to get the text it represents. Each pair of hex digits is read as a byte and turned back into its character. It's the everyday move when a log, a debugger, or a data dump shows you hex and you need to know what it actually says.</p>
     <h3>If the result looks off</h3>
     <ul>
       <li><b>Grouping:</b> hex usually comes in pairs (one byte each). Stray spacing or an odd number of digits can throw the decode off.</li>
       <li><b>Multi-byte characters:</b> UTF-8 accents and emoji span several bytes, so a partial sequence decodes to gibberish — you need the whole run.</li>
       <li><b>0x prefixes</b> and separators may need stripping first.</li>
     </ul>
-    <p>For the reverse use Text to Hex; for binary, Binary to Text. Everything runs in your browser.</p>`),
+    <p>For base-2 instead, Text to Binary. All processing is local.</p>`),
 
   "morse-code-translator": g(`
     <h2>Translating text into Morse code</h2>
@@ -471,17 +443,13 @@ export const GUIDES = {
       <li>Morse covers A–Z, 0–9 and common punctuation; anything outside that set has no standard code and is skipped or left as-is.</li>
       <li>It's case-insensitive — Morse has no capitals.</li>
     </ul>
-    <p>To go the other way, use Morse to Text. Everything runs in your browser, so it works offline once loaded — handy for a classroom.</p>`),
-
-  "morse-code-to-text": g(`
-    <h2>Decoding Morse code to text</h2>
-    <p>Paste dots and dashes and get plain text back. This decodes standard Morse — useful for solving a puzzle, checking your own keying, or reading a message someone sent in code.</p>
-    <h3>Formatting the input</h3>
+    <h3>Decoding Morse back to text</h3>
+    <p>Switch to Morse → Text and paste dots and dashes to get plain text back — useful for solving a puzzle, checking your own keying, or reading a message someone sent in code.</p>
     <ul>
-      <li>Use <b>dots</b> (<code>.</code>) and <b>dashes</b> (<code>-</code>), with a <b>space between letters</b> and a <b>slash or double space between words</b> — the decoder relies on those separators to know where each character ends.</li>
+      <li>Use <b>dots</b> (<code>.</code>) and <b>dashes</b> (<code>-</code>), with a <b>space between letters</b> and a <b>slash between words</b> — the decoder relies on those separators to know where each character ends.</li>
       <li>Without the gaps, a run of dots and dashes is ambiguous (the same sequence can split several ways), so spacing is what makes the decode unambiguous.</li>
     </ul>
-    <p>To encode text into Morse, use the Text → Morse tool. It all runs locally, so it works offline and nothing is uploaded.</p>`),
+    <p>Everything runs in your browser, so it works offline once loaded — handy for a classroom.</p>`),
 
   "rot13-cipher": g(`
     <h2>ROT13: the reversible letter shift</h2>

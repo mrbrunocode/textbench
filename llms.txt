@@ -1,6 +1,6 @@
 # Textbench
 
-> Case conversion, cleanup, encoding, hashing, generators, JSON/YAML/CSV conversion, regex testing and more — 72 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.
+> Case conversion, cleanup, encoding, hashing, generators, JSON/YAML/CSV conversion, regex testing and more — 63 free text tools that run entirely in your browser. No signup, no upload, nothing ever leaves your device.
 
 Textbench is a static web app: no signup, no backend, no per-visitor cost. Everything runs client-side.
 
@@ -47,7 +47,6 @@ Textbench is a static web app: no signup, no backend, no per-visitor cost. Every
 - [Trim Lines](https://textbench.app/tools/trim-whitespace-from-lines): Strip leading and trailing whitespace from every line in a block of text, without touching spacing in the middle of a line. Free, instant, browser-only.
 - [Invisible Characters](https://textbench.app/tools/remove-invisible-characters): Strip invisible Unicode characters — zero-width spaces, BOM, soft hyphens, directional marks — that sneak in from copy-pasting and silently break code or AI prompts. Free, browser-only.
 - [Smart Quotes](https://textbench.app/tools/smart-quotes-to-straight-quotes-converter): Convert curly “smart” quotes and apostrophes to plain straight quotes ' and ". Free, instant, runs entirely in your browser.
-- [Sort Z to A](https://textbench.app/tools/sort-lines-descending): Sort a list of lines in reverse alphabetical order, Z to A. Free, instant, works entirely in your browser — paste a list and get it sorted.
 - [Line Numbers](https://textbench.app/tools/add-line-numbers): Add sequential line numbers to a block of text, one per line. Free, instant, runs entirely in your browser.
 - [Slugify](https://textbench.app/tools/slugify-text): Convert any text into a clean, URL-safe slug: lowercase, hyphens instead of spaces, no special characters. Free, instant.
 - [Text Repeater](https://textbench.app/tools/text-repeater): Repeat a word, phrase or block of text any number of times, one copy per line. Free, instant, runs entirely in your browser.
@@ -55,10 +54,8 @@ Textbench is a static web app: no signup, no backend, no per-visitor cost. Every
 - [Regex Tester](https://textbench.app/tools/regex-tester): Test a regular expression against real text with live match highlighting and capture groups shown per match. Free, instant, runs entirely in your browser.
 - [Email Regex Tester](https://textbench.app/tools/email-regex-tester): Test an email-validation regex against real addresses, with a working pattern pre-loaded. See exactly which addresses match and which don't, live. Free, client-side.
 - [Phone Number Regex Tester](https://textbench.app/tools/phone-number-regex-tester): Test a phone-number regex against real numbers in different formats, with a working pattern pre-loaded. See exactly which formats match, live. Free, client-side.
-- [CSV to JSON](https://textbench.app/tools/csv-to-json-converter): Convert CSV to a JSON array of objects, using the first row as keys. Free, instant, runs entirely in your browser.
-- [JSON to CSV](https://textbench.app/tools/json-to-csv-converter): Convert a JSON array of objects to CSV, using the union of every object's keys as columns. Free, instant, runs entirely in your browser.
-- [YAML to JSON](https://textbench.app/tools/yaml-to-json-converter): Convert YAML to JSON, pretty-printed with 2-space indentation. Free, instant, runs entirely in your browser.
-- [JSON to YAML](https://textbench.app/tools/json-to-yaml-converter): Convert JSON to clean, readable YAML. Free, instant, runs entirely in your browser.
+- [CSV ↔ JSON](https://textbench.app/tools/csv-to-json-converter): Convert CSV to a JSON array of objects, or convert a JSON array back to CSV. Free, instant, runs entirely in your browser.
+- [YAML ↔ JSON](https://textbench.app/tools/yaml-to-json-converter): Convert YAML to pretty-printed JSON, or convert JSON to clean readable YAML. Free, instant, runs entirely in your browser.
 - [QR Code Generator](https://textbench.app/tools/qr-code-generator): Turn any text or URL into a scannable QR code, generated entirely in your browser. Free, instant, downloadable as a PNG.
 - [Lorem Ipsum](https://textbench.app/tools/lorem-ipsum-generator): Generate lorem ipsum placeholder text, any number of paragraphs. Free, instant, runs entirely in your browser.
 - [XML Tag Wrapper](https://textbench.app/tools/wrap-text-in-xml-tags): Wrap pasted text in a named XML tag pair — the delimiter pattern Anthropic's own docs recommend for Claude prompts. Free, instant, browser-only.
@@ -67,18 +64,12 @@ Textbench is a static web app: no signup, no backend, no per-visitor cost. Every
 - [Extract Emails](https://textbench.app/tools/extract-emails-from-text): Pull every email address out of a block of text or a document, one per line, with duplicates removed. Free, instant, nothing uploaded.
 - [Extract URLs](https://textbench.app/tools/extract-urls-from-text): Pull every http/https URL out of a block of text, one per line, with duplicates removed. Free, instant, browser-only.
 - [Extract Numbers](https://textbench.app/tools/extract-numbers-from-text): Pull every number out of a block of text, one per line, in the order they appear. Free, instant, browser-only.
-- [Base64 Encode](https://textbench.app/tools/base64-encode): Encode text to Base64 instantly. Free, browser-only — nothing you paste is uploaded anywhere.
-- [Base64 Decode](https://textbench.app/tools/base64-decode): Decode a Base64 string back to readable text instantly. Free, browser-only, nothing uploaded.
-- [URL Encode](https://textbench.app/tools/url-encode): Percent-encode text for safe use in a URL — spaces, symbols and special characters are escaped. Free, instant, browser-only.
-- [URL Decode](https://textbench.app/tools/url-decode): Decode a percent-encoded URL string back to readable text. Free, instant, browser-only.
-- [HTML Encode](https://textbench.app/tools/html-entity-encode): Escape text for safe use inside HTML — converts <, >, &, quotes and apostrophes to their HTML entity equivalents. Free, instant, browser-only.
-- [HTML Decode](https://textbench.app/tools/html-entity-decode): Decode HTML entities (&amp;, &lt;, &#39;, and more) back to their original characters. Free, instant, browser-only.
-- [Text to Binary](https://textbench.app/tools/text-to-binary): Convert text to binary code (8-bit bytes, space-separated). Free, instant, browser-only.
-- [Binary to Text](https://textbench.app/tools/binary-to-text): Convert binary code (space-separated 8-bit bytes) back to readable text. Free, instant, browser-only.
-- [Text to Hex](https://textbench.app/tools/text-to-hex): Convert text to hexadecimal byte values, space-separated. Free, instant, browser-only.
-- [Hex to Text](https://textbench.app/tools/hex-to-text): Convert hexadecimal byte values back to readable text. Free, instant, browser-only.
-- [Text → Morse](https://textbench.app/tools/morse-code-translator): Translate text into Morse code — letters, numbers and basic punctuation. Free, instant, browser-only.
-- [Morse → Text](https://textbench.app/tools/morse-code-to-text): Translate Morse code (dots and dashes) back into readable text. Free, instant, browser-only.
+- [Base64](https://textbench.app/tools/base64-encode): Encode text to Base64 or decode it back, in one tool. Free, browser-only — nothing you paste is uploaded anywhere.
+- [URL Encode](https://textbench.app/tools/url-encode): Percent-encode text for safe use in a URL, or decode an encoded string back to readable text. Free, instant, browser-only.
+- [HTML Entities](https://textbench.app/tools/html-entity-encode): Escape text for safe use inside HTML, or decode HTML entities back to their original characters. Free, instant, browser-only.
+- [Text ↔ Binary](https://textbench.app/tools/text-to-binary): Convert text to binary code as 8-bit bytes, or convert binary back to readable text. Free, instant, browser-only.
+- [Text ↔ Hex](https://textbench.app/tools/text-to-hex): Convert text to hexadecimal byte values, or convert hex back to readable text. Free, instant, browser-only.
+- [Morse Code](https://textbench.app/tools/morse-code-translator): Translate text into Morse code, or translate dots and dashes back into readable text. Free, instant, browser-only.
 - [ROT13](https://textbench.app/tools/rot13-cipher): Encode or decode text with the ROT13 cipher — a simple letter-rotation cipher that's its own inverse. Free, instant, browser-only.
 - [JSON Formatter](https://textbench.app/tools/json-formatter): Paste minified or messy JSON and get it pretty-printed with 2-space indentation, instantly. Free, browser-only, catches syntax errors as it formats.
 - [JSON Validator](https://textbench.app/tools/json-validator): Paste JSON and instantly see whether it's valid — and exactly where the syntax error is if it isn't. Free, browser-only, nothing uploaded.

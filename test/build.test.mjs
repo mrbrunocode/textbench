@@ -85,7 +85,7 @@ test("tool pages use the work shell, with the tool above the supporting prose", 
 });
 
 // The rail became hub-and-spoke on 2026-07-29. It used to assert that every
-// tool page linked to all 72 tools; that flat 72x72 graph is what these tests
+// tool page linked to all 63 tools; that flat 63x63 graph is what these tests
 // now exist to PREVENT, so the contract is inverted: the homepage carries the
 // complete index (it is the hub), and a tool page carries only its own group
 // plus a link to every other group heading.
@@ -97,7 +97,7 @@ test("the homepage rail is the complete index — every tool, one page", () => {
   }
 });
 
-test("a tool page's rail carries its own group, not all 72 tools", async () => {
+test("a tool page's rail carries its own group, not all 63 tools", async () => {
   const { GROUPS, GROUP_OF } = await import("../pages.mjs");
   const groupSlugs = Object.fromEntries(GROUPS.map(([h, s]) => [h, s]));
   for (const slug of ["word-counter", "rot13-cipher", "bold-text-generator"]) {
@@ -152,5 +152,43 @@ test("no page falls back to the old centred-column skeleton", () => {
     assert.doesNotMatch(html, /<main class="wrap"/, `${f} still uses the old centred main.wrap`);
     assert.doesNotMatch(html, /class="hero/, `${f} still uses the old hero block`);
     assert.match(html, /class="sheet sheet--(work|read)/, `${f} declares no layout shell`);
+  }
+});
+
+// ── Mirror-pair consolidation guards (2026-08-03) ─────────────────────────
+// Nine pages that were the same transform read backwards (encode/decode,
+// text↔binary, A→Z / Z→A) were folded into their twin, which now carries a
+// direction toggle. Two ways that can silently rot: a `directions` entry
+// naming a transform the engine doesn't implement (a dead button), or a
+// retired slug creeping back into the sitemap without its redirect.
+
+test("every direction-toggle option names a transform the app actually implements", async () => {
+  const { PAGES } = await import("../pages.mjs");
+  const app = readFileSync(join(ROOT, "assets", "app.js"), "utf8");
+  const toggled = PAGES.filter((p) => Array.isArray(p.directions) && p.directions.length);
+  assert.ok(toggled.length >= 9, `expected the merged pages to carry toggles, found ${toggled.length}`);
+  for (const p of toggled) {
+    assert.ok(p.directions.length >= 2, `${p.slug} has a direction toggle with fewer than two options`);
+    assert.equal(p.directions[0][0], p.transform,
+      `${p.slug}'s first direction must match its default transform, or the page loads with the wrong button lit`);
+    for (const [value] of p.directions) {
+      assert.ok(app.includes(`"${value}":`), `${p.slug} offers direction "${value}", which assets/app.js has no transform for`);
+    }
+  }
+});
+
+test("retired mirror-pair slugs are redirected, not resurrected or 404'd", () => {
+  const retired = [
+    "base64-decode", "url-decode", "html-entity-decode", "binary-to-text",
+    "hex-to-text", "morse-code-to-text", "json-to-csv-converter",
+    "json-to-yaml-converter", "sort-lines-descending",
+  ];
+  const sitemap = readFileSync(join(ROOT, "sitemap.xml"), "utf8");
+  const redirects = readFileSync(join(ROOT, "_redirects"), "utf8");
+  for (const slug of retired) {
+    assert.ok(!sitemap.includes(`/${C.COLLECTION_DIR}/${slug}<`),
+      `${slug} is retired but still advertised in sitemap.xml`);
+    assert.match(redirects, new RegExp(`^/${C.COLLECTION_DIR}/${slug}\\s+\\S+\\s+301`, "m"),
+      `${slug} was in the sitemap once, so it needs a 301 — not a hard 404`);
   }
 });

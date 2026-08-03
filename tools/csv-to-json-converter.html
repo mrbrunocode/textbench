@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CSV to JSON Converter — Online, Instant | Textbench</title>
-<meta name="description" content="Convert CSV to a JSON array of objects, using the first row as keys. Free, instant, runs entirely in your browser.">
+<title>CSV to JSON Converter (and JSON to CSV) | Textbench</title>
+<meta name="description" content="Convert CSV to a JSON array of objects, or convert a JSON array back to CSV. Free, instant, runs entirely in your browser.">
 <link rel="canonical" href="https://textbench.app/tools/csv-to-json-converter">
-<meta property="og:title" content="CSV to JSON Converter — Online, Instant">
-<meta property="og:description" content="Convert CSV to a JSON array of objects, using the first row as keys. Free, instant, runs entirely in your browser.">
+<meta property="og:title" content="CSV to JSON Converter (and JSON to CSV)">
+<meta property="og:description" content="Convert CSV to a JSON array of objects, or convert a JSON array back to CSV. Free, instant, runs entirely in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://textbench.app/tools/csv-to-json-converter">
 <meta property="og:image" content="https://textbench.app/assets/og-image.png">
@@ -19,19 +19,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=a0936158">
+<link rel="stylesheet" href="../assets/style.css?v=0baf7e0c">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/csv-to-json-converter","description":"Convert CSV to a JSON array of objects, using the first row as keys. Free, instant, runs entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Bruno FK","url":"https://brunofk.dev"},"datePublished":"2026-07-17","dateModified":"2026-07-24"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"CSV to JSON","item":"https://textbench.app/tools/csv-to-json-converter"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/csv-to-json-converter","description":"Convert CSV to a JSON array of objects, or convert a JSON array back to CSV. Free, instant, runs entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Bruno FK","url":"https://brunofk.dev"},"datePublished":"2026-07-17","dateModified":"2026-08-03"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"CSV ↔ JSON","item":"https://textbench.app/tools/csv-to-json-converter"}]}</script>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What if my CSV has no header row?","acceptedAnswer":{"@type":"Answer","text":"The first row is always treated as the header/keys — if your data has no header, add one temporary row of column names before converting, then remove it from the output afterward."}},{"@type":"Question","name":"Does it handle quoted fields with commas inside them?","acceptedAnswer":{"@type":"Answer","text":"Yes — a quoted field like \"Smith, John\" is parsed as one value, not split on the internal comma."}},{"@type":"Question","name":"What data type are the values in the output?","acceptedAnswer":{"@type":"Answer","text":"Everything becomes a JSON string — numbers and booleans in the CSV aren't auto-detected and converted to their native JSON types, since CSV itself has no type information to distinguish \"123\" the number from \"123\" the string."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What if my CSV has no header row?","acceptedAnswer":{"@type":"Answer","text":"The first row is always treated as the header/keys — if your data has no header, add one temporary row of column names before converting, then remove it from the output afterward."}},{"@type":"Question","name":"Does it handle quoted fields with commas inside them?","acceptedAnswer":{"@type":"Answer","text":"Yes — a quoted field like \"Smith, John\" is parsed as one value, not split on the internal comma. Going the other way, fields containing a comma, quote or newline are automatically quoted."}},{"@type":"Question","name":"What data type are the values in the JSON output?","acceptedAnswer":{"@type":"Answer","text":"Everything becomes a JSON string — numbers and booleans in the CSV aren't auto-detected, since CSV itself carries no type information to distinguish \"123\" the number from \"123\" the string."}},{"@type":"Question","name":"What if objects in the array have different keys?","acceptedAnswer":{"@type":"Answer","text":"Converting to CSV, the header is the union of every object's keys, not just the first one's — an extra field on a later object still gets its own column, and rows missing that key get an empty cell. Nothing is silently dropped."}},{"@type":"Question","name":"Does it work with nested objects or arrays as values?","acceptedAnswer":{"@type":"Answer","text":"Nested values are stringified into the cell as-is rather than flattened into separate columns — flatten nested data yourself first for a clean CSV."}}]}</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2653891546345771" crossorigin="anonymous"></script>
 <script data-grow-initializer="">
 !(function(){window.growMe||((window.growMe=function(e){window.growMe._.push(e);}),(window.growMe._=[]));var e=document.createElement("script");(e.type="text/javascript"),(e.src="https://faves.grow.me/main.js"),(e.defer=!0),e.setAttribute("data-grow-faves-site-id","U2l0ZTowNjY3MmQ4Yi1jYTA1LTQ3OWUtOGY1NC1iY2M1OThjYWRlMmY=");var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t);})();
 </script>
-<script id="toolsIndex" type="application/json">[{"title":"Word Counter","path":"/tools/word-counter"},{"title":"Character Counter","path":"/tools/character-counter"},{"title":"X / Twitter Counter","path":"/tools/twitter-character-counter"},{"title":"Meta Description","path":"/tools/meta-description-length-checker"},{"title":"YouTube Title","path":"/tools/youtube-title-length-checker"},{"title":"Readability Checker","path":"/tools/readability-checker"},{"title":"Reading Time","path":"/tools/reading-time-calculator"},{"title":"Word Frequency","path":"/tools/word-frequency-counter"},{"title":"Compare Texts","path":"/tools/compare-two-texts"},{"title":"UPPERCASE","path":"/tools/uppercase-converter"},{"title":"lowercase","path":"/tools/lowercase-converter"},{"title":"Title Case","path":"/tools/title-case-converter"},{"title":"Sentence case","path":"/tools/sentence-case-converter"},{"title":"Remove Duplicates","path":"/tools/remove-duplicate-lines"},{"title":"Extra Spaces","path":"/tools/remove-extra-spaces"},{"title":"Line Breaks","path":"/tools/remove-line-breaks"},{"title":"Empty Lines","path":"/tools/remove-empty-lines"},{"title":"Sort Lines","path":"/tools/sort-lines-alphabetically"},{"title":"Reverse Text","path":"/tools/reverse-text"},{"title":"Reverse Line Order","path":"/tools/reverse-line-order"},{"title":"Trim Lines","path":"/tools/trim-whitespace-from-lines"},{"title":"Invisible Characters","path":"/tools/remove-invisible-characters"},{"title":"Smart Quotes","path":"/tools/smart-quotes-to-straight-quotes-converter"},{"title":"Sort Z to A","path":"/tools/sort-lines-descending"},{"title":"Line Numbers","path":"/tools/add-line-numbers"},{"title":"Slugify","path":"/tools/slugify-text"},{"title":"Text Repeater","path":"/tools/text-repeater"},{"title":"Find & Replace","path":"/tools/find-and-replace"},{"title":"Regex Tester","path":"/tools/regex-tester"},{"title":"Email Regex Tester","path":"/tools/email-regex-tester"},{"title":"Phone Number Regex Tester","path":"/tools/phone-number-regex-tester"},{"title":"CSV to JSON","path":"/tools/csv-to-json-converter"},{"title":"JSON to CSV","path":"/tools/json-to-csv-converter"},{"title":"YAML to JSON","path":"/tools/yaml-to-json-converter"},{"title":"JSON to YAML","path":"/tools/json-to-yaml-converter"},{"title":"QR Code Generator","path":"/tools/qr-code-generator"},{"title":"Lorem Ipsum","path":"/tools/lorem-ipsum-generator"},{"title":"XML Tag Wrapper","path":"/tools/wrap-text-in-xml-tags"},{"title":"aLtErNaTiNg cAsE","path":"/tools/alternating-case-converter"},{"title":"InVeRsE cAsE","path":"/tools/inverse-case-converter"},{"title":"Extract Emails","path":"/tools/extract-emails-from-text"},{"title":"Extract URLs","path":"/tools/extract-urls-from-text"},{"title":"Extract Numbers","path":"/tools/extract-numbers-from-text"},{"title":"Base64 Encode","path":"/tools/base64-encode"},{"title":"Base64 Decode","path":"/tools/base64-decode"},{"title":"URL Encode","path":"/tools/url-encode"},{"title":"URL Decode","path":"/tools/url-decode"},{"title":"HTML Encode","path":"/tools/html-entity-encode"},{"title":"HTML Decode","path":"/tools/html-entity-decode"},{"title":"Text to Binary","path":"/tools/text-to-binary"},{"title":"Binary to Text","path":"/tools/binary-to-text"},{"title":"Text to Hex","path":"/tools/text-to-hex"},{"title":"Hex to Text","path":"/tools/hex-to-text"},{"title":"Text → Morse","path":"/tools/morse-code-translator"},{"title":"Morse → Text","path":"/tools/morse-code-to-text"},{"title":"ROT13","path":"/tools/rot13-cipher"},{"title":"JSON Formatter","path":"/tools/json-formatter"},{"title":"JSON Validator","path":"/tools/json-validator"},{"title":"JSON Minifier","path":"/tools/json-minifier"},{"title":"Markdown to HTML","path":"/tools/markdown-to-html-converter"},{"title":"Markdown to Plain Text","path":"/tools/markdown-to-plain-text"},{"title":"Markdown Table","path":"/tools/markdown-table-generator"},{"title":"Markdown to Confluence","path":"/tools/markdown-to-confluence-converter"},{"title":"Markdown to Slack","path":"/tools/markdown-to-slack-converter"},{"title":"HTML to Markdown","path":"/tools/html-to-markdown-converter"},{"title":"MD5 Hash","path":"/tools/md5-hash-generator"},{"title":"SHA-256 Hash","path":"/tools/sha256-hash-generator"},{"title":"UUID Generator","path":"/tools/uuid-generator"},{"title":"Password Generator","path":"/tools/random-password-generator"},{"title":"Strikethrough","path":"/tools/strikethrough-text-generator"},{"title":"Upside Down","path":"/tools/upside-down-text-generator"},{"title":"Bold Unicode","path":"/tools/bold-text-generator"}]</script>
+<script id="toolsIndex" type="application/json">[{"title":"Word Counter","path":"/tools/word-counter"},{"title":"Character Counter","path":"/tools/character-counter"},{"title":"X / Twitter Counter","path":"/tools/twitter-character-counter"},{"title":"Meta Description","path":"/tools/meta-description-length-checker"},{"title":"YouTube Title","path":"/tools/youtube-title-length-checker"},{"title":"Readability Checker","path":"/tools/readability-checker"},{"title":"Reading Time","path":"/tools/reading-time-calculator"},{"title":"Word Frequency","path":"/tools/word-frequency-counter"},{"title":"Compare Texts","path":"/tools/compare-two-texts"},{"title":"UPPERCASE","path":"/tools/uppercase-converter"},{"title":"lowercase","path":"/tools/lowercase-converter"},{"title":"Title Case","path":"/tools/title-case-converter"},{"title":"Sentence case","path":"/tools/sentence-case-converter"},{"title":"Remove Duplicates","path":"/tools/remove-duplicate-lines"},{"title":"Extra Spaces","path":"/tools/remove-extra-spaces"},{"title":"Line Breaks","path":"/tools/remove-line-breaks"},{"title":"Empty Lines","path":"/tools/remove-empty-lines"},{"title":"Sort Lines","path":"/tools/sort-lines-alphabetically"},{"title":"Reverse Text","path":"/tools/reverse-text"},{"title":"Reverse Line Order","path":"/tools/reverse-line-order"},{"title":"Trim Lines","path":"/tools/trim-whitespace-from-lines"},{"title":"Invisible Characters","path":"/tools/remove-invisible-characters"},{"title":"Smart Quotes","path":"/tools/smart-quotes-to-straight-quotes-converter"},{"title":"Line Numbers","path":"/tools/add-line-numbers"},{"title":"Slugify","path":"/tools/slugify-text"},{"title":"Text Repeater","path":"/tools/text-repeater"},{"title":"Find & Replace","path":"/tools/find-and-replace"},{"title":"Regex Tester","path":"/tools/regex-tester"},{"title":"Email Regex Tester","path":"/tools/email-regex-tester"},{"title":"Phone Number Regex Tester","path":"/tools/phone-number-regex-tester"},{"title":"CSV ↔ JSON","path":"/tools/csv-to-json-converter"},{"title":"YAML ↔ JSON","path":"/tools/yaml-to-json-converter"},{"title":"QR Code Generator","path":"/tools/qr-code-generator"},{"title":"Lorem Ipsum","path":"/tools/lorem-ipsum-generator"},{"title":"XML Tag Wrapper","path":"/tools/wrap-text-in-xml-tags"},{"title":"aLtErNaTiNg cAsE","path":"/tools/alternating-case-converter"},{"title":"InVeRsE cAsE","path":"/tools/inverse-case-converter"},{"title":"Extract Emails","path":"/tools/extract-emails-from-text"},{"title":"Extract URLs","path":"/tools/extract-urls-from-text"},{"title":"Extract Numbers","path":"/tools/extract-numbers-from-text"},{"title":"Base64","path":"/tools/base64-encode"},{"title":"URL Encode","path":"/tools/url-encode"},{"title":"HTML Entities","path":"/tools/html-entity-encode"},{"title":"Text ↔ Binary","path":"/tools/text-to-binary"},{"title":"Text ↔ Hex","path":"/tools/text-to-hex"},{"title":"Morse Code","path":"/tools/morse-code-translator"},{"title":"ROT13","path":"/tools/rot13-cipher"},{"title":"JSON Formatter","path":"/tools/json-formatter"},{"title":"JSON Validator","path":"/tools/json-validator"},{"title":"JSON Minifier","path":"/tools/json-minifier"},{"title":"Markdown to HTML","path":"/tools/markdown-to-html-converter"},{"title":"Markdown to Plain Text","path":"/tools/markdown-to-plain-text"},{"title":"Markdown Table","path":"/tools/markdown-table-generator"},{"title":"Markdown to Confluence","path":"/tools/markdown-to-confluence-converter"},{"title":"Markdown to Slack","path":"/tools/markdown-to-slack-converter"},{"title":"HTML to Markdown","path":"/tools/html-to-markdown-converter"},{"title":"MD5 Hash","path":"/tools/md5-hash-generator"},{"title":"SHA-256 Hash","path":"/tools/sha256-hash-generator"},{"title":"UUID Generator","path":"/tools/uuid-generator"},{"title":"Password Generator","path":"/tools/random-password-generator"},{"title":"Strikethrough","path":"/tools/strikethrough-text-generator"},{"title":"Upside Down","path":"/tools/upside-down-text-generator"},{"title":"Bold Unicode","path":"/tools/bold-text-generator"}]</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -51,14 +51,14 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <a href="/alternatives">Compare</a>
       <a href="/about">About</a>
     </nav>
-    <p class="masthead-meta">72 tools · nothing uploaded · no account</p>
+    <p class="masthead-meta">63 tools · nothing uploaded · no account</p>
   </div>
 </header>
 <div class="sheet sheet--work has-margin">
   
   <nav class="index" aria-label="Tools">
     <div class="index-in">
-      <p class="index-title"><a href="/">All 72 tools</a></p>
+      <p class="index-title"><a href="/">All 63 tools</a></p>
       <section class="index-group index-group--collapsed">
         <p class="index-head"><a href="/#idx-count-measure">Count &amp; measure</a> <span class="index-count">7</span></p>
       </section>
@@ -72,13 +72,13 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
         <p class="index-head"><a href="/#idx-clean-up">Clean up</a> <span class="index-count">7</span></p>
       </section>
       <section class="index-group index-group--collapsed">
-        <p class="index-head"><a href="/#idx-reorder">Reorder</a> <span class="index-count">5</span></p>
+        <p class="index-head"><a href="/#idx-reorder">Reorder</a> <span class="index-count">4</span></p>
       </section>
       <section class="index-group index-group--collapsed">
         <p class="index-head"><a href="/#idx-find-extract">Find &amp; extract</a> <span class="index-count">7</span></p>
       </section>
       <section class="index-group index-group--collapsed">
-        <p class="index-head"><a href="/#idx-encode-decode">Encode &amp; decode</a> <span class="index-count">13</span></p>
+        <p class="index-head"><a href="/#idx-encode-decode">Encode &amp; decode</a> <span class="index-count">7</span></p>
       </section>
       <section class="index-group">
         <p class="index-head" id="idx-data-formats">Data formats</p>
@@ -86,10 +86,8 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
           <li><a href="/tools/json-formatter">JSON Formatter</a></li>
           <li><a href="/tools/json-validator">JSON Validator</a></li>
           <li><a href="/tools/json-minifier">JSON Minifier</a></li>
-          <li><a href="/tools/csv-to-json-converter" aria-current="page">CSV to JSON</a></li>
-          <li><a href="/tools/json-to-csv-converter">JSON to CSV</a></li>
-          <li><a href="/tools/yaml-to-json-converter">YAML to JSON</a></li>
-          <li><a href="/tools/json-to-yaml-converter">JSON to YAML</a></li>
+          <li><a href="/tools/csv-to-json-converter" aria-current="page">CSV ↔ JSON</a></li>
+          <li><a href="/tools/yaml-to-json-converter">YAML ↔ JSON</a></li>
           <li><a href="/tools/markdown-to-html-converter">Markdown to HTML</a></li>
           <li><a href="/tools/markdown-to-plain-text">Markdown to Plain Text</a></li>
           <li><a href="/tools/markdown-table-generator">Markdown Table</a></li>
@@ -113,13 +111,18 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 
   <header class="standfirst">
     <p class="kicker"><a href="/">Tools</a> <span aria-hidden="true">/</span> Data formats</p>
-    <h1>CSV to JSON Converter — Online, Instant</h1>
+    <h1>CSV to JSON Converter (and JSON to CSV)</h1>
   </header>
-  <p class="lede">Paste CSV below — the first row is used as field names, and each following row becomes one JSON object. Handles quoted fields with embedded commas correctly.</p>
+  <p class="lede">Paste CSV to get a JSON array of objects — the first row becomes the field names, each following row becomes one object — or flip to JSON → CSV to go the other way. Quoted fields with embedded commas are handled correctly in both directions.</p>
   
   <section class="tool" data-transform="csv-to-json" data-shape="simple">
     
     
+    
+    <div class="dir-toggle" role="group" aria-label="Direction">
+      <button type="button" class="dir-btn is-active" data-transform="csv-to-json" aria-pressed="true">CSV → JSON</button>
+      <button type="button" class="dir-btn" data-transform="json-to-csv" aria-pressed="false">JSON → CSV</button>
+    </div>
     
     <div class="extra-row" data-for="find-replace" hidden>
       <label class="field"><span>Find</span><input type="text" id="findInput" placeholder="text or pattern"></label>
@@ -195,15 +198,23 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <li><b>Commas inside fields</b> must be quoted in the source CSV, or the columns will misalign.</li>
       <li><b>Types:</b> CSV has no types — everything is text — so numbers may come through as strings unless you convert them afterward.</li>
     </ul>
-    <p>For the reverse, use JSON to CSV. Because it runs locally, you can convert a spreadsheet of real customer or financial data without uploading it anywhere.</p>
+    <h3>Going the other way: JSON to CSV</h3>
+    <p>When an API gives you JSON and you need it in Excel, Google Sheets, or a database import, flip the direction. An array of JSON objects becomes rows and columns — keys become the header row, each object becomes a data row.</p>
+    <ul>
+      <li><b>Nested objects and arrays</b> don't have a natural place in a flat table — they'll be stringified rather than expanded, so deeply nested JSON may need reshaping first.</li>
+      <li><b>Inconsistent keys:</b> if some objects have fields others don't, the CSV takes every column, with blanks where a record lacks a value.</li>
+    </ul>
+    <p>It works best on a flat array of similar records — exactly what most "list" API responses return. Because it runs locally, you can convert a spreadsheet of real customer or financial data without uploading it anywhere.</p>
   </section>
     
   <section class="faq">
     <h2>Common questions</h2>
     <div class="faq-grid">
       <div class="faq-item"><h3>What if my CSV has no header row?</h3><p>The first row is always treated as the header/keys — if your data has no header, add one temporary row of column names before converting, then remove it from the output afterward.</p></div>
-      <div class="faq-item"><h3>Does it handle quoted fields with commas inside them?</h3><p>Yes — a quoted field like &quot;Smith, John&quot; is parsed as one value, not split on the internal comma.</p></div>
-      <div class="faq-item"><h3>What data type are the values in the output?</h3><p>Everything becomes a JSON string — numbers and booleans in the CSV aren't auto-detected and converted to their native JSON types, since CSV itself has no type information to distinguish &quot;123&quot; the number from &quot;123&quot; the string.</p></div>
+      <div class="faq-item"><h3>Does it handle quoted fields with commas inside them?</h3><p>Yes — a quoted field like &quot;Smith, John&quot; is parsed as one value, not split on the internal comma. Going the other way, fields containing a comma, quote or newline are automatically quoted.</p></div>
+      <div class="faq-item"><h3>What data type are the values in the JSON output?</h3><p>Everything becomes a JSON string — numbers and booleans in the CSV aren't auto-detected, since CSV itself carries no type information to distinguish &quot;123&quot; the number from &quot;123&quot; the string.</p></div>
+      <div class="faq-item"><h3>What if objects in the array have different keys?</h3><p>Converting to CSV, the header is the union of every object's keys, not just the first one's — an extra field on a later object still gets its own column, and rows missing that key get an empty cell. Nothing is silently dropped.</p></div>
+      <div class="faq-item"><h3>Does it work with nested objects or arrays as values?</h3><p>Nested values are stringified into the cell as-is rather than flattened into separate columns — flatten nested data yourself first for a clean CSV.</p></div>
     </div>
   </section>
   </div>
@@ -215,19 +226,19 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
       <div class="note">
         <p class="note-head">Related tools</p>
         <ul class="note-list">
-          <li><a href="/tools/json-to-csv-converter">JSON to CSV</a></li>
+          <li><a href="/tools/yaml-to-json-converter">YAML ↔ JSON</a></li>
           <li><a href="/tools/phone-number-regex-tester">Phone Number Regex Tester</a></li>
-          <li><a href="/tools/yaml-to-json-converter">YAML to JSON</a></li>
-          <li><a href="/tools/email-regex-tester">Email Regex Tester</a></li>
-          <li><a href="/tools/json-to-yaml-converter">JSON to YAML</a></li>
-          <li><a href="/tools/regex-tester">Regex Tester</a></li>
           <li><a href="/tools/qr-code-generator">QR Code Generator</a></li>
-          <li><a href="/tools/find-and-replace">Find &amp; Replace</a></li>
+          <li><a href="/tools/email-regex-tester">Email Regex Tester</a></li>
           <li><a href="/tools/lorem-ipsum-generator">Lorem Ipsum</a></li>
-          <li><a href="/tools/text-repeater">Text Repeater</a></li>
+          <li><a href="/tools/regex-tester">Regex Tester</a></li>
           <li><a href="/tools/wrap-text-in-xml-tags">XML Tag Wrapper</a></li>
+          <li><a href="/tools/find-and-replace">Find &amp; Replace</a></li>
+          <li><a href="/tools/alternating-case-converter">aLtErNaTiNg cAsE</a></li>
+          <li><a href="/tools/text-repeater">Text Repeater</a></li>
+          <li><a href="/tools/inverse-case-converter">InVeRsE cAsE</a></li>
           <li><a href="/tools/slugify-text">Slugify</a></li>
-          <li><a class="index-more" href="/">All 72 tools →</a></li>
+          <li><a class="index-more" href="/">All 63 tools →</a></li>
         </ul>
       </div>
     </div>
@@ -236,7 +247,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 <footer>
   <div class="wrap">
     <div class="foot-in">
-      <div><span class="fb">Textbench</span> — 72 text tools, one page, nothing uploaded. · <a href="/guides">Guides</a> · <a href="/alternatives">Compare</a> · <a href="/about">About</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/contact">Contact</a> · <a href="mailto:hello@textbench.app">hello@textbench.app</a></div>
+      <div><span class="fb">Textbench</span> — 63 text tools, one page, nothing uploaded. · <a href="/guides">Guides</a> · <a href="/alternatives">Compare</a> · <a href="/about">About</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/contact">Contact</a> · <a href="mailto:hello@textbench.app">hello@textbench.app</a></div>
       <div>Free. No signup, no upload — everything runs in your browser.<br>
       Built and maintained by <a href="https://brunofk.dev" rel="author noopener" target="_blank">Bruno FK</a>, an independent developer in Edinburgh.<br>
       <a href="https://github.com/mrbrunocode/textbench" rel="noopener" target="_blank">Source on GitHub</a> — check the privacy claim yourself.</div>
@@ -244,6 +255,6 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
   </div>
 </footer>
 <script>window.REGEX_WORKER_URL = "../assets/regex-worker.js?v=11cab91b";</script>
-<script src="../assets/app.js?v=564b93c6" defer></script>
+<script src="../assets/app.js?v=2bd9380a" defer></script>
 </body>
 </html>

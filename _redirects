@@ -1,0 +1,26 @@
+# Redirects for Cloudflare (Workers static assets / Pages) and Netlify — all
+# three read this same file format.
+
+# ── Mirror-pair consolidation, 2026-08-03 ─────────────────────────────────
+# AdSense rejected countlink.app (23 Jul) and diffhero.app (1 Aug) for "Low
+# value content", and Search Console had 42/45 and 51/55 URLs stuck in
+# "Discovered – currently not indexed". Nine tool pages here were the *same
+# transform read backwards* as another page — encode/decode, text↔binary,
+# A→Z / Z→A — which is exactly the "repeating lengthy text segments across
+# similar pages" pattern Google's own guidance tells you to consolidate.
+#
+# Each pair is now one page with a direction toggle, and the surviving page
+# absorbed the retired page's guide prose rather than dropping it. These are
+# 301s, not 404s: every one of these URLs was in sitemap.xml, and a sitemap
+# URL must never become a hard 404.
+#
+# Remove these only once Search Console shows the old URLs dropped out.
+/tools/base64-decode          /tools/base64-encode            301
+/tools/url-decode             /tools/url-encode               301
+/tools/html-entity-decode     /tools/html-entity-encode       301
+/tools/binary-to-text         /tools/text-to-binary           301
+/tools/hex-to-text            /tools/text-to-hex              301
+/tools/morse-code-to-text     /tools/morse-code-translator    301
+/tools/json-to-csv-converter  /tools/csv-to-json-converter    301
+/tools/json-to-yaml-converter /tools/yaml-to-json-converter   301
+/tools/sort-lines-descending  /tools/sort-lines-alphabetically 301
