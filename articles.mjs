@@ -12,7 +12,7 @@ const T = "tools"; // COLLECTION_DIR, local so links read clearly below
 export const ARTICLES = [
   {
     slug: "base64-explained",
-    title: "Base64, explained: what it is, what it isn't, and when to use it",
+    title: "Base64, explained: what it is and when to use it",
     description:
       "A clear explanation of Base64 encoding: what problem it solves, why it makes data bigger, and the crucial reason it is not — and never should be used as — encryption.",
     date: "2026-07-23",
@@ -83,7 +83,7 @@ export const ARTICLES = [
   },
   {
     slug: "regex-for-non-programmers",
-    title: "Regular expressions for non-programmers: a gentle introduction",
+    title: "Regular expressions for non-programmers, gently explained",
     description:
       "Regex looks like line noise but the core ideas are simple. A friendly introduction to matching patterns in text, with practical examples you can use today.",
     date: "2026-07-23",
@@ -122,7 +122,7 @@ export const ARTICLES = [
   },
   {
     slug: "character-encoding-explained",
-    title: "Character encoding explained: Unicode, UTF-8, and why text breaks",
+    title: "Character encoding explained: Unicode and UTF-8",
     description:
       "Why does text sometimes turn into question marks or gibberish? A clear explanation of character encoding, Unicode and UTF-8 — and how to avoid the mess.",
     date: "2026-07-23",

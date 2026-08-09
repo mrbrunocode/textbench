@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Remove Invisible Characters — Zero-Width Spaces, BOM &amp; More | Textbench</title>
+<title>Remove Invisible Characters — Zero-Width &amp; BOM | Textbench</title>
 <meta name="description" content="Strip invisible Unicode characters — zero-width spaces, BOM, soft hyphens, directional marks — that sneak in from copy-pasting and silently break code or AI prompts. Free, browser-only.">
 <link rel="canonical" href="https://textbench.app/tools/remove-invisible-characters">
-<meta property="og:title" content="Remove Invisible Characters — Zero-Width Spaces, BOM &amp; More">
+<meta property="og:title" content="Remove Invisible Characters — Zero-Width &amp; BOM">
 <meta property="og:description" content="Strip invisible Unicode characters — zero-width spaces, BOM, soft hyphens, directional marks — that sneak in from copy-pasting and silently break code or AI prompts. Free, browser-only.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://textbench.app/tools/remove-invisible-characters">
@@ -23,7 +23,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LJCXH0BF41"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/remove-invisible-characters","description":"Strip invisible Unicode characters — zero-width spaces, BOM, soft hyphens, directional marks — that sneak in from copy-pasting and silently break code or AI prompts. Free, browser-only.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Bruno FK","url":"https://brunofk.dev"},"datePublished":"2026-07-17","dateModified":"2026-07-26"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Textbench","url":"https://textbench.app/tools/remove-invisible-characters","description":"Strip invisible Unicode characters — zero-width spaces, BOM, soft hyphens, directional marks — that sneak in from copy-pasting and silently break code or AI prompts. Free, browser-only.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Bruno FK","url":"https://brunofk.dev"},"datePublished":"2026-07-17","dateModified":"2026-08-09"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Textbench","item":"https://textbench.app/"},{"@type":"ListItem","position":2,"name":"Invisible Characters","item":"https://textbench.app/tools/remove-invisible-characters"}]}</script>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why would invisible characters be in my text at all?","acceptedAnswer":{"@type":"Answer","text":"Copying from a web page, a PDF, a word processor, or straight out of ChatGPT/Claude's own output commonly carries them along invisibly — a zero-width space marking a soft line-break point, or a BOM left over from how a file was saved."}},{"@type":"Question","name":"Does this touch a regular space or a non-breaking space?","acceptedAnswer":{"@type":"Answer","text":"A regular space is left alone. A non-breaking space is converted to a normal space rather than deleted — deleting it outright would silently merge two words into one."}},{"@type":"Question","name":"Why does this matter for AI prompts specifically?","acceptedAnswer":{"@type":"Answer","text":"A zero-width character embedded mid-word can change how a model tokenizes that word, and invisible characters inside a JSON block you're asking a model to parse (or that a model just handed back to you) can cause a parser to reject otherwise-valid-looking data — cleaning the text first rules that out."}}]}</script>
@@ -107,7 +107,7 @@ gtag('js',new Date());gtag('config','G-LJCXH0BF41');</script>
 
   <header class="standfirst">
     <p class="kicker"><a href="/">Tools</a> <span aria-hidden="true">/</span> Clean up</p>
-    <h1>Remove Invisible Characters — Zero-Width Spaces, BOM &amp; More</h1>
+    <h1>Remove Invisible Characters — Zero-Width &amp; BOM</h1>
   </header>
   <p class="lede">Paste text below and every invisible, non-printing character is stripped out — zero-width spaces, a byte-order mark, soft hyphens, left-to-right/right-to-left marks, and the word joiner. These are invisible on screen but very real to a parser: they've been known to silently break JSON output, split a word an AI model was supposed to treat as one token, or make two strings that look identical fail an equality check.</p>
   

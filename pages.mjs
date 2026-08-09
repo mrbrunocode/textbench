@@ -74,7 +74,7 @@ export const PAGES = [
   {
     slug: "meta-description-length-checker",
     eyebrow: "Meta Description",
-    title: "Meta Description Length Checker — Stay Under ~155 Characters",
+    title: "Meta Description Length Checker",
     description:
       "Check a meta description against the ~155-character length Google typically shows in search results, live as you type. Free, instant, browser-only.",
     intro:
@@ -225,7 +225,7 @@ export const PAGES = [
   {
     slug: "sentence-case-converter",
     eyebrow: "Sentence case",
-    title: "Sentence Case Converter — Capitalize the First Letter of Each Sentence",
+    title: "Sentence Case Converter",
     description:
       "Convert text to sentence case: lowercase throughout, with the first letter of each sentence capitalized. Free, instant, browser-only.",
     intro:
@@ -355,7 +355,7 @@ export const PAGES = [
   {
     slug: "trim-whitespace-from-lines",
     eyebrow: "Trim Lines",
-    title: "Trim Whitespace From Lines — Clean Leading & Trailing Spaces",
+    title: "Trim Whitespace From Lines",
     description:
       "Strip leading and trailing whitespace from every line in a block of text, without touching spacing in the middle of a line. Free, instant, browser-only.",
     intro:
@@ -371,7 +371,7 @@ export const PAGES = [
   {
     slug: "remove-invisible-characters",
     eyebrow: "Invisible Characters",
-    title: "Remove Invisible Characters — Zero-Width Spaces, BOM & More",
+    title: "Remove Invisible Characters — Zero-Width & BOM",
     description:
       "Strip invisible Unicode characters — zero-width spaces, BOM, soft hyphens, directional marks — that sneak in from copy-pasting and silently break code or AI prompts. Free, browser-only.",
     intro:
@@ -878,7 +878,7 @@ export const PAGES = [
   {
     slug: "markdown-to-plain-text",
     eyebrow: "Markdown to Plain Text",
-    title: "Markdown to Plain Text Converter — Strip Markdown Formatting",
+    title: "Markdown to Plain Text Converter",
     description:
       "Strip Markdown formatting down to clean plain text — headers, bold/italic, links and lists all lose their markup, keeping just the words. Free, instant, runs entirely in your browser.",
     intro:

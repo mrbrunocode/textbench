@@ -4,8 +4,8 @@
     "date": "2026-08-03"
   },
   "/alternatives": {
-    "hash": "53312acad64b0c0f",
-    "date": "2026-08-03"
+    "hash": "5b39346eddf62bd4",
+    "date": "2026-08-09"
   },
   "/contact": {
     "hash": "9aa0c537d0d852e1",
@@ -116,8 +116,8 @@
     "date": "2026-07-24"
   },
   "tools/markdown-to-plain-text": {
-    "hash": "724d78c5016a5956",
-    "date": "2026-07-24"
+    "hash": "aeb9ae411bfe6cce",
+    "date": "2026-08-09"
   },
   "tools/markdown-to-slack-converter": {
     "hash": "3632937aecd0c78a",
@@ -128,8 +128,8 @@
     "date": "2026-07-24"
   },
   "tools/meta-description-length-checker": {
-    "hash": "b305a5a0aa9f4df8",
-    "date": "2026-07-24"
+    "hash": "dd1f792c7bc611d0",
+    "date": "2026-08-09"
   },
   "tools/morse-code-translator": {
     "hash": "d3da2cb58ea57692",
@@ -172,8 +172,8 @@
     "date": "2026-07-24"
   },
   "tools/remove-invisible-characters": {
-    "hash": "db7c9bf840a53582",
-    "date": "2026-07-26"
+    "hash": "2b6c44e1379b81ec",
+    "date": "2026-08-09"
   },
   "tools/remove-line-breaks": {
     "hash": "84e1b2a37fa81742",
@@ -192,8 +192,8 @@
     "date": "2026-07-24"
   },
   "tools/sentence-case-converter": {
-    "hash": "f44790b39fbc23e1",
-    "date": "2026-07-24"
+    "hash": "d814fe25f3fa3f65",
+    "date": "2026-08-09"
   },
   "tools/sha256-hash-generator": {
     "hash": "a5bb9a759828ae28",
@@ -232,8 +232,8 @@
     "date": "2026-07-24"
   },
   "tools/trim-whitespace-from-lines": {
-    "hash": "8e4a9e75de5a5f96",
-    "date": "2026-07-24"
+    "hash": "e19685585dcb3d5a",
+    "date": "2026-08-09"
   },
   "tools/twitter-character-counter": {
     "hash": "bf2d18d40a7338a8",

@@ -234,7 +234,7 @@ export const terms = {
 // Re-verify before revising; competitors change.
 export const alternatives = {
   path: "/alternatives",
-  title: `Convert Case & Text Mechanic Alternatives — ${C.NAME} Compared`,
+  title: `Convert Case & Text Mechanic Alternatives`,
   description:
     "How Textbench compares with Convert Case and Text Mechanic: what runs in your browser, what's rate-limited, and which one to use for which job.",
   bodyHtml: `
