@@ -221,10 +221,29 @@ function toolsIndexScript() {
   return `<script id="toolsIndex" type="application/json">${JSON.stringify(items)}</script>`;
 }
 
-/** Related tools as a margin note rather than a footer grid. */
+/**
+ * Related tools as a margin note rather than a footer grid.
+ *
+ * Topical siblings (same GROUPS heading) are listed first, then the window
+ * is topped up by PAGES-array adjacency. PAGES order and GROUPS order mostly
+ * agree, but not always — e.g. uuid-generator sits in PAGES between the hash
+ * tools and the Unicode-style tools, nowhere near its real "Generate"
+ * siblings (slugify, text-repeater, lorem-ipsum, qr-code, xml-wrap), so a
+ * pure array-adjacency window was missing 5 of the 6 tools a reader (and a
+ * crawler) would actually expect next to it. 2026-08-15.
+ */
 function relatedNote(currentSlug) {
   const i = PAGES.findIndex((x) => x.slug === currentSlug);
   const chosen = [];
+  const group = GROUP_OF[currentSlug];
+  if (group) {
+    const [, slugs] = GROUPS.find(([heading]) => heading === group);
+    for (const slug of slugs) {
+      if (slug === currentSlug || chosen.length >= RELATED_WINDOW) continue;
+      const p = bySlug[slug];
+      if (p) chosen.push(p);
+    }
+  }
   for (let off = 1; chosen.length < RELATED_WINDOW && off < PAGES.length; off++) {
     const after = PAGES[(i + off) % PAGES.length];
     const before = PAGES[(i - off + PAGES.length) % PAGES.length];
