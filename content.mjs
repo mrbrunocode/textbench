@@ -226,11 +226,14 @@ export const terms = {
 //
 // Deliberately ONE page covering both rather than a near-duplicate page per
 // competitor: two thin comparison pages built from the same template is the
-// exact scaled-content pattern the rest of this repo works to avoid.
+// exact scaled-content pattern the rest of this repo works to avoid. A third
+// tool, TextBases, was added 2026-08-23 as a short section rather than its
+// own page or a retitle, for the same reason.
 //
 // Claims were checked against each site on 2026-07-24 and are dated in the
-// copy. Note this comparison is genuinely narrower than it looks — Convert
-// Case has a much larger catalogue than Textbench and the page says so.
+// copy (TextBases checked 2026-08-23). Note this comparison is genuinely
+// narrower than it looks — Convert Case has a much larger catalogue than
+// Textbench and the page says so.
 // Re-verify before revising; competitors change.
 export const alternatives = {
   path: "/alternatives",
@@ -244,12 +247,12 @@ export const alternatives = {
     <p><strong>Short version:</strong> ${C.NAME} runs every tool in your browser with no rate limit and no paid tier. Convert Case has a considerably bigger catalogue. Text Mechanic caps free use per hour.</p>
 
     <h2>Text Mechanic: the hourly cap</h2>
-    <p>Text Mechanic offers roughly 30+ tools and needs no signup, but free use is metered — hit it enough in a session and you get "Limit of 4 free tasks per hour exceeded", with Text Mechanic Pro sold as the way to remove it (checked July 2026).</p>
+    <p><a href="https://textmechanic.com/" target="_blank" rel="noopener">Text Mechanic</a> offers roughly 30+ tools and needs no signup, but free use is metered — hit it enough in a session and you get "Limit of 4 free tasks per hour exceeded", with Text Mechanic Pro sold as the way to remove it (checked July 2026).</p>
     <p>That limit also tells you something about the architecture: work you can rate-limit per hour is work happening on a server, which means your pasted text is being sent to one. For a case conversion that's unremarkable; for an API response with a token in it, or an internal document, it's worth knowing.</p>
     <p>${C.NAME} has no per-hour cap because there's nothing to cap — the work happens on your machine, so there's no server cost to ration and no queue to stand in.</p>
 
     <h2>Convert Case: genuinely bigger</h2>
-    <p>Convert Case is free, needs no signup, and covers roughly 150+ tools across case conversion, code and data formatting, image conversion, Unicode font styles and random generators. That is <strong>more than ${C.NAME}'s ${C.TOOL_COUNT}</strong>, and if you want image format conversion or a specific generator that isn't here, it may simply have it and ${C.NAME} won't. Both sites carry ads.</p>
+    <p><a href="https://convertcase.net/" target="_blank" rel="noopener">Convert Case</a> is free, needs no signup, and covers roughly 150+ tools across case conversion, code and data formatting, image conversion, Unicode font styles and random generators. That is <strong>more than ${C.NAME}'s ${C.TOOL_COUNT}</strong>, and if you want image format conversion or a specific generator that isn't here, it may simply have it and ${C.NAME} won't. Both sites carry ads.</p>
     <p>Where ${C.NAME} differs is what happens to your text. Convert Case doesn't state whether it processes client- or server-side; ${C.NAME} does everything locally and you can verify it — open the Network tab while you use a tool and nothing carrying your text goes out, and the tools keep working with your connection off.</p>
 
     <h2>What ${C.NAME} does differently</h2>
@@ -261,6 +264,11 @@ export const alternatives = {
       <li><strong>Fast to get around.</strong> Cmd/Ctrl+K opens a search over all ${C.TOOL_COUNT} tools from any page.</li>
     </ul>
 
+    <h2 id="textbases-a-smaller-newer-catalogue">TextBases: a smaller, newer catalogue</h2>
+    <p><a href="https://textbases.app/" target="_blank" rel="noopener">TextBases</a> is a newer collection (checked August 2026) of roughly 29 free tools, no signup and no ads: text cleanup and counting, sorting and alphabetizing, case conversion and Text-to-List on the text side, plus its own developer formatters for JSON, XML, HTML and SQL, a couple of generators, and password/UUID/hash tools. That overlaps a meaningful slice of ${C.NAME} without matching Convert Case's or Text Mechanic's breadth.</p>
+    <p>We tested its <a href="https://textbases.app/text-tools/remove-duplicate-lines/" target="_blank" rel="noopener">duplicate-line remover</a> with the browser's Network tab open, the same check we'd apply to ourselves: pasting text triggered no outbound request carrying it, which matches a client-side tool. Worth knowing though — TextBases' own FAQ is more cautious than that, telling users to "review the specific tool page before pasting" sensitive content rather than guaranteeing every tool works this way, so verify per tool rather than assuming it holds site-wide the way it does here.</p>
+    <p>If Convert Case and Text Mechanic don't have the specific tool you're after, it's worth a look before you sign up for anything.</p>
+
     <h2>Which to use</h2>
     <ul>
       <li><strong>Sensitive text</strong> — anything with credentials, customer data or unreleased work in it: use a client-side tool. That's ${C.NAME}'s whole design.</li>
@@ -268,7 +276,7 @@ export const alternatives = {
       <li><strong>Bulk or repetitive work</strong> — an hourly cap gets in the way fast, so a local tool suits better.</li>
       <li><strong>You just need one quick conversion</strong> — honestly, any of the three will do it. <a href="/">Start here</a> if you'd rather it not leave your browser.</li>
     </ul>
-    <p class="note">${C.NAME} is not affiliated with Convert Case or Text Mechanic. Their features, limits and pricing were checked in July 2026 and may have changed since — the fastest way to be sure is to look at their sites.</p>
+    <p class="note">${C.NAME} is not affiliated with Convert Case, Text Mechanic, or TextBases. Their features, limits and pricing were checked in July 2026 (TextBases in August 2026) and may have changed since — the fastest way to be sure is to look at their sites.</p>
   </section>`,
 };
 
